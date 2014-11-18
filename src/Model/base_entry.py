@@ -3,8 +3,9 @@
 __author__ = 'Ondřej Lanč'
 
 
-class BaseEntry (object):
+class BaseEntry(object):
     """This is basis class for all entries."""
+
     def __init__(self, name=""):
         self._name = str(name)
         self.parent = None
@@ -20,14 +21,19 @@ class BaseEntry (object):
         self._group = None  # Group of entry
         self.package = None  # Plugin or package, from which this entry originates.
 
+        # Multiple properties
+        self.multiple = False
+        self._multipleMin = None
+        self._multipleMax = None
+
     @property
     def name(self):
-        """getter"""
+        """get name"""
         return self._name
 
     @name.setter
     def name(self, name):
-        """setter"""
+        """set name"""
         self._name = str(name)
 
     @property
