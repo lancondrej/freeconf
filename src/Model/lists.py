@@ -3,7 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 
-from src.Model.constants import FcTypes
+from src.Model.constants import Types
 
 
 class FcList:
@@ -62,7 +62,7 @@ class FcStringList(FcList):
     @property
     def type(self):
         """Return type of this list entries."""
-        return FcTypes.STRING
+        return Types.STRING
 
 
 class FcFuzzyList(FcList):
@@ -87,7 +87,7 @@ class FcFuzzyList(FcList):
     @property
     def type(self):
         """Return type of this list entries."""
-        return FcTypes.FUZZY
+        return Types.FUZZY
 
     def get_exact_grade(self, grade):
         """Return entry with given grade. If such entry is not found, None is returned."""

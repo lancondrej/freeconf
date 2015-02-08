@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 #
+
 __author__ = 'Ondřej Lanč'
 
 from src.Model.base_entry import BaseEntry
-from src.Model.constants import FcTypes
+from src.Model.constants import Types
 from src.Model.lists import boolList
+from src.Model.exception_logging.log import log
 
 
 class KeyWord(BaseEntry):
-    """This is a class for keyword entries from Template File"""
+    """This is a class for keyword entries"""
 
     def __init__(self):
         BaseEntry.__init__(self)
@@ -24,7 +26,7 @@ class KeyWord(BaseEntry):
         return self._defaultValue
 
     # Override of functions:
-    def is_section(self):
+    def is_container(self):
         return False
 
     def is_keyword(self):
@@ -40,7 +42,7 @@ class KeyWord(BaseEntry):
 
     @property
     def type(self):
-        return FcTypes.KEY_WORD
+        return Types.KEY_WORD
 
     @property
     def list(self):
@@ -56,7 +58,7 @@ class KeyWord(BaseEntry):
 
 
 class Fuzzy(KeyWord):
-    """This is a class for keyword entries of type fuzzy from template file."""
+    """This is a class for keyword entries of type fuzzy."""
 
     def __init__(self):
         KeyWord.__init__(self)
@@ -67,26 +69,44 @@ class Fuzzy(KeyWord):
         # Minimum possible value
         self._min_set = False
         self._min = 0.0
+        self._list = None
+
+
+    @property
+    def list(self):
+        return self._list
+
+    @list.setter
+    def list(self, l):
+        if l.type != Types.FUZZY:
+            log.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
+        else:
+            self._list = l
 
     @property
     def type(self):
-        return FcTypes.FUZZY
+        return Types.FUZZY
+
 
     @property
     def max_set(self):
         return self._max_set
 
+
     @property
     def min_set(self):
         return self._min_set
+
 
     @property
     def max(self):
         return self._max
 
+
     @property
     def min(self):
         return self._min
+
 
     @max.setter
     def max(self, m):
@@ -94,11 +114,13 @@ class Fuzzy(KeyWord):
         self._max_set = True
         self._max = m
 
+
     @min.setter
     def min(self, m):
         assert type(m) == float and 0.0 <= m <= 1.0
         self._min_set = True
         self._min = m
+
 
     @property
     def _type_name(self):
@@ -114,7 +136,7 @@ class Bool(Fuzzy):
 
     @property
     def type(self):
-        return FcTypes.BOOL
+        return Types.BOOL
 
     # Min and Max properties are read-only in this class
     @property
@@ -138,7 +160,7 @@ class Number(KeyWord):
         # # Initialize Properties
         # Maximum possible value
         self._max_set = False
-        #self.__max = sys.float_info.max
+        # self.__max = sys.float_info.max
         self._max = 999999999.0
         # Minimum possible value
         self._min_set = False
@@ -158,7 +180,7 @@ class Number(KeyWord):
 
     @property
     def type(self):
-        return FcTypes.NUMBER
+        return Types.NUMBER
 
     @property
     def max_set(self):
@@ -284,8 +306,9 @@ class String(KeyWord):
 
     @property
     def type(self):
-        return FcTypes.STRING
+        return Types.STRING
 
     @property
     def _type_name(self):
         return "STRING"
+

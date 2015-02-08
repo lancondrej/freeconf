@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #
+from src.Model.constants import Types
+
 __author__ = 'Ondřej Lanč'
 
 
@@ -9,7 +11,6 @@ class BaseEntry(object):
     def __init__(self, name=""):
         self._name = str(name)
         self.parent = None
-        self._label = {}
         self._active = True
         self._mandatory = False
 
@@ -17,14 +18,6 @@ class BaseEntry(object):
         self.multiple = False
         self._multiple_min = None
         self._multiple_max = None
-
-        self._group = None  # Group of entry
-        self.package = None  # Plugin or package, from which this entry originates.
-
-        # Multiple properties
-        self.multiple = False
-        self._multipleMin = None
-        self._multipleMax = None
 
     @property
     def name(self):
@@ -38,16 +31,20 @@ class BaseEntry(object):
 
     @property
     def root(self):
-        """Return root of current tree."""
+        """Return root of tree."""
         obj = self
         while obj.parent is not None:
             obj = obj.parent
         return obj
 
-    def is_section(self):
-        """Return true if it is a section."""
+    def is_container(self):
+        """Return true if it is a container."""
         raise NotImplementedError
 
     def is_keyword(self):
         """Return true if it is a keyword."""
         raise NotImplementedError
+
+    @property
+    def type(self):
+        return Types.UNKNOWN_ENTRY

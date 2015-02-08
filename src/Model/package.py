@@ -24,7 +24,7 @@ class PackageBase (object):
             return self.package_dir
 
     def __init__(self, paths):
-        self.tree = None
+        self._entries = None
         self.paths = paths
 
     @property
@@ -37,7 +37,6 @@ class PackageBase (object):
 
     def _load_help_file(self):
         """Load help file."""
-
 
     def _load_template_file(self):
         """Load template file."""
