@@ -2,14 +2,15 @@
 #
 __author__ = 'Ondřej Lanč'
 
-import logging
-
-from src.Model.PackageParser.sax_file import XMLFileReader
-from src.Model.exception_logging.exception import FcParseError
+from src.PackageParser.exception_logging import log
+from src.PackageParser.sax_file import XMLFileReader
+from src.PackageParser.exception_logging.exception import FcParseError
+from src.PackageParser.file import *
 
 
 class HeaderStructure:
-    """This structure contains file names for template file, help files, files with default values etc. which should be parsed to get all necesary information."""
+    """This structure contains file names for template file, help files,
+    files with default values etc. which should be parsed to get all necessary information."""
 
     def __init__(self):
         ## Initialize properties
@@ -104,14 +105,14 @@ class HeaderFileReader(XMLFileReader):
         self.parent_element = ElementEnum.NO_ELEMENT
 
     def startElement(self, name, attrs):
-        logging.debug("Start element: " + name)
+        log.debug("Start element: " + name)
         if not self.enclosing_tag and name == "freeconf-header":
-            logging.debug("freeconf-header tag.")
+            log.debug("freeconf-header tag.")
             self.enclosing_tag = True
             return
 
         if not self.enclosing_tag:
-            logging.error("You must enclose the Header File with <freeconf-header> and </freeconf-header>.")
+            log.error("You must enclose the Header File with <freeconf-header> and </freeconf-header>.")
             return
 
         if name == "content":
@@ -124,7 +125,7 @@ class HeaderFileReader(XMLFileReader):
             try:
                 group_name = attrs['name']
             except(KeyError):
-                logging.debug("Missing entry group name, setting to 'default'.")
+                log.debug("Missing entry group name, setting to 'default'.")
                 group_name = "default"
             # Check if group does not already exist
             if group_name in self.headerStructure.groups or (self.plugin and group_name in self.plugin.availableGroups):
@@ -141,7 +142,7 @@ class HeaderFileReader(XMLFileReader):
             try:
                 group_name = attrs['name']
             except(KeyError):
-                logging.debug("Missing entry group name, setting to 'default'.")
+                log.debug("Missing entry group name, setting to 'default'.")
                 group_name = "default"
             # Get the group to change
             try:
@@ -202,11 +203,11 @@ class HeaderFileReader(XMLFileReader):
             self.xml_element = ElementEnum.OUTPUT_DEFAULTS
 
         else:
-            logging.error("Unknown header element: " + name)
+            log.error("Unknown header element: " + name)
             self.xml_element = ElementEnum.NO_ELEMENT
 
     def endElement(self, name):
-        logging.debug("End element: " + name)
+        log.debug("End element: " + name)
         if name == "entry-group":
             self.headerStructure.addGroup(self.activeGroup)
             self.activeGroup = None
@@ -253,8 +254,7 @@ class HeaderFileReader(XMLFileReader):
             elif data == "no":
                 self.activeGroup.outputDefaults = False
             else:
-                logging.error("wrong value of element <output-defaults>, must be either yes or no.")
-
+                log.error("wrong value of element <output-defaults>, must be either yes or no.")
 
     def parse(self, f, plugin=None):
         self.__reset()

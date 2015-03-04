@@ -10,6 +10,7 @@ class BaseEntry(object):
 
     def __init__(self, name=""):
         self._name = str(name)
+        self._label = {}
         self.parent = None
         self._active = True
         self._mandatory = False
@@ -48,3 +49,12 @@ class BaseEntry(object):
     @property
     def type(self):
         return Types.UNKNOWN_ENTRY
+
+    def get_path(self):
+        """Return full path in current tree in form of: /a/b/c/..."""
+        path = self.name
+        obj = self
+        while obj.parent is not None:
+            obj = obj.parent
+            path = obj.name + "/" + path
+        return "/" + path

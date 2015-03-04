@@ -3,7 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 from src.Model.exception_logging.log import log
-from src.Model.PackageParser.sax_file import XMLFileReader
+from src.PackageParser.sax_file import XMLFileReader
 from src.Model.exception_logging.exception import FcParseError
 
 

@@ -10,7 +10,7 @@ format = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
 handler.setFormatter(format)
 
 # Create log object
-log = logging.getLogger('Model-Freeconf')
+log = logging.getLogger('xmlParser')
 log.addHandler(handler)
 log.setLevel(logging.DEBUG)
 

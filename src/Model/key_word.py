@@ -53,7 +53,7 @@ class KeyWord(BaseEntry):
         if l.type == self.type:
             self._list = l
         else:
-            # log.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
+            log.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
             pass
 
 
@@ -71,42 +71,25 @@ class Fuzzy(KeyWord):
         self._min = 0.0
         self._list = None
 
-
-    @property
-    def list(self):
-        return self._list
-
-    @list.setter
-    def list(self, l):
-        if l.type != Types.FUZZY:
-            log.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
-        else:
-            self._list = l
-
     @property
     def type(self):
         return Types.FUZZY
-
 
     @property
     def max_set(self):
         return self._max_set
 
-
     @property
     def min_set(self):
         return self._min_set
-
 
     @property
     def max(self):
         return self._max
 
-
     @property
     def min(self):
         return self._min
-
 
     @max.setter
     def max(self, m):
@@ -114,13 +97,11 @@ class Fuzzy(KeyWord):
         self._max_set = True
         self._max = m
 
-
     @min.setter
     def min(self, m):
         assert type(m) == float and 0.0 <= m <= 1.0
         self._min_set = True
         self._min = m
-
 
     @property
     def _type_name(self):

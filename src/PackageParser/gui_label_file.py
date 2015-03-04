@@ -4,7 +4,7 @@
 from log import log
 from base import *
 # Other libs
-from sax_file import XMLFileReader
+from src.PackageParser.sax_file import XMLFileReader
 from exception import FcParseError
 
 

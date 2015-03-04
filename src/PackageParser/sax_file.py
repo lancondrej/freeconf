@@ -3,8 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 import xml.sax
-
-from src.Model.exception_logging.exception import FcParseError
+from src.PackageParser.exception_logging.exception import FcXmlParserGeneralError
 
 
 class XMLFileReader(xml.sax.handler.ContentHandler):
@@ -19,5 +18,5 @@ class XMLFileReader(xml.sax.handler.ContentHandler):
         try:
             xml.sax.parse(file, self)
         except xml.sax.SAXParseException as e:
-            raise FcParseError(e.getMessage())
+            raise FcXmlParserGeneralError(e.getMessage())
 

@@ -7,7 +7,6 @@ from src.Model.base_entry import BaseEntry
 from src.Model.constants import Types
 
 
-
 class Container(BaseEntry):
     """This is a class for keyword entries from Template File"""
 
