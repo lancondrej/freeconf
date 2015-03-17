@@ -2,11 +2,10 @@
 #
 __author__ = 'Ondřej Lanč'
 
-
 from src.Model.exception_logging.log import log
 
 
-class FcModelGeneralError (Exception):
+class ModelGeneralError(Exception):
     def __init__(self, message):
         self.message = message
         self._print_to_log()
@@ -22,12 +21,33 @@ class FcModelGeneralError (Exception):
         return repr(self.message)
 
 
-class FcPackageLoadError (FcModelGeneralError):
+class PackageLoadError(ModelGeneralError):
     def __init__(self, message):
-        FcModelGeneralError.__init__(self, message)
+        ModelGeneralError.__init__(self, message)
 
     def _get_exception_header(self):
         return "Package load error: "
 
 
+class MultipleError(ModelGeneralError):
+    def __init__(self, message):
+        ModelGeneralError.__init__(self, message)
 
+    def _get_exception_header(self):
+        return "Not exists: "
+
+
+class AlreadyExistsError(ModelGeneralError):
+    def __init__(self, message):
+        ModelGeneralError.__init__(self, message)
+
+    def _get_exception_header(self):
+        return "Already exist: "
+
+
+class NotExistsError(ModelGeneralError):
+    def __init__(self, message):
+        ModelGeneralError.__init__(self, message)
+
+    def _get_exception_header(self):
+        return "Not exist: "
