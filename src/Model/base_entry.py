@@ -28,6 +28,8 @@ class BaseEntry(object):
         self._group = None  # Group of entry
         self._package = None  # Plugin or package, from which this entry originates.
 
+        self._inconsistent = False
+
     @property
     def name(self):
         """get name"""
@@ -111,8 +113,8 @@ class BaseEntry(object):
         entry = None
         if entry_parent is not None and not self.multiple and entry_parent.is_in_container(self.name):
             entry = entry_parent.get_entry(self.name)
-            raise NameConflictError(u"Can't add child! There is already entry with name ({s})"
-                                    u" in the section ({s}).".format(self.name, entry_parent.name))
+            raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
+                                     u" in the section ({s}).".format(self.name, entry_parent.name))
         if entry is None:
             # There is no such config entry yet
             if self.multiple:
@@ -213,3 +215,15 @@ class BaseEntry(object):
         else:
             # 0 or less means multipleMax property is disabled
             self._multiple_max = None
+
+    def handle_dependency_event (self, event, value):
+        """This property is a brigde between the tree and the dependency code. Special dependency signals
+        can be handled in sub-classes"""
+        if event == "active":
+            if value == self.dynamic_active:
+                return
+            self.dynamic_active = value
+        elif event == "mandatory":
+            if value == self.dynamic_mandatory:
+                return
+            self.dynamic_mandatory = value

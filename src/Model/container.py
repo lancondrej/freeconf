@@ -62,10 +62,10 @@ class Container(BaseEntry):
     def find_entry(self, relative_name):
         """Find entry in tree. Name is given in format: a/b/c../entry"""
         try:
-            (name,rest)=relative_name.split('/',1)
+            (name, rest) = relative_name.split('/',1)
             if self.is_in_container(name):
                 return self.find_entry(rest)
         except ValueError:
-            if self.is_container(relative_name):
+            if self.is_in_container(relative_name):
                 return self.get_entry(relative_name)
         return None

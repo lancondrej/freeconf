@@ -4,9 +4,9 @@ __author__ = 'Ondřej Lanč'
 
 
 from src.Model.constants import Types
+from src.Model.exception_logging.log import log
 
-
-class FcList:
+class List:
     """Class for string lists and fuzzy lists."""
 
     def __init__(self, name):
@@ -39,7 +39,7 @@ class FcList:
         return self.values[min(self.values.keys())]
 
 
-class FcStringList(FcList):
+class StringList(List):
     """Class for string lists."""
 
     class Entry:
@@ -57,7 +57,7 @@ class FcStringList(FcList):
             return 'StringEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)
 
     def __init__(self, name):
-        FcList.__init__(self, name)
+        List.__init__(self, name)
 
     @property
     def type(self):
@@ -65,7 +65,7 @@ class FcStringList(FcList):
         return Types.STRING
 
 
-class FcFuzzyList(FcList):
+class FuzzyList(List):
     """Class for fuzzy lists."""
 
     class Entry:
@@ -82,7 +82,7 @@ class FcFuzzyList(FcList):
             return 'FuzzyEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)
 
     def __init__(self, name):
-        FcList.__init__(self, name)
+        List.__init__(self, name)
 
     @property
     def type(self):
@@ -120,25 +120,22 @@ class FcFuzzyList(FcList):
             else:
                 # Key is already in the list. Check if it has same grade
                 if new_list.values[key].grade != self.values[key].grade:
-                    #log.error(
-                    #    "FcFuzzyList: joinList: Joining %s with %s. Value '%s' is already in the list but with
-                    # different grade!"
-                    #    % (self.name, new_list.name, key)
-                    #)
-                    pass
+                    log.error("FcFuzzyList: joinList: Joining %s with %s. "
+                              "Value '%s' is already in the list but with"
+                              " different grade!"% (self.name, new_list.name, key))
         return self
 
 
-class FcBoolList(FcFuzzyList):
+class BoolList(FuzzyList):
     """Constant fuzzy list of bool values."""
 
     def __init__(self):
-        FcList.__init__(self, "bool")
+        List.__init__(self, "bool")
         # Define bool values
-        self.append(FcFuzzyList.Entry(0.0, "no", "No"))
-        self.append(FcFuzzyList.Entry(1.0, "yes", "Yes"))
+        self.append(FuzzyList.Entry(0.0, "no", "No"))
+        self.append(FuzzyList.Entry(1.0, "yes", "Yes"))
 
 
 # Create constant list of boolean values
-boolList = FcBoolList()
+boolList = BoolList()
 
