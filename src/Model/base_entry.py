@@ -203,6 +203,10 @@ class BaseEntry(object):
             self._multiple_min = None
 
     @property
+    def inconsistent(self):
+        return self._inconsistent
+
+    @property
     def multiple_max(self):
         return self._multiple_max
 
@@ -217,7 +221,7 @@ class BaseEntry(object):
             self._multiple_max = None
 
     def handle_dependency_event (self, event, value):
-        """This property is a brigde between the tree and the dependency code. Special dependency signals
+        """This property is a bridge between the tree and the dependency code. Special dependency signals
         can be handled in sub-classes"""
         if event == "active":
             if value == self.dynamic_active:
