@@ -1,66 +1,106 @@
 #!/usr/bin/python3
 #
+from src.Model.exception_logging.exception import *
+
 __author__ = 'Ondřej Lanč'
 
 
-class PackageBase (object):
+class PackageBase(object):
     """Base class for package and plugin classes."""
 
-    class Paths (object):
-        """Structure containing paths used in package."""
-        def __init__(self):
-            self.home_dir = ""
-            self.package_name = ""
-            self.package_dir = ""
-            self.help_dirs = {}
-            self.list_dirs = []
-            self.freeconf_dirs = []
-            self.default_values_dirs = []
-            self.list_files = {}
+    def __init__(self, parser):
+        self.tree = None
+        self.parser = parser
+        self.plugins = []
+        self._currentLanguage = ""
+        self.packageName = ""
+        self.outputDir = ""
+        # self.freeconfDirs = []
+        self.lists = {}
+        self.groups = {}
+        self.availableLanguages = []
+        self.dependencies = []
 
-        @property
-        def main_dir(self):
-            """Return location of main package or plugin directory."""
-            return self.package_dir
-
-    def __init__(self, paths):
-        self._entries = None
-        self.paths = paths
 
     @property
     def is_plugin(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
+        raise False
 
-    def _load_header_file (self):
-        """Load header file."""
+    @property
+    def current_language(self):
+        return self._currentLanguage
 
-    def _load_help_file(self):
-        """Load help file."""
+    @current_language.setter
+    def current_language(self, lang):
+        """Current language setter."""
+        self._currentLanguage = lang
 
-    def _load_template_file(self):
-        """Load template file."""
+    @property
+    def available_lists(self):
+        """Return list of available value lists."""
+        return self.data.lists
 
-    def _load_dependencies_file(self):
-        """Load dependencies file."""
+    @property
+    def available_groups(self):
+        """Return list of available groups."""
+        return self.data.groups
 
-    def _load_default_values_file(self):
-        """Load default values file. Support function for loadPackage."""
+    def add_group(self, group):
+        if group.name in self.data.groups:
+            raise AlreadyExistsError("Group with name %s already exists!" % (group.name,))
+        self.data.groups[group.name] = group
 
-    def _load_list_help(self):
-        """Load list help file."""
+    def remove_group(self, name):
+        if name not in self.data.groups:
+            raise NotExistsError("Group with name %s does not exist!" % (name,))
+        del self.data.groups[name]
 
-    def _load_lists(self):
-        """Load list files."""
+    def load_plugins(self):
+        self.parser.load_plugin()
 
-    def _load_config_file(self):
+    def load_config(self):
         """Load config file."""
+        self.parser.load_config()
 
-    def load_package(self):
+    def load_package(self, loadAllLanguages):
         """Base function for package load."""
+        self.parser.load_package()
+
+    def transform(self, groupName="default"):
+        """Write native config files for all groups."""
+        for group in self.data.groups.values():
+            group.write_native(self.tree)
+
+    def execute_dependencies(self):
+        # Resolve all loaded dependencies using root_entry as configuration tree. Call this function after parse.
+        for dep in self.data.dependencies[:]:
+            # Dependency resolved -> execute it
+            dep.execute()
 
     def write_output(self):
-        """Write configuration output file."""
+        if self.inconsistent:
+            raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
+        self.parser.write_output()
 
-    def write_native_output(self):
-        """Write native config files for all groups."""
+    def write_package(self):
+        if self.inconsistent:
+            raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
+        self.parser.write_package()
+
+    def inconsistent(self):
+        return self.tree.inconsistent
+
+class Plugin(PackageBase):
+    """Class representing plugin."""
+
+    def __init__(self, package):
+        PackageBase.__init__(self, package.parser)
+        self.package = package  # Reference to main package
+
+    @property
+    def is_plugin(self):
+        return True
+
+
+
+
