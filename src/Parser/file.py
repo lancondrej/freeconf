@@ -23,4 +23,3 @@ class FcIncludeFileLocation(FcFileLocation):
         self.plugin = plugin
 
 
-

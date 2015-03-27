@@ -1,9 +1,15 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 #
-__author__ = 'Ondřej Lanč'
+# sax_file.py
+# begin: 3.8.2010 by Jan Ehrenberger
+#
+# Base file for SAX parsers
+#
 
 import xml.sax
-from src.PackageParser.exception_logging.exception import FcXmlParserGeneralError
+import xml.sax.handler
+
+from Parser.exception_logging.exception import FcParseError
 
 
 class XMLFileReader(xml.sax.handler.ContentHandler):
@@ -14,9 +20,8 @@ class XMLFileReader(xml.sax.handler.ContentHandler):
         # Flag for file being enclosed in right tags
         self.enclosing_tag = False
 
-    def parse(self, file):
+    def parse(self, file, package=None):
         try:
             xml.sax.parse(file, self)
         except xml.sax.SAXParseException as e:
-            raise FcXmlParserGeneralError(e.getMessage())
-
+            raise FcParseError(e.getMessage())

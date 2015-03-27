@@ -2,8 +2,7 @@
 #
 __author__ = 'Ondřej Lanč'
 
-
-from src.PackageParser.exception_logging.log import log
+from Parser.exception_logging import log
 
 
 class FcXmlParserGeneralError (Exception):

@@ -2,19 +2,20 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from src.PackageParser.exception_logging import log
-from src.PackageParser.sax_file import XMLFileReader
-from src.PackageParser.exception_logging.exception import FcParseError
-from src.PackageParser.file import *
+from Parser.exception_logging import log
+from Parser.XMLPackageParser.sax_file import XMLFileReader
+from Parser.exception_logging.exception import FcParseError
+from Parser.file import *
+from src.Model.group import FcGroup
 
 
 class HeaderStructure:
-    """This structure contains file names for template file, help files,
-    files with default values etc. which should be parsed to get all necessary information."""
+    """This structure contains file names for template file, help files, files with default values etc. which
+    should be parsed to get all necessary information."""
 
     def __init__(self):
-        ## Initialize properties
-        # Package name is necesary for constructing file name paths
+        # Initialize properties
+        # Package name is necessary for constructing file name paths
         self.packageName = ""
         # Freeconf template file name
         self.templateFile = FcFileLocation()
@@ -35,10 +36,10 @@ class HeaderStructure:
         # List of groups
         self.groups = {}
 
-    def addGroup(self, group):
+    def add_group(self, group):
         self.groups[group.name] = group
 
-    def initDefaults(self, name):
+    def init_defaults(self, name):
         """Initialize header structure with default values for given package name."""
         # TODO: podpora pluginu
         self.packageName = name
@@ -47,20 +48,20 @@ class HeaderStructure:
         self.helpFile = FcFileLocation(name + "_help.xml")
         self.outputFile = FcFileLocation("${PACKAGE}/" + name + ".xml")
         # self.guiTemplateFile = name + "_gui_template.xml"
-        # self.guiLabelFile = FcFileLocation(name + "_gui_label.xml")
+        #self.guiLabelFile = FcFileLocation(name + "_gui_label.xml")
         # Generate default group
         default_group = FcGroup("default")
         default_group.transformFile = FcFileLocation(name + "_transform.xml")
         default_group.nativeFile = FcFileLocation("${PACKAGE}/" + name + ".conf")
         default_group.outputDefaults = True
-        self.addGroup(default_group)
+        self.add_group(default_group)
 
     def __repr__(self):
         return "class(HeaderStructure):" + "\n" + \
                "  Package name: " + str(self.packageName) + "\n" + \
                "  Template file: " + str(self.templateFile) + "\n" + \
                "  GUI Template file: " + str(self.guiTemplateFile) + "\n" + \
-               "  Dependecy file: " + str(self.dependenciesFile) + "\n" + \
+               "  Dependency file: " + str(self.dependenciesFile) + "\n" + \
                "  Help file: " + str(self.helpFile) + "\n" + \
                "  GUI label file: " + str(self.guiLabelFile) + "\n" + \
                "  Default values file: " + str(self.defaultValuesFile) + "\n" + \
@@ -124,7 +125,7 @@ class HeaderFileReader(XMLFileReader):
             group_name = None
             try:
                 group_name = attrs['name']
-            except(KeyError):
+            except KeyError:
                 log.debug("Missing entry group name, setting to 'default'.")
                 group_name = "default"
             # Check if group does not already exist
@@ -134,20 +135,20 @@ class HeaderFileReader(XMLFileReader):
             self.activeGroup = FcGroup(group_name)
 
         elif name == "change-group":  # Redefinition of existing group
-            if self.plugin == None:
+            if self.plugin is None:
                 raise FcParseError("Element <" + name + "> can be defined only in plugin header file!")
             self.parent_element = self.xml_element = ElementEnum.CHANGE_GROUP
             # Get name attribute
             group_name = None
             try:
                 group_name = attrs['name']
-            except(KeyError):
+            except KeyError:
                 log.debug("Missing entry group name, setting to 'default'.")
                 group_name = "default"
             # Get the group to change
             try:
                 self.activeGroup = self.plugin.availableGroups[group_name]
-            except(KeyError):
+            except KeyError:
                 raise FcParseError("Group %n does not exist!" % (group_name,))
 
         elif name == "template":
@@ -209,7 +210,7 @@ class HeaderFileReader(XMLFileReader):
     def endElement(self, name):
         log.debug("End element: " + name)
         if name == "entry-group":
-            self.headerStructure.addGroup(self.activeGroup)
+            self.headerStructure.add_group(self.activeGroup)
             self.activeGroup = None
             self.parent_element = ElementEnum.NO_ELEMENT
         elif name == "change-group":
@@ -255,6 +256,7 @@ class HeaderFileReader(XMLFileReader):
                 self.activeGroup.outputDefaults = False
             else:
                 log.error("wrong value of element <output-defaults>, must be either yes or no.")
+
 
     def parse(self, f, plugin=None):
         self.__reset()

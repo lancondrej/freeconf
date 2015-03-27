@@ -8,7 +8,7 @@
 
 from log import log
 from base import *
-from src.PackageParser.sax_file import XMLFileReader
+from sax_file import XMLFileReader
 from exception import FcParseError
 
 #class ConfigEnum:
