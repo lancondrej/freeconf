@@ -1,21 +1,22 @@
 #!/usr/bin/python3
 #
-from Model.group import FcGroup
-from Model.package import Plugin
-from Parser.XMLPackageParser.config_file import ConfigFileReader
-from Parser.XMLPackageParser.default_file import DefaultFile
-from Parser.XMLPackageParser.dependencies_file import DependenciesFile
-from Parser.XMLPackageParser.header_file import HeaderFileReader, HeaderStructure, HeaderFileWriter
-from Parser.XMLPackageParser.help_file import HelpFile
-from Parser.XMLPackageParser.list_file import ListFile
-from Parser.XMLPackageParser.list_help_file import ListHelpFile
-from Parser.XMLPackageParser.template_file import TemplateFile
-from Parser.file import FcFileLocation
-from Parser.parser import Parser
 import os
 import re
 
+from Model.group import FcGroup
+from Model.package import Plugin
+from IO.Input.XMLPackageParser.config_file import ConfigFileReader
+from IO.Input.XMLPackageParser.default_file import DefaultFile
+from IO.Input.XMLPackageParser.dependencies_file import DependenciesFile
+from IO.Input.XMLPackageParser.header_file import HeaderFileReader, HeaderStructure, HeaderFileWriter
+from IO.Input.XMLPackageParser.help_file import HelpFile
+from IO.Input.XMLPackageParser.list_file import ListFile
+from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
+from IO.Input.XMLPackageParser.template_file import TemplateFile
+from Input.file import FcFileLocation
+from Input.input import Input
 from src.Model.exception_logging.exception import *
+
 
 __author__ = 'Ondřej Lanč'
 
@@ -32,8 +33,10 @@ def get_env(var):
         return None
 
 
-def expand_variables(string, variables={}):
+def expand_variables(string, variables=None):
     """Expand references to environment variables and variables in given hash list."""
+    if not variables:
+        variables = {}
     for match in re.finditer(r"\$\{?(\w*)\}?", string):
         var = match.group(1)
         val = None
@@ -48,7 +51,7 @@ def expand_variables(string, variables={}):
     return string
 
 
-class XMLParser(Parser):
+class XMLParser(Input):
     class Paths(object):
         """Structure containing paths used in package."""
 
@@ -77,8 +80,8 @@ class XMLParser(Parser):
         def header_file_full_path(self):
             return os.path.join(self.main_dir, 'header.xml')
 
-    def __init__(self, parser, paths):
-        super(parser)
+    def __init__(self, paths):
+        super().__init__()
         self._paths = paths
 
     def _expand_file_name(self, filename):
@@ -95,7 +98,7 @@ class XMLParser(Parser):
     def _load_header_file(self):
         log.info("Parsing header file " + self._paths.header_file_full_path)
         header_file_parser = HeaderFileReader()
-        if self.is_plugin:
+        if self._package.is_plugin:
             header_file_parser.parse(self._paths.header_file_full_path, self)
         else:
             header_file_parser.parse(self._paths.header_file_full_path)
@@ -125,12 +128,12 @@ class XMLParser(Parser):
 
         # Process groups
         for group in headerStructure.groups.values():
-            if group.nativeFile.name:
-                group.nativeFile.fullPath = self._expand_file_name(group.nativeFile.name)
-            if group.transformFile.name:
-                group.transformFile.fullPath = os.path.join(self._paths.main_dir, group.transformFile.name)
+            if group.native_output.name:
+                group.native_output.fullPath = self._expand_file_name(group.native_output.name)
+            if group.transform.name:
+                group.transform.fullPath = os.path.join(self._paths.main_dir, group.transform.name)
         for group in self._package.available_groups.values():
-            for i in group.includedTransformFiles:
+            for i in group.include_transform:
                 i.fullPath = os.path.join(self._paths.main_dir, i.name)
         self._package.groups = headerStructure.groups
         # Create default group if there was no in the header file
@@ -361,7 +364,7 @@ class XMLParser(Parser):
         log.info("Writing output file " + self._paths.outputFile.fullPath)
         with open(self._paths.outputFile.fullPath, "w") as f:
             f.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n")
-            f.write(self._package.tree.output(package=self, writeHelp=False, writeType=False))
+            f.write(self._package.tree.output(package=self, write_help=False, write_type=False))
 
     def write_default(self):
         if not self._paths.defaultValuesFile.fullPath:
@@ -373,20 +376,20 @@ class XMLParser(Parser):
             f.write(self._package.outputDefault(self))
 
     def write_package(self):
-        self.writeHeaderFile()
+        self._write_header_file()
         self.write_template()
-        self.writeDefault()
+        self.write_default()
         self.write_help()
-        self.writeOutput()
+        self.write_output()
 
     # TODO: Write plugins
 
     def write_template(self):
-        log.info("Writing template file " + self.paths.templateFile.fullPath)
-        with open(self.paths.templateFile.fullPath, "w") as f:
+        log.info("Writing template file " + self._paths.templateFile.fullPath)
+        with open(self._paths.templateFile.fullPath, "w") as f:
             f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<freeconf-template>\n")
-            f.write("<section-name>" + self.trees.templateTree.name + "</section-name>\n")
-            for node in self.trees.templateTree.entries:
+            f.write("<section-name>" + self._package.tree.name + "</section-name>\n")
+            for node in self._package.tree.entries:
                 f.write(node.output())
             f.write("</freeconf-template>\n")
 

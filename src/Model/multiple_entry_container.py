@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 #
-from src.Model.exception_logging.exception import MultipleError
 
 __author__ = 'Ondřej Lanč'
 
 from src.Model.base_entry import BaseEntry
-from src.Model.exception_logging.log import log
 
 
 class MultipleEntryContainer(BaseEntry):
@@ -20,10 +18,10 @@ class MultipleEntryContainer(BaseEntry):
         pass
 
     def is_container(self):
-        False
+        return False
 
     def is_keyword(self):
-        False
+        return False
 
     def is_multiple_entry_container(self):
         return True
@@ -41,14 +39,6 @@ class MultipleEntryContainer(BaseEntry):
             # assert isinstance(entry, BaseEntry)
             entry.parent = self
             self._entries.append(entry)
-
-    def replace_entry(self, old, new):
-        (index, node) = self.findEntry(old)
-        if index is None:
-            return False
-        self._entries[index] = new
-        new.parent = self
-        return True
 
     def disconnect(self, entry):
         try:

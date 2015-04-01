@@ -2,10 +2,10 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from Parser.exception_logging import log
+from IO.Input.exception_logging import log
 
 
-class FcXmlParserGeneralError (Exception):
+class ParserGeneralError (Exception):
     def __init__(self, message):
         self.message = message
         self._printToLog()
@@ -15,15 +15,15 @@ class FcXmlParserGeneralError (Exception):
             log.error(self._get_exception_header() + self.message)
 
     def _get_exception_header(self):
-        return "General error in xml parser: "
+        return "General error in parser: "
 
     def __str__(self):
         return repr(self.message)
 
 
-class FcParseError (FcXmlParserGeneralError):
+class ParseError (ParserGeneralError):
     def __init__(self, message):
-        FcXmlParserGeneralError.__init__(self, message)
+        ParserGeneralError.__init__(self, message)
 
     def _get_exception_header (self):
         return "Parse error: "

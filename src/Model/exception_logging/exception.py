@@ -51,3 +51,11 @@ class NotExistsError(ModelGeneralError):
 
     def _get_exception_header(self):
         return "Not exist: "
+
+
+class InconsistencyError (ModelGeneralError):
+    def __init__ (self, message):
+        ModelGeneralError.__init__(self, message)
+
+    def _get_exception_header (self):
+        return "Inconsistency error: "

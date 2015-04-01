@@ -2,10 +2,10 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from Parser.exception_logging import log
-from Parser.XMLPackageParser.sax_file import XMLFileReader
-from Parser.exception_logging.exception import FcParseError
-from Parser.file import *
+from IO.Input.exception_logging import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
+from IO.file import *
 from src.Model.group import FcGroup
 
 
@@ -51,9 +51,9 @@ class HeaderStructure:
         #self.guiLabelFile = FcFileLocation(name + "_gui_label.xml")
         # Generate default group
         default_group = FcGroup("default")
-        default_group.transformFile = FcFileLocation(name + "_transform.xml")
-        default_group.nativeFile = FcFileLocation("${PACKAGE}/" + name + ".conf")
-        default_group.outputDefaults = True
+        default_group.transform = FcFileLocation(name + "_transform.xml")
+        default_group.native_output = FcFileLocation("${PACKAGE}/" + name + ".conf")
+        default_group.output_defaults = True
         self.add_group(default_group)
 
     def __repr__(self):
@@ -130,13 +130,13 @@ class HeaderFileReader(XMLFileReader):
                 group_name = "default"
             # Check if group does not already exist
             if group_name in self.headerStructure.groups or (self.plugin and group_name in self.plugin.availableGroups):
-                raise FcParseError("Entry group %s is already defined!" % (group_name,))
+                raise ParseError("Entry group %s is already defined!" % (group_name,))
             # Create new group
             self.activeGroup = FcGroup(group_name)
 
         elif name == "change-group":  # Redefinition of existing group
             if self.plugin is None:
-                raise FcParseError("Element <" + name + "> can be defined only in plugin header file!")
+                raise ParseError("Element <" + name + "> can be defined only in plugin header file!")
             self.parent_element = self.xml_element = ElementEnum.CHANGE_GROUP
             # Get name attribute
             group_name = None
@@ -149,58 +149,58 @@ class HeaderFileReader(XMLFileReader):
             try:
                 self.activeGroup = self.plugin.availableGroups[group_name]
             except KeyError:
-                raise FcParseError("Group %n does not exist!" % (group_name,))
+                raise ParseError("Group %n does not exist!" % (group_name,))
 
         elif name == "template":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.TEMPLATE_FILE
         elif name == "gui-template":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.GUI_TEMPLATE_FILE
         elif name == "dependencies":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.DEPENDENCY_FILE
         elif name == "help":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.HELP_FILE
         elif name == "gui-label":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.GUI_LABEL_FILE
         elif name == "lists":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.LISTS_FILE
         elif name == "default-values":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.DEFAULT_VALUES_FILE
         elif name == "output":
             if self.parent_element != ElementEnum.CONTENT:
-                raise FcParseError("Element <" + name + "> must be inside of <content> element!")
+                raise ParseError("Element <" + name + "> must be inside of <content> element!")
             self.xml_element = ElementEnum.OUTPUT_FILE
 
         # Elements in entry group
         # TODO: Rozlisit entry-group a change-group
         elif name == "native-output":
             if self.parent_element != ElementEnum.GROUP:
-                raise FcParseError("Element <" + name + "> must be inside of <entry-group> element!")
+                raise ParseError("Element <" + name + "> must be inside of <entry-group> element!")
             self.xml_element = ElementEnum.NATIVE_OUTPUT_FILE
         elif name == "transform":
             if self.parent_element != ElementEnum.GROUP:
-                raise FcParseError("Element <" + name + "> must be inside of <entry-group> element!")
+                raise ParseError("Element <" + name + "> must be inside of <entry-group> element!")
             self.xml_element = ElementEnum.TRANSFORM_FILE
         elif name == "add-transform":
             if self.parent_element != ElementEnum.CHANGE_GROUP:
-                raise FcParseError("Element <" + name + "> must be inside of <change-group> element!")
+                raise ParseError("Element <" + name + "> must be inside of <change-group> element!")
             self.xml_element = ElementEnum.ADD_TRANSFORM_FILE
         elif name == "output-defaults":
             if self.parent_element != ElementEnum.GROUP:
-                raise FcParseError("Element <" + name + "> must be inside of <entry-group> element!")
+                raise ParseError("Element <" + name + "> must be inside of <entry-group> element!")
             self.xml_element = ElementEnum.OUTPUT_DEFAULTS
 
         else:
@@ -243,12 +243,12 @@ class HeaderFileReader(XMLFileReader):
             self.headerStructure.outputFile = FcFileLocation(data)
         # Group entries
         elif self.xml_element == ElementEnum.TRANSFORM_FILE:
-            self.activeGroup.transformFile = FcFileLocation(data)
+            self.activeGroup.transform = FcFileLocation(data)
         elif self.xml_element == ElementEnum.ADD_TRANSFORM_FILE:
             fileloc = FcIncludeFileLocation(self.plugin, data)
-            self.activeGroup.includeTransform(fileloc)
+            self.activeGroup.include_transform(fileloc)
         elif self.xml_element == ElementEnum.NATIVE_OUTPUT_FILE:
-            self.activeGroup.nativeFile = FcFileLocation(data)
+            self.activeGroup.native_output = FcFileLocation(data)
         elif self.xml_element == ElementEnum.OUTPUT_DEFAULTS:
             if data == "yes":
                 self.activeGroup.outputDefaults = True
@@ -296,8 +296,8 @@ class HeaderFileWriter:
         # TODO: Podpora pluginu, podpora change-group
         for g in self.headerStructure.groups.values():
             s += '<entry-group name="%s">\n' % (g.name,)
-            s += gen_xml_elt("transform", g.transformFile.name, "  ")
-            s += gen_xml_elt("native-output", g.nativeFile.name, "  ")
+            s += gen_xml_elt("transform", g.transform.name, "  ")
+            s += gen_xml_elt("native-output", g.native_output.name, "  ")
             if g.outputDefaults:
                 s += gen_xml_elt("output-defaults", "yes", "  ")
             else:

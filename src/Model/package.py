@@ -8,13 +8,13 @@ __author__ = 'Ondřej Lanč'
 class PackageBase(object):
     """Base class for package and plugin classes."""
 
-    def __init__(self, parser):
+    def __init__(self, name):
         self.tree = None
-        self.parser = parser
+        self.input = None
+        self.output = None
         self.plugins = []
         self._currentLanguage = ""
-        self.packageName = ""
-        self.outputDir = ""
+        self.packageName = name
         # self.freeconfDirs = []
         self.lists = {}
         self.groups = {}
@@ -24,7 +24,7 @@ class PackageBase(object):
 
     @property
     def is_plugin(self):
-        raise False
+        return False
 
     @property
     def current_language(self):
@@ -38,63 +38,64 @@ class PackageBase(object):
     @property
     def available_lists(self):
         """Return list of available value lists."""
-        return self.data.lists
+        return self.lists
 
     @property
     def available_groups(self):
         """Return list of available groups."""
-        return self.data.groups
+        return self.groups
 
     def add_group(self, group):
-        if group.name in self.data.groups:
+        if group.name in self.groups:
             raise AlreadyExistsError("Group with name %s already exists!" % (group.name,))
-        self.data.groups[group.name] = group
+        self.groups[group.name] = group
 
     def remove_group(self, name):
-        if name not in self.data.groups:
+        if name not in self.groups:
             raise NotExistsError("Group with name %s does not exist!" % (name,))
-        del self.data.groups[name]
+        del self.groups[name]
 
     def load_plugins(self):
-        self.parser.load_plugin()
+        self.input.load_plugin(self)
 
     def load_config(self):
         """Load config file."""
-        self.parser.load_config()
+        self.input.load_config(self)
 
     def load_package(self, loadAllLanguages):
         """Base function for package load."""
-        self.parser.load_package()
+        self.input.load_package(self, loadAllLanguages)
 
     def transform(self, groupName="default"):
         """Write native config files for all groups."""
-        for group in self.data.groups.values():
+        for group in self.groups.values():
             group.write_native(self.tree)
 
     def execute_dependencies(self):
         # Resolve all loaded dependencies using root_entry as configuration tree. Call this function after parse.
-        for dep in self.data.dependencies[:]:
+        for dep in self.dependencies[:]:
             # Dependency resolved -> execute it
             dep.execute()
 
     def write_output(self):
         if self.inconsistent:
             raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
-        self.parser.write_output()
+        self.output.write_output()
 
     def write_package(self):
         if self.inconsistent:
             raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
-        self.parser.write_package()
+        self.output.write_package()
 
     def inconsistent(self):
         return self.tree.inconsistent
 
+
 class Plugin(PackageBase):
     """Class representing plugin."""
 
-    def __init__(self, package):
-        PackageBase.__init__(self, package.parser)
+    def __init__(self, name, package):
+        PackageBase.__init__(self, name, package.parser)
         self.package = package  # Reference to main package
 
     @property

@@ -3,9 +3,9 @@
 
 __author__ = 'Ondřej Lanč'
 
-from Parser.exception_logging import log
-from Parser.XMLPackageParser.sax_file import XMLFileReader
-from Parser.exception_logging.exception import FcParseError
+from IO.Input.exception_logging import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
 from src.Model.constants import Types
 
 
@@ -41,10 +41,10 @@ class ConfigFileReader (XMLFileReader):
 
 				if tentry is None:
 					log.error("No section with name " + name + " in template file.")
-					raise FcParseError("No section with name " + name + " in template file.")
+					raise ParseError("No section with name " + name + " in template file.")
 				if not tentry.isSection():
 					log.error("Entry " + name + " is not a section.")
-					raise FcParseError("Entry " + name + " is not a section.")
+					raise ParseError("Entry " + name + " is not a section.")
 
 				if entry == None:
 					self.currentElement = tentry.createCEntry(section)
@@ -69,7 +69,7 @@ class ConfigFileReader (XMLFileReader):
 			tentry = section.templateBuddy.findTEntry(name)
 			if tentry == None:
 				log.error("No entry with name " + name + " in template file section " + section.name)
-				raise FcParseError("No entry with name " + name + " in template file section " + section.name)
+				raise ParseError("No entry with name " + name + " in template file section " + section.name)
 			self.currentElement = tentry.createCEntry(section)
 		except KeyError:
 			log.error("Attribute name was not found!")
@@ -90,7 +90,7 @@ class ConfigFileReader (XMLFileReader):
 				self.helpBuffer = ""
 			else:
 				log.error("Unknown entry type: " + name)
-				raise FcParseError("Unknown entry type: " + name)
+				raise ParseError("Unknown entry type: " + name)
 
 	def characters(self, data):
 		if data.isspace():

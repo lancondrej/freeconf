@@ -9,7 +9,7 @@
 import xml.sax
 import xml.sax.handler
 
-from Parser.exception_logging.exception import FcParseError
+from IO.Input.exception_logging.exception import ParseError
 
 
 class XMLFileReader(xml.sax.handler.ContentHandler):
@@ -20,8 +20,8 @@ class XMLFileReader(xml.sax.handler.ContentHandler):
         # Flag for file being enclosed in right tags
         self.enclosing_tag = False
 
-    def parse(self, file, package=None):
+    def parse(self, file):
         try:
             xml.sax.parse(file, self)
         except xml.sax.SAXParseException as e:
-            raise FcParseError(e.getMessage())
+            raise ParseError(e.getMessage())

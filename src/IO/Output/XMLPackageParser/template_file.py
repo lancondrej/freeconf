@@ -9,9 +9,9 @@
 # Freeconf libs
 from Model.constants import Types
 
-from Parser.exception_logging import log
-from Parser.XMLPackageParser.sax_file import XMLFileReader
-from Parser.exception_logging.exception import FcParseError
+from IO.Input.exception_logging import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
 from src.Model.container import Container
 from src.Model.number import Number
 from src.Model.bool import Bool
@@ -97,7 +97,7 @@ class TemplateFile(XMLFileReader):
                     container.package = self.package  # Set package to first package that referenced this container
                     self.container_stack[-1].append(container)
             else:
-                raise FcParseError("Invalid state.")
+                raise ParseError("Invalid state.")
             self.container_stack.append(container)
             self.current_entry = container
             return

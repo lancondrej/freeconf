@@ -3,28 +3,16 @@
 __author__ = 'Ondřej Lanč'
 
 
-class Parser():
+class Output():
 
-    def __init__(self, package):
-        self._package = package
+    def __init__(self):
+        self._package = None
 
     def write_output(self):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
     def write_package(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    def load_package(self, loadAllLanguages):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    def load_config_file(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    def load_plugins(self, loadAllLanguages):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
@@ -43,22 +31,12 @@ class Parser():
         raise NotImplementedError
 
     @property
-    def input(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    @input.setter
-    def input(self, input):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    @property
     def package(self):
         return self.package
 
     @package.setter
     def package(self, package):
-        self._package=package
+        self._package = package
 
     @property
     def config(self):

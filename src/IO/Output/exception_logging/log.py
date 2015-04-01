@@ -10,7 +10,6 @@ format = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
 handler.setFormatter(format)
 
 # Create log object
-log = logging.getLogger('xmlParser')
+log = logging.getLogger('Input')
 log.addHandler(handler)
 log.setLevel(logging.DEBUG)
-
