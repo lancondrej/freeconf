@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 #
-from src.Model.constants import Types
-from src.Model.exception_logging.exception import *
-from src.Model.exception_logging.log import log
-from src.Model.multiple_entry_container import MultipleEntryContainer
+from Model.constants import Types
+from Model.exception_logging.exception import *
+from Model.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'
 
@@ -14,6 +13,7 @@ class BaseEntry(object):
     def __init__(self, name=""):
         self._name = str(name)
         self._label = {}
+        self._help = {}
         self.parent = None
         self._static_active = True
         self._dynamic_active = True
@@ -97,6 +97,9 @@ class BaseEntry(object):
     def set_key_label(self, language, label):
         self._label[language] = label
 
+    def set_key_help(self, language, help):
+        self._help[language] = help
+
     @property
     def group(self):
         if self._group is None and self.parent is not None:
@@ -108,33 +111,34 @@ class BaseEntry(object):
     def group(self, group):
         self._group = group
 
-    def create_entry(self, entry_parent):
-        """Create and add entry to tree."""
-        entry = None
-        if entry_parent is not None and not self.multiple and entry_parent.is_in_container(self.name):
-            entry = entry_parent.get_entry(self.name)
-            raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
-                                     u" in the section ({s}).".format(self.name, entry_parent.name))
-        if entry is None:
-            # There is no such config entry yet
-            if self.multiple:
-                if entry_parent is not None and entry_parent.is_in_container(self.name):
-                    # set MC as entry
-                    entry = entry_parent.get_entry(self.name)
-                    # Check number of children
-                    n = entry.size()
-                    if self.multiple_max and n + 1 > self.multiple_max:
-                        raise MultipleError(
-                            u"Can't add child! Maximum number of children ({0:d}) reached.".format(self.multiple_max, ))
-                else:
-                    # Create multiple container
-                    entry = MultipleEntryContainer(self.name, self.parent)
-                # add multiple entry to the tree
-                entry.append(self)
-            elif entry_parent is not None:
-                # add normal entry to the tree
-                entry_parent.add_entry(entry)
-        return entry
+    # def create_entry(self, entry_parent):
+    #     """Create and add entry to tree."""
+    #     entry = None
+    #     if entry_parent is not None and not self.multiple and entry_parent.is_in_container(self.name):
+    #         entry = entry_parent.get_entry(self.name)
+    #         raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
+    #                                  u" in the section ({s}).".format(self.name, entry_parent.name))
+    #     if entry is None:
+    #         # There is no such config entry yet
+    #         if self.multiple:
+    #             if entry_parent is not None and entry_parent.is_in_container(self.name):
+    #                 # set MC as entry
+    #                 entry = entry_parent.get_entry(self.name)
+    #                 # Check number of children
+    #                 n = entry.size()
+    #                 if self.multiple_max and n + 1 > self.multiple_max:
+    #                     raise MultipleError(
+    #                         u"Can't add child! Maximum number of children ({0:d}) reached.".format(self.multiple_max, ))
+    #             else:
+    #                 # Create multiple container
+    #                 from Model.multiple_entry_container import MultipleEntryContainer
+    #                 entry = MultipleEntryContainer(self.name, self.parent)
+    #             # add multiple entry to the tree
+    #             entry.append(self)
+    #         elif entry_parent is not None:
+    #             # add normal entry to the tree
+    #             entry_parent.add_entry(entry)
+    #     return entry
 
     @property
     def static_active(self):

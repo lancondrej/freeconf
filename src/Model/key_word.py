@@ -15,7 +15,6 @@ class KeyWord(BaseEntry):
         BaseEntry.__init__(self)
         self._default_value = None
         self._value = None
-        self._help = {}
         self._dependents = []
         self._enabled = True
         self._list = None
@@ -45,6 +44,8 @@ class KeyWord(BaseEntry):
 
     @property
     def value(self):
+        if self._value is None:
+            return self._default_value
         return self._value
 
     @value.setter

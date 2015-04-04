@@ -62,9 +62,9 @@ class PackageBase(object):
         """Load config file."""
         self.input.load_config(self)
 
-    def load_package(self, loadAllLanguages):
+    def load_package(self):
         """Base function for package load."""
-        self.input.load_package(self, loadAllLanguages)
+        self.input.load_package(self)
 
     def transform(self, groupName="default"):
         """Write native config files for all groups."""

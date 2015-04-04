@@ -61,7 +61,7 @@ class Fuzzy(KeyWord):
         """Return grade for given value."""
         if value is None:
             return None
-        entry = self.list.getEntry(value)
+        entry = self.list.get_entry(value)
         if entry is not None:
             return entry.grade
         else:
@@ -73,7 +73,7 @@ class Fuzzy(KeyWord):
             return None
         else:
             # Find value with given grade
-            entry = self.list.getExactGrade(grade)
+            entry = self.list.get_exact_grade(grade)
             if entry is None:
                 raise ModelGeneralError(
                     "Value with grade %d was not found in fuzzy list %s!" % (grade, self.list.name))
@@ -92,7 +92,7 @@ class Fuzzy(KeyWord):
     def convert_value(self, v):
         """Check if given value can be converted to value for this entry, and if so, return converted value."""
         v = str(v)
-        entry = self.list.getEntry(v)
+        entry = self.list.get_entry(v)
         assert entry is not None
         return entry.value
 
@@ -101,12 +101,12 @@ class Fuzzy(KeyWord):
         if value is None:
             value = self.value
 
-        e = self.list.getEntry(value)
+        e = self.list.get_entry(value)
         if e is None:
             log.error("Value '%s' was not found in fuzzy list '%s' for entry %s!" % (
                 value, self.list.name, self.name))
             # Return first value in the list
-            first = self.list.getFirstEntry()
+            first = self.list.get_first_entry()
             if first is None:
                 log.error("Fuzzy list '%s' is empty!" % (self.list.name,))
                 # TODO:nemelo by to tady vyhodit spis chybu?
@@ -115,7 +115,7 @@ class Fuzzy(KeyWord):
                 return first.value
         if e.grade > self.max:
             # Find value with lower grade
-            e = self.list.getMaxGrade(self.max)
+            e = self.list.get_max_grade(self.max)
         if e.grade < self.min:
             # Find value with higher grade
             e = self.list.getMinGrade(self.min)

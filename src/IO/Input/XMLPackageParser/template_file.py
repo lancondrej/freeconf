@@ -8,15 +8,14 @@
 
 # Freeconf libs
 from Model.constants import Types
-
-from IO.Input.exception_logging import log
+from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
 from IO.Input.exception_logging.exception import ParseError
-from src.Model.container import Container
-from src.Model.number import Number
-from src.Model.bool import Bool
-from src.Model.string import String
-from src.Model.fuzzy import Fuzzy
+from Model.container import Container
+from Model.number import Number
+from Model.bool import Bool
+from Model.string import String
+from Model.fuzzy import Fuzzy
 
 
 class TemplateEnum:
@@ -62,7 +61,7 @@ class TemplateFile(XMLFileReader):
         self.defaultGroup = None  # Default group
         # List of available value lists
         self.lists = {}
-        # Enclosing tag semaphor
+        # Enclosing tag semaphore
         self.enclosing_tag = False
         # top of the tree
         self.topContainer = None
@@ -89,13 +88,13 @@ class TemplateFile(XMLFileReader):
                     # Top level container already exists
                     container = self.topContainer
             elif len(self.container_stack) > 0:
-                (i, container) = self.container_stack[-1].findEntry(name)
+                container = self.container_stack[-1].get_entry(name)
                 if container is None:
                     # Section does not exist yet, we have to create new one
                     container = Container()
                     log.debug("Adding new container %s to %s" % (str(container), str(self.container_stack[-1])))
                     container.package = self.package  # Set package to first package that referenced this container
-                    self.container_stack[-1].append(container)
+                    # self.container_stack[-1].add_entry(container)
             else:
                 raise ParseError("Invalid state.")
             self.container_stack.append(container)
@@ -106,28 +105,28 @@ class TemplateFile(XMLFileReader):
             log.debug("Adding bool.")
             self.current_entry = Bool()
             self.current_entry.package = self.package
-            self.container_stack[-1].append(self.current_entry)
+            # self.container_stack[-1].add_entry(self.current_entry)
             return
 
         if name == "fuzzy":
             log.debug("Adding fuzzy.")
             self.current_entry = Fuzzy()
             self.current_entry.package = self.package
-            self.container_stack[-1].append(self.current_entry)
+            # self.container_stack[-1].add_entry(self.current_entry)
             return
 
         if name == "number":
             log.debug("Adding number.")
             self.current_entry = Number()
             self.current_entry.package = self.package
-            self.container_stack[-1].append(self.current_entry)
+            # self.container_stack[-1].add_entry(self.current_entry)
             return
 
         if name == "string":
             log.debug("Adding string.")
             self.current_entry = String()
             self.current_entry.package = self.package
-            self.container_stack[-1].append(self.current_entry)
+            #self.container_stack[-1].add_entry(self.current_entry)
             return
 
         # if name == "reference":
@@ -135,7 +134,7 @@ class TemplateFile(XMLFileReader):
         # self.current_entry = FcTReference()
         # self.current_entry.package = self.package
         # self.container_stack[-1].append(self.current_entry)
-        # return
+        #    return
 
         # at this moment, current_entry must point to an existing entry
         assert self.current_entry
@@ -274,24 +273,24 @@ class TemplateFile(XMLFileReader):
             if section.group is None:
                 # If group was not set, use the default group.
                 section.group = self.defaultGroup
+            if self.topContainer != section:
+                self.container_stack[-1].add_entry(section)
             self.current_entry = None
             self.control()
             return
 
-        if name in ("bool", "fuzzy", "number", "string", "reference"):
+        if name in ("bool", "fuzzy", "number", "string"):
             assert self.current_entry
-
             if self.current_entry.name == "" or self.current_entry.name is None:
                 log.error("Ignoring entry with missing name!")
-                # Remove corrupted entry from the stack
-                self.container_stack[-1].disconnect(self.current_entry)
-
+            else:
+                self.container_stack[-1].add_entry(self.current_entry)
             # Check for duplicities. If there is already an element with same name, remove the new one.
-            (i, entry) = self.container_stack[-1].findEntry(self.current_entry.name)
+            entry = self.container_stack[-1].get_entry(self.current_entry.name)
             if entry != self.current_entry:
                 log.error("Ignoring entry. Entry with name %s already exists!" % (self.current_entry.name,))
                 # Remove corrupted entry from the stack
-                self.container_stack[-1].disconnect(self.current_entry)
+                # self.container_stack[-1].disconnect(self.current_entry)
 
             # Check fuzzy entry
             # TODO: ten check by se hodilo nejak centralizovat, napr. zabudovat primo do template typu
@@ -306,7 +305,6 @@ class TemplateFile(XMLFileReader):
                 if self.current_entry.group is None:
                     # If parent section did not have group set, use default group
                     self.current_entry.group = self.defaultGroup
-
             self.current_entry = None
             self.control()
             return
@@ -567,7 +565,7 @@ class TemplateFile(XMLFileReader):
         # TODO
         return
 
-    def parse(self, file, tree, groups, lists = {}, package = None):
+    def parse(self, file, tree, groups, lists={}, package=None):
         self.enclosing_tag = False
         self.container_stack = []
         self.current_entry = None

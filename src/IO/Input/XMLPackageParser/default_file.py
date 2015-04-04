@@ -1,114 +1,126 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
-# configFile.py
-# begin: 23.11.2010 by David Fabian
-#
-# PyFC: Config File SAX Handler
-#
+from copy import deepcopy
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
+from IO.Input.exception_logging.log import log
+from Model.constants import Types
 
-from log import log
-from base import *
-from sax_file import XMLFileReader
-from exception import FcParseError
 
-#class ConfigEnum:
-	#"""Constants for config elements"""
-	#NOELEMENT = 0
-	#ELEMENTOPENED = 1
-	##self.firstWrite = False
+__author__ = 'Ondřej Lanč'
+
+
+class ConfigEnum:
+    """Constants for XML elements"""
+    NO_ELEMENT = 0
+    VALUE = 1
+    HELP = 2
 
 
 class DefaultFile (XMLFileReader):
-	"""Config file SAX handler"""
-	def __init__ (self):
-		XMLFileReader.__init__(self)
-		self.sectionStack = []
-		#self.state = ConfigEnum.NOELEMENT
-		self.currentElement = None
+    """Config file SAX handler"""
+    def __init__(self):
+        XMLFileReader.__init__(self)
+        self.container_stack = []
+        self.state = ConfigEnum.NO_ELEMENT
+        self.currentElement = None
+        self.helpBuffer = ""
 
+    def startElementSection(self, attrs):
+        container = self.container_stack[-1]
+        try:
+            name = attrs['name']
+            if container.name == name and len(self.container_stack) <= 1:
+                self.currentElement = container
+            else:
+                entry = container.get_entry(name)
+                if entry is None:
+                    log.error("No section with name " + name + " in template file.")
+                    raise ParseError("No section with name " + name + " in template file.")
+                if not entry.is_container():
+                    log.error("Entry " + name + " is not a section.")
+                    raise ParseError("Entry " + name + " is not a section.")
+                if entry.is_multiple_entry_container():
+                    entry = entry.append_default(deepcopy(entry.template))
+                self.currentElement = entry
+            self.container_stack.append(self.currentElement)
+        except KeyError:
+            log.error("Attribute name was not found!")
 
-	def startElementSection(self, attrs):
-		section = self.sectionStack[-1]
-		try:
-			name = attrs['name']
-			if section.name == name:
-				self.currentElement = section
-			else:
-				tentry = section.findTEntry(name)
-				if tentry == None:
-					log.error("No section with name " + name + " in template file.")
-					raise FcParseError("No section with name " + name + " in template file.")
-				if not tentry.isSection():
-					log.error("Entry " + name + " is not a section.")
-					raise FcParseError("Entry " + name + " is not a section.")
-				self.currentElement = tentry
-			self.sectionStack.append(self.currentElement)
-		except KeyError:
-			log.error("Attribute name was not found!")
+    def startElementEntry(self, attrs):
+        container = self.container_stack[-1]
+        try:
+            name = attrs['name']
+            log.debug(name)
+            entry = container.get_entry(name)
+            if entry is None:
+                log.error("No entry with name " + name + " in template file section " + container.name)
+                raise ParseError("No entry with name " + name + " in template file section " + container.name)
+            if entry.is_multiple_entry_container():
+                entry = entry.append_default(deepcopy(entry.template))
+            self.currentElement = entry
+        except KeyError:
+            log.error("Attribute name was not found!")
 
+    def startElement(self, name, attrs):
+        log.debug("Start element: " + name)
 
-	def startElementEntry(self, attrs):
-		section = self.sectionStack[-1]
-		try:
-			name = attrs['name']
-			log.debug(name)
-			tentry = section.findTEntry(name)
-			if tentry == None:
-				log.error("No entry with name " + name + " in template file section " + section.name)
-				raise FcParseError("No entry with name " + name + " in template file section " + section.name)
-				return
-			self.currentElement = tentry
-			# empty tag is skipped during parsing, characters() is not called, and thus the default value is not set
-			# this ensures that even the empty strings would be treated as consistent
-			if self.currentElement.type == FcTypes.STRING:
-				self.currentElement.defaultValue = ""
+        if name == "section":
+            self.startElementSection(attrs)
+        elif name == "entry":
+            self.startElementEntry(attrs)
+        else:
+            assert self.currentElement is not None
+            if name == "value":
+                self.state = ConfigEnum.VALUE
+            elif name == "help":
+                self.state = ConfigEnum.HELP
+                self.helpBuffer = ""
+            else:
+                log.error("Unknown entry type: " + name)
+                raise ParseError("Unknown entry type: " + name)
 
-		except KeyError:
-			log.error("Attribute name was not found!")
+    def characters(self, data):
+        if data.isspace():
+            return # Ignore white space in XML
 
+        if self.state == ConfigEnum.VALUE:
+            assert self.currentElement is not None
+            log.debug("Setting value for entry " + self.currentElement.name + " to " + data + ".")
+            type = self.currentElement.type
+            value = data.strip()
+            if type in (Types.STRING, Types.FUZZY, Types.BOOL):
+                # TODO: nebude potreba u BOOL a FUZZY kontrolovat jestli je hodnota v seznamu?
+                self.currentElement.default_value = value
+            elif type == Types.NUMBER:
+                self.currentElement.default_value = float(value)
+            else:
+                log.error("Unknown entry type " + str(type) + " for " + self.currentElement.name + "!")
 
-	def startElement(self, name, attrs):
-		log.debug("Start element: " + name)
+        elif self.state == ConfigEnum.HELP:
+            pass
 
-		if name == "section":
-			self.startElementSection(attrs)
-		elif name == "entry":
-			self.startElementEntry(attrs)
-		else:
-			log.error("Unknown entry type: " + name)
-			raise FcParseError("Unknown entry type: " + name)
-			
+    def endElement(self, name):
+        log.debug("End element: " + name)
 
-	def characters(self, data):
-		if data.isspace():
-			return # Ignore white space in XML
+        if name == "entry":
+            self.currentElement = None
+        elif name == "section":
+            self.currentElement = None
+            self.container_stack.pop()
+            if len(self.container_stack) > 0 and self.container_stack[-1].is_multiple_entry_container():
+                self.container_stack.pop()
+        elif name == "value":
+            self.state = ConfigEnum.NO_ELEMENT
+        elif name == "help":
+            self.state = ConfigEnum.NO_ELEMENT
+        else:
+            log.error("Unknown entry type: " + name)
+        return
 
-		type = self.currentElement.type
-		value = data.strip()
-		if type in (FcTypes.STRING, FcTypes.FUZZY, FcTypes.BOOL):
-			# TODO: nebude potreba u BOOL a FUZZY kontrolovat jestli je hodnota v seznamu?
-			self.currentElement.defaultValue = value
-		elif type == FcTypes.NUMBER:
-			self.currentElement.defaultValue = float(value)
-		else:
-			log.error("Unknown entry type " + str(type) + " for " + self.currentElement.name + "!")
-
-
-	def endElement(self, name):
-		log.debug("End element: " + name)
-		if name == "entry":
-			self.currentElement = None
-		elif name == "section":
-			self.currentElement = None
-			self.sectionStack.pop()
-		else:
-			log.error("Unknown entry type: " + name)
-			raise FcParseError("Unknown entry type: " + name)
-
-
-	def parse(self, file, templateTree):
-		self.sectionStack = [templateTree]
-		self.currentElement = None
-		# Parse the XML file
-		XMLFileReader.parse(self, file)
+    def parse(self, file, tree):
+        self.container_stack = [tree]
+        self.currentElement = None
+        # Parse the XML file
+        XMLFileReader.parse(self, file)
 

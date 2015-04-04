@@ -1,35 +1,42 @@
 #!/usr/bin/python3
 #
+from Model.exception_logging.exception import MultipleError
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.base_entry import BaseEntry
+from Model.base_entry import BaseEntry
 
 
 class MultipleEntryContainer(BaseEntry):
     """Container for multiple config entries."""
 
-    def __init__(self, name, parent):
-        BaseEntry.__init__(self, name)
-        self.parent = parent
+    def __init__(self, entry):
+        BaseEntry.__init__(self, entry.name)
+        self.parent = entry.parent
         self._entries = []
+        self._default = []
+        self._template = entry
 
     def make_entry(self):
         pass
 
     def is_container(self):
+        if self._template.is_container():
+            return True
         return False
 
     def is_keyword(self):
+        if self._template.is_keyword():
+            return True
         return False
 
     def is_multiple_entry_container(self):
         return True
 
-    def get_entry(self, i):
+    def get_multiple_entry(self, i):
         return self._entries[i]
 
-    def insert_entry(self, entry, position):
+    def insert_multiple_entry(self, entry, position):
         # assert isinstance(entry, BaseEntry)
         entry.parent = self
         self._entries.insert(int(position), entry)
@@ -39,6 +46,24 @@ class MultipleEntryContainer(BaseEntry):
             # assert isinstance(entry, BaseEntry)
             entry.parent = self
             self._entries.append(entry)
+            return entry
+
+    def append_default(self, entry):
+        if entry is not None:
+            # assert isinstance(entry, BaseEntry)
+            entry.parent = self
+            self._default.append(entry)
+            return entry
+
+    def add_entry(self, entry):
+        if self._template.is_container() or self._template.is_multiple_entry_container():
+            self._template.add_entry(entry)
+        raise MultipleError("Add entry - Multiple container is not container.")
+
+    def get_entry(self, name):
+        if self._template.is_container():
+            return self._template.get_entry(name)
+        raise MultipleError("get entry - Multiple container is not container.")
 
     def disconnect(self, entry):
         try:
@@ -51,6 +76,14 @@ class MultipleEntryContainer(BaseEntry):
     @property
     def entries(self):
         return self._entries
+
+    @property
+    def template(self):
+        return self._template
+
+    @template.setter
+    def template(self, template_entry):
+        self._template = template_entry
 
     def size(self):
         return len(self._entries)

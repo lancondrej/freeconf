@@ -135,6 +135,10 @@ class BoolList(FuzzyList):
         self.append(FuzzyList.Entry(0.0, "no", "No"))
         self.append(FuzzyList.Entry(1.0, "yes", "Yes"))
 
+    @property
+    def type(self):
+        """Return type of this list entries."""
+        return Types.BOOL
 
 # Create constant list of boolean values
 boolList = BoolList()

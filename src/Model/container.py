@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #
+from Model.exception_logging.exception import AlreadyExistsError
+from Model.multiple_entry_container import MultipleEntryContainer
 
 __author__ = 'Ondřej Lanč'
 
@@ -29,16 +31,25 @@ class Container(BaseEntry):
 
     def get_entry(self, name):
         """Get entry by name"""
-        return self._entries[name]
+        try:
+            return self._entries[name]
+        except KeyError:
+            return None
 
     def add_entry(self, entry):
         """insert entry"""
         assert isinstance(entry, BaseEntry)
-        if entry.name not in self._entries:
+        if entry.name in self._entries:
+            raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
+                                     u" in the section ({s}).".format(entry.name, self.name))
+        else:
+            if entry.multiple:
+                # Create multiple container
+                entry = MultipleEntryContainer(entry)
+                # add multiple entry to the tree
             entry.parent = self
             self._entries[entry.name] = entry
             return True
-        return False
 
     @property
     def entries(self):
@@ -56,7 +67,7 @@ class Container(BaseEntry):
             self._entries.pop(entry.name)
             entry.parent = None
             return True
-        except ValueError as KeyError:
+        except KeyError or ValueError:
             return False
 
     def find_entry(self, relative_name):
