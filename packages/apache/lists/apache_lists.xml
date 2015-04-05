@@ -1,0 +1,34 @@
+<freeconf-lists>
+	<string-list name="apache_log_levels">
+		<value>emerg</value>
+		<value>alert</value>
+		<value>crit</value>
+		<value>error</value>
+		<value>warn</value>
+		<value>notice</value>
+		<value>info</value>
+		<value>debug</value>
+	</string-list>
+	<string-list name="apache_server_tokens">
+		<value>Full</value>
+		<value>OS</value>
+		<value>Minimal</value>
+		<value>Minor</value>
+		<value>Major</value>
+		<value>Prod</value>
+	</string-list>
+	<string-list name="apache_server_signature">
+		<value>On</value>
+		<value>Off</value>
+		<value>EMail</value>
+	</string-list>
+	<string-list name="apache_trace_enable">
+		<value>On</value>
+		<value>Off</value>
+		<value>extended</value>
+	</string-list>
+	<string-list name="apache_order">
+		<value>Allow,Deny</value>
+		<value>Deny,Allow</value>
+	</string-list>
+</freeconf-lists>

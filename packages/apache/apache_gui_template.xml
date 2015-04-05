@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf-gui-template>
+  <window>
+    <min-width>640</min-width>
+    <min-height>480</min-height>
+    <max-width>800</max-width>
+    <max-height>600</max-height>
+  </window>
+  <tab>
+    <tab-name>server-tab</tab-name>
+    <tab-icon>categories/preferences-other</tab-icon>
+    <tab-section>
+      <tab-section-name>server-options</tab-section-name>
+      <import-template-entry>/apache-config/ServerRoot</import-template-entry>
+      <import-template-entry>/apache-config/LockFile</import-template-entry>
+      <import-template-entry>/apache-config/PidFile</import-template-entry>
+      <import-template-entry>/apache-config/TimeOut</import-template-entry>
+      <import-template-entry>/apache-config/KeepAlive</import-template-entry>
+      <import-template-entry>/apache-config/MaxKeepAliveRequests</import-template-entry>
+      <import-template-entry>/apache-config/KeepAliveTimeout</import-template-entry>
+      <import-template-entry>/apache-config/AccessFileName</import-template-entry>
+      <import-template-entry>/apache-config/User</import-template-entry>
+      <import-template-entry>/apache-config/Group</import-template-entry>
+      <import-template-entry>/apache-config/DefaultType</import-template-entry>
+    </tab-section>
+  </tab>
+  <tab>
+    <tab-name>vhosts</tab-name>
+    <tab-icon>categories/applications-internet</tab-icon>
+    <tab-section>
+      <tab-section-name>vhosts-options</tab-section-name>
+      <import-template-section primary="Port">/apache-config/Listen</import-template-section>
+      <import-template-section primary="Address">/apache-config/NameVirtualHost</import-template-section>
+      <import-template-section primary="Address">/apache-config/VirtualHost</import-template-section>
+    </tab-section>
+  </tab>
+  <tab>
+    <tab-name>security</tab-name>
+    <tab-icon>status/security-high</tab-icon>
+    <tab-section>
+      <tab-section-name>security-options</tab-section-name>
+      <import-template-entry>/apache-config/ServerTokens</import-template-entry>
+      <import-template-entry>/apache-config/ServerSignature</import-template-entry>
+      <import-template-entry>/apache-config/TraceEnable</import-template-entry>
+    </tab-section>
+  </tab>
+  <tab>
+    <tab-name>logging</tab-name>
+    <tab-icon>mimetypes/text-x-log</tab-icon>
+    <tab-section>
+      <tab-section-name>logging-options</tab-section-name>
+      <import-template-entry>/apache-config/HostnameLookups</import-template-entry>
+      <import-template-entry>/apache-config/LogLevel</import-template-entry>
+      <import-template-entry>/apache-config/ErrorLog</import-template-entry>
+    </tab-section>
+  </tab>
+</freeconf-gui-template>

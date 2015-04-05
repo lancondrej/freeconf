@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf-header>
+<content>
+  <template>apache_template.xml</template>
+  <default-values>apache_default.xml</default-values>
+  <help>apache_help.xml</help>
+  <output>$PACKAGE/apache_conf.xml</output>
+  <dependencies>apache_dependencies.xml</dependencies>
+  <gui-template>apache_gui_template.xml</gui-template>
+  <gui-label>apache_gui_help.xml</gui-label>
+  <lists>apache_lists.xml</lists>
+</content>
+<entry-group name="default">
+  <transform>apache_default_transform.xsl</transform>
+  <native-output>$PACKAGE/apache2.conf</native-output>
+  <output-defaults>yes</output-defaults>
+</entry-group>
+<entry-group name="ports">
+  <transform>apache_default_transform.xsl</transform>
+  <native-output>$PACKAGE/ports.conf</native-output>
+  <output-defaults>yes</output-defaults>
+</entry-group>
+</freeconf-header>

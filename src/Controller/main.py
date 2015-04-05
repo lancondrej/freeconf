@@ -5,7 +5,7 @@ from IO.Input.XMLPackageParser.parser1 import XMLParser
 
 __author__ = 'Ondřej Lanč'
 
-input_parser = XMLParser("/home/ondra/škola/Freeconf/old_freeconf/packages/apache")
+input_parser = XMLParser("/home/ondra/škola/Freeconf/new_freeconf/packages/apache")
 package = PackageBase("pokus")
 package.input = input_parser
 package.current_language = "en"

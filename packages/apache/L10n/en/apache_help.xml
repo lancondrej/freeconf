@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf-help>
+<section name="apache-config">
+	<label></label>
+	<entry name="ServerRoot">
+	<label>Server Root</label>
+	<help>The top of the directory tree under which the server&apos;sconfiguration, error, and log files are kept.NOTE!  If you intend to place this on an NFS (or otherwise network)mounted filesystem then please read the LockFile documentation (availableat &lt;URL:http://httpd.apache.org/docs/2.2/mod/mpm_common.html#lockfile&gt;);you will save yourself a lot of trouble.Do NOT add a slash at the end of the directory path.</help>
+</entry>
+<entry name="LockFile">
+	<label>Lock File</label>
+	<help>The LockFile directive sets the path to the lockfile used when Apache is used with an AcceptMutex value of either fcntl or flock. This directive should normally be left at its default value. The main reason for changing it is if the logs directory is NFS mounted, since the lockfile must be stored on a local disk. The PID of the main server process is automatically appended to the filename.</help>
+</entry>
+<entry name="PidFile">
+	<label>Pid File</label>
+	<help>The PidFile directive sets the file to which the server records the process id of the daemon. If the filename is not absolute then it is assumed to be relative to the ServerRoot.</help>
+</entry>
+<entry name="TimeOut">
+	<label>Timeout</label>
+	<help>The number of seconds before receives and sends time out.The TimeOut directive currently defines the amount of time Apache will wait for three things:The total amount of time it takes to receive a GET request.The amount of time between receipt of TCP packets on a POST or PUT request.The amount of time between ACKs on transmissions of TCP packets in responses.</help>
+</entry>
+<entry name="KeepAlive">
+	<label>Keep Alive</label>
+	<help>The Keep-Alive extension to HTTP/1.0 and the persistent connection feature of HTTP/1.1 provide long-lived HTTP sessions which allow multiple requests to be sent over the same TCP connection. In some cases this has been shown to result in an almost 50% speedup in latency times for HTML documents with many images. To enable Keep-Alive connections, set KeepAlive On.For HTTP/1.0 clients, Keep-Alive connections will only be used if they are specifically requested by a client. In addition, a Keep-Alive connection with an HTTP/1.0 client can only be used when the length of the content is known in advance. This implies that dynamic content such as CGI output, SSI pages, and server-generated directory listings will generally not use Keep-Alive connections to HTTP/1.0 clients. For HTTP/1.1 clients, persistent connections are the default unless otherwise specified. If the client requests it, chunked encoding will be used in order to send content of unknown length over persistent connections.</help>
+</entry>
+<entry name="MaxKeepAliveRequests">
+	<label>Max Keep Alive Requests</label>
+	<help>The maximum number of requests to allowduring a persistent connection. Set to 0 to allow an unlimited amount.We recommend you leave this number high, for maximum performance.</help>
+</entry>
+<entry name="KeepAliveTimeout">
+	<label>Keep Alive Timeout</label>
+	<help>Number of seconds to wait for the next request from thesame client on the same connection.Setting KeepAliveTimeout to a high value may cause performance problems in heavily loaded servers. The higher the timeout, the more server processes will be kept occupied waiting on connections with idle clients.</help>
+</entry>
+<entry name="AccessFileName">
+	<label>Acess File Name</label>
+	<help>The name of the file to look for in each directoryfor additional configuration directives.  See also the AllowOverridedirective.</help>
+</entry>
+<entry name="User">
+	<label>User</label>
+	<help>The User directive sets the user ID as which the server will answer requests. In order to use this directive, the server must be run initially as root. If you start the server as a non-root user, it will fail to change to the lesser privileged user, and will instead continue to run as that original user. If you do start the server as root, then it is normal for the parent process to remain running as root.Unix-userid is one of:A username - Refers to the given user by name.# followed by a user number. - Refers to a user by its number.Warning: Don&apos;t set User (or Group) to root unless you know exactly what you are doing, and what the dangers are.</help>
+</entry>
+<entry name="Group">
+	<label>Group</label>
+	<help>The Group directive sets the group under which the server will answer requests. In order to use this directive, the server must be run initially as root. If you start the server as a non-root user, it will fail to change to the specified group, and will instead continue to run as the group of the original user.Unix-group is one of:A username - Refers to the given user by name.# followed by a user number. - Refers to a user by its number.Warning: Don&apos;t set Group (or User) to root unless you know exactly what you are doing, and what the dangers are.</help>
+</entry>
+<entry name="DefaultType">
+	<label></label>
+	<help>DefaultType is the default MIME type the server will use for a documentif it cannot otherwise determine one, such as from filename extensions.If your server contains mostly text or HTML documents, &quot;text/plain&quot; isa good value.  If most of your content is binary, such as applicationsor images, you may want to use &quot;application/octet-stream&quot; instead tokeep browsers from trying to display binary files as though they aretext.</help>
+</entry>
+<entry name="HostnameLookups">
+	<label>Hostname Lookups</label>
+	<help>HostnameLookups: Log the names of clients or just their IP addressese.g., www.apache.org (on) or 204.62.129.132 (off).The default is off because it&apos;d be overall better for the net if peoplehad to knowingly turn this feature on, since enabling it means thateach client request will result in AT LEAST one lookup request to thenameserver.</help>
+</entry>
+<entry name="LogLevel">
+	<label>Log Level</label>
+	<help>LogLevel adjusts the verbosity of the messages recorded in the error logs (see ErrorLog directive). Levels are listed in order of decreasing significance.When a particular level is specified, messages from all other levels of higher significance will be reported as well. E.g., when LogLevel info is specified, then messages with log levels of notice and warn will also be posted.Using a level of at least crit is recommended.</help>
+</entry>
+<entry name="ErrorLog">
+	<label>Error Log</label>
+	<help>The location of the error log file.If you do not specify an ErrorLog directive within a &lt;VirtualHost&gt;container, error messages relating to that virtual host will belogged here.  If you *do* define an error logfile for a &lt;VirtualHost&gt;container, that host&apos;s errors will be logged there and not here.</help>
+</entry>
+<entry name="ServerTokens">
+	<label>Server Tokens</label>
+	<help>This directive configures what you return as the Server HTTP responseHeader. The default is &apos;Full&apos; which sends information about the OS-Typeand compiled in modules.</help>
+</entry>
+<entry name="ServerSignature">
+	<label>Server Signature</label>
+	<help>Optionally add a line containing the server version and virtual hostname to server-generated pages (internal error documents, FTP directorylistings, mod_status and mod_info output etc., but not CGI generateddocuments or custom error documents).Set to &quot;EMail&quot; to also include a mailto: link to the ServerAdmin.</help>
+</entry>
+<entry name="TraceEnable">
+	<label>Trace Enable</label>
+	<help>Allow TRACE methodSet to &quot;extended&quot; to also reflect the request body (only for testing anddiagnostic purposes).</help>
+</entry>
+<section name="Listen">
+	<label></label>
+	<entry name="Port">
+	<label></label>
+	<help></help>
+</entry>
+<entry name="Address">
+	<label>Address</label>
+	<help>Optional IP address identifying interface Apache server will listen on. If address is empty, Apache will listen an all interfaces.IPv6 addresses must be surrounded in square brackets.</help>
+</entry>
+</section>
+<section name="NameVirtualHost">
+	<label></label>
+	<entry name="Address">
+	<label>Address</label>
+	<help>To use name-based virtual hosting, you must designate the IP address (and possibly port) on the server that will be accepting requests for the hosts. You can specify IP address or hostname.IPv6 addresses must be enclosed in square bracketTo receive requests on all interfaces, you can use an argument of *.</help>
+</entry>
+<entry name="Port">
+	<label>Port</label>
+	<help>Optionally you can specify a port number on which the name-based virtual hosts should be used. If this is set to 0, then it matches all ports.</help>
+</entry>
+</section>
+<section name="VirtualHost">
+	<label></label>
+	<entry name="Address">
+	<label>Address</label>
+	<help>Address for virtual host. It can be:* The IP address of the virtual host;* A fully qualified domain name for the IP address of the virtual host;* The character *, which is used only in combination with NameVirtualHost * to match all IP addresses;* The string _default_, which is used only with IP virtual hosting to catch unmatched IP addresses.Note: IPv6 addresses must be specified in square brackets.</help>
+</entry>
+<entry name="Port">
+	<label>Port</label>
+	<help>Specify port that is matched. If You leave this setting empty then it defaults to the same port as the most recent Listen statement of the main server. You may also specify * to match all ports on that address. (This is recommended when used with _default_.)</help>
+</entry>
+<entry name="ServerAdmin">
+	<label>Server Admin</label>
+	<help>The ServerAdmin sets the e-mail address that the server includes in any error messages it returns to the client.</help>
+</entry>
+<entry name="ServerName">
+	<label>Server Name</label>
+	<help>The ServerName directive sets the hostname and optionally port that the server uses to identify itself. It is in form: domain-name[:port] .</help>
+</entry>
+<section name="ServerAlias">
+	<label></label>
+	<entry name="Hostname">
+	<label>Hostname</label>
+	<help>The ServerAlias directive sets the alternate names for a host, for use with name-based virtual hosts.</help>
+</entry>
+</section>
+<entry name="DocumentRoot">
+	<label>Document Root</label>
+	<help>This directive sets the directory from which httpd will serve files. Unless matched by a directive like Alias, the server appends the path from the requested URL to the document root to make the path to the document.</help>
+</entry>
+<section name="Alias">
+	<label></label>
+	<entry name="URLPath">
+	<label>URL Path</label>
+	<help>URL path that is mapped to target path.Note that if you include a trailing / on the url-path then the server will require a trailing / in order to expand the alias.</help>
+</entry>
+<entry name="TargetPath">
+	<label>Target Path</label>
+	<help>Path to directory or file the alias is directed to.Note that you may need to specify additional &lt;Directory&gt; sections which cover the destination of aliases. Aliasing occurs before &lt;Directory&gt; sections are checked, so only the destination of aliases are affected.In particular, if you are creating an Alias to a directory outside of your DocumentRoot, you may need to explicitly permit access to the target directory.</help>
+</entry>
+</section>
+<section name="Directory">
+	<label></label>
+	<entry name="Path">
+	<label>Path</label>
+	<help>Path to directory.</help>
+</entry>
+<section name="Options">
+	<label></label>
+	<entry name="FollowSymlinks">
+	<label>Follow Symlinks</label>
+	<help>The server will follow symbolic links in this directory.</help>
+</entry>
+<entry name="ExecCGI">
+	<label>Exec CGI Scripts</label>
+	<help>Execution of CGI scripts using mod_cgi is permitted.</help>
+</entry>
+<entry name="Includes">
+	<label>Enable Includes</label>
+	<help>Server-side includes provided by mod_include are permitted.</help>
+</entry>
+<entry name="IncludesNOEXEC">
+	<label>Includes NOEXEC</label>
+	<help>Server-side includes are permitted, but the #exec cmd and #exec cgi are disabled. It is still possible to #include virtual CGI scripts from ScriptAliased directories.</help>
+</entry>
+<entry name="Indexes">
+	<label>Enable Directory Listing</label>
+	<help>If a URL which maps to a directory is requested, and there is no DirectoryIndex (e.g., index.html) in that directory, then mod_autoindex will return a formatted listing of the directory.</help>
+</entry>
+<entry name="MultiViews">
+	<label>Multiple Views</label>
+	<help>Content negotiated &quot;MultiViews&quot; are allowed using mod_negotiation.</help>
+</entry>
+<entry name="SymLinksIfOwnerMatch">
+	<label>Follow symlinks if owner matches</label>
+	<help>The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link.</help>
+</entry>
+</section>
+<section name="AllowOverride">
+	<label></label>
+	<entry name="AuthConfig">
+	<label>Authorization Config</label>
+	<help>Allow use of the authorization directives in .htaccess files.</help>
+</entry>
+<entry name="FileInfo">
+	<label>File Info</label>
+	<help>Allow use of the directives controlling document types in .htaccess files.</help>
+</entry>
+<entry name="Indexes">
+	<label>Indexes</label>
+	<help>Allow use of the directives controlling directory indexing in .htaccess files.</help>
+</entry>
+<entry name="Limit">
+	<label>Limit</label>
+	<help>Allow use of the directives controlling host access in .htaccess files.</help>
+</entry>
+<entry name="Options">
+	<label>Options</label>
+	<help>Allow use of the directives controlling specific directory features in .htaccess files.</help>
+</entry>
+</section>
+<entry name="Order">
+	<label>Order</label>
+	<help>The Order directive, along with the Allow and Deny directives, controls a three-pass access control system. The first pass processes either all Allow or all Deny directives, as specified by the Order directive. The second pass parses the rest of the directives (Deny or Allow). The third pass applies to all requests which do not match either of the first two.Note that all Allow and Deny directives are processed, unlike a typical firewall, where only the first match is used. The last match is effective (also unlike a typical firewall). Additionally, the order in which lines appear in the configuration files is not significant -- all Allow lines are processed as one group, all Deny lines are considered as another, and the default state is considered by itself.</help>
+</entry>
+<entry name="Allow">
+	<label></label>
+	<help>Controls which hosts can access an area of the server.List of hosts, IP addresses or IP address ranges delimited with whitespace.If set to &quot;all&quot; then all hosts are allowed access.</help>
+</entry>
+<entry name="Deny">
+	<label>Deny</label>
+	<help>Controls which hosts are denied access to the server.List of hosts, IP addresses or IP address ranges delimited with whitespace.If set to &quot;all&quot; then all hosts are denied access.</help>
+</entry>
+</section>
+</section>
+</section>
+</freeconf-help>
