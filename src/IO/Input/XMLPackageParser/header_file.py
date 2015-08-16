@@ -148,9 +148,9 @@ class HeaderFileReader(XMLFileReader):
                 group_name = "default"
             # Get the group to change
             try:
-                self.activeGroup = self.plugin.availableGroups[group_name]
+                self.activeGroup = self.plugin.available_groups[group_name]
             except KeyError:
-                raise ParseError("Group %dsn does not exist!" % (group_name,))
+                raise ParseError("Group %s does not exist!" % (group_name,))
 
         elif name == "template":
             if self.parent_element != ElementEnum.CONTENT:

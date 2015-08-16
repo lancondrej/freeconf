@@ -29,6 +29,7 @@ class BaseEntry(object):
         self._package = None  # Plugin or package, from which this entry originates.
 
         self._inconsistent = False
+        self.guiBuddy = None
 
     @property
     def name(self):

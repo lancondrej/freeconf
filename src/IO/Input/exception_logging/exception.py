@@ -2,13 +2,13 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from IO.Input.exception_logging import log
+from IO.Input.exception_logging.log import log
 
 
 class ParserGeneralError (Exception):
     def __init__(self, message):
         self.message = message
-        self._printToLog()
+        self._print_to_lo_log()
 
     def _print_to_lo_log(self):
         if self.message is not None:

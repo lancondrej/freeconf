@@ -38,18 +38,18 @@ class Container(BaseEntry):
 
     def add_entry(self, entry):
         """insert entry"""
-        assert isinstance(entry, BaseEntry)
+        # assert isinstance(entry, BaseEntry)
         if entry.name in self._entries:
             raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
                                      u" in the section ({s}).".format(entry.name, self.name))
-        else:
+        elif isinstance(entry, BaseEntry):
             if entry.multiple:
                 # Create multiple container
                 entry = MultipleEntryContainer(entry)
                 # add multiple entry to the tree
-            entry.parent = self
-            self._entries[entry.name] = entry
-            return True
+        entry.parent = self
+        self._entries[entry.name] = entry
+        return True
 
     @property
     def entries(self):
@@ -74,6 +74,10 @@ class Container(BaseEntry):
         """Find entry in tree. Name is given in format: a/b/c../entry"""
         try:
             (name, rest) = relative_name.split('/',1)
+            if relative_name.startswith('/'):
+                (name, rest) = rest.split('/',1)
+                if self.root.name == name:
+                    return self.root.find_entry(rest)
             if self.is_in_container(name):
                 return self.find_entry(rest)
         except ValueError:

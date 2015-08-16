@@ -2,6 +2,22 @@
 #
 __author__ = 'Ondřej Lanč'
 
+xmlEscapeTable = {
+    '"': "&quot;",
+    "'": "&apos;",
+    ">": "&gt;",
+    "<": "&lt;"
+}
+
+
+def escapeXML(text):
+    """Produce entities within text."""
+    return "".join(xmlEscapeTable.get(c, c) for c in text)
+
+
+def getXMLIndent(n, string="\t"):
+    """Generate default XML indent string n-times."""
+
 
 class Types:
     """Basic Freeconf types."""

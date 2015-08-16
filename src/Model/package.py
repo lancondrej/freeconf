@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #
+from Model.GUI.gwindow import FcGWindow
 from src.Model.exception_logging.exception import *
 
 __author__ = 'Ondřej Lanč'
@@ -20,6 +21,8 @@ class PackageBase(object):
         self.groups = {}
         self.availableLanguages = []
         self.dependencies = []
+        self.gui_tree = FcGWindow()
+
 
 
     @property
@@ -45,6 +48,11 @@ class PackageBase(object):
         """Return list of available groups."""
         return self.groups
 
+    @available_groups.setter
+    def available_groups(self, group):
+        """Return list of available groups."""
+        self.groups = group
+
     def add_group(self, group):
         if group.name in self.groups:
             raise AlreadyExistsError("Group with name %s already exists!" % (group.name,))
@@ -56,7 +64,7 @@ class PackageBase(object):
         del self.groups[name]
 
     def load_plugins(self):
-        self.input.load_plugin(self)
+        self.input.load_plugins(self)
 
     def load_config(self):
         """Load config file."""
@@ -95,7 +103,8 @@ class Plugin(PackageBase):
     """Class representing plugin."""
 
     def __init__(self, name, package):
-        PackageBase.__init__(self, name, package.parser)
+        PackageBase.__init__(self, name)
+        self.available_groups = package.available_groups
         self.package = package  # Reference to main package
 
     @property

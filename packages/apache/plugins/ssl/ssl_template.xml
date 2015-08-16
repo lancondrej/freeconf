@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-template>
-<section-name>apache-config</section-name>
-<string>
-	<entry-name>SSLCACertificateFile</entry-name>
-</string>
-<string>
-	<entry-name>SSLCACertificatePath</entry-name>
-</string>
-<string>
-	<entry-name>SSLCARevocationFile</entry-name>
-</string>
-<string>
-	<entry-name>SSLCARevocationPath</entry-name>
-</string>
-<string>
-	<entry-name>SSLCertificateChainFile</entry-name>
-</string>
-<string>
-	<entry-name>SSLCertificateFile</entry-name>
-</string>
-<string>
-	<entry-name>SSLCertificateKeyFile</entry-name>
-</string>
-<bool>
-	<entry-name>SSLInsecureRenegotiation</entry-name>
-</bool>
-<string>
-	<entry-name>SSLMutex</entry-name>
-</string>
-<bool>
-	<entry-name>SSLRequireSSL</entry-name>
-</bool>
+    <section-name>apache-config</section-name>
+    <string>
+        <entry-name>SSLCACertificateFile</entry-name>
+    </string>
+    <string>
+        <entry-name>SSLCACertificatePath</entry-name>
+    </string>
+    <string>
+        <entry-name>SSLCARevocationFile</entry-name>
+    </string>
+    <string>
+        <entry-name>SSLCARevocationPath</entry-name>
+    </string>
+    <string>
+        <entry-name>SSLCertificateChainFile</entry-name>
+    </string>
+    <string>
+        <entry-name>SSLCertificateFile</entry-name>
+    </string>
+    <string>
+        <entry-name>SSLCertificateKeyFile</entry-name>
+    </string>
+    <bool>
+        <entry-name>SSLInsecureRenegotiation</entry-name>
+    </bool>
+    <string>
+        <entry-name>SSLMutex</entry-name>
+    </string>
+    <bool>
+        <entry-name>SSLRequireSSL</entry-name>
+    </bool>
 </freeconf-template>
