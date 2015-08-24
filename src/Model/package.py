@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
 from View.GUI.gwindow import GWindow
-from src.Model.exception_logging.exception import *
+from Model.exception_logging.exception import *
 
 __author__ = 'Ondřej Lanč'
 
@@ -11,8 +11,6 @@ class PackageBase(object):
 
     def __init__(self, name):
         self.tree = None
-        self.input = None
-        self.output = None
         self.plugins = []
         self._currentLanguage = ""
         self.packageName = name
@@ -63,17 +61,6 @@ class PackageBase(object):
             raise NotExistsError("Group with name %s does not exist!" % (name,))
         del self.groups[name]
 
-    def load_plugins(self):
-        self.input.load_plugins(self)
-
-    def load_config(self):
-        """Load config file."""
-        self.input.load_config(self)
-
-    def load_package(self):
-        """Base function for package load."""
-        self.input.load_package(self)
-
     def transform(self, groupName="default"):
         """Write native config files for all groups."""
         for group in self.groups.values():
@@ -85,15 +72,15 @@ class PackageBase(object):
             # Dependency resolved -> execute it
             dep.execute()
 
-    def write_output(self):
-        if self.inconsistent:
-            raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
-        self.output.write_output()
+    #def write_output(self):
+     #   if self.inconsistent:
+      #      raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
+       # self.output.write_output()
 
-    def write_package(self):
-        if self.inconsistent:
-            raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
-        self.output.write_package()
+   # def write_package(self):
+   #     if self.inconsistent:
+   #         raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
+   #     self.output.write_package()
 
     def inconsistent(self):
         return self.tree.inconsistent

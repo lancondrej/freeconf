@@ -7,8 +7,8 @@ __author__ = 'Ondřej Lanč'
 
 input_parser = XMLParser("/home/ondra/škola/Freeconf/new_freeconf/packages/apache")
 package = PackageBase("pokus")
-package.input = input_parser
+input_parser.package=package
 package.current_language = "en"
-package.load_package()
-package.load_plugins()
+input_parser.load_package()
+input_parser.load_plugins()
 print("konec")

@@ -3,11 +3,11 @@
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.key_word import KeyWord
-from src.Model.constants import Types
+from Model.key_word import KeyWord
+from Model.constants import Types
 
 
-class FCString(KeyWord):
+class String(KeyWord):
     """This is a class for keyword entries if type string from template file."""
 
     def __init__(self):

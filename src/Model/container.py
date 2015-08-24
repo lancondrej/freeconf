@@ -5,8 +5,8 @@ from Model.multiple_entry_container import MultipleEntryContainer
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.base_entry import BaseEntry
-from src.Model.constants import Types
+from Model.base_entry import BaseEntry
+from Model.constants import Types
 
 
 class Container(BaseEntry):

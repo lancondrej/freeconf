@@ -12,10 +12,10 @@ from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
 from IO.Input.exception_logging.exception import ParseError
 from Model.container import Container
-from Model.fcnumber import FCNumber
-from Model.fcbool import FCBool
-from Model.fcstring import FCString
-from Model.fcfuzzy import FCFuzzy
+from Model.number import Number
+from Model.bool import Bool
+from Model.string import String
+from Model.fuzzy import Fuzzy
 
 
 class TemplateEnum:
@@ -103,28 +103,28 @@ class TemplateFile(XMLFileReader):
 
         if name == "bool":
             log.debug("Adding bool.")
-            self.current_entry = FCBool()
+            self.current_entry = Bool()
             self.current_entry.package = self.package
             # self.container_stack[-1].add_entry(self.current_entry)
             return
 
         if name == "fuzzy":
             log.debug("Adding fuzzy.")
-            self.current_entry = FCFuzzy()
+            self.current_entry = Fuzzy()
             self.current_entry.package = self.package
             # self.container_stack[-1].add_entry(self.current_entry)
             return
 
         if name == "number":
             log.debug("Adding number.")
-            self.current_entry = FCNumber()
+            self.current_entry = Number()
             self.current_entry.package = self.package
             # self.container_stack[-1].add_entry(self.current_entry)
             return
 
         if name == "string":
             log.debug("Adding string.")
-            self.current_entry = FCString()
+            self.current_entry = String()
             self.current_entry.package = self.package
             #self.container_stack[-1].add_entry(self.current_entry)
             return

@@ -358,19 +358,19 @@ class XMLParser(Input):
         #except:
              #log.error("Cannot parse the GUI label file")
 
-    def load_package(self, package):
+    def load_package(self):
         """Base function for package load."""
-        self._load_header_file(package)
-        self._find_help_file(package)
+        self._load_header_file(self.package)
+        self._find_help_file(self.package)
         # Load list files
-        self._load_lists(package)
-        self._load_template_file(package)
+        self._load_lists(self.package)
+        self._load_template_file(self.package)
         if self._paths.helpFile.fullPath:
-            self._load_help_file(package)
+            self._load_help_file(self.package)
         # Default config file
         if self._paths.defaultValuesFile:
-            self._load_default_values_file(package)
-        self._load_config_file(package)
+            self._load_default_values_file(self.package)
+        self._load_config_file(self.package)
         # GUI file
         #error = self._load_gui_template_file(package)
         # GUI label file
@@ -384,7 +384,7 @@ class XMLParser(Input):
     def load_config_file(self, file, package):
         self._load_config_file(package)
 
-    def load_plugins(self, package):
+    def load_plugins(self):
         """Load all plugins found in plugin directory."""
         # Search plugin directory
         dirs = []
@@ -402,8 +402,8 @@ class XMLParser(Input):
                 log.warning("No header file found for plugin %s!" % (p,))
                 continue
             # Create plugin and load it
-            plugin = Plugin(p, package)
+            plugin = Plugin(p, self.package)
             input_parser = XMLParser(path)
-            plugin.input = input_parser
-            plugin.load_package()
-            package.plugins.append(plugin)
+            input_parser.package=plugin
+            input_parser.load_package()
+            self.package.plugins.append(plugin)

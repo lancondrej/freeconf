@@ -1,17 +1,17 @@
 #!/usr/bin/python3
 #
-from src.Model.constants import Types
-from src.Model.fcfuzzy import FCFuzzy
-from src.Model.lists import boolList
+from Model.constants import Types
+from Model.fuzzy import Fuzzy
+from Model.lists import boolList
 
 __author__ = 'Ondřej Lanč'
 
 
-class FCBool(FCFuzzy):
+class Bool(Fuzzy):
     """This is a class for keyword entries of type bool from template file."""
 
     def __init__(self):
-        FCFuzzy.__init__(self)
+        Fuzzy.__init__(self)
         self.list = boolList
 
     @property

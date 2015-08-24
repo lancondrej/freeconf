@@ -2,11 +2,11 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from src.Model.key_word import KeyWord
-from src.Model.constants import Types
+from Model.key_word import KeyWord
+from Model.constants import Types
 
 
-class FCNumber(KeyWord):
+class Number(KeyWord):
     """This is a class for keyword entries of type number."""
 
     def __init__(self):

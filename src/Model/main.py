@@ -4,8 +4,8 @@ __author__ = 'Ondřej Lanč'
 
 import os
 import json
-from src.Model.exception_logging.log import log
-from src.Model.package import PackageBase
+from Model.exception_logging.log import log
+from Model.package import PackageBase
 
 def get_env(var):
     """Get environment variable."""
@@ -50,7 +50,7 @@ class FreeconfModel(object):
         return self._languages
 
     @languages.setter
-    def languages(self):
+    def languages(self, langs):
         self._languages = langs
 
     def load_config(self, config_file=None):

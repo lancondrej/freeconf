@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 #
-from src.Model.constants import Types
-from src.Model.exception_logging.exception import ModelGeneralError
-from src.Model.key_word import KeyWord
-from src.Model.exception_logging.log import log
+from Model.constants import Types
+from Model.exception_logging.exception import ModelGeneralError
+from Model.key_word import KeyWord
+from Model.exception_logging.log import log
 __author__ = 'Ondřej Lanč'
 
 
-class FCFuzzy(KeyWord):
+class Fuzzy(KeyWord):
     """This is a class for keyword entries of type fuzzy."""
 
     def __init__(self):
