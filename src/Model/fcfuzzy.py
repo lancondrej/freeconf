@@ -7,7 +7,7 @@ from src.Model.exception_logging.log import log
 __author__ = 'Ondřej Lanč'
 
 
-class Fuzzy(KeyWord):
+class FCFuzzy(KeyWord):
     """This is a class for keyword entries of type fuzzy."""
 
     def __init__(self):
@@ -134,3 +134,11 @@ class Fuzzy(KeyWord):
                 return
             self.max = value
             self.set_value(self.check_value(), True)
+
+    @property
+    def grade(self):
+        return self.value_to_grade(self.value)
+
+    @grade.setter
+    def grade(self, grade):
+        self.value = self.grade_to_value(grade)

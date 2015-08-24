@@ -7,7 +7,7 @@ from src.Model.key_word import KeyWord
 from src.Model.constants import Types
 
 
-class String(KeyWord):
+class FCString(KeyWord):
     """This is a class for keyword entries if type string from template file."""
 
     def __init__(self):

@@ -3,9 +3,9 @@
 # Freeconf libs
 from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from Model.GUI.gcontainer import FcCGSEntry
-from Model.GUI.gentry import GEntry
-from Model.GUI.gtab import FcGTab
+from View.GUI.gcontainer import GContainer
+from View.GUI.gentry import GEntry
+from View.GUI.gtab import GTab
 from Model.constants import Types
 
 
@@ -69,7 +69,7 @@ class GUITemplateFile(XMLFileReader):
 		if name == "tab":
 			log.debug("Start processing tab element")
 			self.__sectionStack = []
-			self._tabElement = FcGTab()
+			self._tabElement = GTab()
 			self._currentElement = GUITemplateEnum.TAB
 			# Creation of tab is postpoed to end of element tab-name
 			return
@@ -99,7 +99,7 @@ class GUITemplateFile(XMLFileReader):
 			self._currentElement = GUITemplateEnum.TABSECTION
 			#there is always at least the root section on the stack
 			parent = self.__sectionStack[-1]
-			self._sectionElement = FcCGSEntry(None, parent)
+			self._sectionElement = GContainer(None, parent)
 			#parent.append(self._sectionElement)
 			self.__sectionStack.append(self._sectionElement)
 			return
@@ -230,7 +230,7 @@ class GUITemplateFile(XMLFileReader):
 				GUIEntry.parent.disconnect(GUIEntry)
 
 			parent = self.__sectionStack[-1] # Gui entry's parent
-			tmpEntry = FcCGSEntry(entry, parent)
+			tmpEntry = GContainer(entry, parent)
 			entry.guiBuddy = tmpEntry
 			parent.append(tmpEntry)
 			# Fill new section with entries form config tree
@@ -318,7 +318,7 @@ class GUITemplateFile(XMLFileReader):
 			if tab is None:
 				self.__window.add_entry(self._tabElement)
 				# Create root section for tab
-				rootSection = FcCGSEntry()
+				rootSection = GContainer()
 				rootSection.name = "rootSection"
 				self._tabElement.content = rootSection
 			else:

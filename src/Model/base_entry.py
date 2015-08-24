@@ -19,7 +19,7 @@ class BaseEntry(object):
         self._dynamic_active = True
         self._static_mandatory = False
         self._dynamic_mandatory = False
-
+        self._enabled = True
         # Multiple properties
         self.multiple = False
         self._multiple_min = None
@@ -29,7 +29,7 @@ class BaseEntry(object):
         self._package = None  # Plugin or package, from which this entry originates.
 
         self._inconsistent = False
-        self.guiBuddy = None
+        #self.guiBuddy = None
 
     @property
     def name(self):
@@ -40,6 +40,16 @@ class BaseEntry(object):
     def name(self, name):
         """set name"""
         self._name = str(name)
+
+    @property
+    def package(self):
+        """get package"""
+        return self._package
+
+    @package.setter
+    def package(self, package):
+        """set package"""
+        self._package = package
 
     @property
     def root(self):
@@ -89,7 +99,7 @@ class BaseEntry(object):
         """Returns the correct mutation of the entry's label"""
         try:
             if language == "":
-                return self._label[self._package.currentLanguage]
+                return self._label[self._package.current_language]
             else:
                 return self._label[language]
         except KeyError:
@@ -100,6 +110,15 @@ class BaseEntry(object):
 
     def set_key_help(self, language, help):
         self._help[language] = help
+
+    def key_help(self, language=""):
+        try:
+            if language == "":
+                return self._help[self._package.current_language]
+            else:
+                return self._help[language]
+        except KeyError:
+            return ""
 
     @property
     def group(self):
@@ -236,3 +255,7 @@ class BaseEntry(object):
             if value == self.dynamic_mandatory:
                 return
             self.dynamic_mandatory = value
+
+    @property
+    def enabled (self):
+        return self._enabled

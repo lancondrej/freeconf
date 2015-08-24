@@ -2,17 +2,22 @@
 #
 import os
 import re
+
 from IO.Input.XMLPackageParser.config_file import ConfigFileReader
 from IO.Input.XMLPackageParser.default_file import DefaultFile
+
+
+
 # from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
+from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
 from IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
 from IO.Input.XMLPackageParser.help_file import HelpFile
 from IO.Input.XMLPackageParser.list_file import ListFile
 from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
 from IO.Input.XMLPackageParser.template_file import TemplateFile
-from Model.GUI.gcontainer import FcCGSEntry
-from Model.GUI.gtab import FcGTab
-from Model.GUI.gwindow import FcGWindow
+from View.GUI.gcontainer import GContainer
+from View.GUI.gtab import GTab
+from View.GUI.gwindow import GWindow
 from Model.group import FcGroup
 from IO.Input.XMLPackageParser.header_file import HeaderFileReader
 from IO.file import FcFileLocation
@@ -69,7 +74,7 @@ class XMLParser(Input):
             self.dependenciesFile = FcFileLocation()
             self.guiTemplateFile = FcFileLocation()
             self.helpFile = FcFileLocation()
-            self.guiLabelFile = ""
+            self.guiLabelFile = FcFileLocation()
             self.defaultValuesFile = FcFileLocation()
             self.outputFile = FcFileLocation()
 
@@ -165,7 +170,7 @@ class XMLParser(Input):
             package.tree,
             package.available_groups,
             package.available_lists,
-            self
+            package
         )
 
     def _find_help_file(self, package):
@@ -307,20 +312,20 @@ class XMLParser(Input):
             # TODO: Tenhle default kod bude mozna lepsi prehodit nekam jinam
             log.info("Unable to parse gui template file, reverting to fallback!")
             if len(package.gui_tree.entries) == 0:
-                package.gui_tree = FcGWindow()
+                package.gui_tree = GWindow()
                 package.gui_tree.title = "freeconf generated config dialog"
 
             # Create Tab for all settings
             all_tab = package.gui_tree.find_entry("all-tab")[1]
             if all_tab == None:
-                all_tab = FcGTab()
+                all_tab = GTab()
                 all_tab.name = "all-tab"
                 all_tab.label = "All"
                 all_tab.description = "General fallback tab"
                 package.gui_tree.add_entry(all_tab)
             if all_tab.content == None:
                 # Create top level GUI Section entry
-                rootSection = FcCGSEntry()
+                rootSection = GContainer()
                 #rootSection.configBuddy = self.trees.configTree
                 #self.trees.configTree = rootSection
                 rootSection.name = "rootSection"
@@ -331,25 +336,27 @@ class XMLParser(Input):
             return True
         return False
 
-    # def _loadGUILabelFile(self, loadAllLanguages):
-    #     """Load GUI label file. Support function for loadPackage."""
-    #     f = None
-    #     for key, dir in self.paths.helpDirs.items():
-    #         f = os.path.join(dir, self.paths.guiLabelFile.name)
-    #         if os.access(f, os.R_OK):
-    #             break
-    #     else:
-    #         log.info("GUI label file " + self.paths.guiLabelFile.name + " is missing.")
-    #         return
-    #
-    #     self.paths.guiLabelFile.fullPath = f
-    #
-    #     log.info("Parsing the GUI label file " + self.paths.guiLabelFile.fullPath)
-    #     labelParser = GUILabelFile()
-    #     #try:
-    #     labelParser.parse(self.paths.guiLabelFile.fullPath, self.trees.guiTree)
-    #     #except:
-    #         #log.error("Cannot parse the GUI label file")
+    def _load_gui_label_file(self, package, loadAllLanguages=""):
+        """Load GUI label file. Support function for loadPackage."""
+        f = None
+        if self._paths.guiLabelFile.name is None:
+            log.info("GUI label file in " + package.packageName + " not set.")
+            return
+        for key, dir in self._paths.helpDirs.items():
+            f = os.path.join(dir, self._paths.guiLabelFile.name)
+            if os.access(f, os.R_OK):
+                break
+            else:
+                log.info("GUI label file " + self._paths.guiLabelFile.name + " is missing.")
+                return
+        self._paths.guiLabelFile.fullPath = f
+
+        log.info("Parsing the GUI label file " + self._paths.guiLabelFile.fullPath)
+        labelParser = GUILabelFile()
+        #try:
+        labelParser.parse(self._paths.guiLabelFile.fullPath, package.gui_tree)
+        #except:
+             #log.error("Cannot parse the GUI label file")
 
     def load_package(self, package):
         """Base function for package load."""
@@ -365,10 +372,11 @@ class XMLParser(Input):
             self._load_default_values_file(package)
         self._load_config_file(package)
         # GUI file
-        error = self._load_gui_template_file(package)
+        #error = self._load_gui_template_file(package)
         # GUI label file
-        # if not error and self._paths.guiTemplateFile and self._paths.guiLabelFile:
-            # self._loadGUILabelFile()
+        #if not error and self._paths.guiTemplateFile and self._paths.guiLabelFile:
+        #    self._load_gui_label_file(package)
+        #package.gui_tree.initState()
 
     def input(self):
         pass

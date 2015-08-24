@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-from Model.GUI.gwindow import FcGWindow
+from View.GUI.gwindow import GWindow
 from src.Model.exception_logging.exception import *
 
 __author__ = 'Ondřej Lanč'
@@ -21,7 +21,7 @@ class PackageBase(object):
         self.groups = {}
         self.availableLanguages = []
         self.dependencies = []
-        self.gui_tree = FcGWindow()
+        self.gui_tree = GWindow()
 
 
 
@@ -106,6 +106,8 @@ class Plugin(PackageBase):
         PackageBase.__init__(self, name)
         self.available_groups = package.available_groups
         self.package = package  # Reference to main package
+        self.tree = package.tree
+        self.gui_tree = package.gui_tree
 
     @property
     def is_plugin(self):

@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #
+from Model.constants import Types
 from Model.exception_logging.exception import MultipleError
 
 __author__ = 'Ondřej Lanč'
@@ -75,7 +76,12 @@ class MultipleEntryContainer(BaseEntry):
 
     @property
     def entries(self):
-        return self._entries
+        entries ={}
+        i=0
+        for entry in self._entries:
+            entries[entry.name+str(i)] = entry.entries
+            i=i+1
+        return entries
 
     @property
     def template(self):
@@ -105,3 +111,7 @@ class MultipleEntryContainer(BaseEntry):
         """Move given entry down in the list. If it is no the bottom of the list, nothing happens."""
         i = self._entries.index(entry)
         self._swap(i, i + 1)
+
+    @property
+    def type(self):
+        return self._template.type

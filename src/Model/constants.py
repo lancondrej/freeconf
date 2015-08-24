@@ -29,6 +29,7 @@ class Types:
     BOOL = 5
     NUMBER = 6
     STRING = 7
+    MULTIPLE = 8
 
 
 class Signals:

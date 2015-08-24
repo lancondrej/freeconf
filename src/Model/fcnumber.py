@@ -6,7 +6,7 @@ from src.Model.key_word import KeyWord
 from src.Model.constants import Types
 
 
-class Number(KeyWord):
+class FCNumber(KeyWord):
     """This is a class for keyword entries of type number."""
 
     def __init__(self):

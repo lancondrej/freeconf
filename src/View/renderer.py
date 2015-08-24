@@ -18,26 +18,27 @@ class GuiHandler (QtGui.QWidget):
 
 		self.setIconTheme()
 
-		# self.setWindowTitle(self.package.window.title);
-		# if self.package.window.minWidth != 0:
-		# 	self.setMinimumWidth(self.package.window.minWidth)
-		# if self.package.window.minHeight != 0:
-		# 	self.setMinimumHeight(self.package.window.minHeight)
-		# if self.package.window.maxWidth != 0:
-		# 	self.setMaximumWidth(self.package.window.maxWidth)
-		# if self.package.window.maxHeight != 0:
-		# 	self.setMaximumHeight(self.package.window.maxHeight)
+		self.setWindowTitle(self.package.window.title);
+		if self.package.window.minWidth != 0:
+			self.setMinimumWidth(self.package.window.minWidth)
+		if self.package.window.minHeight != 0:
+			self.setMinimumHeight(self.package.window.minHeight)
+		if self.package.window.maxWidth != 0:
+			self.setMaximumWidth(self.package.window.maxWidth)
+		if self.package.window.maxHeight != 0:
+			self.setMaximumHeight(self.package.window.maxHeight)
 		
-		self.window = QtGWindow(None, self.ui.okButton, self.ui.applyButton, \
+		self.window = QtGWindow(self.package.window, self.ui.okButton, self.ui.applyButton, \
 		self.ui.iconView, self.ui.tabLabel, self.ui.contentLayout)
 		self.window.render()
 
 	def ok (self):
-		self.package.save_configuration()
+		#self.package.save_configuration()
 		QtGui.qApp.quit()
 
 	def apply (self):
-		self.package.save_configuration()
+		#self.package.save_configuration()
+		pass
 
 	def cancel (self):
 		QtGui.qApp.quit()

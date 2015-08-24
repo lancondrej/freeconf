@@ -4,9 +4,7 @@
 from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
 
-
-import types as Fc
-from Model.GUI.gcontainer import FcCGSEntry
+from View.GUI.gcontainer import GContainer
 
 
 class GUILabelEnum:
@@ -92,11 +90,10 @@ class GUILabelFile(XMLFileReader):
 
 		if self.__currentElement == GUILabelEnum.TABNAME:
 			log.debug("setting tab name to " + data)
-			self.__currentTab = filter(lambda x:x.name == data, self.__window.entries)
-			if self.__currentTab == []:
+			self.__currentTab = self.__window.get_entry(data)
+			if self.__currentTab is None:
 				log.warning("Tab element " + data + " not found in the GUI tree")
 				return
-			self.__currentTab = self.__currentTab[0]
 			self.__sectionStack.append(self.__currentTab.content)
 			return
 
@@ -118,13 +115,12 @@ class GUILabelFile(XMLFileReader):
 				return
 			log.debug("setting section name to " + data)
 			self.__sectionStack.pop()
-			entry = filter(lambda x:x.name == data, self.__sectionStack[-1].entries)
-			if not entry:
+			entry = self.__sectionStack[-1].get_entry(data)
+			if entry is None:
 				log.warning("Section element " + data + " not found in the GUI tree")
 				self.__sectionStack.append(0)
 				return
-			entry = entry[0]
-			if isinstance(entry, FcCGSEntry):
+			if isinstance(entry, GContainer):
 				self.__sectionStack.append(entry)
 			else:
 				log.warning("Element "+ data + " is not a section")

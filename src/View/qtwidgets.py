@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from PyQt4 import QtGui, QtCore
-from Controller.client_interface import *
+from Controller.client_interface import FcGEntry
 from Model.constants import Signals, Types, escapeXML
 from View.exception_logging.log import log
 from View.exception_logging.exception import FcGeneralError
@@ -34,7 +34,7 @@ class QtCEntry(QtCore.QObject, FcGEntry):
         """This method renders the widget"""
         self.beginRender()
         #Render widget only if it is active or a section
-        if self.communicator.active == True or self.communicator.type == Types.SECTION:
+        if self.communicator.active == True or self.communicator.type == Types.CONTAINER:
             self.createGUI()
         self.endRender()
 
@@ -145,7 +145,7 @@ class QtCSEntry(QtCEntry):
             newEntry = None
             for entry in self.communicator.children:
                 log.debug("Building GUI for "+entry.name)
-                if entry.type == Types.SECTION:
+                if entry.type == Types.CONTAINER:
                     if entry.multiple:
                         if entry.isMultipleEntryContainer:
                             newEntry = QtMCContainer(entry, self, position)
@@ -335,7 +335,7 @@ class QtMCContainer(QtCSEntry):
 
     def addEntry(self):
         new_comm = self.communicator.createEntry()
-        if new_comm.type == Types.SECTION:
+        if new_comm.type == Types.CONTAINER:
             new_entry = QtMCSEntry(new_comm, self, len(self.children))
             self.children.append(new_entry)
             self.list_widget.addItem(self.ListItem(new_entry))
