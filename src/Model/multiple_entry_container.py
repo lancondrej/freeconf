@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 #
-from Model.constants import Types
-from Model.exception_logging.exception import MultipleError
+from src.Model.constants import Types
+from src.Model.exception_logging.exception import MultipleError
 
 __author__ = 'Ondřej Lanč'
 
-from Model.base_entry import BaseEntry
+from src.Model.base_entry import BaseEntry
 
 
 class MultipleEntryContainer(BaseEntry):
@@ -13,7 +13,7 @@ class MultipleEntryContainer(BaseEntry):
 
     def __init__(self, entry):
         BaseEntry.__init__(self, entry.name)
-        self.parent = entry.parent
+        self._parent = entry.parent
         self._entries = []
         self._default = []
         self._template = entry

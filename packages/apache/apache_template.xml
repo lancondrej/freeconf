@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-template>
-    <section-name>apache-config</section-name>
+    <container-name>apache-config</container-name>
     <string>
         <entry-name>ServerRoot</entry-name>
         <group>default</group>
@@ -101,8 +101,8 @@
             <data>apache_trace_enable</data>
         </properties>
     </string>
-    <section>
-        <section-name>Listen</section-name>
+    <container>
+        <container-name>Listen</container-name>
         <multiple>yes</multiple>
         <group>ports</group>
         <number>
@@ -118,9 +118,9 @@
             <entry-name>Address</entry-name>
             <group>ports</group>
         </string>
-    </section>
-    <section>
-        <section-name>NameVirtualHost</section-name>
+    </container>
+    <container>
+        <container-name>NameVirtualHost</container-name>
         <multiple>yes</multiple>
         <string>
             <entry-name>Address</entry-name>
@@ -135,9 +135,9 @@
                 <step>1.0</step>
             </properties>
         </number>
-    </section>
-    <section>
-        <section-name>VirtualHost</section-name>
+    </container>
+    <container>
+        <container-name>VirtualHost</container-name>
         <multiple>yes</multiple>
         <string>
             <entry-name>Address</entry-name>
@@ -157,21 +157,21 @@
             <entry-name>ServerName</entry-name>
             <group>default</group>
         </string>
-        <section>
-            <section-name>ServerAlias</section-name>
+        <container>
+            <container-name>ServerAlias</container-name>
             <multiple>yes</multiple>
             <string>
                 <entry-name>Hostname</entry-name>
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
-        </section>
+        </container>
         <string>
             <entry-name>DocumentRoot</entry-name>
             <group>default</group>
         </string>
-        <section>
-            <section-name>Alias</section-name>
+        <container>
+            <container-name>Alias</container-name>
             <multiple>yes</multiple>
             <string>
                 <entry-name>URLPath</entry-name>
@@ -183,17 +183,17 @@
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
-        </section>
-        <section>
-            <section-name>Directory</section-name>
+        </container>
+        <container>
+            <container-name>Directory</container-name>
             <multiple>yes</multiple>
             <string>
                 <entry-name>Path</entry-name>
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
-            <section>
-                <section-name>Options</section-name>
+            <container>
+                <container-name>Options</container-name>
                 <bool>
                     <entry-name>FollowSymlinks</entry-name>
                     <group>default</group>
@@ -222,9 +222,9 @@
                     <entry-name>SymLinksIfOwnerMatch</entry-name>
                     <group>default</group>
                 </bool>
-            </section>
-            <section>
-                <section-name>AllowOverride</section-name>
+            </container>
+            <container>
+                <container-name>AllowOverride</container-name>
                 <bool>
                     <entry-name>AuthConfig</entry-name>
                     <group>default</group>
@@ -245,7 +245,7 @@
                     <entry-name>Options</entry-name>
                     <group>default</group>
                 </bool>
-            </section>
+            </container>
             <string>
                 <entry-name>Order</entry-name>
                 <group>default</group>
@@ -261,7 +261,7 @@
                 <entry-name>Deny</entry-name>
                 <group>default</group>
             </string>
-        </section>
+        </container>
         <string>
             <entry-name>ErrorLog</entry-name>
             <group>default</group>
@@ -273,5 +273,5 @@
                 <data>apache_log_levels</data>
             </properties>
         </string>
-    </section>
+    </container>
 </freeconf-template>

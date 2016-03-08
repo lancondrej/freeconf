@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 #
-from Model.exception_logging.exception import AlreadyExistsError
-from Model.multiple_entry_container import MultipleEntryContainer
+
 
 __author__ = 'Ondřej Lanč'
 
-from Model.base_entry import BaseEntry
-from Model.constants import Types
+from src.Model.exception_logging.exception import AlreadyExistsError
+from src.Model.multiple_entry_container import MultipleEntryContainer
+from src.Model.base_entry import BaseEntry
+from src.Model.constants import Types
 
 
 class Container(BaseEntry):
@@ -47,7 +48,7 @@ class Container(BaseEntry):
                 # Create multiple container
                 entry = MultipleEntryContainer(entry)
                 # add multiple entry to the tree
-        entry.parent = self
+        entry._parent = self
         self._entries[entry.name] = entry
         return True
 

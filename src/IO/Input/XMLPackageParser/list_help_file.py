@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 #
-from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from IO.Input.exception_logging.log import log
-from Model.constants import Types
+from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from src.IO.Input.exception_logging.log import log
+from src.Model.constants import Types
 
 
 __author__ = 'Ondřej Lanč'

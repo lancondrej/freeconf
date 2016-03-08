@@ -3,9 +3,9 @@
 
 __author__ = 'Ondřej Lanč'
 
-from Model.base_entry import BaseEntry
-from Model.constants import Types
-from Model.exception_logging.log import log
+from src.Model.base_entry import BaseEntry
+from src.Model.constants import Types
+from src.Model.exception_logging.log import log
 
 
 class KeyWord(BaseEntry):

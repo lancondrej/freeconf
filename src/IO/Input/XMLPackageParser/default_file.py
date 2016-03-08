@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 #
 from copy import deepcopy
-from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from IO.Input.exception_logging.exception import ParseError
-from IO.Input.exception_logging.log import log
-from Model.constants import Types
+from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from src.IO.Input.exception_logging.exception import ParseError
+from src.IO.Input.exception_logging.log import log
+from src.Model.constants import Types
 
 
 __author__ = 'Ondřej Lanč'
@@ -26,7 +26,7 @@ class DefaultFile (XMLFileReader):
         self.currentElement = None
         self.helpBuffer = ""
 
-    def startElementSection(self, attrs):
+    def start_element_container(self, attrs):
         container = self.container_stack[-1]
         try:
             name = attrs['name']
@@ -35,11 +35,11 @@ class DefaultFile (XMLFileReader):
             else:
                 entry = container.get_entry(name)
                 if entry is None:
-                    log.error("No section with name " + name + " in template file.")
-                    raise ParseError("No section with name " + name + " in template file.")
+                    log.error("No container with name " + name + " in template file.")
+                    raise ParseError("No container with name " + name + " in template file.")
                 if not entry.is_container():
-                    log.error("Entry " + name + " is not a section.")
-                    raise ParseError("Entry " + name + " is not a section.")
+                    log.error("Entry " + name + " is not a container.")
+                    raise ParseError("Entry " + name + " is not a container.")
                 if entry.is_multiple_entry_container():
                     entry = entry.append_default(deepcopy(entry.template))
                 self.currentElement = entry
@@ -54,8 +54,8 @@ class DefaultFile (XMLFileReader):
             log.debug(name)
             entry = container.get_entry(name)
             if entry is None:
-                log.error("No entry with name " + name + " in template file section " + container.name)
-                raise ParseError("No entry with name " + name + " in template file section " + container.name)
+                log.error("No entry with name " + name + " in template file container " + container.name)
+                raise ParseError("No entry with name " + name + " in template file container " + container.name)
             if entry.is_multiple_entry_container():
                 entry = entry.append_default(deepcopy(entry.template))
             self.currentElement = entry
@@ -65,8 +65,8 @@ class DefaultFile (XMLFileReader):
     def startElement(self, name, attrs):
         log.debug("Start element: " + name)
 
-        if name == "section":
-            self.startElementSection(attrs)
+        if name == "container":
+            self.start_element_container(attrs)
         elif name == "entry":
             self.startElementEntry(attrs)
         else:
@@ -105,7 +105,7 @@ class DefaultFile (XMLFileReader):
 
         if name == "entry":
             self.currentElement = None
-        elif name == "section":
+        elif name == "container":
             self.currentElement = None
             self.container_stack.pop()
             if len(self.container_stack) > 0 and self.container_stack[-1].is_multiple_entry_container():

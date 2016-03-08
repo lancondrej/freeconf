@@ -1,0 +1,6 @@
+[DEFAULT]
+locations = ["~/.freeconf", "/usr/local/share/freeconf", "/usr/share/freeconf"]
+language = en
+
+[FLASK]
+port = 5000

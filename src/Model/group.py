@@ -5,7 +5,7 @@
 #
 # Group of records
 #
-from Model.exception_logging import log
+from src.Model.exception_logging import log
 
 
 class FcGroup:

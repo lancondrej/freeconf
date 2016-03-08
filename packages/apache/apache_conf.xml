@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<section name="apache-config">
+<container name="apache-config">
 <entry name="ServerRoot">
 	<value>/etc/apache2</value>
 </entry>
@@ -36,20 +36,20 @@
 <entry name="LogLevel">
 	<value>Critical</value>
 </entry>
-<section name="Listen">
+<container name="Listen">
 <entry name="Port">
 	<value>80</value>
 </entry>
-</section>
-<section name="NameVirtualHost">
+</container>
+<container name="NameVirtualHost">
 <entry name="Address">
 	<value>localhost</value>
 </entry>
 <entry name="Port">
 	<value>0</value>
 </entry>
-</section>
-<section name="VirtualHost">
+</container>
+<container name="VirtualHost">
 <entry name="Address">
 	<value>localhost</value>
 </entry>
@@ -59,35 +59,35 @@
 <entry name="ServerName">
 	<value>pokus.net</value>
 </entry>
-<section name="ServerAlias">
+<container name="ServerAlias">
 <entry name="Hostname">
 	<value>pokus.cz</value>
 </entry>
-</section>
-<section name="ServerAlias">
+</container>
+<container name="ServerAlias">
 <entry name="Hostname">
 	<value>www.pokus.net</value>
 </entry>
-</section>
+</container>
 <entry name="ServerAdmin">
 	<value>admin</value>
 </entry>
 <entry name="DocumentRoot">
 	<value>/var/www</value>
 </entry>
-<section name="Alias">
+<container name="Alias">
 <entry name="URLPath">
 	<value>temp</value>
 </entry>
 <entry name="TargetPath">
 	<value>/tmp</value>
 </entry>
-</section>
-<section name="Directory">
+</container>
+<container name="Directory">
 <entry name="Path">
 	<value>/var/www</value>
 </entry>
-<section name="Options">
+<container name="Options">
 <entry name="ExecCGI">
 	<value>no</value>
 </entry>
@@ -103,8 +103,8 @@
 <entry name="SymLinksIfOwnerMatch">
 	<value>no</value>
 </entry>
-</section>
-<section name="AllowOverride">
+</container>
+<container name="AllowOverride">
 <entry name="AuthConfig">
 	<value>no</value>
 </entry>
@@ -120,7 +120,7 @@
 <entry name="Options">
 	<value>no</value>
 </entry>
-</section>
+</container>
 <entry name="Order">
 	<value>Allow,Deny</value>
 </entry>
@@ -130,6 +130,6 @@
 <entry name="Deny">
 	<value>1.2.3.4</value>
 </entry>
-</section>
-</section>
-</section>
+</container>
+</container>
+</container>

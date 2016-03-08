@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<section name="apache-config">
+<container name="apache-config">
     <entry name="ServerRoot"><value>/etc/apache2</value></entry>
     <entry name="LockFile"><value>/var/lock/apache2/accept.lock</value></entry>
     <entry name="PidFile"><value>/var/run/apache2.pid</value></entry>
@@ -17,14 +17,14 @@
     <entry name="ServerTokens"><value>OS</value></entry>
     <entry name="ServerSignature"><value>On</value></entry>
     <entry name="TraceEnable"><value>Off</value></entry>
-    <section name="Listen">
+    <container name="Listen">
         <entry name="Port"><value>80</value></entry>
         <entry name="Address"><value></value></entry>
-    </section>
-    <section name="VirtualHost">
+    </container>
+    <container name="VirtualHost">
         <entry name="Port"><value></value></entry>
-        <section name="Directory">
-            <section name="Options">
+        <container name="Directory">
+            <container name="Options">
                 <entry name="FollowSymlinks"><value>yes</value></entry>
                 <entry name="ExecCGI"><value>yes</value></entry>
                 <entry name="Includes"><value>yes</value></entry>
@@ -32,15 +32,15 @@
                 <entry name="Indexes"><value>yes</value></entry>
                 <entry name="MultiViews"><value>no</value></entry>
                 <entry name="SymLinksIfOwnerMatch"><value>yes</value></entry>
-            </section>
-            <section name="AllowOverride">
+            </container>
+            <container name="AllowOverride">
                 <entry name="AuthConfig"><value>yes</value></entry>
                 <entry name="FileInfo"><value>yes</value></entry>
                 <entry name="Indexes"><value>yes</value></entry>
                 <entry name="Limit"><value>yes</value></entry>
                 <entry name="Options"><value>yes</value></entry>
-            </section>
+            </container>
             <entry name="Order"><value>Deny,Allow</value></entry>
-        </section>
-    </section>
-</section>
+        </container>
+    </container>
+</container>

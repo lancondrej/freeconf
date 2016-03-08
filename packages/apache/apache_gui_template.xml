@@ -11,17 +11,17 @@
     <tab-icon>categories/preferences-other</tab-icon>
     <tab-section>
       <tab-section-name>server-options</tab-section-name>
-      <import-template-entry>/apache-config/ServerRoot</import-template-entry>
-      <import-template-entry>/apache-config/LockFile</import-template-entry>
-      <import-template-entry>/apache-config/PidFile</import-template-entry>
-      <import-template-entry>/apache-config/TimeOut</import-template-entry>
-      <import-template-entry>/apache-config/KeepAlive</import-template-entry>
-      <import-template-entry>/apache-config/MaxKeepAliveRequests</import-template-entry>
-      <import-template-entry>/apache-config/KeepAliveTimeout</import-template-entry>
-      <import-template-entry>/apache-config/AccessFileName</import-template-entry>
-      <import-template-entry>/apache-config/User</import-template-entry>
-      <import-template-entry>/apache-config/Group</import-template-entry>
-      <import-template-entry>/apache-config/DefaultType</import-template-entry>
+      <import-entry>/apache-config/ServerRoot</import-entry>
+      <import-entry>/apache-config/LockFile</import-entry>
+      <import-entry>/apache-config/PidFile</import-entry>
+      <import-entry>/apache-config/TimeOut</import-entry>
+      <import-entry>/apache-config/KeepAlive</import-entry>
+      <import-entry>/apache-config/MaxKeepAliveRequests</import-entry>
+      <import-entry>/apache-config/KeepAliveTimeout</import-entry>
+      <import-entry>/apache-config/AccessFileName</import-entry>
+      <import-entry>/apache-config/User</import-entry>
+      <import-entry>/apache-config/Group</import-entry>
+      <import-entry>/apache-config/DefaultType</import-entry>
     </tab-section>
   </tab>
   <tab>
@@ -29,9 +29,9 @@
     <tab-icon>categories/applications-internet</tab-icon>
     <tab-section>
       <tab-section-name>vhosts-options</tab-section-name>
-      <import-template-section primary="Port">/apache-config/Listen</import-template-section>
-      <import-template-section primary="Address">/apache-config/NameVirtualHost</import-template-section>
-      <import-template-section primary="Address">/apache-config/VirtualHost</import-template-section>
+      <import-container primary="Port">/apache-config/Listen</import-container>
+      <import-container primary="Address">/apache-config/NameVirtualHost</import-container>
+      <import-container primary="Address">/apache-config/VirtualHost</import-container>
     </tab-section>
   </tab>
   <tab>
@@ -39,9 +39,9 @@
     <tab-icon>status/security-high</tab-icon>
     <tab-section>
       <tab-section-name>security-options</tab-section-name>
-      <import-template-entry>/apache-config/ServerTokens</import-template-entry>
-      <import-template-entry>/apache-config/ServerSignature</import-template-entry>
-      <import-template-entry>/apache-config/TraceEnable</import-template-entry>
+      <import-entry>/apache-config/ServerTokens</import-entry>
+      <import-entry>/apache-config/ServerSignature</import-entry>
+      <import-entry>/apache-config/TraceEnable</import-entry>
     </tab-section>
   </tab>
   <tab>
@@ -49,9 +49,9 @@
     <tab-icon>mimetypes/text-x-log</tab-icon>
     <tab-section>
       <tab-section-name>logging-options</tab-section-name>
-      <import-template-entry>/apache-config/HostnameLookups</import-template-entry>
-      <import-template-entry>/apache-config/LogLevel</import-template-entry>
-      <import-template-entry>/apache-config/ErrorLog</import-template-entry>
+      <import-entry>/apache-config/HostnameLookups</import-entry>
+      <import-entry>/apache-config/LogLevel</import-entry>
+      <import-entry>/apache-config/ErrorLog</import-entry>
     </tab-section>
   </tab>
 </freeconf-gui-template>

@@ -7,21 +7,21 @@
 #
 
 # Freeconf libs
-from Model.constants import Types
-from IO.Input.exception_logging.log import log
-from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from IO.Input.exception_logging.exception import ParseError
-from Model.container import Container
-from Model.number import Number
-from Model.bool import Bool
-from Model.string import String
-from Model.fuzzy import Fuzzy
+from src.Model.constants import Types
+from src.IO.Input.exception_logging.log import log
+from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from src.IO.Input.exception_logging.exception import ParseError
+from src.Model.container import Container
+from src.Model.number import Number
+from src.Model.bool import Bool
+from src.Model.string import String
+from src.Model.fuzzy import Fuzzy
 
 
 class TemplateEnum:
     """Constants for template elements"""
     NO_TMP_ELEMENT = 0
-    SECTION_NAME = 1
+    COINTAINER_NAME = 1
     KEYWORD_NAME = 2
     MULTIPLE = 3
     PROPERTIES = 4
@@ -48,7 +48,7 @@ class PropertyEnum:
 class TemplateFile(XMLFileReader):
     def __init__(self):
         XMLFileReader.__init__(self)
-        # Stack for the Template File sections being created
+        # Stack for the Template File containers being created
         self.container_stack = []
         # Current entry
         self.current_entry = None
@@ -79,7 +79,7 @@ class TemplateFile(XMLFileReader):
             return
 
         # Process container
-        if name == "section" or name == "freeconf-template":
+        if name == "container" or name == "freeconf-template":
             if name == "freeconf-template":
                 if self.topContainer is None:
                     container = Container()
@@ -90,7 +90,7 @@ class TemplateFile(XMLFileReader):
             elif len(self.container_stack) > 0:
                 container = self.container_stack[-1].get_entry(name)
                 if container is None:
-                    # Section does not exist yet, we have to create new one
+                    # container does not exist yet, we have to create new one
                     container = Container()
                     log.debug("Adding new container %s to %s" % (str(container), str(self.container_stack[-1])))
                     container.package = self.package  # Set package to first package that referenced this container
@@ -139,9 +139,9 @@ class TemplateFile(XMLFileReader):
         # at this moment, current_entry must point to an existing entry
         assert self.current_entry
 
-        if name == "section-name":
+        if name == "container-name":
             if self.template_enum == TemplateEnum.NO_TMP_ELEMENT:
-                self.template_enum = TemplateEnum.SECTION_NAME
+                self.template_enum = TemplateEnum.COINTAINER_NAME
             else:
                 log.error("Wrong location of element: " + name)
             return
@@ -155,7 +155,7 @@ class TemplateFile(XMLFileReader):
 
         if name == "active":
             if isinstance(self.current_entry, Container):
-                log.error("Element <active> can only be set for keys not sections")
+                log.error("Element <active> can only be set for keys not containers")
                 return
 
             if self.template_enum == TemplateEnum.NO_TMP_ELEMENT:
@@ -166,7 +166,7 @@ class TemplateFile(XMLFileReader):
 
         if name == "mandatory":
             if isinstance(self.current_entry, Container):
-                log.error("Element <mandatory> can only be set for keys not sections")
+                log.error("Element <mandatory> can only be set for keys not containers")
                 return
 
             if self.template_enum == TemplateEnum.NO_TMP_ELEMENT:
@@ -268,13 +268,13 @@ class TemplateFile(XMLFileReader):
 
     def endElement(self, name):
         log.debug("End element: " + name)
-        if name in ("freeconf-template", "section"):
-            section = self.container_stack.pop()
-            if section.group is None:
+        if name in ("freeconf-template", "container"):
+            container = self.container_stack.pop()
+            if container.group is None:
                 # If group was not set, use the default group.
-                section.group = self.defaultGroup
-            if self.topContainer != section:
-                self.container_stack[-1].add_entry(section)
+                container.group = self.defaultGroup
+            if self.topContainer != container:
+                self.container_stack[-1].add_entry(container)
             self.current_entry = None
             self.control()
             return
@@ -300,17 +300,17 @@ class TemplateFile(XMLFileReader):
                 self.container_stack[-1].disconnect(self.current_entry)
 
             elif self.current_entry.group is None:
-                # Take group from parent section if it was not set on this entry
+                # Take group from parent container if it was not set on this entry
                 self.current_entry.group = self.current_entry.parent.group
                 if self.current_entry.group is None:
-                    # If parent section did not have group set, use default group
+                    # If parent container did not have group set, use default group
                     self.current_entry.group = self.defaultGroup
             self.current_entry = None
             self.control()
             return
 
-        if name == "section-name":
-            if self.template_enum == TemplateEnum.SECTION_NAME:
+        if name == "container-name":
+            if self.template_enum == TemplateEnum.COINTAINER_NAME:
                 self.template_enum = TemplateEnum.NO_TMP_ELEMENT
             else:
                 log.error("Wrong location of end element: " + name)
@@ -431,8 +431,8 @@ class TemplateFile(XMLFileReader):
         if data == '':
             return  # Ignore white space in XML
 
-        # Set name of section or keyword
-        if self.template_enum in (TemplateEnum.SECTION_NAME, TemplateEnum.KEYWORD_NAME):
+        # Set name of container or keyword
+        if self.template_enum in (TemplateEnum.COINTAINER_NAME, TemplateEnum.KEYWORD_NAME):
             assert self.current_entry
             log.debug("Setting entry name to " + data)
             self.current_entry.name = data
@@ -575,7 +575,7 @@ class TemplateFile(XMLFileReader):
         self.defaultGroup = groups["default"]
         self.lists = lists
         self.package = package
-        # Add top section if any
+        # Add top container if any
         self.topContainer = tree
         # Parse the XML file
         XMLFileReader.parse(self, file)

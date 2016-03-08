@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
-from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from IO.Input.exception_logging.log import log
+from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from src.IO.Input.exception_logging.log import log
 
 
 __author__ = 'Ondřej Lanč'
@@ -19,15 +19,15 @@ class HelpFile(XMLFileReader):
         XMLFileReader.__init__(self)
         # Current entry
         self.currentElement = None
-        # Section stack
+        # container stack
         self.container_stack = []
-        self.ignoreEntry = 0  # Counter of ingonred section depth
+        self.ignoreEntry = 0  # Counter of ingonred container depth
         # ID of current XML element
         self.xml_element = HelpEnum.NO_ELEMENT
         self.language = None
         self.helpBuffer = ""
 
-    def startElementSection(self, attrs):
+    def start_element_container(self, attrs):
         container = self.container_stack[-1]
         try:
             name = attrs['name']
@@ -36,11 +36,11 @@ class HelpFile(XMLFileReader):
             else:
                 self.currentElement = container.get_entry(name)
                 if self.currentElement is None:
-                    log.error("No section with name " + name + " in template file.")
+                    log.error("No container with name " + name + " in template file.")
                     self.ignoreEntry += 1
                     return
                 if not self.currentElement.is_container():
-                    log.error("Entry " + name + " is not a section.")
+                    log.error("Entry " + name + " is not a container.")
                     self.ignoreEntry += 1
                     return
             self.container_stack.append(self.currentElement)
@@ -54,7 +54,7 @@ class HelpFile(XMLFileReader):
             log.debug(name)
             self.currentElement = container.get_entry(name)
             if self.currentElement is None:
-                log.error("No entry with name " + name + " in template file section " + container.name)
+                log.error("No entry with name " + name + " in template file container " + container.name)
                 self.ignoreEntry += 1
                 return
         except KeyError:
@@ -72,16 +72,16 @@ class HelpFile(XMLFileReader):
             log.error("You must enclose the Help File with <freeconf-help> and </freeconf-help>.")
             return
 
-        if name == "section":
+        if name == "container":
             if self.ignoreEntry > 0:
-                log.warning("Ignoring section help in ignored section.")
+                log.warning("Ignoring container help in ignored container.")
                 self.ignoreEntry += 1
             else:
-                self.startElementSection(attrs)
+                self.start_element_container(attrs)
             return
 
         if self.ignoreEntry > 0:
-            # log.warning("Ignoring entry help in ignored section.")
+            # log.warning("Ignoring entry help in ignored container.")
             return
 
         if name == "entry":
@@ -99,7 +99,7 @@ class HelpFile(XMLFileReader):
     def endElement(self, name):
         log.debug("End element: " + name)
 
-        if name == "section":
+        if name == "container":
             if self.ignoreEntry > 0:
                 self.ignoreEntry -= 1
             self.currentElement = None
@@ -137,10 +137,10 @@ class HelpFile(XMLFileReader):
             log.debug("Setting help for entry " + self.currentElement.name + " to " + data + ".")
             self.helpBuffer += data
 
-    def parse(self, file, top_section, language):
+    def parse(self, file, top_container, language):
         self.enclosing_tag = False
         self.currentElement = None
-        self.container_stack = [top_section]
+        self.container_stack = [top_container]
         self.language = language
         self.xml_element = HelpEnum.NO_ELEMENT
         # Parse the XML file

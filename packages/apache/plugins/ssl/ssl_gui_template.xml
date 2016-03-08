@@ -4,16 +4,16 @@
     <tab-name>ssl-tab</tab-name>
     <tab-section>
       <tab-section-name>ssl-options</tab-section-name>
-      <import-template-entry>/apache-config/SSLCACertificateFile</import-template-entry>
-      <import-template-entry>/apache-config/SSLCACertificatePath</import-template-entry>
-      <import-template-entry>/apache-config/SSLCARevocationFile</import-template-entry>
-      <import-template-entry>/apache-config/SSLCARevocationPath</import-template-entry>
-      <import-template-entry>/apache-config/SSLCertificateChainFile</import-template-entry>
-      <import-template-entry>/apache-config/SSLCertificateFile</import-template-entry>
-      <import-template-entry>/apache-config/SSLCertificateKeyFile</import-template-entry>
-      <import-template-entry>/apache-config/SSLInsecureRenegotiation</import-template-entry>
-      <import-template-entry>/apache-config/SSLMutex</import-template-entry>
-      <import-template-entry>/apache-config/SSLRequireSSL</import-template-entry>
+      <import-entry>/apache-config/SSLCACertificateFile</import-entry>
+      <import-entry>/apache-config/SSLCACertificatePath</import-entry>
+      <import-entry>/apache-config/SSLCARevocationFile</import-entry>
+      <import-entry>/apache-config/SSLCARevocationPath</import-entry>
+      <import-entry>/apache-config/SSLCertificateChainFile</import-entry>
+      <import-entry>/apache-config/SSLCertificateFile</import-entry>
+      <import-entry>/apache-config/SSLCertificateKeyFile</import-entry>
+      <import-entry>/apache-config/SSLInsecureRenegotiation</import-entry>
+      <import-entry>/apache-config/SSLMutex</import-entry>
+      <import-entry>/apache-config/SSLRequireSSL</import-entry>
     </tab-section>
   </tab>
 </freeconf-gui-template>

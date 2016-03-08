@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-template>
-    <section-name>apache-config</section-name>
+    <container-name>apache-config</container-name>
     <string>
         <entry-name>SSLCACertificateFile</entry-name>
     </string>

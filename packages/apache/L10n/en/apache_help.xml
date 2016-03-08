@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-help>
-<section name="apache-config">
+<container name="apache-config">
 	<label></label>
 	<entry name="ServerRoot">
 	<label>Server Root</label>
@@ -70,7 +70,7 @@
 	<label>Trace Enable</label>
 	<help>Allow TRACE methodSet to &quot;extended&quot; to also reflect the request body (only for testing anddiagnostic purposes).</help>
 </entry>
-<section name="Listen">
+<container name="Listen">
 	<label></label>
 	<entry name="Port">
 	<label></label>
@@ -80,8 +80,8 @@
 	<label>Address</label>
 	<help>Optional IP address identifying interface Apache server will listen on. If address is empty, Apache will listen an all interfaces.IPv6 addresses must be surrounded in square brackets.</help>
 </entry>
-</section>
-<section name="NameVirtualHost">
+</container>
+<container name="NameVirtualHost">
 	<label></label>
 	<entry name="Address">
 	<label>Address</label>
@@ -91,8 +91,8 @@
 	<label>Port</label>
 	<help>Optionally you can specify a port number on which the name-based virtual hosts should be used. If this is set to 0, then it matches all ports.</help>
 </entry>
-</section>
-<section name="VirtualHost">
+</container>
+<container name="VirtualHost">
 	<label></label>
 	<entry name="Address">
 	<label>Address</label>
@@ -110,18 +110,18 @@
 	<label>Server Name</label>
 	<help>The ServerName directive sets the hostname and optionally port that the server uses to identify itself. It is in form: domain-name[:port] .</help>
 </entry>
-<section name="ServerAlias">
+<container name="ServerAlias">
 	<label></label>
 	<entry name="Hostname">
 	<label>Hostname</label>
 	<help>The ServerAlias directive sets the alternate names for a host, for use with name-based virtual hosts.</help>
 </entry>
-</section>
+</container>
 <entry name="DocumentRoot">
 	<label>Document Root</label>
 	<help>This directive sets the directory from which httpd will serve files. Unless matched by a directive like Alias, the server appends the path from the requested URL to the document root to make the path to the document.</help>
 </entry>
-<section name="Alias">
+<container name="Alias">
 	<label></label>
 	<entry name="URLPath">
 	<label>URL Path</label>
@@ -129,16 +129,16 @@
 </entry>
 <entry name="TargetPath">
 	<label>Target Path</label>
-	<help>Path to directory or file the alias is directed to.Note that you may need to specify additional &lt;Directory&gt; sections which cover the destination of aliases. Aliasing occurs before &lt;Directory&gt; sections are checked, so only the destination of aliases are affected.In particular, if you are creating an Alias to a directory outside of your DocumentRoot, you may need to explicitly permit access to the target directory.</help>
+	<help>Path to directory or file the alias is directed to.Note that you may need to specify additional &lt;Directory&gt; containers which cover the destination of aliases. Aliasing occurs before &lt;Directory&gt; containers are checked, so only the destination of aliases are affected.In particular, if you are creating an Alias to a directory outside of your DocumentRoot, you may need to explicitly permit access to the target directory.</help>
 </entry>
-</section>
-<section name="Directory">
+</container>
+<container name="Directory">
 	<label></label>
 	<entry name="Path">
 	<label>Path</label>
 	<help>Path to directory.</help>
 </entry>
-<section name="Options">
+<container name="Options">
 	<label></label>
 	<entry name="FollowSymlinks">
 	<label>Follow Symlinks</label>
@@ -168,8 +168,8 @@
 	<label>Follow symlinks if owner matches</label>
 	<help>The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link.</help>
 </entry>
-</section>
-<section name="AllowOverride">
+</container>
+<container name="AllowOverride">
 	<label></label>
 	<entry name="AuthConfig">
 	<label>Authorization Config</label>
@@ -191,7 +191,7 @@
 	<label>Options</label>
 	<help>Allow use of the directives controlling specific directory features in .htaccess files.</help>
 </entry>
-</section>
+</container>
 <entry name="Order">
 	<label>Order</label>
 	<help>The Order directive, along with the Allow and Deny directives, controls a three-pass access control system. The first pass processes either all Allow or all Deny directives, as specified by the Order directive. The second pass parses the rest of the directives (Deny or Allow). The third pass applies to all requests which do not match either of the first two.Note that all Allow and Deny directives are processed, unlike a typical firewall, where only the first match is used. The last match is effective (also unlike a typical firewall). Additionally, the order in which lines appear in the configuration files is not significant -- all Allow lines are processed as one group, all Deny lines are considered as another, and the default state is considered by itself.</help>
@@ -204,7 +204,7 @@
 	<label>Deny</label>
 	<help>Controls which hosts are denied access to the server.List of hosts, IP addresses or IP address ranges delimited with whitespace.If set to &quot;all&quot; then all hosts are denied access.</help>
 </entry>
-</section>
-</section>
-</section>
+</container>
+</container>
+</container>
 </freeconf-help>

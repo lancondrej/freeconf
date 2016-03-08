@@ -2,7 +2,7 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from IO.Input.exception_logging.log import log
+from src.IO.Input.exception_logging.log import log
 
 
 class ParserGeneralError (Exception):

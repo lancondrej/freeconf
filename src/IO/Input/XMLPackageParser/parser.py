@@ -3,26 +3,25 @@
 import os
 import re
 
-from IO.Input.XMLPackageParser.config_file import ConfigFileReader
-from IO.Input.XMLPackageParser.default_file import DefaultFile
+from src.IO.Input.XMLPackageParser.config_file import ConfigFileReader
+from src.IO.Input.XMLPackageParser.default_file import DefaultFile
 
 
 
-# from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
-from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
-from IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
-from IO.Input.XMLPackageParser.help_file import HelpFile
-from IO.Input.XMLPackageParser.list_file import ListFile
-from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
-from IO.Input.XMLPackageParser.template_file import TemplateFile
-from View.GUI.gcontainer import GContainer
-from View.GUI.gtab import GTab
-from View.GUI.gwindow import GWindow
-from Model.group import FcGroup
-from IO.Input.XMLPackageParser.header_file import HeaderFileReader
-from IO.file import FcFileLocation
-from IO.Input.input import Input
-from Model.package import Plugin
+from src.IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
+from src.IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
+from src.IO.Input.XMLPackageParser.help_file import HelpFile
+from src.IO.Input.XMLPackageParser.list_file import ListFile
+from src.IO.Input.XMLPackageParser.list_help_file import ListHelpFile
+from src.IO.Input.XMLPackageParser.template_file import TemplateFile
+from src.Model.GUI.gcontainer import GContainer
+from src.Model.GUI.gtab import GTab
+from src.Model.GUI.gwindow import GWindow
+from src.Model.group import FcGroup
+from src.IO.Input.XMLPackageParser.header_file import HeaderFileReader
+from src.IO.file import FcFileLocation
+from src.IO.Input.input import Input
+from src.Model.package import Plugin
 from src.Model.exception_logging.exception import *
 
 
@@ -299,7 +298,7 @@ class XMLParser(Input):
             log.warning("GUI template file %s is missing." % (self._paths.guiTemplateFile.name,))
             error = True
 
-        if error == False:
+        if not error:
             log.info("Parsing gui template file " + self._paths.guiTemplateFile.fullPath)
             guiParser = GUITemplateFile()
             #try:
@@ -317,7 +316,7 @@ class XMLParser(Input):
 
             # Create Tab for all settings
             all_tab = package.gui_tree.find_entry("all-tab")[1]
-            if all_tab == None:
+            if all_tab is None:
                 all_tab = GTab()
                 all_tab.name = "all-tab"
                 all_tab.label = "All"
@@ -372,10 +371,10 @@ class XMLParser(Input):
             self._load_default_values_file(self.package)
         self._load_config_file(self.package)
         # GUI file
-        #error = self._load_gui_template_file(package)
+        error = self._load_gui_template_file(self.package)
         # GUI label file
-        #if not error and self._paths.guiTemplateFile and self._paths.guiLabelFile:
-        #    self._load_gui_label_file(package)
+        if not error and self._paths.guiTemplateFile and self._paths.guiLabelFile:
+            self._load_gui_label_file(self.package)
         #package.gui_tree.initState()
 
     def input(self):

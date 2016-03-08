@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<section name="apache-config">
+<container name="apache-config">
 <entry name="SSLCACertificateFile">
 	<value>a</value>
 </entry>
@@ -30,4 +30,4 @@
 <entry name="SSLRequireSSL">
 	<value>yes</value>
 </entry>
-</section>
+</container>

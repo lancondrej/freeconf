@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 #
-from Model.constants import Types
-from Model.exception_logging.exception import *
-from Model.exception_logging.log import log
+from src.Model.constants import Types
+from src.Model.exception_logging.exception import *
+from src.Model.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'
 
@@ -14,7 +14,7 @@ class BaseEntry(object):
         self._name = str(name)
         self._label = {}
         self._help = {}
-        self.parent = None
+        self._parent = None
         self._static_active = True
         self._dynamic_active = True
         self._static_mandatory = False
@@ -42,6 +42,16 @@ class BaseEntry(object):
         self._name = str(name)
 
     @property
+    def parent(self):
+        """get name"""
+        return self._parent
+
+    @parent.setter
+    def parent(self, parent):
+        """set name"""
+        self._parent = parent
+
+    @property
     def package(self):
         """get package"""
         return self._package
@@ -55,8 +65,8 @@ class BaseEntry(object):
     def root(self):
         """Return root of tree."""
         obj = self
-        while obj.parent is not None:
-            obj = obj.parent
+        while obj._parent is not None:
+            obj = obj._parent
         return obj
 
     def is_container(self):
@@ -79,8 +89,8 @@ class BaseEntry(object):
         """Return full path in current tree in form of: /a/b/c/..."""
         path = self.name
         obj = self
-        while obj.parent is not None:
-            obj = obj.parent
+        while obj._parent is not None:
+            obj = obj._parent
             path = obj.name + "/" + path
         return "/" + path
 
@@ -89,9 +99,9 @@ class BaseEntry(object):
 
     def move_to_position(self, destination):
         """Moves this entry into different position in the parent container."""
-        if self.parent is None:
+        if self._parent is None:
             return False
-        self.parent.disconnect(self)
+        self._parent.disconnect(self)
         if destination.is_container:
             return destination.add_entry(self)
 
@@ -122,9 +132,9 @@ class BaseEntry(object):
 
     @property
     def group(self):
-        if self._group is None and self.parent is not None:
+        if self._group is None and self._parent is not None:
             # Propagate group from entry's parent
-            return self.parent.group
+            return self._parent.group
         return self._group
 
     @group.setter
