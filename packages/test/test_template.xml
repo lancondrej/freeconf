@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf-template>
+    <container-name>main-container</container-name>
+    <string>
+        <entry-name>string1</entry-name>
+        <group>default</group>
+        <mandatory>yes</mandatory>
+        <properties>
+            <regexp>[^/]$</regexp>
+        </properties>
+    </string>
+    <bool>
+        <entry-name>bool1</entry-name>
+        <group>default</group>
+    </bool>
+    <number>
+        <entry-name>number1</entry-name>
+        <group>default</group>
+        <properties>
+            <min>0.0</min>
+            <max>999999999.0</max>
+            <step>1.0</step>
+        </properties>
+    </number>
+    <container>
+        <container-name>multiple-container</container-name>
+        <multiple>yes</multiple>
+        <group>default</group>
+        <number>
+            <entry-name>number2</entry-name>
+            <group>default</group>
+            <properties>
+                <min>0.0</min>
+                <max>111.0</max>
+                <step>1.0</step>
+            </properties>
+        </number>
+        <string>
+            <entry-name>string2</entry-name>
+            <group>default</group>
+        </string>
+    </container>
+</freeconf-template>
