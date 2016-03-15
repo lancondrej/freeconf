@@ -63,7 +63,7 @@ class GUITemplateFile(XMLFileReader):
             return
         if name == "tab":
             log.debug("Start processing tab element")
-            self.__sectionStack = []
+            self._section_stack = []
             self._tabElement = GTab()
             self._currentElement = GUITemplateEnum.TAB
             # Creation of tab is postpoed to end of element tab-name
@@ -87,10 +87,10 @@ class GUITemplateFile(XMLFileReader):
             log.debug("Start processing tab-section element")
             self._currentElement = GUITemplateEnum.TABSECTION
             #there is always at least the root section on the stack
-            parent = self.__sectionStack[-1]
+            parent = self._section_stack[-1]
             self._sectionElement = GContainer(None, parent)
             #parent.append(self._sectionElement)
-            self.__sectionStack.append(self._sectionElement)
+            self._section_stack.append(self._sectionElement)
             return
         if name == "tab-section-name":
             if not self._sectionElement or self._currentElement != GUITemplateEnum.TABSECTION:
@@ -110,9 +110,9 @@ class GUITemplateFile(XMLFileReader):
                 log.error("Element <import-template-section> is only allowed inside the <section> or <tab> element")
                 return
             # Extract attribute "primary"
-            self.__primaryChild = None
+            self._primary_child = None
             try:
-                self.__primaryChild = attrs['primary']
+                self._primary_child = attrs['primary']
             except(KeyError):
                 pass
 
@@ -187,7 +187,7 @@ class GUITemplateFile(XMLFileReader):
                 log.warning("Entry at '" + data + "' not found")
                 return
             gui_entry = GEntry(entry)
-            self.__sectionStack[-1].add_entry(gui_entry)
+            self._section_stack[-1].add_entry(gui_entry)
             return
 
         if self._currentElement == GUITemplateEnum.IMPORTCONTAINER:
@@ -195,27 +195,27 @@ class GUITemplateFile(XMLFileReader):
             if not entry or entry.type != Types.CONTAINER:
                 log.warning("Container at '" + data + "' not found")
                 return
-            parent = self.__sectionStack[-1] # Gui entry's parent
+            parent = self._section_stack[-1] # Gui entry's parent
             gui_entry = GContainer(entry, parent)
             parent.add_entry(gui_entry)
             # Fill new section with entries form config tree
             #gui_entry.fill()
-            if self.__primaryChild is not None:
-                if not entry.multiple:
+            if self._primary_child is not None:
+                if not entry.is_multiple_entry_container:
                     log.error(
                         "You can set primary child only on multiple section. %s is not multiple!" %
                         (entry.name,)
                     )
                     return
                 # Check if primary child exists in section
-                (index, child) = entry.find_entry(self.__primaryChild)
+                child = entry.template.find_entry(self._primary_child)
                 if child is None:
                     log.error(
                         "Failed to find primary child %s in section %s!" %
-                        (self.__primaryChild, entry.name)
+                        (self._primary_child, entry.name)
                     )
                     return
-                gui_entry.primaryChildName = self.__primaryChild
+                gui_entry.primaryChildName = self._primary_child
             return
         return
 
@@ -288,7 +288,7 @@ class GUITemplateFile(XMLFileReader):
                 # Tab already exists
                 self._tabElement = tab
 
-            self.__sectionStack.append(self._tabElement.content)
+            self._section_stack.append(self._tabElement.content)
             self._currentElement = GUITemplateEnum.NOELEMENT
             return
 
@@ -306,8 +306,8 @@ class GUITemplateFile(XMLFileReader):
                     log.error("Current GUI tab has no name set! It will be ignored.")
             self._sectionElement.parent.add_entry(self._sectionElement)
             self._currentElement = GUITemplateEnum.NOELEMENT
-            self.__sectionStack.pop()
-            if len(self.__sectionStack) == 0:
+            self._section_stack.pop()
+            if len(self._section_stack) == 0:
                 self._sectionElement = None
             return
 
@@ -348,7 +348,7 @@ class GUITemplateFile(XMLFileReader):
         self._tabElement = None
         self._sectionElement = False
         self._currentElement = GUITemplateEnum.NOELEMENT
-        self.__sectionStack = []
+        self._section_stack = []
 
         #if window == None:
             #log.error("Invalid reference found, expecting existing window object")
