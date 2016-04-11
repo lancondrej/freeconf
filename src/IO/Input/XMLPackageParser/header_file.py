@@ -2,11 +2,11 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from src.IO.Input.exception_logging.log import log
-from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from src.IO.Input.exception_logging.exception import ParseError
-from src.IO.file import *
-from src.Model.group import FcGroup
+from IO.Input.exception_logging.log import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
+from IO.file import *
+from Model.group import FcGroup
 
 
 class HeaderStructure:

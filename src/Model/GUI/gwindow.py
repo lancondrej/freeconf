@@ -1,5 +1,5 @@
-from src.Model.GUI.gentry import GEntry
-from src.Model.container import Container
+from Model.GUI.gentry import GEntry
+from Model.container import Container
 
 __author__ = 'Ondřej Lanč'
 

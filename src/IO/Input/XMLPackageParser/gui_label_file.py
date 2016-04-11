@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 # Freeconf libs
-from src.IO.Input.exception_logging.log import log
-from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from src.Model.GUI.gcontainer import GContainer
+from IO.Input.exception_logging.log import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from Model.GUI.gcontainer import GContainer
 
 
 class GUILabelEnum:

@@ -1,4 +1,4 @@
-from src.Model.GUI.gentry import GEntry
+from Model.GUI.gentry import GEntry
 
 __author__ = 'Ondřej Lanč'
 

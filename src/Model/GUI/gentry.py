@@ -1,4 +1,4 @@
-from src.Model.constants import Types
+from Model.constants import Types
 
 __author__ = 'Ondřej Lanč'
 
@@ -26,6 +26,16 @@ class GEntry(object):
         # implicit fallback to key name
         if self._label == "":
             self._label = name
+
+    @property
+    def value(self):
+        if self._buddy is not None:
+            return self._buddy.value
+
+    @value.setter
+    def value(self, value):
+        if self._buddy is not None:
+            self._buddy.value = value
 
     @property
     def type (self):

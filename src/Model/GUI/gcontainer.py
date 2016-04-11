@@ -1,7 +1,6 @@
-from src.Model.GUI.gentry import GEntry
-from src.Model.constants import Types
-from src.Model.container import Container
-from src.Model.exception_logging.exception import *
+from Model.GUI.gentry import GEntry
+from Model.constants import Types
+from Model.container import Container
 
 __author__ = 'Ondřej Lanč'
 

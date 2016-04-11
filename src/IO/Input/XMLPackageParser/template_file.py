@@ -7,15 +7,15 @@
 #
 
 # Freeconf libs
-from src.Model.constants import Types
-from src.IO.Input.exception_logging.log import log
-from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from src.IO.Input.exception_logging.exception import ParseError
-from src.Model.container import Container
-from src.Model.number import Number
-from src.Model.bool import Bool
-from src.Model.string import String
-from src.Model.fuzzy import Fuzzy
+from Model.constants import Types
+from IO.Input.exception_logging.log import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
+from Model.container import Container
+from Model.number import Number
+from Model.bool import Bool
+from Model.string import String
+from Model.fuzzy import Fuzzy
 
 
 class TemplateEnum:

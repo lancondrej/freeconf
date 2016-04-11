@@ -3,7 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 
-from src.Model.package import PackageBase
+from Model.package import PackageBase
 
 
 class FreeconfModel(object):

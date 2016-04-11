@@ -3,8 +3,8 @@
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.key_word import KeyWord
-from src.Model.constants import Types
+from Model.key_word import KeyWord
+from Model.constants import Types
 
 
 class String(KeyWord):

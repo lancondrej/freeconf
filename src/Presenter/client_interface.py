@@ -3,11 +3,11 @@
 
 import os
 
-from Controller.exception_logging.exception import FcPackageLoadError, FcInconsistencyError
+from Presenter.exception_logging.exception import FcPackageLoadError, FcInconsistencyError
 from IO.Input.XMLPackageParser.parser import XMLParser
-from Model.GUI.gcontainer import GContainer
+from Presenter.GUI import GContainer
 from Model.GUI.gentry import GEntry
-from Model.GUI.gtab import GTab
+from Presenter.GUI.gtab import GTab
 from View.GUI.gwindow import GWindow
 from Model.constants import Types
 from Model.package import PackageBase

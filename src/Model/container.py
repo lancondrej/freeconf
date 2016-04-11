@@ -4,10 +4,10 @@
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.exception_logging.exception import AlreadyExistsError
-from src.Model.multiple_entry_container import MultipleEntryContainer
-from src.Model.base_entry import BaseEntry
-from src.Model.constants import Types
+from Model.exception_logging.exception import AlreadyExistsError
+from Model.multiple_entry_container import MultipleEntryContainer
+from Model.base_entry import BaseEntry
+from Model.constants import Types
 
 
 class Container(BaseEntry):

@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
 # Freeconf libs
-from src.IO.Input.exception_logging.log import log
-from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from src.Model.GUI.gcontainer import GContainer
-from src.Model.GUI.gentry import GEntry
-from src.Model.GUI.gtab import GTab
-from src.Model.GUI.gwindow import GWindow
-from src.Model.constants import Types
+from IO.Input.exception_logging.log import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from Model.GUI.gcontainer import GContainer
+from Model.GUI.gentry import GEntry
+from Model.GUI.gtab import GTab
+from Model.constants import Types
 
 
 class GUITemplateEnum:

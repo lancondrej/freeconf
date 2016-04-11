@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
-from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from src.IO.Input.exception_logging.log import log
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.log import log
 
 
 __author__ = 'Ondřej Lanč'

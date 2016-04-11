@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 #
 from copy import deepcopy
-from src.IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from src.IO.Input.exception_logging.exception import ParseError
-from src.IO.Input.exception_logging.log import log
-from src.Model.constants import Types
+from IO.Input.XMLPackageParser.sax_file import XMLFileReader
+from IO.Input.exception_logging.exception import ParseError
+from IO.Input.exception_logging.log import log
+from Model.constants import Types
 
 
 __author__ = 'Ondřej Lanč'

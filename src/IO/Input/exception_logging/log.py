@@ -12,4 +12,4 @@ handler.setFormatter(format)
 # Create log object
 log = logging.getLogger('Input')
 log.addHandler(handler)
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.ERROR)

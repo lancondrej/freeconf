@@ -12,5 +12,5 @@ handler.setFormatter(format)
 # Create log object
 log = logging.getLogger('Model-Freeconf')
 log.addHandler(handler)
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.ERROR)
 

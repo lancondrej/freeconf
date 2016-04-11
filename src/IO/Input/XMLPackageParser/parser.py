@@ -3,27 +3,23 @@
 import os
 import re
 
-from src.IO.Input.XMLPackageParser.config_file import ConfigFileReader
-from src.IO.Input.XMLPackageParser.default_file import DefaultFile
-
-
-
-from src.IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
-from src.IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
-from src.IO.Input.XMLPackageParser.help_file import HelpFile
-from src.IO.Input.XMLPackageParser.list_file import ListFile
-from src.IO.Input.XMLPackageParser.list_help_file import ListHelpFile
-from src.IO.Input.XMLPackageParser.template_file import TemplateFile
-from src.Model.GUI.gcontainer import GContainer
-from src.Model.GUI.gtab import GTab
-from src.Model.GUI.gwindow import GWindow
-from src.Model.group import FcGroup
-from src.IO.Input.XMLPackageParser.header_file import HeaderFileReader
-from src.IO.file import FcFileLocation
-from src.IO.Input.input import Input
-from src.Model.package import Plugin
-from src.Model.exception_logging.exception import *
-
+from IO.Input.XMLPackageParser.config_file import ConfigFileReader
+from IO.Input.XMLPackageParser.default_file import DefaultFile
+from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
+from IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
+from IO.Input.XMLPackageParser.help_file import HelpFile
+from IO.Input.XMLPackageParser.list_file import ListFile
+from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
+from IO.Input.XMLPackageParser.template_file import TemplateFile
+from Model.GUI.gcontainer import GContainer
+from Model.GUI.gtab import GTab
+from Model.GUI.gwindow import GWindow
+from Model.group import FcGroup
+from IO.Input.XMLPackageParser.header_file import HeaderFileReader
+from IO.file import FcFileLocation
+from IO.Input.input import Input
+from Model.package import Plugin
+from Model.exception_logging.exception import *
 
 __author__ = 'Ondřej Lanč'
 
