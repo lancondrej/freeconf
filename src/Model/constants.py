@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #
+from enum import Enum
+
 __author__ = 'Ondřej Lanč'
 
 xmlEscapeTable = {
@@ -19,7 +21,7 @@ def getXMLIndent(n, string="\t"):
     """Generate default XML indent string n-times."""
 
 
-class Types:
+class Types(Enum):
     """Basic Freeconf types."""
     # # Entry Types ##
     UNKNOWN_ENTRY = 1
@@ -30,6 +32,7 @@ class Types:
     NUMBER = 6
     STRING = 7
     MULTIPLE = 8
+    SECTION = 9
 
 
 class Signals:
