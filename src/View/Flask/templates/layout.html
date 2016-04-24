@@ -18,15 +18,7 @@
             </ul>
         </div>
         <div class=main>
-            {% if sections %}
-                {% for section in sections %}
-                    <h2>{{section.label}}</h2>
-                    {% for entry in section.entries.values() %}
-                        {{entry.name}}
-                        {{entry.value}}
-                    {% endfor %}
-                {% endfor %}
-            {%endif%}
+            {{sections}}
         </div>
     </div>
     <div class=bottom>

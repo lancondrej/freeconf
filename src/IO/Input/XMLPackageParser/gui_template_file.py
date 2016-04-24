@@ -3,8 +3,7 @@
 # Freeconf libs
 from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from Model.GUI.gcontainer import GContainer
-from Model.GUI.gentry import GEntry
+from Model.GUI.gsection import GSection
 from Model.GUI.gtab import GTab
 from Model.constants import Types
 
@@ -87,7 +86,7 @@ class GUITemplateFile(XMLFileReader):
             self._currentElement = GUITemplateEnum.TABSECTION
             #there is always at least the root section on the stack
             parent = self._section_stack[-1]
-            self._sectionElement = GContainer(None, parent)
+            self._sectionElement = GSection(parent)
             #parent.append(self._sectionElement)
             self._section_stack.append(self._sectionElement)
             return
@@ -185,8 +184,7 @@ class GUITemplateFile(XMLFileReader):
             if not entry:
                 log.warning("Entry at '" + data + "' not found")
                 return
-            gui_entry = GEntry(entry)
-            self._section_stack[-1].add_entry(gui_entry)
+            self._section_stack[-1].append(entry)
             return
 
         if self._currentElement == GUITemplateEnum.IMPORTCONTAINER:
@@ -195,8 +193,7 @@ class GUITemplateFile(XMLFileReader):
                 log.warning("Container at '" + data + "' not found")
                 return
             parent = self._section_stack[-1] # Gui entry's parent
-            gui_entry = GContainer(entry, parent)
-            parent.add_entry(gui_entry)
+            parent.append(entry)
             # Fill new section with entries form config tree
             #gui_entry.fill()
             if self._primary_child is not None:
@@ -207,14 +204,14 @@ class GUITemplateFile(XMLFileReader):
                     )
                     return
                 # Check if primary child exists in section
-                child = entry.template.find_entry(self._primary_child)
+                child = entry.template.get_entry(self._primary_child)
                 if child is None:
                     log.error(
                         "Failed to find primary child %s in section %s!" %
                         (self._primary_child, entry.name)
                     )
                     return
-                gui_entry.primaryChildName = self._primary_child
+                entry.primaryChildName = self._primary_child
             return
         return
 
@@ -276,11 +273,11 @@ class GUITemplateFile(XMLFileReader):
 
             # Create Tab if it does not exist
             # - We finally know name of the tab, so we can do it
-            tab = self.__window.find_entry(self._tabElement.name)
+            tab = self.__window.get_entry(self._tabElement.name)
             if tab is None:
-                self.__window.add_entry(self._tabElement)
+                self.__window.append(self._tabElement)
                 # Create root section for tab
-                rootSection = GContainer()
+                rootSection = GSection()
                 rootSection.name = "rootSection"
                 self._tabElement.content = rootSection
             else:
@@ -303,7 +300,7 @@ class GUITemplateFile(XMLFileReader):
             if self._sectionElement is not None:
                 if self._sectionElement.name is None:
                     log.error("Current GUI tab has no name set! It will be ignored.")
-            self._sectionElement.parent.add_entry(self._sectionElement)
+            self._sectionElement.parent.append(self._sectionElement)
             self._currentElement = GUITemplateEnum.NOELEMENT
             self._section_stack.pop()
             if len(self._section_stack) == 0:
@@ -322,7 +319,7 @@ class GUITemplateFile(XMLFileReader):
                 # -> We delete the new section
             #	self._sectionElement.parent.disconnect(self._sectionElement)
             #	self.__sectionStack.pop()
-            #	self.__sectionStack.add_entry(section)
+            #	self.__sectionStack.append(section)
             #	self._sectionElement = section
 
             self._currentElement = GUITemplateEnum.NOELEMENT

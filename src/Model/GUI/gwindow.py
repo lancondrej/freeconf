@@ -1,14 +1,12 @@
-from Model.GUI.gentry import GEntry
-from Model.container import Container
+from Model.GUI.gsection import GSection
 
 __author__ = 'Ondřej Lanč'
 
 
-class GWindow(GEntry, Container):
+class GWindow(GSection):
     """Class that represents the top-level dialogue window"""
     def __init__ (self):
-        GEntry.__init__(self)
-        Container.__init__(self)
+        GSection.__init__(self)
         self._minWidth = 0
         self._minHeight = 0
         self._maxWidth = 0

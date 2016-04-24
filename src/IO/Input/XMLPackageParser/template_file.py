@@ -437,7 +437,7 @@ class TemplateFile(XMLFileReader):
             log.debug("Setting entry name to " + data)
             self.current_entry.name = data
             # We set the label, just for case that it is missing in help file
-            self.current_entry.label = data
+            #self.current_entry.label = data
             return
         elif self.template_enum == TemplateEnum.ACTIVE:
             assert self.current_entry

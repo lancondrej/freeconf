@@ -41,9 +41,10 @@ class Controller(object):
         self._package.current_language = "en"
         input_parser.load_package()
         input_parser.load_plugins()
+        del input_parser
 
     def tabs(self):
-        return [(tab.name, tab.label) for tab in self._package.gui_tree.entries.values()]
+        return [(tab.name, tab.label) for tab in self._package.gui_tree._entries]
 
     def tab(self, name):
-        return self._package.gui_tree.entries[name].content.entries.values()
+        return self._package.gui_tree.get_entry(name).content._entries

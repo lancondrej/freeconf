@@ -5,52 +5,33 @@ __author__ = 'Ondřej Lanč'
 
 class GEntry(object):
     """Base class for GUI entries"""
-    def __init__ (self, buddy=None, parent=None):
-        self._buddy = buddy
-        self._parent = parent
-        self._label = ""
+    def __init__ (self, parent=None):
         self._name = ""
+        self._parent = parent
+        self._label = {}
 
     @property
     def name(self):
-        if self._name != "":
-            return self._name
-        if self._buddy is not None:
-            return self._buddy.name
-        else:
-            return ""
+        return self._name
 
     @name.setter
     def name(self, name):
         self._name = name
-        # implicit fallback to key name
-        if self._label == "":
-            self._label = name
 
     @property
-    def value(self):
-        if self._buddy is not None:
-            return self._buddy.value
+    def parent(self):
+        return self._parent
 
-    @value.setter
-    def value(self, value):
-        if self._buddy is not None:
-            self._buddy.value = value
+    @parent.setter
+    def parent(self, parent):
+        self._parent = parent
 
     @property
     def type (self):
-        if self._buddy is not None:
-            return self._buddy.type
         return Types.UNKNOWN_ENTRY
 
     @property
     def label(self, language=""):
-        if self._buddy is not None:
-            label = self._buddy.keyLabel(language)
-            if label == "":
-                return self._buddy.name
-            else:
-                return label
         return self._label
 
     @label.setter

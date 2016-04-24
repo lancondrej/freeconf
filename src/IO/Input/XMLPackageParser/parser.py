@@ -11,7 +11,7 @@ from IO.Input.XMLPackageParser.help_file import HelpFile
 from IO.Input.XMLPackageParser.list_file import ListFile
 from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
 from IO.Input.XMLPackageParser.template_file import TemplateFile
-from Model.GUI.gcontainer import GContainer
+from Model.GUI.gsection import GSection
 from Model.GUI.gtab import GTab
 from Model.GUI.gwindow import GWindow
 from Model.group import FcGroup
@@ -311,7 +311,7 @@ class XMLParser(Input):
                 package.gui_tree.title = "freeconf generated config dialog"
 
             # Create Tab for all settings
-            all_tab = package.gui_tree.find_entry("all-tab")[1]
+            all_tab = package.gui_tree.get_entry("all-tab")[1]
             if all_tab is None:
                 all_tab = GTab()
                 all_tab.name = "all-tab"
@@ -320,7 +320,7 @@ class XMLParser(Input):
                 package.gui_tree.add_entry(all_tab)
             if all_tab.content == None:
                 # Create top level GUI Section entry
-                rootSection = GContainer()
+                rootSection = GSection()
                 #rootSection.configBuddy = self.trees.configTree
                 #self.trees.configTree = rootSection
                 rootSection.name = "rootSection"

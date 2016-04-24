@@ -131,7 +131,7 @@ class HelpFile(XMLFileReader):
         if self.xml_element == HelpEnum.LABEL:
             assert self.currentElement is not None
             log.debug("Setting label for entry " + self.currentElement.name + " to " + data + ".")
-            self.currentElement.set_key_label(self.language, data)
+            self.currentElement.set_label(self.language, data)
         elif self.xml_element == HelpEnum.HELP:
             assert self.currentElement is not None
             log.debug("Setting help for entry " + self.currentElement.name + " to " + data + ".")

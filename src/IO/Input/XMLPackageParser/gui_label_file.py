@@ -3,7 +3,7 @@
 # Freeconf libs
 from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from Model.GUI.gcontainer import GContainer
+from Model.GUI.gsection import GSection
 
 
 class GUILabelEnum:
@@ -119,7 +119,7 @@ class GUILabelFile(XMLFileReader):
                 log.warning("Section element " + data + " not found in the GUI tree")
                 self.__sectionStack.append(0)
                 return
-            if isinstance(entry, GContainer):
+            if isinstance(entry, GSection):
                 self.__sectionStack.append(entry)
             else:
                 log.warning("Element "+ data + " is not a section")

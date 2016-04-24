@@ -114,4 +114,5 @@ class MultipleEntryContainer(BaseEntry):
 
     @property
     def type(self):
-        return self._template.type
+        return Types.MULTIPLE
+        #return self._template.type

@@ -105,17 +105,17 @@ class BaseEntry(object):
         if destination.is_container:
             return destination.add_entry(self)
 
-    def key_label(self, language=""):
+    @property
+    def label(self, language=None):
         """Returns the correct mutation of the entry's label"""
+        if language is None:
+            language=self._package.current_language
         try:
-            if language == "":
-                return self._label[self._package.current_language]
-            else:
-                return self._label[language]
+            return self._label[language]
         except KeyError:
-            return ""
+            return self._name
 
-    def set_key_label(self, language, label):
+    def set_label(self, language, label):
         self._label[language] = label
 
     def set_key_help(self, language, help):
@@ -140,35 +140,6 @@ class BaseEntry(object):
     @group.setter
     def group(self, group):
         self._group = group
-
-    # def create_entry(self, entry_parent):
-    #     """Create and add entry to tree."""
-    #     entry = None
-    #     if entry_parent is not None and not self.multiple and entry_parent.is_in_container(self.name):
-    #         entry = entry_parent.get_entry(self.name)
-    #         raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
-    #                                  u" in the section ({s}).".format(self.name, entry_parent.name))
-    #     if entry is None:
-    #         # There is no such config entry yet
-    #         if self.multiple:
-    #             if entry_parent is not None and entry_parent.is_in_container(self.name):
-    #                 # set MC as entry
-    #                 entry = entry_parent.get_entry(self.name)
-    #                 # Check number of children
-    #                 n = entry.size()
-    #                 if self.multiple_max and n + 1 > self.multiple_max:
-    #                     raise MultipleError(
-    #                         u"Can't add child! Maximum number of children ({0:d}) reached.".format(self.multiple_max, ))
-    #             else:
-    #                 # Create multiple container
-    #                 from Model.multiple_entry_container import MultipleEntryContainer
-    #                 entry = MultipleEntryContainer(self.name, self.parent)
-    #             # add multiple entry to the tree
-    #             entry.append(self)
-    #         elif entry_parent is not None:
-    #             # add normal entry to the tree
-    #             entry_parent.add_entry(entry)
-    #     return entry
 
     @property
     def static_active(self):
