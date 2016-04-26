@@ -95,20 +95,5 @@ class KeyWord(BaseEntry):
         for d in self._dependents:
             d.execute()
 
-    def set_value(self, value, informGui = False):
-        """Sets new value and changes inconsistency if needed"""
-        if value is not None:
-            value = self.convertValue(value)
-        if value == self._value:
-            return
-        self.value = value
-        if self.value is not None or self.defaultValue is not None:
-            if self._inconsistent:
-                self.changeInconsistency(False)
-        else:
-            if not self._inconsistent:
-                self.changeInconsistency(True)
-        if informGui:
-            log.debug("Setting value = " + str(self._value))
-        # update dependencies that depend on this value
-        self.updateDependents()
+    def set_value(self, value):
+        self._value = self.convert_value(value)

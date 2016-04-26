@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <container name="main-container">
     <entry name="string1"><value>pokus1</value></entry>
-    <entry name="bool1"><value>yes</value></entry>
-    <entry name="number1"><value>225</value></entry>
+    <entry name="bool1"><value>no</value></entry>
+    <entry name="number1"><value>00225.55</value></entry>
+    <entry name="string3"><value>c</value></entry>
 
     <container name="multiple-container">
         <entry name="number2"><value>80</value></entry>

@@ -32,15 +32,15 @@ class Renderer(object):
 
     @staticmethod
     def render_BOOL(entry):
-        return render_template('entries/bool.html', name=entry.name, label=entry.label, value="yes", checked=entry.grade)
+        return render_template('entries/bool.html', name=entry.name, full_name=entry.full_name, label=entry.label, checked=entry.grade)
 
     @staticmethod
     def render_NUMBER(entry):
-        return render_template('entries/number.html', name=entry.name, label=entry.label, value=entry.value, step=entry.step, min=entry.min, max=entry.max)
+        return render_template('entries/number.html', name=entry.name, full_name=entry.full_name, label=entry.label, value=entry.value, step=entry.step, min=entry.min, max=entry.max)
 
     @staticmethod
     def render_STRING(entry):
-        return render_template('entries/string.html', name=entry.name, label=entry.label, value=entry.value)
+        return render_template('entries/string.html', name=entry.name, full_name=entry.full_name, label=entry.label, value=entry.value, list=entry.list)
 
     @staticmethod
     def render_MULTIPLE(container):

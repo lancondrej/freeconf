@@ -1,4 +1,7 @@
-from flask import Flask, render_template
+#!/usr/bin/python3
+
+
+from flask import Flask, render_template, flash, request
 from View.Flask.renderer import Renderer
 # configuration
 from Presenter.controller import Controller
@@ -8,6 +11,7 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.jinja_env.autoescape = False
+app.secret_key = 'some_secret'
 
 
 con=Controller()
@@ -28,8 +32,14 @@ def baf():
     return render_default()
 
 
-@app.route("/tab/<name>")
+@app.route("/tab/<name>", methods=['GET','POST'])
 def tab(name):
+
+    if request.method == 'POST':
+        form=request.form
+        for key in form:
+            con.save_value(key, form[key])
+
     sections=con.tab(name)
     Rsection=""
     for section in sections:

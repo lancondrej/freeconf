@@ -1,0 +1,29 @@
+<freeconf-lists-help>
+<string-list name="list_test">
+	<entry>
+		<value>a</value>
+		<label>Emergencies</label>
+		<help>Emergencies - system is unusable.</help>
+	</entry>
+	<entry>
+		<value>b</value>
+		<label>Alert</label>
+		<help>Action must be taken immediately.</help>
+	</entry>
+	<entry>
+		<value>c</value>
+		<label>Critical</label>
+		<help>Critical Conditions.</help>
+	</entry>
+	<entry>
+		<value>d</value>
+		<label>Error</label>
+		<help>Error conditions.</help>
+	</entry>
+	<entry>
+		<value>e</value>
+		<label>Warning</label>
+		<help>Warning conditions.</help>
+	</entry>
+</string-list>
+</freeconf-lists-help>

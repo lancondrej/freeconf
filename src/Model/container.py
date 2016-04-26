@@ -78,9 +78,9 @@ class Container(BaseEntry):
             if relative_name.startswith('/'):
                 (name, rest) = rest.split('/', 1)
                 if self.root.name == name:
-                    return self.root.get_entry(rest)
+                    return self.root.find_entry(rest)
             if self.is_in_container(name):
-                return self.find_entry(rest)
+                return self.get_entry(name).find_entry(rest)
         except ValueError:
             if self.is_in_container(relative_name):
                 return self.get_entry(relative_name)

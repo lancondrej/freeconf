@@ -1,0 +1,9 @@
+<freeconf-lists>
+	<string-list name="list_test">
+		<value>a</value>
+		<value>b</value>
+		<value>c</value>
+		<value>d</value>
+		<value>e</value>
+	</string-list>
+</freeconf-lists>

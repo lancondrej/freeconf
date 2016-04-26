@@ -85,7 +85,8 @@ class BaseEntry(object):
     def type(self):
         return Types.UNKNOWN_ENTRY
 
-    def get_path(self):
+    @property
+    def full_name(self):
         """Return full path in current tree in form of: /a/b/c/..."""
         path = self.name
         obj = self

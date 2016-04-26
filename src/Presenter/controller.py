@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+
 from IO.Input.XMLPackageParser.parser import XMLParser
 from Model.package import PackageBase
 from os.path import expanduser
@@ -48,3 +51,7 @@ class Controller(object):
 
     def tab(self, name):
         return self._package.gui_tree.get_entry(name).content._entries
+
+    def save_value(self, path, value):
+        entry= self._package.tree.find_entry(path)
+        entry.set_value(value)

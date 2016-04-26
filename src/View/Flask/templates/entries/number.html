@@ -1,4 +1,4 @@
- <form>
+ <form method="post">
      <label for="{{name}}">{{label}}</label>
-     <input type="number" id="{{name}}" value="{{value}}" step="{{step}}" min="{{min}}" max="{{max}}">
+     <input type="number" id="{{name}}" name="{{full_name}}" value="{{value}}" step="{{step}}" min="{{min}}" max="{{max}}" onchange="this.form.submit()">
  </form>

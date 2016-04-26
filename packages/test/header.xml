@@ -7,6 +7,7 @@
   <output>$PACKAGE/test_conf.xml</output>
   <gui-template>test_gui_template.xml</gui-template>
   <gui-label>test_gui_help.xml</gui-label>
+  <lists>test_lists.xml</lists>
 </content>
 <entry-group name="default">
   <transform>test_default_transform.xsl</transform>
