@@ -1,0 +1,9 @@
+<freeconf-lists>
+	<string-list name="list_test">
+		<value>Emerg</value>
+		<value>alert</value>
+		<value>crit</value>
+		<value>err</value>
+		<value>war</value>
+	</string-list>
+</freeconf-lists>
