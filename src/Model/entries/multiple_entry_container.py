@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 #
+from copy import deepcopy
+
 from Model.constants import Types
 from Model.exception_logging.exception import MultipleError
 
 __author__ = 'Ondřej Lanč'
 
-from Model.base_entry import BaseEntry
+from Model.entries.base_entry import BaseEntry
 
 
 class MultipleEntryContainer(BaseEntry):
@@ -17,9 +19,29 @@ class MultipleEntryContainer(BaseEntry):
         self._entries = []
         self._default = []
         self._template = entry
+        self._template.parent=self
 
-    def make_entry(self):
-        pass
+
+
+    def create_new(self):
+        length = self.size()
+        if self.multiple_max is None or self.size() < self.multiple_max:
+            self._entries.append(deepcopy(self._template))
+            self._entries[-1].name=length
+            return True
+        return False
+
+    def delete_entry(self, index):
+        length = self.size()
+        if self.multiple_min is None or length > self.multiple_min:
+            self._entries.pop(int(index))
+            self._rename_all()
+            return True
+        return False
+
+    def _rename_all(self):
+        for i, entry in enumerate(self._entries):
+            entry.name=i
 
     def is_container(self):
         if self._template.is_container():
@@ -42,12 +64,9 @@ class MultipleEntryContainer(BaseEntry):
         entry.parent = self
         self._entries.insert(int(position), entry)
 
-    def append(self, entry):
-        if entry is not None:
-            # assert isinstance(entry, BaseEntry)
-            entry.parent = self
-            self._entries.append(entry)
-            return entry
+    def append(self):
+        self.create_new()
+        return self.entries[-1]
 
     def append_default(self, entry):
         if entry is not None:
@@ -76,12 +95,7 @@ class MultipleEntryContainer(BaseEntry):
 
     @property
     def entries(self):
-        entries ={}
-        i=0
-        for entry in self._entries:
-            entries[entry.name+str(i)] = entry.entries
-            i=i+1
-        return entries
+        return self._entries
 
     @property
     def template(self):
@@ -102,16 +116,29 @@ class MultipleEntryContainer(BaseEntry):
         if i != j:
             (self._entries[i], self._entries[j]) = (self._entries[j], self._entries[i])
 
-    def move_up(self, entry):
+    def move_up(self, i):
         """Move given entry up in the list. If it is on the top of the list, nothing happens."""
-        i = self._entries.index(entry)
+        i = int(i)
         self._swap(i, i - 1)
 
-    def move_down(self, entry):
+    def move_down(self, i):
         """Move given entry down in the list. If it is no the bottom of the list, nothing happens."""
-        i = self._entries.index(entry)
+        i = int(i)
         self._swap(i, i + 1)
 
     @property
     def type(self):
-        return self._template.type
+        return Types.MULTIPLE
+        #return self._template.type
+
+    def find_entry(self, relative_name):
+        """Find entry in tree. Name is given in format: a/b/c../entry"""
+        try:
+            (number, rest) = relative_name.split('/', 1)
+            if self.is_container:
+                return self._entries[int(number)].find_entry(rest)
+            else:
+                return self._entries[int(number)]
+        except ValueError:
+            pass
+        return None

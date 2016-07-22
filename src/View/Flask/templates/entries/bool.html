@@ -1,0 +1,5 @@
+<form method="post"  action="save">
+    <label for="{{name}}">{{label}}</label>
+    <input type="checkbox" id="{{name}}" name="{{full_name}}" value="yes" {{'checked' if checked}} onchange="this.form.submit()">
+    <input type="hidden" name="{{full_name}}" value="no">
+</form>

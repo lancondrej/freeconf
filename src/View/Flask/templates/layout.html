@@ -4,6 +4,15 @@
         <title>Freeconf  {% if title %} - {{title}} {%endif%}</title>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/main.css') }}">
     </head>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
     <body>
     <div class=top>
         <h1>Top</h1>
@@ -18,15 +27,7 @@
             </ul>
         </div>
         <div class=main>
-            {% if sections %}
-                {% for section in sections %}
-                    <h2>{{section.label}}</h2>
-                    {% for entry in section.entries.values() %}
-                        {{entry.name}}
-                        {{entry.value}}
-                    {% endfor %}
-                {% endfor %}
-            {%endif%}
+            {{main}}
         </div>
     </div>
     <div class=bottom>

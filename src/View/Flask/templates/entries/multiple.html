@@ -1,0 +1,14 @@
+<fieldset>
+    <legend>{{label}}</legend>
+        {% for entry in entries %}
+        {{entry}}
+         <form method="post" action="multiple_delete">
+         <input type="hidden" name="{{full_name}}" value="{{ loop.index-1 }}">
+         <input type="submit" value="delete">
+         </form>
+        {% endfor %}
+     <form method="post" action="multiple_new">
+         <input type="hidden" name="{{full_name}}">
+         <input type="submit" value="new">
+     </form>
+</fieldset>

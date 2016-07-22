@@ -7,19 +7,19 @@ from IO.Input.XMLPackageParser.config_file import ConfigFileReader
 from IO.Input.XMLPackageParser.default_file import DefaultFile
 from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
 from IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
+from IO.Input.XMLPackageParser.header_file import HeaderFileReader
 from IO.Input.XMLPackageParser.help_file import HelpFile
 from IO.Input.XMLPackageParser.list_file import ListFile
 from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
 from IO.Input.XMLPackageParser.template_file import TemplateFile
-from Model.GUI.gcontainer import GContainer
-from Model.GUI.gtab import GTab
-from Model.GUI.gwindow import GWindow
-from Model.group import FcGroup
-from IO.Input.XMLPackageParser.header_file import HeaderFileReader
-from IO.file import FcFileLocation
 from IO.Input.input import Input
-from Model.package import Plugin
+from IO.file import FcFileLocation
+from Model.entries.GUI.gsection import GSection
+from Model.entries.GUI.gtab import GTab
+from Model.entries.GUI.gwindow import GWindow
 from Model.exception_logging.exception import *
+from Model.group import FcGroup
+from Model.package import Plugin
 
 __author__ = 'Ondřej Lanč'
 
@@ -311,7 +311,7 @@ class XMLParser(Input):
                 package.gui_tree.title = "freeconf generated config dialog"
 
             # Create Tab for all settings
-            all_tab = package.gui_tree.find_entry("all-tab")[1]
+            all_tab = package.gui_tree.get_entry("all-tab")[1]
             if all_tab is None:
                 all_tab = GTab()
                 all_tab.name = "all-tab"
@@ -320,7 +320,7 @@ class XMLParser(Input):
                 package.gui_tree.add_entry(all_tab)
             if all_tab.content == None:
                 # Create top level GUI Section entry
-                rootSection = GContainer()
+                rootSection = GSection()
                 #rootSection.configBuddy = self.trees.configTree
                 #self.trees.configTree = rootSection
                 rootSection.name = "rootSection"

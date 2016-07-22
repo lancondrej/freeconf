@@ -18,14 +18,25 @@
         <group>default</group>
         <properties>
             <min>0.0</min>
-            <max>999999999.0</max>
-            <step>1.0</step>
+            <max>999.0</max>
+            <step>0.01</step>
         </properties>
     </number>
+    <string>
+        <entry-name>string3</entry-name>
+        <group>default</group>
+        <mandatory>yes</mandatory>
+        <properties>
+            <data>list_test</data>
+        </properties>
+    </string>
     <container>
         <container-name>multiple-container</container-name>
-        <multiple>yes</multiple>
         <group>default</group>
+        <multiple>
+            <primary>string2</primary>
+            <min>5</min>
+        </multiple>
         <number>
             <entry-name>number2</entry-name>
             <group>default</group>

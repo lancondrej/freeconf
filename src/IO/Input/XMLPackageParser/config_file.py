@@ -41,7 +41,7 @@ class ConfigFileReader (XMLFileReader):
                     log.error("Entry " + name + " is not a container.")
                     raise ParseError("Entry " + name + " is not a container.")
                 if entry.is_multiple_entry_container():
-                    entry = entry.append(deepcopy(entry.template))
+                    entry = entry.append()
                 self.currentElement = entry
             self.container_stack.append(self.currentElement)
         except KeyError:

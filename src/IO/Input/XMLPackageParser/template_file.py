@@ -7,15 +7,15 @@
 #
 
 # Freeconf libs
-from Model.constants import Types
-from IO.Input.exception_logging.log import log
 from IO.Input.XMLPackageParser.sax_file import XMLFileReader
 from IO.Input.exception_logging.exception import ParseError
-from Model.container import Container
-from Model.number import Number
-from Model.bool import Bool
-from Model.string import String
-from Model.fuzzy import Fuzzy
+from IO.Input.exception_logging.log import log
+from Model.constants import Types
+from Model.entries.bool import Bool
+from Model.entries.container import Container
+from Model.entries.fuzzy import Fuzzy
+from Model.entries.number import Number
+from Model.entries.string import String
 
 
 class TemplateEnum:
@@ -43,6 +43,7 @@ class PropertyEnum:
     REGEXP = 6
     ZEROS = 7
     SIGN = 8
+    PRIMARY = 9
 
 
 class TemplateFile(XMLFileReader):
@@ -229,6 +230,14 @@ class TemplateFile(XMLFileReader):
                 log.error("Wrong location of element: " + name)
             return
 
+        if name == "primary":
+            if self.template_enum == TemplateEnum.MULTIPLE \
+                    and self.property_enum == PropertyEnum.NO_PROP_ELEMENT:
+                self.property_enum = PropertyEnum.PRIMARY
+            else:
+                log.error("Wrong location of element: " + name)
+            return
+
         if name == "step":
             if self.template_enum == TemplateEnum.PROPERTIES and self.property_enum == PropertyEnum.NO_PROP_ELEMENT:
                 self.property_enum = PropertyEnum.STEP
@@ -388,6 +397,13 @@ class TemplateFile(XMLFileReader):
                 log.error("Wrong location of end element: " + name)
             return
 
+        if name == "primary":
+            if self.template_enum == TemplateEnum.MULTIPLE and self.property_enum == PropertyEnum.PRIMARY:
+                self.property_enum = PropertyEnum.NO_PROP_ELEMENT
+            else:
+                log.error("Wrong location of end element: " + name)
+            return
+
         if name == "step":
             if self.template_enum == TemplateEnum.PROPERTIES and self.property_enum == PropertyEnum.STEP:
                 self.property_enum = PropertyEnum.NO_PROP_ELEMENT
@@ -437,7 +453,7 @@ class TemplateFile(XMLFileReader):
             log.debug("Setting entry name to " + data)
             self.current_entry.name = data
             # We set the label, just for case that it is missing in help file
-            self.current_entry.label = data
+            #self.current_entry.label = data
             return
         elif self.template_enum == TemplateEnum.ACTIVE:
             assert self.current_entry
@@ -483,9 +499,11 @@ class TemplateFile(XMLFileReader):
         elif self.template_enum == TemplateEnum.MULTIPLE:
             assert self.current_entry
             if self.property_enum == PropertyEnum.MIN:
-                self.current_entry.multipleMin = int(data)
+                self.current_entry.multiple_min = int(data)
             elif self.property_enum == PropertyEnum.MAX:
-                self.current_entry.multipleMax = int(data)
+                self.current_entry.multiple_max = int(data)
+            elif self.property_enum == PropertyEnum.PRIMARY:
+                self.current_entry.primary = data
 
         # Process properties
         elif self.template_enum == TemplateEnum.PROPERTIES:

@@ -29,9 +29,9 @@
     <tab-icon>categories/applications-internet</tab-icon>
     <tab-section>
       <tab-section-name>vhosts-options</tab-section-name>
-      <import-container primary="Port">/apache-config/Listen</import-container>
-      <import-container primary="Address">/apache-config/NameVirtualHost</import-container>
-      <import-container primary="Address">/apache-config/VirtualHost</import-container>
+      <import-entry primary="Port">/apache-config/Listen</import-entry>
+      <import-entry primary="Address">/apache-config/NameVirtualHost</import-entry>
+      <import-entry primary="Address">/apache-config/VirtualHost</import-entry>
     </tab-section>
   </tab>
   <tab>
