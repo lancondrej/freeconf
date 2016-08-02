@@ -1,35 +1,5 @@
-/* No files to import found in variables/**\/* */
-/* No files to import found in abstractions/**\/* */
-/* No files to import found in components/**\/* */
-/* line 12, ../sass/main.scss */
-.top {
-  height: 50px;
-  background: red; }
-
-/* line 17, ../sass/main.scss */
-.content {
-  background: blue; }
-  /* line 19, ../sass/main.scss */
-  .content .left-sidebar {
-    width: 18.36735%;
-    float: left;
-    margin-right: 2.04082%;
-    background: yellow; }
-  /* line 23, ../sass/main.scss */
-  .content .main {
-    width: 79.59184%;
-    float: right;
-    margin-right: 0;
-    background: #ff00ff; }
-
-/* line 29, ../sass/main.scss */
-.bottom {
-  height: 50px;
-  background: green;
-  clear: both;
-  width: 100%;
-  float: left;
-  margin-left: 0;
-  margin-right: 0; }
-
-/*# sourceMappingURL=main.css.map */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }

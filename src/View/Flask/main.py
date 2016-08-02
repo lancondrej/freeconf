@@ -1,18 +1,20 @@
 #!/usr/bin/python3
 
 
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
 from View.Flask.renderer import Renderer
 # configuration
 from Controller.controller import Controller
+from flask_debugtoolbar import DebugToolbarExtension
 
-DEBUG = True
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.jinja_env.autoescape = False
 app.secret_key = 'some_secret'
+app.debug = False
 
+toolbar = DebugToolbarExtension(app)
 
 con=Controller()
 con.load_package()
@@ -20,12 +22,19 @@ tabs=con.tabs()
 
 
 def render_default(body=""):
-    return render_template('layout.html', text='cot', tabs=tabs, main=body)
+    return render_template('index.html', text='cot', tabs=tabs, main=body)
+
+
+@app.route('/_ajax')
+def ajax():
+    full_name = request.args.get('full_name')
+    value = request.args.get('value')
+    con.save_value(full_name, value)
+    return jsonify(result=value)
 
 @app.route("/")
 def root():
     return render_default()
-
 
 @app.route("/b")
 def baf():

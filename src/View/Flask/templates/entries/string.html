@@ -1,8 +1,8 @@
-<form method="post"  action="save">
-    <label for="{{name}}">{{label}}</label>
-    <input type="text" id="{{name}}" name="{{full_name}}" value="{{value}}"  {{ 'list="%s"' %list.name if list }} onchange="this.form.submit()">
+{% extends "entries/key_word.html" %}
+
+{% block key_word %}
+    <input class="form-control" type="text" name="{{name}}" id="{{full_name}}" value="{{value}}"  {{ 'list="%s"' %list.name if list }}>
     {% if list %}
         {% include 'entries/list.html' %}
     {% endif %}
-</form>
-
+{% endblock %}

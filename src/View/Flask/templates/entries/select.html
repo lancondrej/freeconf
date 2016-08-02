@@ -1,8 +1,9 @@
-<form method="post"  action="save">
-    <label for="{{name}}">{{label}}</label>
-    <select id="{{name}}" name="{{full_name}}" onchange="this.form.submit()">
+{% extends "entries/key_word.html" %}
+
+{% block key_word %}
+    <select class="form-control" id="{{name}}" name="{{full_name}}">
         {% for item in list.entries %}
       <option value="{{item.value}}" {{ 'selected' if value==item.value }}>{{item.label}}</option>
         {% endfor %}
     </select>
-</form>
+{% endblock %}

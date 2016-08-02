@@ -1,4 +1,5 @@
- <form method="post"  action="save">
-     <label for="{{name}}">{{label}}</label>
-     <input type="number" id="{{name}}" name="{{full_name}}" value="{{value}}" step="{{step}}" min="{{min}}" max="{{max}}" onblur="this.form.submit()">
- </form>
+{% extends "entries/key_word.html" %}
+
+{% block key_word %}
+    <input class="form-control" type="number" name="{{name}}" id="{{full_name}}" value="{{value}}" step="{{step}}" min="{{min}}" max="{{max}}">
+{% endblock %}

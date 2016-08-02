@@ -21,8 +21,6 @@ class MultipleEntryContainer(BaseEntry):
         self._template = entry
         self._template.parent=self
 
-
-
     def create_new(self):
         length = self.size()
         if self.multiple_max is None or self.size() < self.multiple_max:

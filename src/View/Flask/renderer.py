@@ -60,9 +60,8 @@ class Renderer(object):
     def render_MULTIPLE(container):
         entries=[]
         ee=container.entries
-        for entry in ee:
-            entries.append(Renderer.multiple_entry_render(entry))
-        return render_template('entries/multiple.html', label=container.name, full_name=container.full_name, entries=entries)
+        entries=[(i, entry.name, Renderer.multiple_entry_render(entry)) for i, entry in enumerate(ee)]
+        return render_template('entries/multiple.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
     @staticmethod
     def render_SECTION(section):

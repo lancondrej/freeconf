@@ -27,6 +27,8 @@
     <tab-section>
       <tab-section-name>sekce-3</tab-section-name>
       <import-entry>/main-container/number1</import-entry>
+              <import-entry>/main-container/number5</import-entry>
+
     </tab-section>
   </tab>
 </freeconf-gui-template>
