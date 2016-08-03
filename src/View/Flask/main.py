@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.jinja_env.autoescape = False
 app.secret_key = 'some_secret'
-app.debug = False
+app.debug = True
 
 toolbar = DebugToolbarExtension(app)
 
@@ -57,23 +57,39 @@ def save(name):
             con.save_value(key, form[key])
     return redirect('tab/'+name)
 
-@app.route("/tab/<name>/multiple_new", methods=['POST'])
-def multiple_new(name):
+# @app.route("/tab/<name>/multiple_new", methods=['POST'])
+# def multiple_new(name):
+#
+#     if request.method == 'POST':
+#         form=request.form
+#         for key in form:
+#             con.multiple_new(key)
+#     return redirect('tab/'+name)
 
-    if request.method == 'POST':
-        form=request.form
-        for key in form:
-            con.multiple_new(key)
-    return redirect('tab/'+name)
 
-@app.route("/tab/<name>/multiple_delete", methods=['POST'])
-def multiple_delete(name):
+@app.route("/_multiple_new")
+def multiple_new():
+    full_name = request.args.get('full_name')
+    con.multiple_new(full_name)
+    return True
 
-    if request.method == 'POST':
-        form=request.form
-        for key in form:
-            con.multiple_delete(key, form[key])
-    return redirect('tab/'+name)
+@app.route("/_multiple_delete")
+def multiple_delete():
+    full_name = request.args.get('full_name')
+    value = request.args.get('value')
+    con.multiple_delete(full_name, value)
+    return True
+
+
+
+# @app.route("/tab/<name>/multiple_delete", methods=['POST'])
+# def multiple_delete(name):
+#
+#     if request.method == 'POST':
+#         form=request.form
+#         for key in form:
+#             con.multiple_delete(key, form[key])
+#     return redirect('tab/'+name)
 
 def alert():
     print('bbb')

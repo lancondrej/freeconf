@@ -1,73 +1,39 @@
 <fieldset>
     <legend>{{label}}</legend>
-  <table class="table table-bordered">
-
-      <tbody>
-
+    <table class="table table-bordered">
+        <tbody>
         {% for entry in entries %}
-
-
-
-      <tr>
-        <td><span type="button" class="" data-toggle="modal" data-target="#Modal_{{ name }}_{{ entry[0] }}">{{ entry[0] }}</span></td>
-        <td>         <form method="post" action="multiple_delete">
-         <input type="hidden" name="{{full_name}}" value="{{ entry[0]}}">
-         <input type="submit" value="delete" >
-         </form>
-</td>
-      </tr>
-
-
-
-  <div class="modal fade" id="Modal_{{ name }}_{{ entry[0] }}" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-
-
-
-
-
-                {{entry[2]}}
-
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-
-
-
-
+            <tr>
+                <td>
+                    <button type="button" class="" data-toggle="modal" data-target="#Modal_{{ name }}_{{ entry[0] }}">{{ entry[0] }}</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger multiple_delete" type="button" full_name="{{full_name}}" value="{{ entry[0]}}">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+            <div class="modal fade" id="Modal_{{ name }}_{{ entry[0] }}" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{entry[2]}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-
-    </tbody>
-  </table>
-     <form method="post" action="multiple_new">
-         <input type="hidden" name="{{full_name}}">
-         <input class="btn btn-primary" type="submit" value="new">
-     </form>
+        </tbody>
+    </table>
+    <button class="btn btn-primary multiple_new" type="button" full_name="{{full_name}}">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
 </fieldset>
-
-
-
-
-
-
-
-
