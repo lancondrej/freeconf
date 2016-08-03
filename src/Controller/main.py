@@ -5,7 +5,7 @@ from Model.package import PackageBase
 
 __author__ = 'Ondřej Lanč'
 
-input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
+input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/apache")
 package = PackageBase("pokus")
 input_parser.package=package
 package.current_language = "en"

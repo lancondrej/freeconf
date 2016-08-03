@@ -38,7 +38,7 @@ class Controller(object):
             pass
 
     def _load_test_package(self):
-        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
+        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/apache")
         self._package = PackageBase("test")
         input_parser.package=self._package
         self._package.current_language = "en"

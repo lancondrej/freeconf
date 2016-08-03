@@ -95,7 +95,7 @@
         </properties>
     </string>
     <string>
-        <entry-name>TracemultipleEnable</entry-name>
+        <entry-name>TraceEnable</entry-name>
         <group>default</group>
         <properties>
             <data>apache_trace_enable</data>

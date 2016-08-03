@@ -33,5 +33,33 @@ $(function() {
     $('.multiple_new').on('click', function() {multiple_new($(this) )});
     $('.multiple_delete').on('click', function() {multiple_delete($(this) )});
 
-    $('input[type=number]').focus();
+
+    $('.modal-content').resizable({
+    //alsoResize: ".modal-dialog",
+    minHeight: 300,
+    minWidth: 300
+    });
+    $('.modal-dialog').draggable();
+
+    // $('.modal').on('show.bs.modal', function () {
+    //     $(this).find('.modal-body').css({
+    //         'max-height':'100%'
+    //     });
+    // });
+
+    $(".modal").appendTo("#Modals");
+
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+    $(document).on('hidden.bs.modal', '.modal', function () {
+        if ($('.modal-backdrop').length) {
+        $('body').addClass('modal-open');
+        }
+    });
 });
+

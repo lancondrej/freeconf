@@ -1,10 +1,15 @@
-<form class="form-horizontal" role="form">
+<div class="panel panel-default">
+      <div class="panel-heading"><h2>{{label}}</h2></div>
 
-<fieldset>
-    <legend>{{label}}</legend>
-        {% for entry in entries %}
-        {{entry}}
-        {% endfor %}
-</fieldset>
+  <div class="panel-body">
 
-</form>
+    <form class="form-horizontal" role="form">
+
+            {% for entry in entries %}
+            {{entry}}
+            {% endfor %}
+
+    </form>
+
+    </div>
+</div>
