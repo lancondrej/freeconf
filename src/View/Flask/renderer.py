@@ -1,3 +1,5 @@
+from Model.constants import Types
+
 __author__ = 'Ondřej Lanč'
 
 from flask import render_template
@@ -58,10 +60,11 @@ class Renderer(object):
 
     @staticmethod
     def render_MULTIPLE(container):
-        entries=[]
-        ee=container.entries
-        entries=[(i, entry.name, Renderer.multiple_entry_render(entry)) for i, entry in enumerate(ee)]
-        return render_template('entries/multiple.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
+        entries=[(i, entry.name, Renderer.multiple_entry_render(entry)) for i, entry in enumerate(container.entries)]
+        if container.template.type==Types.CONTAINER:
+            return render_template('entries/multiple_cont.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
+        else:
+            return render_template('entries/multiple_key.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
     @staticmethod
     def render_SECTION(section):

@@ -23,6 +23,22 @@ function multiple_delete(input) {
   return false;
 };
 
+function multiple_up(input) {
+  $.getJSON($SCRIPT_ROOT + '/_multiple_up', {
+      full_name: input.attr("full_name"),
+      value: input.attr("value"),
+  }, location.reload());
+  return false;
+};
+
+function multiple_down(input) {
+  $.getJSON($SCRIPT_ROOT + '/_multiple_down', {
+      full_name: input.attr("full_name"),
+      value: input.attr("value"),
+  }, location.reload());
+  return false;
+};
+
 $(function() {
 
     $('input[type="checkbox"]').bootstrapSwitch();
@@ -32,6 +48,8 @@ $(function() {
 
     $('.multiple_new').on('click', function() {multiple_new($(this) )});
     $('.multiple_delete').on('click', function() {multiple_delete($(this) )});
+    $('.multiple_up').on('click', function() {multiple_up($(this) )});
+    $('.multiple_down').on('click', function() {multiple_down($(this) )});
 
 
     $('.modal-content').resizable({

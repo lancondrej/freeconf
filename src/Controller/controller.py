@@ -38,7 +38,7 @@ class Controller(object):
             pass
 
     def _load_test_package(self):
-        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/apache")
+        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
         self._package = PackageBase("test")
         input_parser.package=self._package
         self._package.current_language = "en"
@@ -63,3 +63,11 @@ class Controller(object):
     def multiple_delete(self, path, index):
         entry = self._package.tree.find_entry(path)
         entry.delete_entry(index)
+
+    def multiple_up(self, path, index):
+        entry = self._package.tree.find_entry(path)
+        entry.move_up(index)
+
+    def multiple_down(self, path, index):
+        entry = self._package.tree.find_entry(path)
+        entry.move_down(index)

@@ -32,7 +32,7 @@ class GEntry(object):
 
     @property
     def label(self, language=""):
-        return self._label
+        return self._label or self._name
 
     @label.setter
     def label(self, label):

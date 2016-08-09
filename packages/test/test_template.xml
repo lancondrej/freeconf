@@ -25,6 +25,10 @@
     <number>
         <entry-name>number5</entry-name>
         <group>default</group>
+                <multiple>
+            <primary>string2</primary>
+            <min>5</min>
+        </multiple>
         <properties>
             <min>0.0</min>
             <max>999.0</max>

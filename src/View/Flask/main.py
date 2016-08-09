@@ -80,6 +80,20 @@ def multiple_delete():
     con.multiple_delete(full_name, value)
     return True
 
+@app.route("/_multiple_up")
+def multiple_up():
+    full_name = request.args.get('full_name')
+    value = request.args.get('value')
+    con.multiple_up(full_name, value)
+    return True
+
+@app.route("/_multiple_down")
+def multiple_down():
+    full_name = request.args.get('full_name')
+    value = request.args.get('value')
+    con.multiple_down(full_name, value)
+    return True
+
 
 
 # @app.route("/tab/<name>/multiple_delete", methods=['POST'])
