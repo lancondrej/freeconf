@@ -6,7 +6,6 @@ __author__ = 'Ondřej Lanč'
 
 from Model.constants import Types
 from Model.entries.base_entry import BaseEntry
-from Model.entries.multiple_entry_container import MultipleEntryContainer
 from Model.exception_logging.exception import AlreadyExistsError
 
 
@@ -43,12 +42,12 @@ class Container(BaseEntry):
         if entry.name in self._entries:
             raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
                                      u" in the section ({s}).".format(entry.name, self.name))
-        elif isinstance(entry, BaseEntry):
-            if entry.multiple:
-                # Create multiple container
-                entry = MultipleEntryContainer(entry)
-                # add multiple entry to the tree
-        entry._parent = self
+        # elif isinstance(entry, BaseEntry):
+            # if entry.multiple:
+            #     # Create multiple container
+            #     entry = MultipleEntryContainer(entry)
+            #     # add multiple entry to the tree
+        entry.parent = self
         self._entries[entry.name] = entry
         return True
 

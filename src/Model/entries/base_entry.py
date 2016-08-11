@@ -21,10 +21,7 @@ class BaseEntry(object):
         self._dynamic_mandatory = False
         self._enabled = True
 
-        self.multiple = False
-        # Multiple properties
-        self._multiple_min = None
-        self._multiple_max = None
+        self._multiple = False
 
         self._group = None  # Group of entry
         self._package = None  # Plugin or package, from which this entry originates.
@@ -65,10 +62,9 @@ class BaseEntry(object):
     @property
     def root(self):
         """Return root of tree."""
-        obj = self
-        while obj._parent is not None:
-            obj = obj._parent
-        return obj
+        if self.parent:
+            return self.parent.root
+        return self
 
     def is_container(self):
         """Return true if it is a container."""
@@ -89,12 +85,12 @@ class BaseEntry(object):
     @property
     def full_name(self):
         """Return full path in current tree in form of: /a/b/c/..."""
-        path = self.name
-        obj = self
-        while obj._parent is not None:
-            obj = obj._parent
-            path = obj.name + "/" + path
-        return "/" + path
+        path = "/" + self.name
+        if self.multiple:
+            path = path + "/" + str(self.index)
+        if self.parent:
+            path = self.parent.full_name + path
+        return path
 
     def __repr__(self):
         return self.__class__.__name__ + '(' + self.name + ')'
@@ -212,31 +208,14 @@ class BaseEntry(object):
             self.dynamic_mandatory = value
 
     @property
-    def enabled (self):
+    def enabled(self):
         return self._enabled
 
-
-    # TODO přesunout do multiple a vyřešit při načítání
     @property
-    def multiple_max(self):
-        return self._multiple_max
+    def multiple(self):
+        return self._multiple
 
-    @multiple_max.setter
-    def multiple_max(self, value):
-        if value > 0:
-            self._multiple_max = value
-        else:
-            # 0 or less means multipleMax property is disabled
-            self._multiple_max = None
+    @multiple.setter
+    def multiple(self, multiple):
+        self._multiple=multiple
 
-    @property
-    def multiple_min(self):
-        return self._multiple_min
-
-    @multiple_min.setter
-    def multiple_min(self, value):
-        if value > 0:
-            self._multiple_min = value
-        else:
-            # 0 or less means multipleMin property is disabled
-            self._multiple_min = None

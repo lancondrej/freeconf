@@ -14,6 +14,8 @@ from Model.constants import Types
 from Model.entries.bool import Bool
 from Model.entries.container import Container
 from Model.entries.fuzzy import Fuzzy
+from Model.entries.multiple.multiple_container import MultipleContainer
+from Model.entries.multiple.multiple_key_word import MultipleKeyWord
 from Model.entries.number import Number
 from Model.entries.string import String
 
@@ -180,7 +182,12 @@ class TemplateFile(XMLFileReader):
             if self.template_enum == TemplateEnum.NO_TMP_ELEMENT:
                 # Enable multiple on current entry
                 assert self.current_entry is not None
-                self.current_entry.multiple = True
+                if self.current_entry.is_container():
+                    self.current_entry = MultipleContainer(self.current_entry)
+                    self.container_stack.pop()
+                    self.container_stack.append(self.current_entry)
+                elif self.current_entry.is_keyword():
+                    self.current_entry = MultipleKeyWord(self.current_entry)
                 self.template_enum = TemplateEnum.MULTIPLE
             else:
                 log.error("Wrong location of element: " + name)

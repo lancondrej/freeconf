@@ -78,6 +78,9 @@ $(function() {
         if ($('.modal-backdrop').length) {
         $('body').addClass('modal-open');
         }
+        else{
+            location.reload()
+        }
     });
 });
 

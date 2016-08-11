@@ -27,7 +27,7 @@
         <group>default</group>
                 <multiple>
             <primary>string2</primary>
-            <min>5</min>
+            <min>1</min>
         </multiple>
         <properties>
             <min>0.0</min>
@@ -48,7 +48,8 @@
         <group>default</group>
         <multiple>
             <primary>string2</primary>
-            <min>5</min>
+            <min>0</min>
+            <max>3</max>
         </multiple>
         <number>
             <entry-name>number2</entry-name>
