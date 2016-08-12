@@ -68,7 +68,7 @@ class Renderer(object):
 
     @staticmethod
     def render_multiple_container(container):
-        entries=[(i, entry.primary.value, Renderer.multiple_entry_render(entry)) for i, entry in enumerate(container.entries)]
+        entries=[(i, entry.primary(), Renderer.multiple_entry_render(entry)) for i, entry in enumerate(container.entries)]
         return render_template('entries/multiple_cont.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
     @staticmethod

@@ -3,6 +3,7 @@
 from Model.entries.container import Container
 from Model.entries.multiple.multiple_entry import MultipleEntry
 from Model.exception_logging.exception import MultipleError
+import types
 
 __author__ = 'Ondřej Lanč'
 
@@ -33,7 +34,18 @@ class MultipleContainer(MultipleEntry, Container):
     def primary(self, primary):
         self._primary=primary
 
-    def create_new(self):
-        entry = super().create_new()
-        if entry:
-            entry.primary=entry.get_entry(self.primary)
+    # def create_new(self):
+    #     entry = super().create_new()
+    #     # if entry:
+    #         # TODO: je potřeba to vyřešit nějak elegantě naříklad přidat přímo do přídy container
+    #         # entry.primary = types.MethodType(primary_value, entry)
+    #         # print(entry.primary)
+
+
+# def primary_value(self):
+#     primary = self.get_entry(self.multiple_entry.primary)
+#     if primary:
+#         primary=primary.value
+#     else:
+#         primary=self.index
+#     return primary

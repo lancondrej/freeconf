@@ -83,7 +83,7 @@ class MultipleEntry(BaseEntry):
 
     @group.setter
     def group(self, group):
-        self.template.group(group)
+        self.template.group = group
 
     @property
     def multiple(self):

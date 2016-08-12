@@ -84,3 +84,14 @@ class Container(BaseEntry):
             if self.is_in_container(relative_name):
                 return self.get_entry(relative_name)
         return None
+
+    # @property
+    def primary(self):
+        if self.multiple:
+            primary = self.get_entry(self.multiple_entry.primary)
+            if primary:
+                primary = primary.value
+            else:
+                primary = self.index
+            return primary
+        return None

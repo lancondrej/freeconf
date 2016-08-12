@@ -103,7 +103,9 @@
     </string>
     <container>
         <container-name>Listen</container-name>
-        <multiple>yes</multiple>
+        <multiple>
+            <primary>Address</primary>
+        </multiple>
         <group>ports</group>
         <number>
             <entry-name>Port</entry-name>
@@ -138,7 +140,9 @@
     </container>
     <container>
         <container-name>VirtualHost</container-name>
-        <multiple>yes</multiple>
+        <multiple>
+            <primary>ServerName</primary>
+        </multiple>
         <string>
             <entry-name>Address</entry-name>
             <group>default</group>
