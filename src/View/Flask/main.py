@@ -47,6 +47,7 @@ def tab(name):
     Rsection=""
     for section in sections:
         Rsection=Rsection+Renderer.entry_render(section)
+    # flash(u'Záložka jméno', 'info')
     return render_default(Rsection)
 
 @app.route("/tab/<name>/save", methods=['POST'])
@@ -94,16 +95,11 @@ def multiple_down():
     con.multiple_down(full_name, value)
     return True
 
-
-
-# @app.route("/tab/<name>/multiple_delete", methods=['POST'])
-# def multiple_delete(name):
-#
-#     if request.method == 'POST':
-#         form=request.form
-#         for key in form:
-#             con.multiple_delete(key, form[key])
-#     return redirect('tab/'+name)
+@app.route('/_multiple_modal')
+def multiple_modal():
+    full_name = request.args.get('full_name')
+    entry=con.get_entry(full_name)
+    return Renderer.render_modal(entry)
 
 def alert():
     print('bbb')

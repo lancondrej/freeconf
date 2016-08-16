@@ -68,7 +68,7 @@ class Renderer(object):
 
     @staticmethod
     def render_multiple_container(container):
-        entries=[(i, entry.primary(), Renderer.multiple_entry_render(entry)) for i, entry in enumerate(container.entries)]
+        entries=[(i, entry.primary(), entry.full_name) for i, entry in enumerate(container.entries)]
         return render_template('entries/multiple_cont.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
     @staticmethod
@@ -82,3 +82,9 @@ class Renderer(object):
         for entry in section.entries:
             entries.append(Renderer.entry_render(entry))
         return render_template('entries/section.html', label=section.label, entries=entries)
+
+
+    @staticmethod
+    def render_modal(entry):
+        content=Renderer.multiple_entry_render(entry)
+        return render_template('elements/modal.html', content=content, name=entry.name, index=entry.index)
