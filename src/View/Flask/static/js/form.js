@@ -86,7 +86,7 @@ function loaded(input) {
               par.css('z-index',  "1051" );
           }
           else{
-              $(this).modal('hide');
+              $(".modal").modal('hide');
           }
       }
     });
@@ -97,12 +97,12 @@ function loaded(input) {
 
 $(function() {
 loaded();
-        // $(document).on('show.bs.modal', '.modal', function () {
-        // var zIndex = 1050 + (10 * $('.modal:visible').length);
-        // $(this).css('z-index', zIndex);
-        // setTimeout(function() {
-        //     $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        // }, 0);
+    //     $(document).on('show.bs.modal', '.modal', function () {
+    //     var zIndex = 1050 + (10 * $('.modal:visible').length);
+    //     $(this).css('z-index', zIndex);
+    //     setTimeout(function() {
+    //         $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    //     }, 0);
     // });
     $(document).on('hidden.bs.modal', '.modal', function () {
         if ($('.modal-backdrop').length) {
