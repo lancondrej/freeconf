@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-header>
-<content>
-  <template>test_template.xml</template>
-  <default-values>test_default.xml</default-values>
-  <help>test_help.xml</help>
-  <output>$PACKAGE/test_conf.xml</output>
-  <gui-template>test_gui_template.xml</gui-template>
-  <gui-label>test_gui_help.xml</gui-label>
-  <lists>test_lists.xml</lists>
-</content>
-<entry-group name="default">
-  <transform>test_default_transform.xsl</transform>
-  <native-output>$PACKAGE/test.conf</native-output>
-  <output-defaults>yes</output-defaults>
-</entry-group>
+    <content>
+        <template>test_template.xml</template>
+        <default-values>test_default.xml</default-values>
+        <help>test_help.xml</help>
+        <output>$PACKAGE/test_conf.xml</output>
+        <gui-template>test_gui_template.xml</gui-template>
+        <gui-label>test_gui_help.xml</gui-label>
+        <lists>test_lists.xml</lists>
+    </content>
+    <entry-group name="default">
+        <transform>test_default_transform.xsl</transform>
+        <native-output>$PACKAGE/test.conf</native-output>
+        <output-defaults>yes</output-defaults>
+    </entry-group>
 </freeconf-header>

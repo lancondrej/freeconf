@@ -1,135 +1,135 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <container name="apache-config">
-<entry name="ServerRoot">
-	<value>/etc/apache2</value>
-</entry>
-<entry name="PidFile">
-	<value>/var/run/apache2.pid</value>
-</entry>
-<entry name="TimeOut">
-	<value>300</value>
-</entry>
-<entry name="KeepAlive">
-	<value>yes</value>
-</entry>
-<entry name="MaxKeepAliveRequests">
-	<value>98</value>
-</entry>
-<entry name="KeepAliveTimeout">
-	<value>5</value>
-</entry>
-<entry name="AccessFileName">
-	<value>.htaccess</value>
-</entry>
-<entry name="User">
-	<value>www-data</value>
-</entry>
-<entry name="Group">
-	<value>www-data</value>
-</entry>
-<entry name="DefaultType">
-	<value>text/plain</value>
-</entry>
-<entry name="HostnameLookups">
-	<value>no</value>
-</entry>
-<entry name="LogLevel">
-	<value>Critical</value>
-</entry>
-<container name="Listen">
-<entry name="Port">
-	<value>80</value>
-</entry>
-</container>
-<container name="NameVirtualHost">
-<entry name="Address">
-	<value>localhost</value>
-</entry>
-<entry name="Port">
-	<value>0</value>
-</entry>
-</container>
-<container name="VirtualHost">
-<entry name="Address">
-	<value>localhost</value>
-</entry>
-<entry name="Port">
-	<value>80</value>
-</entry>
-<entry name="ServerName">
-	<value>pokus.net</value>
-</entry>
-<container name="ServerAlias">
-<entry name="Hostname">
-	<value>pokus.cz</value>
-</entry>
-</container>
-<container name="ServerAlias">
-<entry name="Hostname">
-	<value>www.pokus.net</value>
-</entry>
-</container>
-<entry name="ServerAdmin">
-	<value>admin</value>
-</entry>
-<entry name="DocumentRoot">
-	<value>/var/www</value>
-</entry>
-<container name="Alias">
-<entry name="URLPath">
-	<value>temp</value>
-</entry>
-<entry name="TargetPath">
-	<value>/tmp</value>
-</entry>
-</container>
-<container name="Directory">
-<entry name="Path">
-	<value>/var/www</value>
-</entry>
-<container name="Options">
-<entry name="ExecCGI">
-	<value>no</value>
-</entry>
-<entry name="Includes">
-	<value>no</value>
-</entry>
-<entry name="IncludesNOEXEC">
-	<value>no</value>
-</entry>
-<entry name="MultiViews">
-	<value>yes</value>
-</entry>
-<entry name="SymLinksIfOwnerMatch">
-	<value>no</value>
-</entry>
-</container>
-<container name="AllowOverride">
-<entry name="AuthConfig">
-	<value>no</value>
-</entry>
-<entry name="FileInfo">
-	<value>no</value>
-</entry>
-<entry name="Indexes">
-	<value>no</value>
-</entry>
-<entry name="Limit">
-	<value>no</value>
-</entry>
-<entry name="Options">
-	<value>no</value>
-</entry>
-</container>
-<entry name="Order">
-	<value>Allow,Deny</value>
-</entry>
-<entry name="Allow">
-	<value>all</value>
-</entry>
-<entry name="Deny">
-	<value>1.2.3.4</value>
-</entry>
-</container>
-</container>
+    <entry name="ServerRoot">
+        <value>/etc/apache2</value>
+    </entry>
+    <entry name="PidFile">
+        <value>/var/run/apache2.pid</value>
+    </entry>
+    <entry name="TimeOut">
+        <value>300</value>
+    </entry>
+    <entry name="KeepAlive">
+        <value>yes</value>
+    </entry>
+    <entry name="MaxKeepAliveRequests">
+        <value>98</value>
+    </entry>
+    <entry name="KeepAliveTimeout">
+        <value>5</value>
+    </entry>
+    <entry name="AccessFileName">
+        <value>.htaccess</value>
+    </entry>
+    <entry name="User">
+        <value>www-data</value>
+    </entry>
+    <entry name="Group">
+        <value>www-data</value>
+    </entry>
+    <entry name="DefaultType">
+        <value>text/plain</value>
+    </entry>
+    <entry name="HostnameLookups">
+        <value>no</value>
+    </entry>
+    <entry name="LogLevel">
+        <value>Critical</value>
+    </entry>
+    <container name="Listen">
+        <entry name="Port">
+            <value>80</value>
+        </entry>
+    </container>
+    <container name="NameVirtualHost">
+        <entry name="Address">
+            <value>localhost</value>
+        </entry>
+        <entry name="Port">
+            <value>0</value>
+        </entry>
+    </container>
+    <container name="VirtualHost">
+        <entry name="Address">
+            <value>localhost</value>
+        </entry>
+        <entry name="Port">
+            <value>80</value>
+        </entry>
+        <entry name="ServerName">
+            <value>pokus.net</value>
+        </entry>
+        <container name="ServerAlias">
+            <entry name="Hostname">
+                <value>pokus.cz</value>
+            </entry>
+        </container>
+        <container name="ServerAlias">
+            <entry name="Hostname">
+                <value>www.pokus.net</value>
+            </entry>
+        </container>
+        <entry name="ServerAdmin">
+            <value>admin</value>
+        </entry>
+        <entry name="DocumentRoot">
+            <value>/var/www</value>
+        </entry>
+        <container name="Alias">
+            <entry name="URLPath">
+                <value>temp</value>
+            </entry>
+            <entry name="TargetPath">
+                <value>/tmp</value>
+            </entry>
+        </container>
+        <container name="Directory">
+            <entry name="Path">
+                <value>/var/www</value>
+            </entry>
+            <container name="Options">
+                <entry name="ExecCGI">
+                    <value>no</value>
+                </entry>
+                <entry name="Includes">
+                    <value>no</value>
+                </entry>
+                <entry name="IncludesNOEXEC">
+                    <value>no</value>
+                </entry>
+                <entry name="MultiViews">
+                    <value>yes</value>
+                </entry>
+                <entry name="SymLinksIfOwnerMatch">
+                    <value>no</value>
+                </entry>
+            </container>
+            <container name="AllowOverride">
+                <entry name="AuthConfig">
+                    <value>no</value>
+                </entry>
+                <entry name="FileInfo">
+                    <value>no</value>
+                </entry>
+                <entry name="Indexes">
+                    <value>no</value>
+                </entry>
+                <entry name="Limit">
+                    <value>no</value>
+                </entry>
+                <entry name="Options">
+                    <value>no</value>
+                </entry>
+            </container>
+            <entry name="Order">
+                <value>Allow,Deny</value>
+            </entry>
+            <entry name="Allow">
+                <value>all</value>
+            </entry>
+            <entry name="Deny">
+                <value>1.2.3.4</value>
+            </entry>
+        </container>
+    </container>
 </container>

@@ -511,7 +511,7 @@ class TemplateFile(XMLFileReader):
                 self.current_entry.multiple_max = int(data)
             elif self.property_enum == PropertyEnum.PRIMARY:
                 self.current_entry.primary = data
-
+        # TODO: neukládá se pro multiple
         # Process properties
         elif self.template_enum == TemplateEnum.PROPERTIES:
             assert self.current_entry  # Properties are allowed only for existing entries

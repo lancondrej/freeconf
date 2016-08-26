@@ -144,19 +144,15 @@ class Number(KeyWord):
             return self.min
         return value
 
-    @property
-    def _type_name(self):
-        return "NUMBER"
-
-    def handle_dependency_event(self, event, value):
-        """Handles incoming dependency events"""
-        KeyWord.handleDependencyEvent(self, event, value)
-        if event == "min":
-            if value == self.min:
-                return
-            self.min = value
-        elif event == "max":
-            if value == self.max:
-                return
-            self.max = value
-
+    # def handle_dependency_event(self, event, value):
+    #     """Handles incoming dependency events"""
+    #     KeyWord.handleDependencyEvent(self, event, value)
+    #     if event == "min":
+    #         if value == self.min:
+    #             return
+    #         self.min = value
+    #     elif event == "max":
+    #         if value == self.max:
+    #             return
+    #         self.max = value
+    #

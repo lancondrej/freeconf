@@ -17,14 +17,10 @@ class MultipleContainer(MultipleEntry, Container):
         self._primary = ""
 
     def add_entry(self, entry):
-        if self._template.is_container() or self._template.is_multiple_entry_container():
-            return self.template.add_entry(entry)
-        raise MultipleError("Add entry - Multiple container is not container.")
+        return self.template.add_entry(entry)
 
     def get_entry(self, name):
-        if self._template.is_container():
-            return self._template.get_entry(name)
-        raise MultipleError("get entry - Multiple container is not container.")
+        return self._template.get_entry(name)
 
     @property
     def primary(self):
@@ -34,18 +30,11 @@ class MultipleContainer(MultipleEntry, Container):
     def primary(self, primary):
         self._primary=primary
 
-    # def create_new(self):
-    #     entry = super().create_new()
-    #     # if entry:
-    #         # TODO: je potřeba to vyřešit nějak elegantě naříklad přidat přímo do přídy container
-    #         # entry.primary = types.MethodType(primary_value, entry)
-    #         # print(entry.primary)
-
-
-# def primary_value(self):
-#     primary = self.get_entry(self.multiple_entry.primary)
-#     if primary:
-#         primary=primary.value
-#     else:
-#         primary=self.index
-#     return primary
+    def primary_value(self, index):
+        entry=self.entries[index]
+        primary = entry.get_entry(self.primary)
+        if primary:
+            primary = primary.value
+        else:
+            primary = self.index
+        return primary

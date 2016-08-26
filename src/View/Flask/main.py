@@ -5,6 +5,7 @@ from flask import Flask, render_template, flash, request, redirect, url_for, jso
 from View.Flask.renderer import Renderer
 # configuration
 from Controller.controller import Controller
+from Controller.entry_controller import EntryController
 from flask_debugtoolbar import DebugToolbarExtension
 
 
@@ -19,6 +20,7 @@ toolbar = DebugToolbarExtension(app)
 con=Controller()
 con.load_package()
 tabs=con.tabs()
+renderer=Renderer()
 
 
 def render_default(body=""):
@@ -46,7 +48,7 @@ def tab(name):
     sections=con.tab(name)
     Rsection=""
     for section in sections:
-        Rsection=Rsection+Renderer.entry_render(section)
+        Rsection=Rsection+renderer.entry_render(section)
     # flash(u'Záložka jméno', 'info')
     return render_default(Rsection)
 
@@ -99,7 +101,7 @@ def multiple_down():
 def multiple_modal():
     full_name = request.args.get('full_name')
     entry=con.get_entry(full_name)
-    return Renderer.render_modal(entry)
+    return renderer.render_modal(entry)
 
 def alert():
     print('bbb')

@@ -26,7 +26,3 @@ class Bool(Fuzzy):
     @property
     def max(self):
         return self._max
-
-    @property
-    def _type_name(self):
-        return "BOOL"

@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-gui-template>
-  <window>
-    <min-width>640</min-width>
-    <min-height>480</min-height>
-    <max-width>800</max-width>
-    <max-height>600</max-height>
-  </window>
-  <tab>
-    <tab-name>tab1</tab-name>
-    <tab-icon>categories/preferences-other</tab-icon>
-    <tab-section>
-      <tab-section-name>sekce-1</tab-section-name>
-      <import-entry>/main-container/string1</import-entry>
-      <import-entry>/main-container/bool1</import-entry>
-      <import-entry>/main-container/string3</import-entry>
-    </tab-section>
-  </tab>
-    
-  <tab>
-    <tab-name>tab2</tab-name>
-    <tab-icon>categories/applications-internet</tab-icon>
-    <tab-section>
-      <tab-section-name>sekce-2</tab-section-name>
-      <import-entry primary="string2">/main-container/multiple-container</import-entry>
-    </tab-section>
-    <tab-section>
-      <tab-section-name>sekce-3</tab-section-name>
-      <import-entry>/main-container/number1</import-entry>
-              <import-entry>/main-container/number5</import-entry>
+    <window>
+        <min-width>640</min-width>
+        <min-height>480</min-height>
+        <max-width>800</max-width>
+        <max-height>600</max-height>
+    </window>
+    <tab>
+        <tab-name>tab1</tab-name>
+        <tab-icon>categories/preferences-other</tab-icon>
+        <tab-section>
+            <tab-section-name>sekce-1</tab-section-name>
+            <import-entry>/main-container/string1</import-entry>
+            <import-entry>/main-container/bool1</import-entry>
+            <import-entry>/main-container/string3</import-entry>
+        </tab-section>
+    </tab>
 
-    </tab-section>
-  </tab>
+    <tab>
+        <tab-name>tab2</tab-name>
+        <tab-icon>categories/applications-internet</tab-icon>
+        <tab-section>
+            <tab-section-name>sekce-2</tab-section-name>
+            <import-entry primary="string2">/main-container/multiple-container</import-entry>
+        </tab-section>
+        <tab-section>
+            <tab-section-name>sekce-3</tab-section-name>
+            <import-entry>/main-container/number1</import-entry>
+            <import-entry>/main-container/number5</import-entry>
+
+        </tab-section>
+    </tab>
 </freeconf-gui-template>

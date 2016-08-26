@@ -25,13 +25,13 @@
     <number>
         <entry-name>number5</entry-name>
         <group>default</group>
-                <multiple>
+        <multiple>
             <primary>string2</primary>
             <min>1</min>
         </multiple>
         <properties>
             <min>0.0</min>
-            <max>999.0</max>
+            <max>20.0</max>
             <step>0.01</step>
         </properties>
     </number>
@@ -64,52 +64,52 @@
             <entry-name>string2</entry-name>
             <group>default</group>
         </string>
+        <container>
+            <container-name>multiple-2</container-name>
+            <group>default</group>
+            <multiple>
+                <primary>string2</primary>
+                <min>0</min>
+                <max>3</max>
+            </multiple>
+            <string>
+                <entry-name>string2</entry-name>
+                <group>default</group>
+            </string>
             <container>
-        <container-name>multiple-2</container-name>
-        <group>default</group>
-        <multiple>
-            <primary>string2</primary>
-            <min>0</min>
-            <max>3</max>
-        </multiple>
-        <string>
-            <entry-name>string2</entry-name>
-            <group>default</group>
-        </string>
-                    <container>
-        <container-name>multiple-3</container-name>
-        <group>default</group>
-        <multiple>
-            <primary>string2</primary>
-            <min>0</min>
-            <max>3</max>
-        </multiple>
-        <number>
-            <entry-name>number2</entry-name>
-            <group>default</group>
-            <properties>
-                <min>0.0</min>
-                <max>111.0</max>
-                <step>1.0</step>
-            </properties>
-        </number>
+                <container-name>multiple-3</container-name>
+                <group>default</group>
+                <multiple>
+                    <primary>string2</primary>
+                    <min>0</min>
+                    <max>3</max>
+                </multiple>
+                <number>
+                    <entry-name>number2</entry-name>
+                    <group>default</group>
+                    <properties>
+                        <min>0.0</min>
+                        <max>111.0</max>
+                        <step>1.0</step>
+                    </properties>
+                </number>
 
-                            <container>
-        <container-name>multiple-4</container-name>
-        <group>default</group>
-        <multiple>
-            <primary>string2</primary>
-            <min>0</min>
-            <max>3</max>
-        </multiple>
+                <container>
+                    <container-name>multiple-4</container-name>
+                    <group>default</group>
+                    <multiple>
+                        <primary>string2</primary>
+                        <min>0</min>
+                        <max>3</max>
+                    </multiple>
 
-        <string>
-            <entry-name>string2</entry-name>
-            <group>default</group>
-        </string>
-    </container>
-    </container>
-    </container>
+                    <string>
+                        <entry-name>string2</entry-name>
+                        <group>default</group>
+                    </string>
+                </container>
+            </container>
+        </container>
 
     </container>
 </freeconf-template>

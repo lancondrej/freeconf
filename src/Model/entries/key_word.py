@@ -72,28 +72,25 @@ class KeyWord(BaseEntry):
         """Check if given value can be converted to value for this entry, and if so, return converted value."""
         raise NotImplementedError("This is abstract method!")
 
-    def handle_dependency_event(self, event, value):
-        BaseEntry.handle_dependency_event(self, event, value)
-        if event == "enable":
-            if value == self._enabled:
-                return
-            self._enabled = value
-        elif event == "value":
-            self.value = value
+    # def handle_dependency_event(self, event, value):
+    #     BaseEntry.handle_dependency_event(self, event, value)
+    #     if event == "enable":
+    #         if value == self._enabled:
+    #             return
+    #         self._enabled = value
+    #     elif event == "value":
+    #         self.value = value
 
-    def add_dependent(self, dep):
-        """Add dependency that depends on this entry."""
-        self._dependents.append(dep)
-
-    def remove_dependent(self, dep):
-        """Remove given dependency from list of dependent dependencies."""
-        self._dependents.remove(dep)
-
-    def update_dependents(self):
-        """Indicates that value of this entry changed. Update all dependent dependencies."""
-        log.debug("Updating dependencies on " + str(self))
-        for d in self._dependents:
-            d.execute()
-
-    def set_value(self, value):
-        self._value = self.convert_value(value)
+    # def add_dependent(self, dep):
+    #     """Add dependency that depends on this entry."""
+    #     self._dependents.append(dep)
+    #
+    # def remove_dependent(self, dep):
+    #     """Remove given dependency from list of dependent dependencies."""
+    #     self._dependents.remove(dep)
+    #
+    # def update_dependents(self):
+    #     """Indicates that value of this entry changed. Update all dependent dependencies."""
+    #     log.debug("Updating dependencies on " + str(self))
+    #     for d in self._dependents:
+    #         d.execute()

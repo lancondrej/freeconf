@@ -16,4 +16,10 @@ class MultipleKeyWord(MultipleEntry, KeyWord):
     def __init__(self, entry):
         MultipleEntry.__init__(self, entry)
 
+    @property
+    def list(self):
+        return self.template.list
 
+    @list.setter
+    def list(self, l):
+        self.template.list=l

@@ -53,11 +53,6 @@ class Fuzzy(KeyWord):
         self._min_set = True
         self._min = m
 
-    @property
-    def _type_name(self):
-        return "FUZZY"
-
-
     def value_to_grade(self, value):
         """Return grade for given value."""
         if value is None:
@@ -101,7 +96,6 @@ class Fuzzy(KeyWord):
         """Check if entry's value is within permitted range. If not, return nearest value that is in the range."""
         if value is None:
             value = self.value
-
         e = self.list.get_entry(value)
         if e is None:
             log.error("Value '%s' was not found in fuzzy list '%s' for entry %s!" % (
@@ -129,12 +123,12 @@ class Fuzzy(KeyWord):
             if value == self.min:
                 return
             self.min = value
-            self.set_value(self.check_value(), True)
+            # self.set_value(self.check_value(), True)
         elif event == "max":
             if value == self.max:
                 return
             self.max = value
-            self.set_value(self.check_value(), True)
+            # self.set_value(self.check_value(), True)
 
     @property
     def grade(self):

@@ -31,8 +31,7 @@ class Types(Enum):
     BOOL = 5
     NUMBER = 6
     STRING = 7
-    MULTIPLE = 8
-    SECTION = 9
+    SECTION = 8
 
 
 class Signals:

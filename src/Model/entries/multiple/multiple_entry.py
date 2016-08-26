@@ -181,7 +181,6 @@ class MultipleEntry(BaseEntry):
 
     @property
     def type(self):
-        # return Types.MULTIPLE
         return self.template.type
 
     def find_entry(self, relative_name):
