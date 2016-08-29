@@ -8,8 +8,7 @@ import types
 __author__ = 'Ondřej Lanč'
 
 
-
-class MultipleContainer(MultipleEntry, Container):
+class MultipleContainer(MultipleEntry):
     """Container for multiple config entries."""
 
     def __init__(self, entry):
@@ -33,8 +32,8 @@ class MultipleContainer(MultipleEntry, Container):
     def primary_value(self, index):
         entry=self.entries[index]
         primary = entry.get_entry(self.primary)
-        if primary:
+        if primary is not None:
             primary = primary.value
         else:
-            primary = self.index
+            primary = index
         return primary

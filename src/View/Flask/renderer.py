@@ -47,6 +47,7 @@ class Renderer(object):
 
     def render_multiple_container(self, container):
         entries=[(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
+        print("a")
         return render_template('entries/multiple_cont.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
     def render_multiple_key_word(self, mult_entry):

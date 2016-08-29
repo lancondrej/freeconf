@@ -1,18 +1,51 @@
 #!/usr/bin/python3
 
-
-from IO.Input.XMLPackageParser.parser import XMLParser
-from Model.package import PackageBase
-from os.path import expanduser
 import configparser
+from os.path import expanduser
+
+from Controller.entry_controller import EntryController
+from IO.input import Input
+from IO.output import Output
+from Model.package import PackageBase
 
 __author__ = 'Ondřej Lanč'
 
 
 class Controller(object):
-    def __init__(self, name=""):
+    def __init__(self, package, input, output):
+        self.package = package
+        self.input = input
+        self.input.package = self.package
+        self.output = output
         self._freeconf_dirs = []
-        self._package = None
+
+    @property
+    def package(self):
+        return self._package
+
+    @package.setter
+    def package(self, package):
+        assert isinstance(package, PackageBase)
+        self._package=package
+
+    @property
+    def input(self):
+        return self._input
+
+    @input.setter
+    def input(self, input):
+        assert isinstance(input, Input)
+        self._input=input
+
+    @property
+    def output(self):
+        return self._output
+
+    @output.setter
+    def output(self, output):
+        assert isinstance(output, Output)
+        self._output=output
+
 
     def load_config(self, file="config/freeconf.conf"):
         config = configparser.ConfigParser()
@@ -31,20 +64,11 @@ class Controller(object):
     def find_packages(self):
         pass
 
-    def load_package(self, name=""):
-        if name=="":
-            self._load_test_package()
-        else:
-            pass
-
-    def _load_test_package(self):
-        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
-        self._package = PackageBase("test")
-        input_parser.package=self._package
-        self._package.current_language = "en"
-        input_parser.load_package()
-        input_parser.load_plugins()
-        del input_parser
+    def load_package(self):
+        self.input.load_package()
+        self.input.load_plugins()
+        self._entry_controller = EntryController(self.package.tree)
+        # del input_parser
 
     def tabs(self):
         return [(tab.name, tab.label) for tab in self._package.gui_tree._entries]
@@ -52,26 +76,3 @@ class Controller(object):
     def tab(self, name):
         return self._package.gui_tree.get_entry(name).content._entries
 
-    def save_value(self, path, value):
-        entry= self._package.tree.find_entry(path)
-        entry.set_value(value)
-
-    def multiple_new(self, path):
-        entry = self._package.tree.find_entry(path)
-        entry.create_new()
-
-    def multiple_delete(self, path, index):
-        entry = self._package.tree.find_entry(path)
-        entry.delete_entry(index)
-
-    def multiple_up(self, path, index):
-        entry = self._package.tree.find_entry(path)
-        entry.move_up(index)
-
-    def multiple_down(self, path, index):
-        entry = self._package.tree.find_entry(path)
-        entry.move_down(index)
-
-    def get_entry(self, path):
-        entry = self._package.tree.find_entry(path)
-        return entry

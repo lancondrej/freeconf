@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 # Freeconf libs
-from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from IO.Input.exception_logging.log import log
+from IO.XMLPackageParser.sax_file import XMLFileReader
+from IO.exception_logging.log import log
 from Model.entries.GUI.gsection import GSection
 
 

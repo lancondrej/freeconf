@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
-from IO.Input.XMLPackageParser.parser import XMLParser
-from IO.Output.XML.output import XMLOutput
+from IO.XMLPackageParser.output import XMLOutput
+from IO.XMLPackageParser.input import XMLParser
 from Model.package import PackageBase
 
 __author__ = 'Ondřej Lanč'

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf-gui-template>
+    <window>
+        <min-width>640</min-width>
+        <min-height>480</min-height>
+        <max-width>800</max-width>
+        <max-height>600</max-height>
+    </window>
+    <tab>
+        <tab-name>Programs</tab-name>
+        <tab-icon>categories/preferences-other</tab-icon>
+        <tab-section>
+            <tab-section-name>Programs</tab-section-name>
+            <import-entry>/freeconf-configuration/programs</import-entry>
+        </tab-section>
+    </tab>
+
+</freeconf-gui-template>

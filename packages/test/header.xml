@@ -10,7 +10,7 @@
         <lists>test_lists.xml</lists>
     </content>
     <entry-group name="default">
-        <transform>test_default_transform.xsl</transform>
+        <transform>None</transform>
         <native-output>$PACKAGE/test.conf</native-output>
         <output-defaults>yes</output-defaults>
     </entry-group>

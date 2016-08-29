@@ -9,7 +9,6 @@ from Model.exception_logging.exception import MultipleError
 __author__ = 'Ondřej Lanč'
 
 
-
 class MultipleKeyWord(MultipleEntry, KeyWord):
     """Container for multiple config entries."""
 

@@ -7,7 +7,9 @@ from View.Flask.renderer import Renderer
 from Controller.controller import Controller
 from Controller.entry_controller import EntryController
 from flask_debugtoolbar import DebugToolbarExtension
-
+from IO.XMLPackageParser.input import XMLParser
+from IO.output import Output
+from Model.package import PackageBase
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -16,8 +18,12 @@ app.secret_key = 'some_secret'
 app.debug = True
 
 toolbar = DebugToolbarExtension(app)
+package=PackageBase("test")
+package.current_language = "en"
+input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/Freeconf")
+output = Output()
 
-con=Controller()
+con=Controller(package, input_parser, output)
 con.load_package()
 tabs=con.tabs()
 renderer=Renderer()
@@ -31,7 +37,7 @@ def render_default(body=""):
 def ajax():
     full_name = request.args.get('full_name')
     value = request.args.get('value')
-    con.save_value(full_name, value)
+    con._entry_controller.save_value(full_name, value)
     return jsonify(result=value)
 
 @app.route("/")
@@ -57,7 +63,7 @@ def save(name):
     if request.method == 'POST':
         form=request.form
         for key in form:
-            con.save_value(key, form[key])
+            con._entry_controller.save_value(key, form[key])
     return redirect('tab/'+name)
 
 # @app.route("/tab/<name>/multiple_new", methods=['POST'])
@@ -73,34 +79,34 @@ def save(name):
 @app.route("/_multiple_new")
 def multiple_new():
     full_name = request.args.get('full_name')
-    con.multiple_new(full_name)
+    con._entry_controller.multiple_new(full_name)
     return True
 
 @app.route("/_multiple_delete")
 def multiple_delete():
     full_name = request.args.get('full_name')
     value = request.args.get('value')
-    con.multiple_delete(full_name, value)
+    con._entry_controller.multiple_delete(full_name, value)
     return True
 
 @app.route("/_multiple_up")
 def multiple_up():
     full_name = request.args.get('full_name')
     value = request.args.get('value')
-    con.multiple_up(full_name, value)
+    con._entry_controller.multiple_up(full_name, value)
     return True
 
 @app.route("/_multiple_down")
 def multiple_down():
     full_name = request.args.get('full_name')
     value = request.args.get('value')
-    con.multiple_down(full_name, value)
+    con._entry_controller.multiple_down(full_name, value)
     return True
 
 @app.route('/_multiple_modal')
 def multiple_modal():
     full_name = request.args.get('full_name')
-    entry=con.get_entry(full_name)
+    entry=con._entry_controller.get_entry(full_name)
     return renderer.render_modal(entry)
 
 def alert():

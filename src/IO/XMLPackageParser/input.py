@@ -3,17 +3,18 @@
 import os
 import re
 
-from IO.Input.XMLPackageParser.config_file import ConfigFileReader
-from IO.Input.XMLPackageParser.default_file import DefaultFile
-from IO.Input.XMLPackageParser.gui_label_file import GUILabelFile
-from IO.Input.XMLPackageParser.gui_template_file import GUITemplateFile
-from IO.Input.XMLPackageParser.header_file import HeaderFileReader
-from IO.Input.XMLPackageParser.help_file import HelpFile
-from IO.Input.XMLPackageParser.list_file import ListFile
-from IO.Input.XMLPackageParser.list_help_file import ListHelpFile
-from IO.Input.XMLPackageParser.template_file import TemplateFile
-from IO.Input.input import Input
+from IO.XMLPackageParser.config_file import ConfigFileReader
+from IO.XMLPackageParser.default_file import DefaultFile
+from IO.XMLPackageParser.gui_template_file import GUITemplateFile
+from IO.XMLPackageParser.header_file import HeaderFileReader
+from IO.XMLPackageParser.help_file import HelpFile
+from IO.XMLPackageParser.list_file import ListFile
+from IO.XMLPackageParser.list_help_file import ListHelpFile
+from IO.XMLPackageParser.template_file import TemplateFile
+
+from IO.XMLPackageParser.gui_label_file import GUILabelFile
 from IO.file import FcFileLocation
+from IO.input import Input
 from Model.entries.GUI.gsection import GSection
 from Model.entries.GUI.gtab import GTab
 from Model.entries.GUI.gwindow import GWindow

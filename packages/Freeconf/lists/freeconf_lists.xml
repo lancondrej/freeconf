@@ -1,0 +1,13 @@
+<freeconf-lists>
+    <string-list name="input_list">
+        <value>a</value>
+        <value>b</value>
+        <value>c</value>
+    </string-list>
+    <string-list name="output_list">
+        <value>a</value>
+        <value>b</value>
+        <value>c</value>
+    </string-list>
+
+</freeconf-lists>

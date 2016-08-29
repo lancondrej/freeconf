@@ -7,9 +7,10 @@
 #
 
 # Freeconf libs
-from IO.Input.XMLPackageParser.sax_file import XMLFileReader
-from IO.Input.exception_logging.exception import ParseError
-from IO.Input.exception_logging.log import log
+from IO.exception_logging.exception import ParseError
+
+from IO.XMLPackageParser.sax_file import XMLFileReader
+from IO.exception_logging.log import log
 from Model.constants import Types
 from Model.entries.bool import Bool
 from Model.entries.container import Container
