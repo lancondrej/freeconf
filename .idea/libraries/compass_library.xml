@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="compass-library">
+    <CLASSES>
+      <root url="file:///var/lib/gems/2.1.0/gems/compass-rgbapng-0.2.1" />
+      <root url="file:///var/lib/gems/2.1.0/gems/sassy-maps-0.4.0" />
+      <root url="file:///var/lib/gems/2.1.0/gems/breakpoint-2.5.0" />
+      <root url="file:///var/lib/gems/2.1.0/gems/toolkit-2.9.0" />
+      <root url="file:///var/lib/gems/2.1.0/gems/compass-core-1.0.3" />
+      <root url="file:///var/lib/gems/2.1.0/gems/susy-2.2.5" />
+      <root url="file:///var/lib/gems/2.1.0/gems/compass-normalize-1.5" />
+      <root url="file:///var/lib/gems/2.1.0/gems/singularitygs-1.6.2" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
