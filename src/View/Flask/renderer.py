@@ -29,7 +29,7 @@ class Renderer(object):
         entries=[]
         for entry in container.entries.values():
             entries.append(self.entry_render(entry))
-        return render_template('entries/section.html', label=container.label, entries=entries)
+        return render_template('entries/container.html', label=container.label, entries=entries)
 
     def render_fuzzy(entry):
         pass
@@ -47,7 +47,6 @@ class Renderer(object):
 
     def render_multiple_container(self, container):
         entries=[(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
-        print("a")
         return render_template('entries/multiple_cont.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
     def render_multiple_key_word(self, mult_entry):
@@ -62,4 +61,8 @@ class Renderer(object):
 
     def render_modal(self, entry):
         content=self.entry_render(entry)
-        return render_template('elements/modal.html', content=content, name=entry.name, index=entry.index)
+        return render_template('elements/modal.html', content=content, name=entry.name, index=entry.index, full_name=entry.full_name)
+
+    def reload_modal(self, entry):
+        content=self.entry_render(entry)
+        return content

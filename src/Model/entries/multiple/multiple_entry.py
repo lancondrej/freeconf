@@ -13,15 +13,25 @@ from Model.entries.base_entry import BaseEntry
 class MultipleEntry(BaseEntry):
     """Container for multiple config entries."""
 
-    def __init__(self, entry):
-        self._template = entry
-        self._template.multiple = True
-        self._template.multiple_entry = self
+    def __init__(self, entry=None):
+        if entry is not None:
+            self._template = entry
+            self._template.multiple = True
+            self._template.multiple_entry = self
+            self._template.index=-1
         self._entries = []
         self._default = []
         # Multiple properties
         self._multiple_min = None
         self._multiple_max = None
+
+    def __deepcopy__(self, memo):
+        newone = type(self)(None)
+        newone.__dict__.update(self.__dict__)
+        newone._entries = deepcopy(self.entries)
+        newone._template = deepcopy(self.template)
+        # TODO: není potřeba kopíravat template, ale je v tom případě potřeba vyřešit správně směrování na parent
+        return newone
 
     @property
     def multiple_max(self):
@@ -100,7 +110,7 @@ class MultipleEntry(BaseEntry):
     def delete_entry(self, index):
         length = self.size()
         if self.multiple_min is None or length > self.multiple_min:
-            self._entries.pop(int(index))
+            del self._entries[int(index)]
             self._rename_all()
             return True
         return False

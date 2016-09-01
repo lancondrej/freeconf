@@ -11,7 +11,7 @@ function submit_form(input) {
 function multiple_new(input) {
   $.getJSON($SCRIPT_ROOT + '/_multiple_new', {
       full_name: input.attr("full_name")
-  }, location.reload());
+  }).done( reload(input));
   return false;
 }
 
@@ -19,7 +19,7 @@ function multiple_delete(input) {
   $.getJSON($SCRIPT_ROOT + '/_multiple_delete', {
       full_name: input.attr("full_name"),
       value: input.attr("value")
-  }, location.reload());
+  }).done(reload(input));
   return false;
 }
 
@@ -27,7 +27,7 @@ function multiple_up(input) {
   $.getJSON($SCRIPT_ROOT + '/_multiple_up', {
       full_name: input.attr("full_name"),
       value: input.attr("value")
-  }, location.reload());
+  }).done(reload(input));
   return false;
 }
 
@@ -35,21 +35,46 @@ function multiple_down(input) {
   $.getJSON($SCRIPT_ROOT + '/_multiple_down', {
       full_name: input.attr("full_name"),
       value: input.attr("value")
-  }, location.reload());
+  }).done(reload(input));
   return false;
 }
 
 
 function load_modal(input) {
-    $.get($SCRIPT_ROOT + '/_multiple_modal', {
-      full_name: input.attr("full_name")
+    if($(input.attr("data-target")).length){
+    $(input.attr("data-target")).modal('show');
+    loaded()
+    }
+    else{
+       $.get($SCRIPT_ROOT + '/_multiple_modal', {
+        full_name: input.attr("full_name")
+        }, function( data ) {
+            $('#Modals').append( data );
+                $(input.attr("data-target")).modal('show');
+                loaded();
+        });
+    }
+
+}
+
+function reload_modal(modal) {
+    $.get($SCRIPT_ROOT + '/_reload_modal', {
+      full_name: modal.attr("full_name")
     }, function( data ) {
-        $('#Modals').append( data );
-        $(input.attr("data-target")).modal('show');
+        modal.find('.modal-body').empty().append(data);
         loaded()
     });
 }
 
+function reload(elem) {
+    var par = elem.parents(".modal");
+    if(par.length){
+        reload_modal(par)
+    }
+    else{
+        location.reload();
+    }
+}
 
 function loaded(input) {
     $('.modal_button').on('click', function() {load_modal($(this) )});

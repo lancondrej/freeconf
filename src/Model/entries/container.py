@@ -7,7 +7,7 @@ __author__ = 'Ondřej Lanč'
 from Model.constants import Types
 from Model.entries.base_entry import BaseEntry
 from Model.exception_logging.exception import AlreadyExistsError
-
+from copy import deepcopy,copy
 
 class Container(BaseEntry):
     """This is a class for keyword entries from Template File"""
@@ -18,6 +18,14 @@ class Container(BaseEntry):
     def __init__(self):
         BaseEntry.__init__(self)
         self._entries = {}
+
+    def __deepcopy__(self, memo):
+        newone = type(self)()
+        newone.__dict__.update(self.__dict__)
+        newone._entries = deepcopy(self._entries)
+        for entry in newone._entries.values():
+            entry.parent=newone
+        return newone
 
     # Override of functions:
     def is_container(self):
@@ -53,7 +61,7 @@ class Container(BaseEntry):
 
     @property
     def entries(self):
-        return self._entries
+        return self._entries\
 
     def size(self):
         return len(self._entries)

@@ -21,6 +21,9 @@ class KeyWord(BaseEntry):
         # If true, user can insert value which is not in the list
         self.user_values = False
 
+    # def __deepcopy__(self):
+    #     entry = BaseEntry.__deepcopy__(self)
+
     @property
     def default_value(self):
         return self._default_value

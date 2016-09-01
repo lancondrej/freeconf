@@ -1,4 +1,7 @@
-<div class="panel panel-default">
+{% extends "entries/entry.html" %}
+
+{% block entry %}
+<div class="panel panel-default" id="full_name">
     <div class="panel-heading"><h2>{{label}}</h2></div>
     <div class="panel-body">
     <table class="table table-bordered">
@@ -33,3 +36,4 @@
       </div>
     </div>
 </div>
+{% endblock %}

@@ -3,6 +3,7 @@
 from Model.constants import Types
 from Model.exception_logging.exception import *
 from Model.exception_logging.log import log
+from copy import copy
 
 __author__ = 'Ondřej Lanč'
 
@@ -10,8 +11,8 @@ __author__ = 'Ondřej Lanč'
 class BaseEntry(object):
     """This is basis class for all entries."""
 
-    def __init__(self, name=""):
-        self._name = str(name)
+    def __init__(self):
+        self._name = ""
         self._label = {}
         self._help = {}
         self._parent = None
@@ -28,6 +29,11 @@ class BaseEntry(object):
 
         self._inconsistent = False
         #self.guiBuddy = None
+
+    def __deepcopy__(self, memo):
+        newone = type(self)()
+        newone.__dict__.update(self.__dict__)
+        return newone
 
     @property
     def name(self):
