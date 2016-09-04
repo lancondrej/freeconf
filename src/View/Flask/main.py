@@ -2,6 +2,8 @@
 
 
 from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
+
+from IO.XMLPackageParser.output import XMLOutput
 from View.Flask.renderer import Renderer
 # configuration
 from Controller.controller import Controller
@@ -19,10 +21,9 @@ app.debug = True
 
 # toolbar = DebugToolbarExtension(app)
 package=PackageBase("test")
-package.current_language = "en"
-input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/Freeconf")
-output = Output()
-
+package.current_language = "cs"
+input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/apache")
+output=XMLOutput(package)
 con=Controller(package, input_parser, output)
 con.load_package()
 tabs=con.tabs()
@@ -65,15 +66,6 @@ def save(name):
         for key in form:
             con._entry_controller.save_value(key, form[key])
     return redirect('tab/'+name)
-
-# @app.route("/tab/<name>/multiple_new", methods=['POST'])
-# def multiple_new(name):
-#
-#     if request.method == 'POST':
-#         form=request.form
-#         for key in form:
-#             con.multiple_new(key)
-#     return redirect('tab/'+name)
 
 
 @app.route("/_multiple_new")
@@ -123,6 +115,12 @@ def reload_modal():
 
 def alert():
     print('bbb')
+
+
+@app.route("/save")
+def config():
+    output.write_output()
+    return render_default()
 
 if __name__ == "__main__":
     app.run()

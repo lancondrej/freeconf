@@ -164,7 +164,7 @@ class ConfigFileWriter (object):
     def render_key_word(self, entry):
         element = Element('entry')
         element.set('name', entry.name)
-        element.set('group', entry.group.name)
+        # element.set('group', entry.group.name)
         value=Element('value')
         value.text = str(entry.value)
         element.append(value)

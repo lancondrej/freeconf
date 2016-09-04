@@ -1,7 +1,16 @@
 function submit_form(input) {
+    $.getJSON($SCRIPT_ROOT + '/_ajax', {
+        full_name: input.attr("id"),
+        value: (input.attr("type") == "checkbox") ? (input.is(":checked") ? "yes" : "no") : (input.val())
+    }, function (data) {
+        // $('#result').text(data.result);
+    });
+    return false;
+}
+    function submit_form_select(select) {
   $.getJSON($SCRIPT_ROOT + '/_ajax', {
-      full_name: input.attr("id"),
-      value: (input.attr("type")=="checkbox") ? (input.is(":checked") ? "yes" : "no") : (input.val())
+      full_name: select.attr("id"),
+      value: select.val()
   }, function(data) {
     // $('#result').text(data.result);
   });
@@ -88,7 +97,7 @@ function loaded(input) {
     $('input[type="checkbox"]').bootstrapSwitch();
 
     $('input').on('change', function() {submit_form($(this) )});
-    $('select').on('change', function() {submit_form($(this) )});
+    $('select').on('change', function() {submit_form_select($(this) )});
 
     $('.multiple_new').on('click', function() {multiple_new($(this) )});
     $('.multiple_delete').on('click', function() {multiple_delete($(this) )});

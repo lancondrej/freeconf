@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<container name="freeconf-configuration">
+    <container name="programs">
+        <entry name="name">
+            <value>Freeconf</value>
+        </entry>
+        <entry name="output">
+            <value>freeconf.conf</value>
+        </entry>
+        <container name="source">
+            <entry name="location">
+                <value>packages/Freeconf</value>
+            </entry>
+            <entry name="input">
+                <value>XMLPackageParser</value>
+            </entry>
+            <entry name="output">
+                <value>XMLPackageParser</value>
+            </entry>
+        </container>
+    </container>
+    <container name="programs">
+        <entry name="name">
+            <value>Apache</value>
+        </entry>
+        <entry name="output">
+            <value>apache2.conf</value>
+        </entry>
+        <container name="source">
+            <entry name="location">
+                <value>packages/apache</value>
+            </entry>
+            <entry name="input">
+                <value>XMLPackageParser</value>
+            </entry>
+            <entry name="output">
+                <value>XMLPackageParser</value>
+            </entry>
+        </container>
+    </container>
+    <container name="programs">
+        <entry name="name">
+            <value>test</value>
+        </entry>
+        <entry name="output">
+            <value>test.conf</value>
+        </entry>
+        <container name="source">
+            <entry name="location">
+                <value>packages/test</value>
+            </entry>
+            <entry name="input">
+                <value>XMLPackageParser</value>
+            </entry>
+            <entry name="output">
+                <value>XMLPackageParser</value>
+            </entry>
+        </container>
+    </container>
+</container>
