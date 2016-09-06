@@ -1,0 +1,11 @@
+{% extends "entries/multiple.html" %}
+
+{% block item %}
+    <button type="button" class="collapse_button btn btn-block btn-primary	"
+            data-target="#Collapse_{{ name }}_{{ entry[0] }}" full_name="{{ entry[2] }}">
+        <span class="glyphicon glyphicon-menu-down"></span>
+        {{ entry[1] }}
+        <span class="glyphicon glyphicon-menu-down"></span>
+
+    </button>
+{% endblock %}

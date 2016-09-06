@@ -106,11 +106,18 @@ def multiple_modal():
     return renderer.render_modal(entry)
 
 
-@app.route('/_reload_modal')
-def reload_modal():
+@app.route('/_multiple_collapse')
+def multiple_collapse():
     full_name = request.args.get('full_name')
     entry=con._entry_controller.get_entry(full_name)
-    return renderer.reload_modal(entry)
+    return renderer.render_collapse(entry)
+
+
+@app.route('/_reload_element')
+def reload_element():
+    full_name = request.args.get('full_name')
+    entry=con._entry_controller.get_entry(full_name)
+    return renderer.reload_element(entry)
 
 
 def alert():

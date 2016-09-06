@@ -14,7 +14,8 @@ class Renderer(object):
             'Bool': self.render_bool,
             'Number': self.render_number,
             'String': self.render_string,
-            'MultipleContainer': self.render_multiple_container,
+            # 'MultipleContainer': self.render_multiple_container,
+            'MultipleContainer': self.render_multiple_container_collapse,
             'MultipleKeyWord': self.render_multiple_key_word,
             'GSection': self.render_section,
         }
@@ -49,6 +50,10 @@ class Renderer(object):
         entries=[(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
         return render_template('entries/multiple_cont.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
 
+    def render_multiple_container_collapse(self, container):
+        entries=[(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
+        return render_template('entries/multiple_cont_collapse.html', label=container.name, full_name=container.full_name, name=container.name, entries=entries)
+
     def render_multiple_key_word(self, mult_entry):
         entries=[(i, entry.name, self.entry_render(entry)) for i, entry in enumerate(mult_entry.entries)]
         return render_template('entries/multiple_key.html', label=mult_entry.name, full_name=mult_entry.full_name, name=mult_entry.name, entries=entries)
@@ -63,6 +68,10 @@ class Renderer(object):
         content=self.entry_render(entry)
         return render_template('elements/modal.html', content=content, name=entry.name, index=entry.index, full_name=entry.full_name)
 
-    def reload_modal(self, entry):
+    def render_collapse(self, entry):
+        content=self.entry_render(entry)
+        return render_template('elements/collapse.html', content=content, name=entry.name, index=entry.index, full_name=entry.full_name)
+
+    def reload_element(self, entry):
         content=self.entry_render(entry)
         return content
