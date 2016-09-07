@@ -174,11 +174,12 @@ $(function () {
     //     }, 0);
     // });
     $(document).on('hidden.bs.modal', '.modal', function () {
+        console.log(this);
         if ($('.modal-backdrop').length) {
             $('body').addClass('modal-open');
         }
         else {
-            location.reload()
+            //location.reload()
         }
     });
     $(document).on('hidden.bs.collapse', '.collapse', function () {

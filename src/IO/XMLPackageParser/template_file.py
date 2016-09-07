@@ -467,9 +467,9 @@ class TemplateFile(XMLFileReader):
             assert self.current_entry
             log.debug("Setting entry activity to " + data)
             if data == "yes":
-                self.current_entry.staticActive = True
+                self.current_entry.static_active = True
             elif data == "no":
-                self.current_entry.staticActive = False
+                self.current_entry.static_active = False
             else:
                 log.error("Unknown value \"" + data + "\" in the active element, expecting yes or no")
             return
@@ -477,9 +477,9 @@ class TemplateFile(XMLFileReader):
             assert self.current_entry
             log.debug("Setting mandatory to " + data)
             if data == "yes":
-                self.current_entry.staticMandatory = True
+                self.current_entry.static_mandatory = True
             elif data == "no":
-                self.current_entry.staticMandatory = False
+                self.current_entry.static_mandatory = False
             else:
                 log.error("Unknown value \"" + data + "\" in the mandatory element, expecting yes or no")
             return
@@ -496,7 +496,7 @@ class TemplateFile(XMLFileReader):
         elif self.template_enum == TemplateEnum.TARGET:
             assert self.current_entry
             # Find target in template tree
-            target = self.topContainer.recursiveFindTEntry(data)
+            target = self.topContainer.find_entry(data)
             if target is None:
                 log.error("Target %s was not found in template tree for entry %s!" % (data, str(self.current_entry)))
             else:
