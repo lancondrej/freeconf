@@ -201,7 +201,7 @@ class XMLParser(Input):
         # Find list files and parse them
         for fileName in self._paths.listFiles:
             if self._paths.listFiles[fileName] is not None:
-                # Skip already loaded lists
+                # Skip already load_form lists
                 continue
             file = None  # Full path to list file
             file = os.path.join(self._paths.listDir, fileName)

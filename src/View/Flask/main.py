@@ -4,6 +4,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
 
 from IO.XMLPackageParser.output import XMLOutput
+from View.Flask.base_entry_view import BaseEntryView
 from View.Flask.renderer import Renderer
 # configuration
 from Controller.controller import Controller
@@ -22,12 +23,15 @@ app.debug = True
 # toolbar = DebugToolbarExtension(app)
 package=PackageBase("test")
 package.current_language = "cs"
-input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/apache")
+input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
 output=XMLOutput(package)
 con=Controller(package, input_parser, output)
 con.load_package()
 tabs=con.tabs()
 renderer=Renderer()
+
+app.add_url_rule('/base/', view_func=BaseEntryView.as_view('users'))
+
 
 
 def render_default(body=""):
@@ -56,7 +60,6 @@ def tab(name):
     Rsection=""
     for section in sections:
         Rsection=Rsection+renderer.entry_render(section)
-    # flash(u'Záložka jméno', 'info')
     return render_default(Rsection)
 
 @app.route("/tab/<name>/save", methods=['POST'])
@@ -71,16 +74,20 @@ def save(name):
 @app.route("/_multiple_new")
 def multiple_new():
     full_name = request.args.get('full_name')
-    con._entry_controller.multiple_new(full_name)
-    return ""
+    result=result=con._entry_controller.multiple_new(full_name)
+    if not result:
+        flash(u'Maximum element reach', 'warning')
+    return jsonify(result=result)
 
 
 @app.route("/_multiple_delete")
 def multiple_delete():
     full_name = request.args.get('full_name')
     value = request.args.get('value')
-    con._entry_controller.multiple_delete(full_name, value)
-    return ""
+    result=result=con._entry_controller.multiple_delete(full_name, value)
+    if not result:
+        flash(u'Minimum element reach', 'warning')
+    return jsonify(result=result)
 
 
 @app.route("/_multiple_up")
@@ -118,6 +125,11 @@ def reload_element():
     full_name = request.args.get('full_name')
     entry=con._entry_controller.get_entry(full_name)
     return renderer.reload_element(entry)
+
+
+@app.route('/_flash')
+def flash_message():
+    return render_template('elements/flash.html')
 
 
 def alert():

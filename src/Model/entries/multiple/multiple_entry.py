@@ -104,8 +104,8 @@ class MultipleEntry(BaseEntry):
         if self.multiple_max is None or self.size() < self.multiple_max:
             self._entries.append(deepcopy(self._template))
             self._entries[-1].index = length
-            return self._entries[-1]
-        return None
+            return True
+        return False
 
     def delete_entry(self, index):
         length = self.size()

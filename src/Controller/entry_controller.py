@@ -9,11 +9,11 @@ class EntryController(object):
 
     def multiple_new(self, path):
         entry = self._tree.find_entry(path)
-        entry.create_new()
+        return entry.create_new()
 
     def multiple_delete(self, path, index):
         entry = self._tree.find_entry(path)
-        entry.delete_entry(index)
+        return entry.delete_entry(index)
 
     def multiple_up(self, path, index):
         entry = self._tree.find_entry(path)
