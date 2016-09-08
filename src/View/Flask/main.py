@@ -4,7 +4,6 @@
 from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
 
 from IO.XMLPackageParser.output import XMLOutput
-from View.Flask.base_entry_view import BaseEntryView
 from View.Flask.renderer import Renderer
 # configuration
 from Controller.controller import Controller
@@ -30,7 +29,6 @@ con.load_package()
 tabs=con.tabs()
 renderer=Renderer()
 
-app.add_url_rule('/base/', view_func=BaseEntryView.as_view('users'))
 
 
 
