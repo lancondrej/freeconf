@@ -68,7 +68,7 @@ class PackageBase(object):
             group.write_native(self.tree)
 
     def execute_dependencies(self):
-        # Resolve all load_form dependencies using root_entry as configuration tree. Call this function after parse.
+        # Resolve all loaded dependencies using root_entry as configuration tree. Call this function after parse.
         for dep in self.dependencies[:]:
             # Dependency resolved -> execute it
             dep.execute()
