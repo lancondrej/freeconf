@@ -9,7 +9,7 @@
 import xml.sax
 import xml.sax.handler
 
-from IO.exception_logging.exception import ParseError
+from src.IO.exception_logging.exception import ParseError
 
 
 class XMLFileReader(xml.sax.handler.ContentHandler):

@@ -1,5 +1,3 @@
-from Model.constants import Types
-
 __author__ = 'Ondřej Lanč'
 
 from flask import render_template

@@ -4,9 +4,9 @@
 
 __author__ = 'Ondřej Lanč'
 
-from Model.constants import Types
-from Model.entries.base_entry import BaseEntry
-from Model.exception_logging.exception import AlreadyExistsError
+from src.Model.constants import Types
+from src.Model.entries.base_entry import BaseEntry
+from src.Model.exception_logging.exception import AlreadyExistsError
 from copy import deepcopy,copy
 
 class Container(BaseEntry):

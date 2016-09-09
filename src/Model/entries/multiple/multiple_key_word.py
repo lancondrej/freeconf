@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 #
-from copy import deepcopy
 
-from Model.entries.key_word import KeyWord
-from Model.entries.multiple.multiple_entry import MultipleEntry
-from Model.exception_logging.exception import MultipleError
+from src.Model.entries.key_word import KeyWord
+from src.Model.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
 

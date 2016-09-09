@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 #
-#from View.GUI.gwindow import GWindow
-from Model.entries.GUI.gwindow import GWindow
-from Model.exception_logging.exception import *
+from src.Model.entries.GUI.gwindow import GWindow
+from src.Model.exception_logging.exception import *
 
 __author__ = 'Ondřej Lanč'
 

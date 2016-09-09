@@ -1,5 +1,5 @@
-from Model.constants import Types
-from Model.entries.GUI.gentry import GEntry
+from src.Model.constants import Types
+from src.Model.entries.GUI.gentry import GEntry
 
 __author__ = 'Ondřej Lanč'
 

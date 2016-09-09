@@ -3,15 +3,14 @@
 
 from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
 
-from IO.XMLPackageParser.output import XMLOutput
-from View.Flask.renderer import Renderer
+from src.IO.XMLPackageParser.output import XMLOutput
+from src.View.Flask.renderer import Renderer
 # configuration
-from Controller.controller import Controller
-from Controller.entry_controller import EntryController
+from src.Controller.controller import Controller
 # from flask_debugtoolbar import DebugToolbarExtension
-from IO.XMLPackageParser.input import XMLParser
-from IO.output import Output
-from Model.package import PackageBase
+from src.IO.XMLPackageParser.input import XMLParser
+from src.IO.output import Output
+from src.Model.package import PackageBase
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -139,6 +138,7 @@ def config():
     output.write_output()
     return render_default()
 
-if __name__ == "__main__":
-    app.run()
-
+#
+# if __name__ == "__main__":
+#     app.run()
+#

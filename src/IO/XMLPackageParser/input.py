@@ -3,24 +3,24 @@
 import os
 import re
 
-from IO.XMLPackageParser.config_file import ConfigFileReader
-from IO.XMLPackageParser.default_file import DefaultFile
-from IO.XMLPackageParser.gui_template_file import GUITemplateFile
-from IO.XMLPackageParser.header_file import HeaderFileReader
-from IO.XMLPackageParser.help_file import HelpFile
-from IO.XMLPackageParser.list_file import ListFile
-from IO.XMLPackageParser.list_help_file import ListHelpFile
-from IO.XMLPackageParser.template_file import TemplateFile
+from src.IO.XMLPackageParser.config_file import ConfigFileReader
+from src.IO.XMLPackageParser.default_file import DefaultFile
+from src.IO.XMLPackageParser.gui_template_file import GUITemplateFile
+from src.IO.XMLPackageParser.header_file import HeaderFileReader
+from src.IO.XMLPackageParser.help_file import HelpFile
+from src.IO.XMLPackageParser.list_file import ListFile
+from src.IO.XMLPackageParser.list_help_file import ListHelpFile
+from src.IO.XMLPackageParser.template_file import TemplateFile
 
-from IO.XMLPackageParser.gui_label_file import GUILabelFile
-from IO.file import FcFileLocation
-from IO.input import Input
-from Model.entries.GUI.gsection import GSection
-from Model.entries.GUI.gtab import GTab
-from Model.entries.GUI.gwindow import GWindow
-from Model.exception_logging.exception import *
-from Model.group import FcGroup
-from Model.package import Plugin
+from src.IO.XMLPackageParser.gui_label_file import GUILabelFile
+from src.IO.file import FcFileLocation
+from src.IO.input import Input
+from src.Model.entries.GUI.gsection import GSection
+from src.Model.entries.GUI.gtab import GTab
+from src.Model.entries.GUI.gwindow import GWindow
+from src.Model.exception_logging.exception import *
+from src.Model.group import FcGroup
+from src.Model.package import Plugin
 
 __author__ = 'Ondřej Lanč'
 

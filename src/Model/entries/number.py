@@ -2,8 +2,8 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from Model.constants import Types
-from Model.entries.key_word import KeyWord
+from src.Model.constants import Types
+from src.Model.entries.key_word import KeyWord
 
 
 class Number(KeyWord):

@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 #
-from IO.XMLPackageParser.sax_file import XMLFileReader
-from IO.exception_logging.log import log
-from Model.constants import Types
-from Model.lists import StringList, FuzzyList
+from src.IO.XMLPackageParser.sax_file import XMLFileReader
+from src.IO.exception_logging.log import log
+from src.Model.constants import Types
+from src.Model.lists import StringList, FuzzyList
 
 __author__ = 'Ondřej Lanč'
 

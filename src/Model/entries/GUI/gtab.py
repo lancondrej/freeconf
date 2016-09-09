@@ -1,4 +1,4 @@
-from Model.entries.GUI.gsection import GSection
+from src.Model.entries.GUI.gsection import GSection
 
 __author__ = 'Ondřej Lanč'
 

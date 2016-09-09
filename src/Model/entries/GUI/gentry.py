@@ -1,4 +1,4 @@
-from Model.constants import Types
+from src.Model.constants import Types
 
 __author__ = 'Ondřej Lanč'
 

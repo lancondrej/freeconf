@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 #
-from Model.constants import Types
-from Model.entries.fuzzy import Fuzzy
-from Model.lists import boolList
+from src.Model.constants import Types
+from src.Model.entries.fuzzy import Fuzzy
+from src.Model.lists import boolList
 
 __author__ = 'Ondřej Lanč'
 

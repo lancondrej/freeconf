@@ -2,12 +2,10 @@
 #
 from copy import deepcopy
 
-from Model.constants import Types
-from Model.exception_logging.exception import MultipleError
 
 __author__ = 'Ondřej Lanč'
 
-from Model.entries.base_entry import BaseEntry
+from src.Model.entries.base_entry import BaseEntry
 
 
 class MultipleEntry(BaseEntry):

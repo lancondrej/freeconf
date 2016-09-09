@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 #
-from Model.entries.container import Container
-from Model.entries.multiple.multiple_entry import MultipleEntry
-from Model.exception_logging.exception import MultipleError
-import types
+from src.Model.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
 

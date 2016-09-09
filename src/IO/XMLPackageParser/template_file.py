@@ -7,18 +7,18 @@
 #
 
 # Freeconf libs
-from IO.exception_logging.exception import ParseError
+from src.IO.exception_logging.exception import ParseError
 
-from IO.XMLPackageParser.sax_file import XMLFileReader
-from IO.exception_logging.log import log
-from Model.constants import Types
-from Model.entries.bool import Bool
-from Model.entries.container import Container
-from Model.entries.fuzzy import Fuzzy
-from Model.entries.multiple.multiple_container import MultipleContainer
-from Model.entries.multiple.multiple_key_word import MultipleKeyWord
-from Model.entries.number import Number
-from Model.entries.string import String
+from src.IO.XMLPackageParser.sax_file import XMLFileReader
+from src.IO.exception_logging.log import log
+from src.Model.constants import Types
+from src.Model.entries.bool import Bool
+from src.Model.entries.container import Container
+from src.Model.entries.fuzzy import Fuzzy
+from src.Model.entries.multiple.multiple_container import MultipleContainer
+from src.Model.entries.multiple.multiple_key_word import MultipleKeyWord
+from src.Model.entries.number import Number
+from src.Model.entries.string import String
 
 
 class TemplateEnum:

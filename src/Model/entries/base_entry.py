@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 #
-from Model.constants import Types
-from Model.exception_logging.exception import *
-from Model.exception_logging.log import log
-from copy import copy
+from src.Model.constants import Types
+from src.Model.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'
 
