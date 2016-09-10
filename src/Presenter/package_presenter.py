@@ -3,7 +3,9 @@
 import configparser
 from os.path import expanduser
 
-from src.Controller.entry_controller import EntryController
+from src.IO.XMLPackageParser.input import XMLParser
+from src.IO.XMLPackageParser.output import XMLOutput
+from src.Presenter.entry_controller import EntryController
 from src.IO.input import Input
 from src.IO.output import Output
 from src.Model.package import PackageBase
@@ -11,13 +13,11 @@ from src.Model.package import PackageBase
 __author__ = 'Ondřej Lanč'
 
 
-class Controller(object):
-    def __init__(self, package, input, output):
-        self.package = package
-        self.input = input
-        self.input.package = self.package
-        self.output = output
-        self._freeconf_dirs = []
+class PackagePresenter(object):
+    def __init__(self):
+        self._package = None
+        self._input = None
+        self._output = None
 
     @property
     def package(self):
@@ -64,11 +64,22 @@ class Controller(object):
     def find_packages(self):
         pass
 
-    def load_package(self):
+    def load_package(self, name):
+
+
+        package = PackageBase("test")
+        package.current_language = "cs"
+        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
+        output = XMLOutput(package)
+        self.package = package
+        self.input = input_parser
+        self.input.package = self.package
+        self.output = output
         self.input.load_package()
         self.input.load_plugins()
         self._entry_controller = EntryController(self.package.tree)
         # del input_parser
+        return True
 
     def tabs(self):
         return [(tab.name, tab.label) for tab in self._package.gui_tree._entries]
@@ -76,3 +87,34 @@ class Controller(object):
     def tab(self, name):
         return self._package.gui_tree.get_entry(name).content._entries
 
+    def find_entry(self, path):
+        return self.package.tree.find_entry(path)
+
+    def save_value(self, path, value):
+        entry = self.find_entry(path)
+        entry.value = value
+
+
+    def multiple_new(self, path):
+        entry = self.find_entry(path)
+        return entry.create_new()
+
+
+    def multiple_delete(self, path, index):
+        entry = self.find_entry(path)
+        return entry.delete_entry(index)
+
+
+    def multiple_up(self, path, index):
+        entry = self.find_entry(path)
+        entry.move_up(index)
+
+
+    def multiple_down(self, path, index):
+        entry = self.find_entry(path)
+        entry.move_down(index)
+
+
+    def get_entry(self, path):
+        entry = self.find_entry(path)
+        return entry

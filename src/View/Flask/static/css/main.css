@@ -11,3 +11,7 @@
     td.button{
         width:136px;
     }
+
+    .navbar-brand{
+        padding: 0px;
+    }
