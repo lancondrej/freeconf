@@ -3,7 +3,7 @@
 {% block entry %}
 
 <div class="form-group row">
-    <label class="col-sm-3 control-label" for="{{full_name}}">{{label}}</label>
+    <label data-toggle="popover" title="{{ label }}" data-content="{{ help }}" class="col-sm-3 control-label" for="{{full_name}}">{{label}}</label>
     <div class="col-sm-9">
             {% block key_word %}{% endblock %}
     </div>

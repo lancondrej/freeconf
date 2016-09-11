@@ -104,6 +104,8 @@ function load_form() {
         submit_form_select($(this))
     });
 
+    $('[data-toggle="popover"]').popover();
+
 }
 
 

@@ -34,32 +34,38 @@ class Renderer(object):
 
     def render_bool(self, entry):
         return render_template('entries/bool.html', name=entry.name, full_name=entry.full_name, label=entry.label,
+                               help=entry.help,
                                checked=entry.grade)
 
     def render_number(self, entry):
         return render_template('entries/number.html', name=entry.name, full_name=entry.full_name, label=entry.label,
+                               help=entry.help,
                                value=entry.value, step=entry.step, min=entry.min, max=entry.max)
 
     def render_string(self, entry):
         if entry.list and not entry.user_values:
             return render_template('entries/select.html', name=entry.name, full_name=entry.full_name, label=entry.label,
+                                   help=entry.help,
                                    value=entry.value, list=entry.list)
         return render_template('entries/string.html', name=entry.name, full_name=entry.full_name, label=entry.label,
+                               help=entry.help,
                                value=entry.value, list=entry.list)
 
     def render_multiple_container(self, container):
         entries = [(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
-        return render_template('entries/multiple_cont.html', label=container.label, full_name=container.full_name,
+        return render_template('entries/multiple_cont.html', label=container.label, help=container.help,
+                               full_name=container.full_name,
                                name=container.name, entries=entries)
 
     def render_multiple_container_collapse(self, container):
         entries = [(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
-        return render_template('entries/multiple_cont_collapse.html', label=container.label,
+        return render_template('entries/multiple_cont_collapse.html', label=container.label, help=container.help,
                                full_name=container.full_name, name=container.name, entries=entries)
 
     def render_multiple_key_word(self, mult_entry):
         entries = [(i, entry.name, self.entry_render(entry)) for i, entry in enumerate(mult_entry.entries)]
-        return render_template('entries/multiple_key.html', label=mult_entry.label, full_name=mult_entry.full_name,
+        return render_template('entries/multiple_key.html', label=mult_entry.label, help=mult_entry.help,
+                               full_name=mult_entry.full_name,
                                name=mult_entry.name, entries=entries)
 
     def render_section(self, section):
