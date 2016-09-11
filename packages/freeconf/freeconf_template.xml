@@ -3,47 +3,30 @@
     <container-name>freeconf-configuration</container-name>
 
     <container>
-        <container-name>programs</container-name>
+        <container-name>general</container-name>
+        <group>default</group>
+        <string>
+            <entry-name>lang</entry-name>
+            <properties>
+                <data>lang_list</data>
+            </properties>
+        </string>
+    </container>
+
+    <container>
+        <container-name>package</container-name>
         <group>default</group>
         <multiple>
             <primary>name</primary>
             <min>0</min>
         </multiple>
-
         <string>
             <entry-name>name</entry-name>
             <mandatory>yes</mandatory>
         </string>
-
-        <container>
-            <container-name>source</container-name>
-            <multiple>
-                <min>0</min>
-            </multiple>
-            <string>
-                <entry-name>location</entry-name>
-                <mandatory>yes</mandatory>
-            </string>
-            <string>
-                <entry-name>input</entry-name>
-                <properties>
-                    <data>input_list</data>
-                </properties>
-            </string>
-            <string>
-                <entry-name>output</entry-name>
-                <properties>
-                    <data>output_list</data>
-                </properties>
-            </string>
-        </container>
-
         <string>
-            <entry-name>output</entry-name>
-            <multiple>
-                <min>0</min>
-            </multiple>
+            <entry-name>location</entry-name>
+            <mandatory>yes</mandatory>
         </string>
-
     </container>
 </freeconf-template>

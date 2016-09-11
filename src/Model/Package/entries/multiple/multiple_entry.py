@@ -5,7 +5,7 @@ from copy import deepcopy
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.entries.base_entry import BaseEntry
+from src.Model.Package.entries.base_entry import BaseEntry
 
 
 class MultipleEntry(BaseEntry):
@@ -96,6 +96,22 @@ class MultipleEntry(BaseEntry):
     @property
     def multiple(self):
         return False
+
+    @property
+    def label(self):
+        return self.template.label
+
+    @label.setter
+    def label(self, label):
+        self.template.label=label
+
+    @property
+    def help(self):
+        return self.template.help
+
+    @help.setter
+    def help(self, help):
+        self.template.help=help
 
     def create_new(self):
         length = self.size()

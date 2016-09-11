@@ -11,8 +11,9 @@ from flask_debugtoolbar import DebugToolbarExtension
 # app.debug = True
 # toolbar = DebugToolbarExtension(app)
 # app.config['DEBUG_TB_PROFILER_ENABLED'] = True
-from Presenter.package_presenter import PackagePresenter
-from View.Flask.renderer import Renderer
+from src.Presenter.config_presenter import ConfigPresenter
+from src.Presenter.package_presenter import PackagePresenter
+from src.View.Flask.renderer import Renderer
 
 __author__ = 'Ondřej Lanč'
 
@@ -20,6 +21,7 @@ __author__ = 'Ondřej Lanč'
 class FreeconfView(Flask):
     def __init__(self, import_name, **kwargs):
         super(FreeconfView, self).__init__(import_name, **kwargs)
+        self._config=ConfigPresenter()
         self._presenter = PackagePresenter()
         self._renderer = Renderer()
         self.add_url_rule('/', 'index', self.index)
@@ -36,7 +38,7 @@ class FreeconfView(Flask):
         self.add_url_rule('/_reload_element', 'reload_element', self.reload_element)
         self.add_url_rule('/_flash', 'flash_message', self.flash_message)
         self.add_url_rule('/_submit', 'submit', self.submit)
-        # self.add_url_rule('/', 'index', self.index)
+        self.add_url_rule('/configure', 'configure', self.configure)
         # self.add_url_rule('/', 'index', self.index)
 
     @property
@@ -53,7 +55,11 @@ class FreeconfView(Flask):
     def about(self):
         return self.render_default(body= render_template("about.html"))
 
-    def render_default(self, tabs=[], body=""):
+    def configure(self):
+        packages=['freeconf', 'apache', 'test']
+        return self.render_default(body= render_template("configure.html", packages=packages))
+
+    def render_default(self, tabs=None, body=""):
         return render_template('index.html', package_name=self.presenter.package_name, tabs=tabs, main=body)
 
     def package(self, name):

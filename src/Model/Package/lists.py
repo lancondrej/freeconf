@@ -2,9 +2,9 @@
 #
 __author__ = 'Ondřej Lanč'
 
+from src.Model.Package.constants import Types
+from src.Model.Package.exception_logging import log
 
-from src.Model.constants import Types
-from src.Model.exception_logging.log import log
 
 class List:
     """Class for string lists and fuzzy lists."""

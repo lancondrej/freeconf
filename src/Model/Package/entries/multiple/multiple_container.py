@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-from src.Model.entries.multiple.multiple_entry import MultipleEntry
+from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
 

@@ -3,7 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 
-from Model.exception_logging.log import log
+from Model import log
 
 
 class FcGeneralError (Exception):

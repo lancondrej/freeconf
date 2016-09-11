@@ -2,7 +2,7 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from src.Model.exception_logging.log import log
+from src.Model.Package.exception_logging import log
 
 
 class ModelGeneralError(Exception):

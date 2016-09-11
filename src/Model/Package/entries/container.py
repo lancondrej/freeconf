@@ -4,10 +4,12 @@
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.constants import Types
-from src.Model.entries.base_entry import BaseEntry
-from src.Model.exception_logging.exception import AlreadyExistsError
-from copy import deepcopy,copy
+from copy import deepcopy
+
+from src.Model.Package.constants import Types
+from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.exception_logging.exception import AlreadyExistsError
+
 
 class Container(BaseEntry):
     """This is a class for keyword entries from Template File"""

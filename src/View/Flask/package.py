@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
+from flask import Flask, render_template, flash, request, jsonify
 
 from src.IO.XMLPackageParser.output import XMLOutput
 from src.View.Flask.renderer import Renderer
@@ -9,8 +9,7 @@ from src.View.Flask.renderer import Renderer
 from src.Presenter.controller import Controller
 # from flask_debugtoolbar import DebugToolbarExtension
 from src.IO.XMLPackageParser.input import XMLParser
-from src.IO.output import Output
-from src.Model.package import PackageBase
+from Model import PackageBase
 
 app = Flask(__name__)
 app.config.from_object(__name__)

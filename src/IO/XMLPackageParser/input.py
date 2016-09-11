@@ -3,24 +3,24 @@
 import os
 import re
 
+from src.Model.Package.group import FcGroup
+from src.Model.Package.entries.GUI.gsection import GSection
+from src.Model.Package.entries.GUI.gtab import GTab
+from src.Model.Package.entries.GUI.gwindow import GWindow
+from src.Model.Package.package import Plugin
 from src.IO.XMLPackageParser.config_file import ConfigFileReader
 from src.IO.XMLPackageParser.default_file import DefaultFile
+from src.IO.XMLPackageParser.gui_label_file import GUILabelFile
 from src.IO.XMLPackageParser.gui_template_file import GUITemplateFile
 from src.IO.XMLPackageParser.header_file import HeaderFileReader
 from src.IO.XMLPackageParser.help_file import HelpFile
 from src.IO.XMLPackageParser.list_file import ListFile
 from src.IO.XMLPackageParser.list_help_file import ListHelpFile
 from src.IO.XMLPackageParser.template_file import TemplateFile
-
-from src.IO.XMLPackageParser.gui_label_file import GUILabelFile
 from src.IO.file import FcFileLocation
 from src.IO.input import Input
-from src.Model.entries.GUI.gsection import GSection
-from src.Model.entries.GUI.gtab import GTab
-from src.Model.entries.GUI.gwindow import GWindow
-from src.Model.exception_logging.exception import *
-from src.Model.group import FcGroup
-from src.Model.package import Plugin
+from src.IO.exception_logging.log import log
+
 
 __author__ = 'Ondřej Lanč'
 
@@ -246,7 +246,6 @@ class XMLParser(Input):
         help_file_parser.parse(
             self._paths.helpFile.fullPath,
             package.tree,
-            package.current_language
         )
 
     def _load_default_values_file(self, package):
@@ -332,19 +331,16 @@ class XMLParser(Input):
             return True
         return False
 
-    def _load_gui_label_file(self, package, loadAllLanguages=""):
+    def _load_gui_label_file(self, package):
         """Load GUI label file. Support function for loadPackage."""
         f = None
         if self._paths.guiLabelFile.name is None:
             log.info("GUI label file in " + package.packageName + " not set.")
             return
-        for key, dir in self._paths.helpDirs.items():
-            f = os.path.join(dir, self._paths.guiLabelFile.name)
-            if os.access(f, os.R_OK):
-                break
-            else:
-                log.info("GUI label file " + self._paths.guiLabelFile.name + " is missing.")
-                return
+        f = os.path.join(self._paths.helpDirs[package.current_language], self._paths.guiLabelFile.name)
+        if not os.access(f, os.R_OK):
+            log.info("GUI label file " + self._paths.guiLabelFile.name + " is missing.")
+            return
         self._paths.guiLabelFile.fullPath = f
 
         log.info("Parsing the GUI label file " + self._paths.guiLabelFile.fullPath)

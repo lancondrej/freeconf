@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
-from src.Model.entries.GUI.gwindow import GWindow
-from src.Model.exception_logging.exception import *
+from src.Model.Package.entries.GUI.gwindow import GWindow
+from src.Model.Package.exception_logging.exception import NotExistsError, AlreadyExistsError
 
 __author__ = 'Ondřej Lanč'
 

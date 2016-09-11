@@ -1,9 +1,6 @@
 <freeconf-lists>
-    <string-list name="input_list">
-        <value>XMLPackageParser</value>
+    <string-list name="lang_list">
+        <value>en</value>
+        <value>cs</value>
     </string-list>
-    <string-list name="output_list">
-        <value>XMLPackageParser</value>
-    </string-list>
-
 </freeconf-lists>

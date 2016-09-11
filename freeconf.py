@@ -4,4 +4,5 @@ _author__ = 'Ondřej Lanč'
 
 
 if __name__ == "__main__":
+
     app.run()

@@ -3,12 +3,12 @@
 import configparser
 from os.path import expanduser
 
+from src.Model.Package.package import PackageBase
 from src.IO.XMLPackageParser.input import XMLParser
 from src.IO.XMLPackageParser.output import XMLOutput
-from src.Presenter.entry_controller import EntryController
 from src.IO.input import Input
 from src.IO.output import Output
-from src.Model.package import PackageBase
+from src.Presenter.entry_controller import EntryController
 
 __author__ = 'Ondřej Lanč'
 
@@ -72,7 +72,7 @@ class PackagePresenter(object):
 
     def load_package(self, name):
         package = PackageBase(name)
-        package.current_language = "cs"
+        package.current_language = "en"
         input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/"+name)
         output = XMLOutput(package)
         self.package = package

@@ -7,11 +7,19 @@
         <max-height>600</max-height>
     </window>
     <tab>
-        <tab-name>Programs</tab-name>
+        <tab-name>general</tab-name>
         <tab-icon>categories/preferences-other</tab-icon>
         <tab-section>
-            <tab-section-name>Programs</tab-section-name>
-            <import-entry>/freeconf-configuration/programs</import-entry>
+            <tab-section-name>lang</tab-section-name>
+            <import-entry>/freeconf-configuration/general/lang</import-entry>
+        </tab-section>
+    </tab>
+    <tab>
+        <tab-name>packages</tab-name>
+        <tab-icon>categories/preferences-other</tab-icon>
+        <tab-section>
+            <tab-section-name>packages</tab-section-name>
+            <import-entry>/freeconf-configuration/package</import-entry>
         </tab-section>
     </tab>
 

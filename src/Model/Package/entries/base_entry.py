@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
-from src.Model.constants import Types
-from src.Model.exception_logging.log import log
+from src.Model.Package.constants import Types
+from src.Model.Package.exception_logging import log
 
 __author__ = 'Ondřej Lanč'
 
@@ -11,7 +11,7 @@ class BaseEntry(object):
 
     def __init__(self):
         self._name = ""
-        self._label = {}
+        self._label = None
         self._help = {}
         self._parent = None
         self._static_active = True
@@ -108,29 +108,21 @@ class BaseEntry(object):
     #         return destination.add_entry(self)
 
     @property
-    def label(self, language=None):
+    def label(self):
         """Returns the correct mutation of the entry's label"""
-        if language is None:
-            language=self._package.current_language
-        try:
-            return self._label[language]
-        except KeyError:
-            return self._name
+        return self._label or self.name
 
-    def set_label(self, language, label):
-        self._label[language] = label
+    @label.setter
+    def label(self, label):
+        self._label = label
 
-    def set_key_help(self, language, help):
-        self._help[language] = help
+    @property
+    def help(self):
+        return self._help
 
-    def key_help(self, language=""):
-        try:
-            if language == "":
-                return self._help[self._package.current_language]
-            else:
-                return self._help[language]
-        except KeyError:
-            return ""
+    @help.setter
+    def help(self, help):
+        self._help = help
 
     @property
     def group(self):

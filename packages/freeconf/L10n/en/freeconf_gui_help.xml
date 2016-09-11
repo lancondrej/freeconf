@@ -1,2 +1,22 @@
 <freeconf-gui-label>
+    <window>
+        <title>Configuration of Freeconf</title>
+    </window>
+<tab>
+    <name>general</name>
+    <label>General Setting</label>
+    <section>
+        <name>lang</name>
+        <label>Languages</label>
+    </section>
+</tab>
+<tab>
+<name>packages</name>
+<label>Packages</label>
+<section>
+    <name>packages</name>
+    <label>Available packages</label>
+</section>
+</tab>
+
 </freeconf-gui-label>

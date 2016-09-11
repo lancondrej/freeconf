@@ -1,2 +1,22 @@
 <freeconf-gui-label>
+    <window>
+        <title>Konfigurace Freeconf</title>
+    </window>
+<tab>
+    <name>general</name>
+    <label>Obecné</label>
+    <section>
+        <name>lang</name>
+        <label>Jazyky</label>
+    </section>
+</tab>
+<tab>
+<name>packages</name>
+<label>Balíčky</label>
+<section>
+    <name>packages</name>
+    <label>Dostupné konfigurační balíčky</label>
+</section>
+</tab>
+
 </freeconf-gui-label>

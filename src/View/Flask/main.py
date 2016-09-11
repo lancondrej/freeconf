@@ -13,7 +13,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 # toolbar = DebugToolbarExtension(app)
 # app.config['DEBUG_TB_PROFILER_ENABLED'] = True
 #
-from View.Flask.View import FreeconfView
+from src.View.Flask.View import FreeconfView
 
 
 
@@ -22,5 +22,7 @@ app.config.from_object(__name__)
 app.jinja_env.autoescape = False
 app.secret_key = 'some_secret'
 app.debug = True
-toolbar = DebugToolbarExtension(app)
 app.config['DEBUG_TB_PROFILER_ENABLED'] = True
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+toolbar = DebugToolbarExtension(app)

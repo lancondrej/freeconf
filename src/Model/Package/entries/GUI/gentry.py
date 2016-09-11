@@ -1,4 +1,4 @@
-from src.Model.constants import Types
+from src.Model.Package.constants import Types
 
 __author__ = 'Ondřej Lanč'
 
@@ -31,10 +31,12 @@ class GEntry(object):
         return Types.UNKNOWN_ENTRY
 
     @property
-    def label(self, language=""):
-        return self._label or self._name
+    def label(self):
+        """Returns the correct mutation of the entry's label"""
+        return self._label or self.name
 
     @label.setter
     def label(self, label):
         self._label = label
+
 

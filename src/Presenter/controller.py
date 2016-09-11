@@ -3,10 +3,10 @@
 import configparser
 from os.path import expanduser
 
-from src.Presenter.entry_controller import EntryController
+from Model import PackageBase
 from src.IO.input import Input
 from src.IO.output import Output
-from src.Model.package import PackageBase
+from src.Presenter.entry_controller import EntryController
 
 __author__ = 'Ondřej Lanč'
 

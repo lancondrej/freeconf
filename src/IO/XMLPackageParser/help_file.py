@@ -23,7 +23,6 @@ class HelpFile(XMLFileReader):
         self.ignoreEntry = 0  # Counter of ingonred container depth
         # ID of current XML element
         self.xml_element = HelpEnum.NO_ELEMENT
-        self.language = None
         self.helpBuffer = ""
 
     def start_element_container(self, attrs):
@@ -117,7 +116,7 @@ class HelpFile(XMLFileReader):
         elif name == "label":
             self.xml_element = HelpEnum.NO_ELEMENT
         elif name == "help":
-            self.currentElement.set_key_help(self.language, self.helpBuffer)
+            self.currentElement.help = self.helpBuffer
             self.xml_element = HelpEnum.NO_ELEMENT
         elif name != "freeconf-help":
             log.error("Unknown entry type: " + name)
@@ -130,17 +129,16 @@ class HelpFile(XMLFileReader):
         if self.xml_element == HelpEnum.LABEL:
             assert self.currentElement is not None
             log.debug("Setting label for entry " + self.currentElement.name + " to " + data + ".")
-            self.currentElement.set_label(self.language, data)
+            self.currentElement.label = data
         elif self.xml_element == HelpEnum.HELP:
             assert self.currentElement is not None
             log.debug("Setting help for entry " + self.currentElement.name + " to " + data + ".")
             self.helpBuffer += data
 
-    def parse(self, file, top_container, language):
+    def parse(self, file, top_container):
         self.enclosing_tag = False
         self.currentElement = None
         self.container_stack = [top_container]
-        self.language = language
         self.xml_element = HelpEnum.NO_ELEMENT
         # Parse the XML file
         XMLFileReader.parse(self, file)

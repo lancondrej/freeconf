@@ -1,19 +1,15 @@
 <freeconf-lists-help>
 
-    <string-list name="input_list">
-	<entry>
-		<value>XMLPackageParser</value>
-		<label>XMLPackageParser</label>
-		<help>XMLPackageParser</help>
-	</entry>
+    <string-list name="lang_list">
+        <entry>
+            <value>en</value>
+            <label>English</label>
 
+        </entry>
+        <entry>
+            <value>cs</value>
+            <label>Czech</label>
+        </entry>
     </string-list>
-    <string-list name="output_list">
-	<entry>
-		<value>XMLPackageParser</value>
-		<label>XMLPackageParser</label>
-		<help>XMLPackageParser</help>
-	</entry>
 
-    </string-list>
 </freeconf-lists-help>

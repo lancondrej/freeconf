@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 #
-from copy import deepcopy
 
-from src.IO.exception_logging.log import log
-
+from src.Model.Package.constants import Types
 from src.IO.XMLPackageParser.sax_file import XMLFileReader
 from src.IO.exception_logging.exception import ParseError
-from src.Model.constants import Types
+from src.IO.exception_logging.log import log
 
 # from lxml.etree import Element, ElementTree
 from xml.etree.ElementTree import Element, ElementTree

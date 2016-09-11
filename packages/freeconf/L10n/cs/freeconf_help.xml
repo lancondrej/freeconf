@@ -1,2 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <freeconf-help>
+    <container name="freeconf-configuration">
+        <label>Konfigurace Freeconf</label>
+        <help></help>
+        <container name="general">
+            <label>Obecné</label>
+            <help>Obecné nastavení</help>
+            <entry name="lang">
+                <label>Jazyky</label>
+                <help>Vyber výchozí jazyk</help>
+            </entry>
+        </container>
+
+        <container name="package">
+            <label>Balíčky</label>
+            <help>Definice jednotlivých balíčků.</help>
+            <entry name="name">
+                <label>Jméno</label>
+                <help>Jméno balíčku.</help>
+            </entry>
+            <entry name="location">
+                <label>Adresář</label>
+                <help>Umístění adresáře s balíčkem.</help>
+            </entry>
+        </container>
+    </container>
 </freeconf-help>
