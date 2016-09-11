@@ -1,14 +1,24 @@
 function submit_form_input(input) {
-    $.getJSON($SCRIPT_ROOT + '/_ajax', {
+    $.getJSON($SCRIPT_ROOT + '/_submit', {
         full_name: input.attr("id"),
-        value: (input.attr("type") == "checkbox") ? (input.is(":checked") ? "yes" : "no") : (input.val())
+        value: input.val()
+    }, function (data) {
+        // $('#result').text(data.result);
+    });
+    return false;
+}
+
+function submit_form_checkbox(input) {
+    $.getJSON($SCRIPT_ROOT + '/_submit', {
+        full_name: input.attr("id"),
+        value: input.is(":checked") ? "yes" : "no"
     }, function (data) {
         // $('#result').text(data.result);
     });
     return false;
 }
 function submit_form_select(select) {
-    $.getJSON($SCRIPT_ROOT + '/_ajax', {
+    $.getJSON($SCRIPT_ROOT + '/_submit', {
         full_name: select.attr("id"),
         value: select.val()
     }, function (data) {
@@ -84,11 +94,16 @@ function load_form() {
     $('input').off().on('change', function () {
         submit_form_input($(this))
     });
+    $('input[type="checkbox"]').off().on('switchChange.bootstrapSwitch', function () {
+        submit_form_checkbox($(this))
+    });
+    $('input[type="checkbox"]').bootstrapSwitch();
+
+
     $('select').off().on('change', function () {
         submit_form_select($(this))
     });
 
-    $('input[type="checkbox"]').bootstrapSwitch();
 }
 
 

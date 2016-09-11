@@ -29,6 +29,12 @@ class PackagePresenter(object):
         self._package=package
 
     @property
+    def package_name(self):
+        if self.package is not None:
+            return self.package.packageName
+        return ""
+
+    @property
     def input(self):
         return self._input
 
@@ -65,11 +71,9 @@ class PackagePresenter(object):
         pass
 
     def load_package(self, name):
-
-
-        package = PackageBase("test")
+        package = PackageBase(name)
         package.current_language = "cs"
-        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/test")
+        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/"+name)
         output = XMLOutput(package)
         self.package = package
         self.input = input_parser

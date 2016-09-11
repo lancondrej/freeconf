@@ -7,7 +7,7 @@ from src.Model.entries.multiple.multiple_entry import MultipleEntry
 __author__ = 'Ondřej Lanč'
 
 
-class MultipleKeyWord(MultipleEntry, KeyWord):
+class MultipleKeyWord(MultipleEntry):
     """Container for multiple config entries."""
 
     def __init__(self, entry):

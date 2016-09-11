@@ -61,7 +61,7 @@ class ConfigFileReader (XMLFileReader):
                 log.error("No entry with name " + name + " in template file container " + container.name)
                 raise ParseError("No entry with name " + name + " in template file container " + container.name)
             if entry.is_multiple_entry_container():
-                entry = entry.append(deepcopy(entry.template))
+                entry = entry.append()
             self.currentElement = entry
         except KeyError:
             log.error("Attribute name was not found!")

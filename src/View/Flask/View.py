@@ -26,6 +26,7 @@ class FreeconfView(Flask):
         self.add_url_rule('/about', 'about', self.about)
         self.add_url_rule('/setting', 'setting', self.setting)
         self.add_url_rule('/package/<name>', 'package', self.package)
+        self.add_url_rule('/package/<package>/<name>/', 'tab', self.tab)
         self.add_url_rule('/_multiple_new', 'multiple_new', self.multiple_new)
         self.add_url_rule('/_multiple_delete', 'multiple_delete', self.multiple_delete)
         self.add_url_rule('/_multiple_up', 'multiple_up', self.multiple_up)
@@ -34,8 +35,7 @@ class FreeconfView(Flask):
         self.add_url_rule('/_multiple_collapse', 'multiple_collapse', self.multiple_collapse)
         self.add_url_rule('/_reload_element', 'reload_element', self.reload_element)
         self.add_url_rule('/_flash', 'flash_message', self.flash_message)
-        self.add_url_rule('/_ajax', 'ajax', self.ajax)
-        self.add_url_rule('/tab/<name>/', 'tab', self.tab)
+        self.add_url_rule('/_submit', 'submit', self.submit)
         # self.add_url_rule('/', 'index', self.index)
         # self.add_url_rule('/', 'index', self.index)
 
@@ -54,7 +54,7 @@ class FreeconfView(Flask):
         return self.render_default(body= render_template("about.html"))
 
     def render_default(self, tabs=[], body=""):
-        return render_template('index.html', text='cot', tabs=tabs, main=body)
+        return render_template('index.html', package_name=self.presenter.package_name, tabs=tabs, main=body)
 
     def package(self, name):
         if self.presenter.load_package(name):
@@ -62,15 +62,15 @@ class FreeconfView(Flask):
         else:
             return "error"
 
-
-
-    def ajax(self):
+    def submit(self):
         full_name = request.args.get('full_name')
         value = request.args.get('value')
         self.presenter.save_value(full_name, value)
         return jsonify(result=value)
 
-    def tab(self, name):
+    def tab(self, package, name):
+        if self.presenter.package_name != package:
+            self.package(package)
         sections = self.presenter.tab(name)
         Rsection = ""
         for section in sections:
