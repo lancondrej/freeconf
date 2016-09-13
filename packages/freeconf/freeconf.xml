@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<container name="freeconf-configuration">
+    <container name="general">
+        <entry name="lang">
+            <value>cs</value>
+        </entry>
+    </container>
+    <container name="package">
+        <entry name="location">
+            <value>packages/freeconf</value>
+        </entry>
+        <entry name="name">
+            <value>Freeconf</value>
+        </entry>
+    </container>
+    <container name="package">
+        <entry name="location">
+            <value>packages/apache</value>
+        </entry>
+        <entry name="name">
+            <value>Apache</value>
+        </entry>
+    </container>
+    <container name="package">
+        <entry name="location">
+            <value>packages/test</value>
+        </entry>
+        <entry name="name">
+            <value>Test</value>
+        </entry>
+    </container>
+</container>

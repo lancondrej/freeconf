@@ -71,6 +71,8 @@ class PackagePresenter(object):
         pass
 
     def load_package(self, name):
+        if self.package is not None and self.package.packageName == name:
+            return True
         package = PackageBase(name)
         package.current_language = "en"
         input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/"+name)
@@ -122,3 +124,17 @@ class PackagePresenter(object):
     def get_entry(self, path):
         entry = self.find_entry(path)
         return entry
+
+    def save_config(self):
+        try:
+            self.output.write_output()
+            return True
+        except Exception:
+            return False
+
+    def save_native(self):
+        try:
+            self.output.write_native()
+            return True
+        except Exception:
+            return False

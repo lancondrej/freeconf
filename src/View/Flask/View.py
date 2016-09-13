@@ -39,6 +39,8 @@ class FreeconfView(Flask):
         self.add_url_rule('/_flash', 'flash_message', self.flash_message)
         self.add_url_rule('/_submit', 'submit', self.submit)
         self.add_url_rule('/configure', 'configure', self.configure)
+        self.add_url_rule('/_save_config', 'save_config', self._save_config)
+        self.add_url_rule('/_save_native', 'save_native', self._save_native)
         # self.add_url_rule('/', 'index', self.index)
 
     @property
@@ -88,7 +90,7 @@ class FreeconfView(Flask):
 
     def multiple_new(self):
         full_name = request.args.get('full_name')
-        result = result = self.presenter.multiple_new(full_name)
+        result = self.presenter.multiple_new(full_name)
         if not result:
             flash(u'Maximum element reach', 'warning')
         return jsonify(result=result)
@@ -96,7 +98,7 @@ class FreeconfView(Flask):
     def multiple_delete(self):
         full_name = request.args.get('full_name')
         value = request.args.get('value')
-        result = result = self.presenter.multiple_delete(full_name, value)
+        result = self.presenter.multiple_delete(full_name, value)
         if not result:
             flash(u'Minimum element reach', 'warning')
         return jsonify(result=result)
@@ -130,3 +132,19 @@ class FreeconfView(Flask):
 
     def flash_message(self):
         return render_template('elements/flash.html')
+
+    def _save_config(self):
+        result = self.presenter.save_config()
+        if result:
+            flash(u'Configuration save', 'success')
+        else:
+            flash(u'Configuration not save', 'danger')
+        return redirect(url_for('package', name=self.presenter.package_name))
+
+    def _save_native(self):
+        result = self.presenter.save_native()
+        if result:
+            flash(u'NAtive configuration save', 'success')
+        else:
+            flash(u'Native Configuration not save', 'danger')
+        return redirect(url_for('package', name=self.presenter.package_name))
