@@ -24,5 +24,6 @@ app.secret_key = 'some_secret'
 app.debug = True
 app.config['DEBUG_TB_PROFILER_ENABLED'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS']=False
 
 toolbar = DebugToolbarExtension(app)
