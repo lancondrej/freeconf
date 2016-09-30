@@ -1,5 +1,5 @@
 {% extends "entries/key_word.html" %}
 
 {% block key_word %}
-    <input class="form-control" type="number" name="{{name}}" id="{{full_name}}" value="{{value}}" step="{{step}}" min="{{min}}" max="{{max}}">
+    <input class="form-control" type="number" name="{{name}}" id="{{full_name}}" value="{{ value if value is not none}}" step="{{step}}" min="{{min}}" max="{{max}}">
 {% endblock %}
