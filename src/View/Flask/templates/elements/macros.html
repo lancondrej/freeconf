@@ -1,0 +1,5 @@
+{% macro help(title='', help_text='', placement='left') -%}
+<button type="button" class="btn btn-link" data-toggle="popover" data-trigger="focus" title="{{ title }}"
+        data-content="{{ help_text }}" data-placement="{{ placement }}">?
+</button>
+{%- endmacro %}

@@ -21,7 +21,6 @@ __author__ = 'Ondřej Lanč'
 class FreeconfView(Flask):
     def __init__(self, import_name, **kwargs):
         super(FreeconfView, self).__init__(import_name, **kwargs)
-        self._config=ConfigPresenter()
         self._presenter = PackagePresenter()
         self._renderer = Renderer()
         self.add_url_rule('/', 'index', self.index)
@@ -52,13 +51,13 @@ class FreeconfView(Flask):
         self._presenter=presenter
 
     def setting(self):
-        return self.package("freeconf")
+        return self.package("Freeconf")
 
     def about(self):
         return self.render_default(body= render_template("about.html"))
 
     def configure(self):
-        packages=['freeconf', 'apache', 'test']
+        packages=self.presenter.packages
         return self.render_default(body= render_template("configure.html", packages=packages))
 
     def render_default(self, tabs=None, body=""):

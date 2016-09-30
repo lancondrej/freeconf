@@ -7,6 +7,9 @@
         <group>default</group>
         <string>
             <entry-name>lang</entry-name>
+            <multiple>
+                <min>1</min>
+            </multiple>
             <properties>
                 <data>lang_list</data>
             </properties>
@@ -27,6 +30,13 @@
         <string>
             <entry-name>location</entry-name>
             <mandatory>yes</mandatory>
+        </string>
+        <string>
+            <entry-name>output</entry-name>
+            <mandatory>yes</mandatory>
+        </string>
+        <string>
+            <entry-name>native</entry-name>
         </string>
     </container>
 </freeconf-template>

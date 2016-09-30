@@ -1,32 +1,53 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <container name="freeconf-configuration">
+    <container name="package">
+        <entry name="name">
+            <value>Freeconf</value>
+        </entry>
+        <entry name="location">
+            <value>packages/freeconf</value>
+        </entry>
+        <entry name="native">
+            <value>freeconf.conf</value>
+        </entry>
+        <entry name="output">
+            <value>packages/freeconf/freeconf.xml</value>
+        </entry>
+    </container>
+    <container name="package">
+        <entry name="name">
+            <value>Apache</value>
+        </entry>
+        <entry name="location">
+            <value>packages/apache</value>
+        </entry>
+        <entry name="native">
+            <value>None</value>
+        </entry>
+        <entry name="output">
+            <value>None</value>
+        </entry>
+    </container>
+    <container name="package">
+        <entry name="name">
+            <value>Test</value>
+        </entry>
+        <entry name="location">
+            <value>packages/test</value>
+        </entry>
+        <entry name="native">
+            <value>None</value>
+        </entry>
+        <entry name="output">
+            <value>None</value>
+        </entry>
+    </container>
     <container name="general">
         <entry name="lang">
             <value>cs</value>
         </entry>
-    </container>
-    <container name="package">
-        <entry name="location">
-            <value>packages/freeconf</value>
-        </entry>
-        <entry name="name">
-            <value>Freeconf</value>
-        </entry>
-    </container>
-    <container name="package">
-        <entry name="location">
-            <value>packages/apache</value>
-        </entry>
-        <entry name="name">
-            <value>Apache</value>
-        </entry>
-    </container>
-    <container name="package">
-        <entry name="location">
-            <value>packages/test</value>
-        </entry>
-        <entry name="name">
-            <value>Test</value>
+        <entry name="lang">
+            <value>en</value>
         </entry>
     </container>
 </container>

@@ -8,6 +8,7 @@ from src.IO.XMLPackageParser.input import XMLParser
 from src.IO.XMLPackageParser.output import XMLOutput
 from src.IO.input import Input
 from src.IO.output import Output
+from src.Presenter.config_presenter import ConfigPresenter
 from src.Presenter.entry_controller import EntryController
 
 __author__ = 'Ondřej Lanč'
@@ -15,6 +16,7 @@ __author__ = 'Ondřej Lanč'
 
 class PackagePresenter(object):
     def __init__(self):
+        self._config=ConfigPresenter()
         self._package = None
         self._input = None
         self._output = None
@@ -27,6 +29,10 @@ class PackagePresenter(object):
     def package(self, package):
         assert isinstance(package, PackageBase)
         self._package=package
+
+    @property
+    def packages(self):
+        return self._config.packages
 
     @property
     def package_name(self):
@@ -52,31 +58,16 @@ class PackagePresenter(object):
         assert isinstance(output, Output)
         self._output=output
 
-
-    def load_config(self, file="config/freeconf.conf"):
-        config = configparser.ConfigParser()
-        config.read(file)
-        self.freeconf_dirs(config["DEFAULT"]["locations"])
-
-    @property
-    def freeconf_dirs(self):
-        return self._freeconf_dirs
-
-    @freeconf_dirs.setter
-    def freeconf_dirs(self, freeconf_dirs):
-        for location in freeconf_dirs:
-            self._freeconf_dirs.append(expanduser(location))
-
-    def find_packages(self):
-        pass
-
     def load_package(self, name):
         if self.package is not None and self.package.packageName == name:
             return True
+        if name not in self.packages:
+            return False
+        package_conf=self._config.package(name)
         package = PackageBase(name)
+        input_parser = XMLParser(package_conf.location)
+        output = XMLOutput(package, package_conf.output)
         package.current_language = "en"
-        input_parser = XMLParser("/home/ondra/škola/Freeconf/Freeconf/packages/"+name)
-        output = XMLOutput(package)
         self.package = package
         self.input = input_parser
         self.input.package = self.package

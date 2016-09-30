@@ -1,39 +1,47 @@
 {% extends "entries/entry.html" %}
+{% from 'elements/macros.html'  import help as help_button %}
 
 {% block entry %}
-<div class="panel panel-default" id="full_name">
-    <div class="panel-heading" data-toggle="popover" title="{{ label }}" data-content="{{ help }}"><h2>{{label}}</h2></div>
-    <div class="panel-body">
-    <table class="table table-bordered">
-        <tbody>
-        {% for entry in entries %}
-            <tr>
-                <td>
-                    {% block item scoped %}{% endblock %}
-                </td>
-                <td class="active multiple_buttons">
-                    <div class="btn-group">
+    <div class="panel panel-default" id="full_name">
+        <div class="panel-heading"><h2>{{ label }}</h2>
+            {% if help %}
+            {{ help_button(label, help) }}
+        {% endif %}
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <td>
+                            {% block item scoped %}{% endblock %}
+                        </td>
+                        <td class="active multiple_buttons">
+                            <div class="btn-group">
 
-                    <button class="btn btn-success multiple_up" type="button" full_name="{{full_name}}" value="{{ entry[0]}}">
-                        <span class="glyphicon glyphicon-arrow-up"></span>
-                    </button>
-                    <button class="btn btn-success multiple_down" type="button" full_name="{{full_name}}" value="{{ entry[0]}}">
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                    </button>
-                    <button class="btn btn-danger multiple_delete" type="button" full_name="{{full_name}}" value="{{ entry[0]}}">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-      <div class="panel-footer">
-          <button class="btn btn-primary multiple_new" type="button" full_name="{{full_name}}">
-              <span class="glyphicon glyphicon-plus"></span>
-          </button>
-      </div>
+                                <button class="btn btn-success multiple_up" type="button" full_name="{{ full_name }}"
+                                        value="{{ entry[0] }}">
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                </button>
+                                <button class="btn btn-success multiple_down" type="button" full_name="{{ full_name }}"
+                                        value="{{ entry[0] }}">
+                                    <span class="glyphicon glyphicon-arrow-down"></span>
+                                </button>
+                                <button class="btn btn-danger multiple_delete" type="button" full_name="{{ full_name }}"
+                                        value="{{ entry[0] }}">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <button class="btn btn-primary multiple_new" type="button" full_name="{{ full_name }}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}

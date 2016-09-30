@@ -143,7 +143,7 @@ class ConfigFileWriter (object):
     def write_config(self):
         root = self.render_entry(self._root)[0]
         config_tree = ElementTree(root)
-        config_tree.write("output.xml", encoding="UTF-8", xml_declaration=True)
+        config_tree.write(self._file, encoding="UTF-8", xml_declaration=True)
 
     def render_entry(self, entry):
         try:

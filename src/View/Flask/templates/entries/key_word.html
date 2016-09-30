@@ -1,11 +1,17 @@
 {% extends "entries/entry.html" %}
+{% from 'elements/macros.html'  import help as help_button %}
 
 {% block entry %}
 
-<div class="form-group row">
-    <label data-toggle="popover" title="{{ label }}" data-content="{{ help }}" class="col-sm-3 control-label" for="{{full_name}}">{{label}}</label>
-    <div class="col-sm-9">
+    <div class="form-group row">
+        <label class="col-sm-4 control-label" for="{{ full_name }}">
+            {{ label }}
+            {% if help %}
+                {{ help_button(label, help) }}
+            {% endif %}
+        </label>
+        <div class="col-sm-7">
             {% block key_word %}{% endblock %}
+        </div>
     </div>
-</div>
 {% endblock %}

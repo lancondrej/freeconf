@@ -4,3 +4,5 @@ class Package(object):
     def __init__(self):
         self.name = ""
         self.location = ""
+        self.output = ""
+        self.native = ""

@@ -1,6 +1,8 @@
 function load() {
     load_form();
     load_modal();
+        flash();
+
 }
 
 function reload(elem) {
@@ -26,5 +28,4 @@ function flash() {
 
 $(function () {
     load()
-
 });

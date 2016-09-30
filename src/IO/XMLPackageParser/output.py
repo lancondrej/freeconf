@@ -6,11 +6,12 @@ __author__ = 'Ondřej Lanč'
 
 class XMLOutput(Output):
 
-    def __init__(self, package):
+    def __init__(self, package, output):
         self._package = package
+        self._output=output
 
     def write_output(self):
-        config_file_writer = ConfigFileWriter('s', self._package.tree)
+        config_file_writer = ConfigFileWriter(self._output, self._package.tree)
         config_file_writer.write_config()
 
 
