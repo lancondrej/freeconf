@@ -38,5 +38,8 @@
         <string>
             <entry-name>native</entry-name>
         </string>
+        <string>
+            <entry-name>xslt</entry-name>
+        </string>
     </container>
 </freeconf-template>

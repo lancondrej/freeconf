@@ -66,7 +66,7 @@ class PackagePresenter(object):
         package_conf=self._config.package(name)
         package = PackageBase(name)
         input_parser = XMLParser(package_conf.location)
-        output = XMLOutput(package, package_conf.output)
+        output = XMLOutput(package, package_conf.output,package_conf.native,package_conf.xslt)
         package.current_language = "en"
         self.package = package
         self.input = input_parser

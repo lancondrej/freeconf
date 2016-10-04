@@ -6,8 +6,8 @@ from src.IO.XMLPackageParser.sax_file import XMLFileReader
 from src.IO.exception_logging.exception import ParseError
 from src.IO.exception_logging.log import log
 
-# from lxml.etree import Element, ElementTree
-from xml.etree.ElementTree import Element, ElementTree
+from lxml.etree import Element, ElementTree
+# from xml.etree.ElementTree import Element, ElementTree
 
 __author__ = 'Ondřej Lanč'
 
@@ -127,7 +127,7 @@ class ConfigFileReader (XMLFileReader):
         XMLFileReader.parse(self, file)
 
 class ConfigFileWriter (object):
-    def __init__(self, file, root):
+    def __init__(self, root):
         self.render = {
             'Container': self.render_container,
             'Fuzzy': self.render_key_word,
@@ -137,13 +137,15 @@ class ConfigFileWriter (object):
             'MultipleContainer': self.render_multiple,
             'MultipleKeyWord': self.render_multiple,
         }
-        self._file = file
         self._root = root
 
-    def write_config(self):
+    def write_config(self, file):
+        config_tree = self.get_config()
+        config_tree.write(file, encoding="UTF-8", xml_declaration=True)
+
+    def get_config(self):
         root = self.render_entry(self._root)[0]
-        config_tree = ElementTree(root)
-        config_tree.write(self._file, encoding="UTF-8", xml_declaration=True)
+        return ElementTree(root)
 
     def render_entry(self, entry):
         try:

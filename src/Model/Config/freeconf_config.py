@@ -20,6 +20,7 @@ class Config(object):
             p.location = package.find('location').text
             p.output = package.find('output').text
             p.native = package.find('native').text
+            p.xslt = package.find('xslt').text
             self._packages[p.name]=p
         for lang in root.findall('.general/lang'):
                 self._lang.append(lang.text)

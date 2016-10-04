@@ -1,4 +1,5 @@
 from src.IO.XMLPackageParser.config_file import ConfigFileWriter
+from src.IO.XMLPackageParser.native_file import NativeFileWriter
 from src.IO.output import Output
 
 __author__ = 'Ondřej Lanč'
@@ -6,13 +7,16 @@ __author__ = 'Ondřej Lanč'
 
 class XMLOutput(Output):
 
-    def __init__(self, package, output):
+    def __init__(self, package, output, native, xslt):
         self._package = package
         self._output=output
+        self._native=native
+        self._xslt=xslt
+
 
     def write_output(self):
-        config_file_writer = ConfigFileWriter(self._output, self._package.tree)
-        config_file_writer.write_config()
+        config_file_writer = ConfigFileWriter(self._package.tree)
+        config_file_writer.write_config(self._output)
 
 
     def write_package(self):
@@ -21,8 +25,9 @@ class XMLOutput(Output):
 
 
     def write_native(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
+        config_file_writer = ConfigFileWriter(self._package.tree)
+        native_file_writer = NativeFileWriter(self._native, self._xslt, config_file_writer)
+        native_file_writer.write_native()
 
 
     @property
