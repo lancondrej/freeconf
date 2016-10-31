@@ -3,7 +3,7 @@
 import configparser
 from os.path import expanduser
 
-from src.Model.Package.package import PackageBase
+from src.Model.Package.package import Package
 from src.IO.XMLPackageParser.input import XMLParser
 from src.IO.XMLPackageParser.output import XMLOutput
 from src.IO.input import Input
@@ -27,7 +27,7 @@ class PackagePresenter(object):
 
     @package.setter
     def package(self, package):
-        assert isinstance(package, PackageBase)
+        assert isinstance(package, Package)
         self._package=package
 
     @property
@@ -64,7 +64,7 @@ class PackagePresenter(object):
         if name not in self.packages:
             return False
         package_conf=self._config.package(name)
-        package = PackageBase(name)
+        package = Package(name)
         input_parser = XMLParser(package_conf.location)
         output = XMLOutput(package, package_conf.output,package_conf.native,package_conf.xslt)
         package.current_language = "en"

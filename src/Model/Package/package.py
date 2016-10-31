@@ -6,7 +6,7 @@ from src.Model.Package.exception_logging.exception import NotExistsError, Alread
 __author__ = 'Ondřej Lanč'
 
 
-class PackageBase(object):
+class Package(object):
     """Base class for package and plugin classes."""
 
     def __init__(self, name):
@@ -17,11 +17,8 @@ class PackageBase(object):
         # self.freeconfDirs = []
         self.lists = {}
         self.groups = {}
-        self.availableLanguages = []
         self.dependencies = []
         self.gui_tree = GWindow()
-
-
 
     @property
     def is_plugin(self):
@@ -72,25 +69,15 @@ class PackageBase(object):
             # Dependency resolved -> execute it
             dep.execute()
 
-    #def write_output(self):
-     #   if self.inconsistent:
-      #      raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
-       # self.output.write_output()
-
-   # def write_package(self):
-   #     if self.inconsistent:
-   #         raise InconsistencyError("The package is in inconsistent state. Configuration file cannot be saved")
-   #     self.output.write_package()
-
     def inconsistent(self):
         return self.tree.inconsistent
 
 
-class Plugin(PackageBase):
+class Plugin(Package):
     """Class representing plugin."""
 
     def __init__(self, name, package):
-        PackageBase.__init__(self, name)
+        Package.__init__(self, name)
         self.available_groups = package.available_groups
         self.package = package  # Reference to main package
         self.tree = package.tree

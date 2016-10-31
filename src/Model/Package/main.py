@@ -3,7 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 
-from src.Model.Package.package import PackageBase
+from src.Model.Package.package import Package
 
 
 class FreeconfModel(object):
@@ -20,7 +20,7 @@ class FreeconfModel(object):
 
     @package.setter
     def package(self, package):
-        assert isinstance(package, PackageBase)
+        assert isinstance(package, Package)
         self._package = package
 
     @property
