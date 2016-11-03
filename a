@@ -1,0 +1,174 @@
+SSLCACertificateFile a
+
+
+LogLevel Critical
+
+
+HostnameLookups no
+
+
+DefaultType text/plain
+
+
+ServerTokens OS
+
+
+PidFile /var/run/apache2.pid
+
+
+ServerRoot /etc/apache2
+
+
+SSLCARevocationFile c
+
+
+SSLCertificateFile f
+
+
+ErrorLog /var/log/apache2/error.log
+
+
+SSLMutex i
+
+
+ServerSignature On
+
+
+KeepAlive yes
+
+
+Port 80
+
+
+ServerName pokus.net
+
+
+ServerAdmin admin
+
+
+Address localhost
+
+
+DocumentRoot /var/www
+
+
+URLPath temp
+
+
+TargetPath /tmp
+
+
+Hostname pokus.cz
+
+
+Hostname www.pokus.net
+
+
+ErrorLog None
+
+
+Path /var/www
+
+
+Deny from 1.2.3.4
+
+
+Limit no
+
+
+Indexes no
+
+
+Options no
+
+
+AuthConfig no
+
+
+FileInfo no
+
+
+Allow from all
+
+
+ExecCGI no
+
+
+SymLinksIfOwnerMatch no
+
+
+MultiViews yes
+
+
+IncludesNOEXEC no
+
+
+Indexes None
+
+
+Includes no
+
+
+FollowSymlinks None
+
+
+Order Allow,Deny
+
+
+LogLevel None
+
+
+SSLCertificateKeyFile g
+
+
+Port 0.0
+
+
+Address localhost
+
+
+SSLCARevocationPath d
+
+
+SSLInsecureRenegotiation yes
+
+
+MaxKeepAliveRequests 98.0
+
+
+TimeOut 300.0
+
+
+Port 80.0
+
+
+Address None
+
+
+SSLRequireSSL yes
+
+
+KeepAliveTimeout 5.0
+
+
+TraceEnable Off
+
+
+Group www-data
+
+
+LockFile /var/lock/apache2/accept.lock
+
+
+AccessFileName .htaccess
+
+
+User www-data
+
+
+SSLCertificateChainFile e
+
+
+SSLCACertificatePath b
+
+

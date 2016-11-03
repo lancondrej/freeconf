@@ -1,0 +1,11 @@
+src/Controller/__pycache__/
+src/IO/XMLPackageParser/__pycache__/
+src/IO/Input/__pycache__/
+src/IO/exception_logging/__pycache__/
+src/IO/__pycache__/
+src/Model/__pycache__/
+src/Model/entries/GUI/__pycache__/
+src/Model/entries/__pycache__/
+src/Model/exception_logging/__pycache__/
+src/View/Flask/__pycache__/
+src/View/__pycache__/
