@@ -1,3 +1,4 @@
+.idea
 src/Controller/__pycache__/
 src/IO/XMLPackageParser/__pycache__/
 src/IO/Input/__pycache__/
