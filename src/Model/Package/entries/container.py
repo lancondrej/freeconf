@@ -50,8 +50,8 @@ class Container(BaseEntry):
         """insert entry"""
         # assert isinstance(entry, BaseEntry)
         if entry.name in self._entries:
-            raise AlreadyExistsError(u"Can't add child! There is already entry with name ({s})"
-                                     u" in the section ({s}).".format(entry.name, self.name))
+            raise AlreadyExistsError(u"Can't add child! There is already entry with name ({})"
+                                     u" in the container ({}).".format(entry.name, self.name))
         # elif isinstance(entry, BaseEntry):
             # if entry.multiple:
             #     # Create multiple container

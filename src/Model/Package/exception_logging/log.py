@@ -1,8 +1,9 @@
+import logging
+
 #!/usr/bin/python3
 #
 __author__ = 'Ondřej Lanč'
 
-import logging
 
 # Setup logging to stderr
 handler = logging.StreamHandler()
@@ -13,4 +14,3 @@ handler.setFormatter(format)
 log = logging.getLogger('Model-Freeconf')
 log.addHandler(handler)
 log.setLevel(logging.ERROR)
-

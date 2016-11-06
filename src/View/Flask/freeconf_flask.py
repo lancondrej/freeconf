@@ -76,7 +76,7 @@ class FreeconfFlask(Flask):
     def submit(self):
         full_name = request.args.get('full_name')
         value = request.args.get('value')
-        self.presenter.save_value(full_name, value)
+        self.presenter.entry.save_value(full_name, value)
         return jsonify(result=value)
 
     def tab(self, name):
