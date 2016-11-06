@@ -8,7 +8,7 @@
                     <h1>{{package_name}}</h1>
                     <ul class="nav nav-pills nav-stacked">
                         {% for tab in tabs %}
-                            <li><a href="{{ url_for('tab', package=package_name, name=tab[0]) }}">{{ tab[1] }}</a></li>
+                            <li><a href="{{ url_for('tab', name=tab[0]) }}">{{ tab[1] }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}

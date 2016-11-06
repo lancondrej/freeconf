@@ -1,80 +1,64 @@
 #!/usr/bin/python3
 
-import configparser
-from os.path import expanduser
-
 from src.Model.Package.package import PackageBase
 from src.IO.XMLPackageParser.input import XMLParser
-from src.IO.XMLPackageParser.output import XMLOutput
 from src.IO.input import Input
-from src.IO.output import Output
-from src.Presenter.config_presenter import ConfigPresenter
-from src.Presenter.entry_controller import EntryController
+from src.Presenter.entry_presenter import EntryPresenter
+from src.Presenter.presenter import Presenter
 
 __author__ = 'Ondřej Lanč'
 
 
-class PackagePresenter(object):
-    def __init__(self):
-        self._config=ConfigPresenter()
+class PackagePresenter(Presenter):
+    def __init__(self, config):
+        self._config=config
+        self._entry=None
         self._package = None
-        self._input = None
-        self._output = None
 
     @property
     def package(self):
         return self._package
 
-    @package.setter
-    def package(self, package):
-        assert isinstance(package, PackageBase)
-        self._package=package
 
     @property
-    def packages(self):
+    def entry(self):
+        return self._entry
+
+    # @package.setter
+    # def package(self, package):
+    #     assert isinstance(package, PackageBase)
+    #     self._package=package
+
+    @property
+    def available_packages(self):
         return self._config.packages
 
     @property
     def package_name(self):
         if self.package is not None:
-            return self.package.packageName
+            return self.package.package_name
         return ""
 
-    @property
-    def input(self):
-        return self._input
+    def load_package(self, language):
+        self._package = PackageBase(self._config.name)
+        if language in self._config.avaiable_language:
+            self._package.current_language = language
+        else:
+            self._package.current_language = self._config.default_language
 
-    @input.setter
-    def input(self, input):
-        assert isinstance(input, Input)
-        self._input=input
+        input_parser=XMLParser(self._config.location)
+        assert isinstance(input_parser, Input)
+        input_parser.package = self.package
+        input_parser.location = self._config.location
+        input_parser.load_package()
+        input_parser.load_plugins()
 
-    @property
-    def output(self):
-        return self._output
-
-    @output.setter
-    def output(self, output):
-        assert isinstance(output, Output)
-        self._output=output
-
-    def load_package(self, name):
-        if self.package is not None and self.package.packageName == name:
-            return True
-        if name not in self.packages:
-            return False
-        package_conf=self._config.package(name)
-        package = PackageBase(name)
-        input_parser = XMLParser(package_conf.location)
-        output = XMLOutput(package, package_conf.output,package_conf.native,package_conf.xslt)
-        package.current_language = "en"
-        self.package = package
-        self.input = input_parser
-        self.input.package = self.package
-        self.output = output
-        self.input.load_package()
-        self.input.load_plugins()
-        self._entry_controller = EntryController(self.package.tree)
+        self._entry=EntryPresenter(self.package.tree)
+        # output = XMLOutput(self.package, self._config.output, self._config.native, self._config.xslt)
+        # self.output = output
+        # self.input.load_package()
+        # self.input.load_plugins()
+        # self._entry_controller = EntryController(self.package.tree)
         # del input_parser
         return True
 
@@ -83,38 +67,6 @@ class PackagePresenter(object):
 
     def tab(self, name):
         return self._package.gui_tree.get_entry(name).content._entries
-
-    def find_entry(self, path):
-        return self.package.tree.find_entry(path)
-
-    def save_value(self, path, value):
-        entry = self.find_entry(path)
-        entry.value = value
-
-
-    def multiple_new(self, path):
-        entry = self.find_entry(path)
-        return entry.create_new()
-
-
-    def multiple_delete(self, path, index):
-        entry = self.find_entry(path)
-        return entry.delete_entry(index)
-
-
-    def multiple_up(self, path, index):
-        entry = self.find_entry(path)
-        entry.move_up(index)
-
-
-    def multiple_down(self, path, index):
-        entry = self.find_entry(path)
-        entry.move_down(index)
-
-
-    def get_entry(self, path):
-        entry = self.find_entry(path)
-        return entry
 
     def save_config(self):
         try:

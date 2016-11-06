@@ -6,3 +6,4 @@ class Package(object):
         self.location = ""
         self.output = ""
         self.native = ""
+        self.avaiable_language=["en", "cs"]

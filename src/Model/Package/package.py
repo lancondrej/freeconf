@@ -13,7 +13,7 @@ class PackageBase(object):
         self.tree = None
         self.plugins = []
         self._currentLanguage = ""
-        self.packageName = name
+        self.package_name = name
         # self.freeconfDirs = []
         self.lists = {}
         self.groups = {}

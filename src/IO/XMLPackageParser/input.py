@@ -335,7 +335,7 @@ class XMLParser(Input):
         """Load GUI label file. Support function for loadPackage."""
         f = None
         if self._paths.guiLabelFile.name is None:
-            log.info("GUI label file in " + package.packageName + " not set.")
+            log.info("GUI label file in " + package.package_name + " not set.")
             return
         f = os.path.join(self._paths.helpDirs[package.current_language], self._paths.guiLabelFile.name)
         if not os.access(f, os.R_OK):

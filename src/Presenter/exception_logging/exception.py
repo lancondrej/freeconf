@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 #
-from src.Presenter.exception_logging import log
-
 __author__ = 'Ondřej Lanč'
 
 
+from Model import log
 
 
 class FcGeneralError (Exception):
