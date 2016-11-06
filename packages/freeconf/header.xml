@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-header>
-<name>Freeconf</name>
-
-<language default="en">
-    <option>en</option>
-    <option>cs</option>
-</language>
+    <package>
+        <name>Freeconf</name>
+        <default-language>cs</default-language>
+        <input>XMLParser</input>
+    </package>
 <content>
   <template>freeconf_template.xml</template>
   <default-values>freeconf_default.xml</default-values>

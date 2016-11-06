@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-header>
+        <package>
+        <name>Test</name>
+        <default-language>en</default-language>
+
+        <input>XMLParser</input>
+    </package>
     <content>
         <template>test_template.xml</template>
         <default-values>test_default.xml</default-values>

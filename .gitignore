@@ -18,7 +18,6 @@ drawing-1.svg
 ico.png
 output.xml
 packages/apache/apache_conf_a.xml
-src/IO/XMLParser/
 src/Model/Config/__pycache__/
 src/Model/Package/__pycache__/__init__.cpython-35.pyc
 src/Model/Package/__pycache__/group.cpython-35.pyc

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from src.Model.Package.package import PackageBase
+from src.Model.Package.package import Package
 from src.IO.XMLPackageParser.input import XMLParser
 from src.IO.input import Input
 from src.Presenter.entry_presenter import EntryPresenter
@@ -31,7 +31,7 @@ class PackagePresenter(Presenter):
 
     @property
     def available_packages(self):
-        return self._config.packages
+        return self._config.package_list
 
     @property
     def package_name(self):
@@ -39,8 +39,8 @@ class PackagePresenter(Presenter):
             return self.package.package_name
         return ""
 
-    def load_package(self, language):
-        self._package = PackageBase(self._config.name)
+    def load_package(self, language=None):
+        self._package = Package(self._config.name)
         if language in self._config.avaiable_language:
             self._package.current_language = language
         else:

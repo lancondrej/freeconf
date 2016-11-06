@@ -1,6 +1,6 @@
 from flask_debugtoolbar import DebugToolbarExtension
 
-from src.Model.Config.freeconf_config import Config
+from src.Presenter.config_presenter import ConfigPresenter
 from src.Presenter.package_presenter import PackagePresenter
 from src.View.Flask.freeconf_flask import FreeconfFlask
 from src.Presenter.presenter import Presenter
@@ -10,7 +10,7 @@ __author__ = 'Ondřej Lanč'
 
 class MainPresenter(Presenter):
     def __init__(self):
-        self._config=Config()
+        self._config=ConfigPresenter()
         self._package=None
         self._view=None
 
@@ -39,10 +39,10 @@ class MainPresenter(Presenter):
     def load_package(self, name):
         if self.package is not None and self.package.package_name == name:
             return True
-        if name not in self.config.packages:
+        if name not in self.config.packages_list:
             return False
         self._package=PackagePresenter(self.config.package(name))
-        self.package.load_package("en")
+        self.package.load_package()
         return True
 
     @property

@@ -61,7 +61,7 @@ class FreeconfFlask(Flask):
         return self.render_default(body= render_template("about.html"))
 
     def configure(self):
-        packages=self.presenter.config.packages
+        packages=self.presenter.config.packages_list
         return self.render_default(body= render_template("configure.html", packages=packages))
 
     def render_default(self, package=None, tabs=None, body=""):

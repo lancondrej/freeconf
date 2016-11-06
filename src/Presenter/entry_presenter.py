@@ -22,16 +22,13 @@ class EntryPresenter(Presenter):
         entry = self.get_entry(path)
         return entry.create_new()
 
-
     def multiple_delete(self, path, index):
         entry = self.get_entry(path)
         return entry.delete_entry(index)
 
-
     def multiple_up(self, path, index):
         entry = self.get_entry(path)
         entry.move_up(index)
-
 
     def multiple_down(self, path, index):
         entry = self.get_entry(path)
