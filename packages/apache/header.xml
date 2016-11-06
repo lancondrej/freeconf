@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-header>
+
+<name>Apache</name>
+
+<language default="en">
+    <option>en</option>
+</language>
+
 <content>
   <template>apache_template.xml</template>
   <default-values>apache_default.xml</default-values>

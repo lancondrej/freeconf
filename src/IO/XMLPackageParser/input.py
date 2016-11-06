@@ -76,7 +76,7 @@ class XMLParser(Input):
 
         @property
         def main_dir(self):
-            """Return location of main package or plugin directory."""
+            """Return location of main pa ckage or plugin directory."""
             return self.packageDir
 
         @main_dir.setter
@@ -370,10 +370,7 @@ class XMLParser(Input):
             self._load_gui_label_file(self.package)
         #package.gui_tree.initState()
 
-    def input(self):
-        pass
-
-    def load_config_file(self, file, package):
+    def load_config(self, file, package):
         self._load_config_file(package)
 
     def load_plugins(self):

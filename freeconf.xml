@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<freeconf-configuration>
+    <general>
+        <lang>cs</lang>
+        <lang>en</lang>
+    </general>
+    <packages_dir>
+        <location>packages</location>
+    </packages_dir>
+
+
+</freeconf-configuration>

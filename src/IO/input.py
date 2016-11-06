@@ -6,7 +6,6 @@ __author__ = 'Ondřej Lanč'
 class Input():
     def __init__(self):
         self._package = None
-        self._source = None
 
     @property
     def package(self):
@@ -16,32 +15,18 @@ class Input():
     def package(self, package):
         self._package = package
 
-    def set_source(self, source):
-        self.check_source(source)
-        self._source=source
-
-    def check_source(self, source):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
     def load_package(self):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
-    def load_config_file(self, file):
+    def load_config(self, source):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
-    def load_plugins(self):
+    def load_header(self):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
-    @property
-    def input(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    @input.setter
-    def input(self, input):
+    def load_plugins(self, plugins=[]):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
