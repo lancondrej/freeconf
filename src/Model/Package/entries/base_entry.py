@@ -9,8 +9,8 @@ __author__ = 'Ondřej Lanč'
 class BaseEntry(object):
     """This is basis class for all entries."""
 
-    def __init__(self):
-        self._name = ""
+    def __init__(self, name):
+        self._name = name
         self._label = None
         self._help = {}
         self._parent = None

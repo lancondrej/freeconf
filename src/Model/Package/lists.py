@@ -43,7 +43,6 @@ class StringList(List):
     """Class for string lists."""
 
     class Entry:
-
         """This class describes particular string for string config keyword.
         It contains string value, optional label and help as an explanation for
         meaning of given string value."""

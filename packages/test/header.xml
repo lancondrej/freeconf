@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf-header>
-        <package>
+    <package>
         <name>Test</name>
+        <description></description>
+        <author></author>
         <default-language>en</default-language>
-
-        <input>XMLParser</input>
     </package>
     <content>
         <template>test_template.xml</template>

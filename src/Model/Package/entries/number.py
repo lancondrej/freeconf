@@ -9,8 +9,8 @@ from src.Model.Package.entries.key_word import KeyWord
 class Number(KeyWord):
     """This is a class for keyword entries of type number."""
 
-    def __init__(self):
-        KeyWord.__init__(self)
+    def __init__(self, name):
+        KeyWord.__init__(self, name)
         # # Initialize Properties
         # Maximum possible value
         self._max_set = False

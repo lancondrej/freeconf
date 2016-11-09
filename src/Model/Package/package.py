@@ -12,7 +12,8 @@ class Package(object):
     def __init__(self, name):
         self.tree = None
         self.plugins = []
-        self._currentLanguage = ""
+        self._language = None
+        self._default_language = 'en'
         self.package_name = name
         # self.freeconfDirs = []
         self.lists = {}
@@ -25,13 +26,13 @@ class Package(object):
         return False
 
     @property
-    def current_language(self):
-        return self._currentLanguage
+    def language(self):
+        return self._language or self._default_language
 
-    @current_language.setter
-    def current_language(self, lang):
+    @language.setter
+    def language(self, lang):
         """Current language setter."""
-        self._currentLanguage = lang
+        self._language = lang
 
     @property
     def available_lists(self):

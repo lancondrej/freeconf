@@ -179,8 +179,8 @@ class XMLParser(Input):
             return  # TODO nějaká rozumná chyba
         for lang in package.availableLanguages:
             self._paths.helpDirs[lang] = self._paths.main_dir + "/L10n/" + lang
-        if package.current_language in package.availableLanguages:
-            self._paths.helpFile.fullPath = os.path.join(self._paths.helpDirs[package.current_language],
+        if package.language in package.availableLanguages:
+            self._paths.helpFile.fullPath = os.path.join(self._paths.helpDirs[package.language],
                                                          self._paths.helpFile.name)
         else:
             # TODO udělat nahrání podle pořadí pref jazyků
@@ -226,7 +226,7 @@ class XMLParser(Input):
         # Get directory from full path
         dir = os.path.dirname(file_path)
         # path to help file for current language
-        f = os.path.join(dir, 'L10n', package.current_language, fileName)
+        f = os.path.join(dir, 'L10n', package.language, fileName)
         # TODO: pokud nenajdeme current language, nacteme alespon nejaky jiny pokud je dostupny
         if not os.access(f, os.R_OK):
             # Failed to find list help file
@@ -337,7 +337,7 @@ class XMLParser(Input):
         if self._paths.guiLabelFile.name is None:
             log.info("GUI label file in " + package.package_name + " not set.")
             return
-        f = os.path.join(self._paths.helpDirs[package.current_language], self._paths.guiLabelFile.name)
+        f = os.path.join(self._paths.helpDirs[package.language], self._paths.guiLabelFile.name)
         if not os.access(f, os.R_OK):
             log.info("GUI label file " + self._paths.guiLabelFile.name + " is missing.")
             return
@@ -373,7 +373,7 @@ class XMLParser(Input):
     def load_config(self, file, package):
         self._load_config_file(package)
 
-    def load_plugins(self):
+    def load_plugin(self):
         """Load all plugins found in plugin directory."""
         # Search plugin directory
         dirs = []

@@ -17,8 +17,8 @@ class Container(BaseEntry):
     def is_multiple_entry_container(self):
         return False
 
-    def __init__(self):
-        BaseEntry.__init__(self)
+    def __init__(self, name):
+        BaseEntry.__init__(self, name)
         self._entries = {}
 
     def __deepcopy__(self, memo):

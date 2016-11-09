@@ -2,9 +2,9 @@
 <freeconf-header>
     <package>
         <name>Apache</name>
+        <description></description>
+        <author></author>
         <default-language>en</default-language>
-
-        <input>XMLParser</input>
     </package>
 
     <content>

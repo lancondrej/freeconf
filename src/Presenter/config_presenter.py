@@ -1,4 +1,3 @@
-from src.IO.XMLParser.header_file import HeaderFileReader
 from src.Model.Config.freeconf_config import Config
 import xml.etree.ElementTree as ET
 from os import scandir
@@ -30,11 +29,11 @@ class ConfigPresenter(object):
 
     def _load_packages(self, dir):
         for package in scandir(dir):
-            p = self._load_package(package.path)
+            p = self._load_package_info(package)
             self._config.packages[p.name] = p
 
-    def _load_package(self, path):
-        header = HeaderFileReader(path+"/header.xml")
-        p=header.read()
-        p.location=path
-        return p
+    def _load_package_info(self, dir):
+        package = Package()
+        package.location=dir.path
+        package.name=dir.name
+        return package

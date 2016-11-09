@@ -3,17 +3,7 @@
 __author__ = 'Ondřej Lanč'
 
 
-class Input():
-    def __init__(self):
-        self._package = None
-
-    @property
-    def package(self):
-        return self._package
-
-    @package.setter
-    def package(self, package):
-        self._package = package
+class Input(object):
 
     def load_package(self):
         """Virtual function. Need to be reimplemented in subclass"""
@@ -23,10 +13,6 @@ class Input():
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
-    def load_header(self):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-    def load_plugins(self, plugins=[]):
+    def load_plugin(self, plugins=None):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError

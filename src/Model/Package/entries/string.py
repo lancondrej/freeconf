@@ -10,9 +10,9 @@ from src.Model.Package.entries.key_word import KeyWord
 class String(KeyWord):
     """This is a class for keyword entries if type string from template file."""
 
-    def __init__(self):
-        KeyWord.__init__(self)
-        self.regExp = ""
+    def __init__(self, name):
+        KeyWord.__init__(self, name)
+        self.reg_exp = ""
 
     @property
     def type(self):

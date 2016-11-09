@@ -11,8 +11,8 @@ from src.Model.Package.exception_logging.log import log
 class KeyWord(BaseEntry):
     """This is a class for keyword entries"""
 
-    def __init__(self):
-        BaseEntry.__init__(self)
+    def __init__(self, name):
+        BaseEntry.__init__(self, name)
         self._default_value = None
         self._value = None
         self._dependents = []
