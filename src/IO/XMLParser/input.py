@@ -2,6 +2,8 @@
 #
 import os
 
+from src.IO.XMLParser.config_file import ConfigFileReader
+from src.IO.XMLParser.default_values_file import DefaultValuesFileReader
 from src.Model.Package.package import Package
 from src.IO.XMLParser.header_file import HeaderFileReader
 from src.IO.XMLParser.list_file import ListFileReader
@@ -23,6 +25,7 @@ class XMLParser(Input):
         self._load_header()
         self._load_lists()
         self._load_template()
+        self._load_default_value()
         return self._package
 
     def _load_header(self):
@@ -37,6 +40,13 @@ class XMLParser(Input):
         """Load template file. Support function for load_package."""
         TemplateFileReader(self.config, self._package).parse()
 
+    def _load_default_value(self):
+        """Load file with default values"""
+        DefaultValuesFileReader(self.config, self._package).parse()
+
+    def _load_config(self):
+        """Load config file ignore help, only load like default values"""
+        ConfigFileReader(self.config, self._package).parse()
 
     def load_plugin(self, plugins=None):
         """Virtual function. Need to be reimplemented in subclass"""

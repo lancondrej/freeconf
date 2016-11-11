@@ -29,7 +29,7 @@ class BaseEntry(object):
         #self.guiBuddy = None
 
     def __deepcopy__(self, memo):
-        newone = type(self)()
+        newone = type(self)(self.name)
         newone.__dict__.update(self.__dict__)
         return newone
 

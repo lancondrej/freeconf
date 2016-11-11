@@ -27,6 +27,7 @@ class MultipleEntry(BaseEntry):
         newone = type(self)(None)
         newone.__dict__.update(self.__dict__)
         newone._entries = deepcopy(self.entries)
+        newone._default = deepcopy(self._default)
         newone._template = deepcopy(self.template)
         # TODO: není potřeba kopíravat template, ale je v tom případě potřeba vyřešit správně směrování na parent
         return newone
@@ -115,9 +116,17 @@ class MultipleEntry(BaseEntry):
 
     def create_new(self):
         length = self.size()
-        if self.multiple_max is None or self.size() < self.multiple_max:
+        if self.multiple_max is None or length < self.multiple_max:
             self._entries.append(deepcopy(self._template))
             self._entries[-1].index = length
+            return True
+        return False
+
+    def create_new_default(self):
+        length = self.default_size()
+        if self.multiple_max is None or length < self.multiple_max:
+            self._default.append(deepcopy(self._template))
+            self._default[-1].index = length
             return True
         return False
 
@@ -154,12 +163,9 @@ class MultipleEntry(BaseEntry):
         self.create_new()
         return self.entries[-1]
 
-    def append_default(self, entry):
-        if entry is not None:
-            # assert isinstance(entry, BaseEntry)
-            # entry.parent = self
-            self._default.append(entry)
-            return entry
+    def append_default(self):
+        self.create_new_default()
+        return self._default[-1]
 
     def disconnect(self, entry):
         try:
@@ -183,6 +189,9 @@ class MultipleEntry(BaseEntry):
 
     def size(self):
         return len(self._entries)
+
+    def default_size(self):
+        return len(self._default)
 
     def _swap(self, i, j):
         """Swap entries at given positions."""

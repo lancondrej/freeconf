@@ -9,6 +9,12 @@
     <entry name="number1">
         <value>00225.55</value>
     </entry>
+    <entry name="number5">
+        <value>55555.55</value>
+    </entry>
+        <entry name="number5">
+        <value>00220005.55</value>
+    </entry>
     <entry name="string3">
         <value>err</value>
     </entry>

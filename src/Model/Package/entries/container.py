@@ -22,7 +22,7 @@ class Container(BaseEntry):
         self._entries = {}
 
     def __deepcopy__(self, memo):
-        newone = type(self)()
+        newone = type(self)(self.name)
         newone.__dict__.update(self.__dict__)
         newone._entries = deepcopy(self._entries)
         for entry in newone._entries.values():
@@ -63,7 +63,7 @@ class Container(BaseEntry):
 
     @property
     def entries(self):
-        return self._entries\
+        return self._entries
 
     def size(self):
         return len(self._entries)
