@@ -26,6 +26,7 @@ class XMLParser(Input):
         self._load_lists()
         self._load_template()
         self._load_default_value()
+        self._load_config()
         return self._package
 
     def _load_header(self):
