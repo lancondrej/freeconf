@@ -1,27 +1,20 @@
 <freeconf-gui-label>
-    <window>
-        <title>Configuration test</title>
-    </window>
-    <tab>
-        <name>tab1</name>
+    <title>Configuration test</title>
+    <tab name="tab1">
         <label>Tab 1</label>
         <description>General settings</description>
-        <section>
-            <name>sekce-1</name>
+        <section name="sekce-1">
             <label>Pokus settings</label>
         </section>
     </tab>
 
-    <tab>
-        <name>tab2</name>
+    <tab name="tab2">
         <label>Tab 2</label>
         <description>zalozka 2</description>
-        <section>
-            <name>sekce-2</name>
+        <section name="sekce-2">
             <label>Pokus 2</label>
         </section>
-        <section>
-            <name>sekce-3</name>
+        <section name="sekce-3">
             <label>Pokus 3</label>
         </section>
     </tab>

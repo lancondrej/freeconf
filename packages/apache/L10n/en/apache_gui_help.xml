@@ -1,43 +1,33 @@
 <freeconf-gui-label>
-  <window>
     <title>Configuration of Apache HTTP Server</title>
-  </window>
-  <tab>
-    <name>server-tab</name>
+  <tab name="server-tab">
     <label>Server</label>
     <description>General server settings</description>
-    <section>
-      <name>server-options</name>
+    <section name="server-options">
       <label>Server settings</label>
     </section>
   </tab>
 
-  <tab>
-    <name>vhosts</name>
+  <tab name="vhosts">
     <label>Virtual Hosts</label>
     <description>Virtual hosts settings</description>
-    <section>
-      <name>vhosts-options</name>
+    <section name="vhosts-options">
       <label>Virtual host settings</label>
     </section>
   </tab>
 
-  <tab>
-    <name>security</name>
+  <tab name="security">
     <label>Security</label>
     <description>Security settings</description>
-    <section>
-      <name>security-options</name>
+    <section name="security-options">
       <label>Security settings</label>
     </section>
   </tab>
 
-  <tab>
-    <name>logging</name>
+  <tab name="logging">
     <label>Logging</label>
     <description>Logging settings</description>
-    <section>
-      <name>logging-options</name>
+    <section name="logging-options">
       <label>Logging settings</label>
     </section>
   </tab>

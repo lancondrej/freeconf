@@ -1,27 +1,22 @@
 <freeconf-lists-help>
 <string-list name="list_test">
-	<entry>
-		<value>Emerg</value>
+	<entry value="Emerg">
 		<label>Emergencies</label>
 		<help>Emergencies - system is unusable.</help>
 	</entry>
-	<entry>
-		<value>alert</value>
+	<entry value="alert">
 		<label>Alert</label>
 		<help>Action must be taken immediately.</help>
 	</entry>
-	<entry>
-		<value>crit</value>
+	<entry value="crit">
 		<label>Critical</label>
 		<help>Critical Conditions.</help>
 	</entry>
-	<entry>
-		<value>err</value>
+	<entry value="err">
 		<label>Error</label>
 		<help>Error conditions.</help>
 	</entry>
-	<entry>
-		<value>war</value>
+	<entry value="war">
 		<label>Warning</label>
 		<help>Warning conditions.</help>
 	</entry>

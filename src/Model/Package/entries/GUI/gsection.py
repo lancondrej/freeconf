@@ -16,7 +16,7 @@ class GSection(GEntry):
         self._entries = []
 
     @property
-    def type (self):
+    def type(self):
         return Types.SECTION
 
     @property

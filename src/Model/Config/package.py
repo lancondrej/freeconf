@@ -44,7 +44,7 @@ class Package(object):
             language=self.default_language
         return os.path.join(self._lists_dir, "L10n", language, self.file.list) if (self.file.list and language)  else None
 
-    def gui_label_file(self, language):
+    def gui_help_file(self, language):
         if language not in self.available_language:
             language=self.default_language
         return os.path.join(self.location, "L10n", language, self.file.gui_label) if (self.file.gui_label and language) else None

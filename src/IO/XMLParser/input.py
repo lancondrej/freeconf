@@ -4,6 +4,8 @@ import os
 
 from src.IO.XMLParser.config_file import ConfigFileReader
 from src.IO.XMLParser.default_values_file import DefaultValuesFileReader
+from src.IO.XMLParser.gui_help_file import GUIHelpFileReader
+from src.IO.XMLParser.gui_template_file import GUITemplateFileReader
 from src.IO.XMLParser.help_file import HelpFileReader
 from src.IO.XMLParser.list_help_file import ListHelpFileReader
 from src.Model.Package.package import Package
@@ -27,8 +29,10 @@ class XMLParser(Input):
         self._load_header()
         self._load_lists()
         self._load_template()
+        self._load_GUI_template()
         self._load_help('en')
         self._load_list_help('en')
+        self._load_GUI_help('en')
         self._load_default_value()
         self._load_config()
         return self._package
@@ -61,6 +65,11 @@ class XMLParser(Input):
         """Load list help file"""
         ListHelpFileReader(self.config, self._package, language).parse()
 
+    def _load_GUI_template(self):
+        GUITemplateFileReader(self.config, self._package).parse()
+
+    def _load_GUI_help(self, language=None):
+        GUIHelpFileReader(self.config, self._package, language).parse()
 
     def load_plugin(self, plugins=None):
         """Virtual function. Need to be reimplemented in subclass"""

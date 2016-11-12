@@ -5,7 +5,7 @@ __author__ = 'Ondřej Lanč'
 
 class GEntry(object):
     """Base class for GUI entries"""
-    def __init__ (self):
+    def __init__(self):
         self._name = None
         # self._parent = None
         self._label = None

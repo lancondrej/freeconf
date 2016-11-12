@@ -27,6 +27,10 @@ class Package(object):
     def gui_tree(self):
         return self._gui_tree or self.build_gui_tree()
 
+    @gui_tree.setter
+    def gui_tree(self, gui_tree):
+        self._gui_tree=gui_tree
+
     def build_gui_tree(self):
         self._gui_tree=GWindow()
         tab=GTab()
@@ -38,6 +42,7 @@ class Package(object):
         tab.content.append(section)
         self._gui_tree.append(tab)
         return self._gui_tree
+
 
     @property
     def is_plugin(self):
