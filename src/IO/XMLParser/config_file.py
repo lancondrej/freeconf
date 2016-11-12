@@ -1,5 +1,6 @@
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
+from lxml.etree import Element, ElementTree
 
 
 __author__ = 'Ondřej Lanč'
@@ -47,5 +48,51 @@ class ConfigFileReader(FileReader):
         entry.value = value
 
 
+class ConfigFileWriter (object):
+    def __init__(self, root):
+        self.render = {
+            'Container': self.render_container,
+            'Fuzzy': self.render_key_word,
+            'Bool': self.render_key_word,
+            'Number': self.render_key_word,
+            'String': self.render_key_word,
+            'MultipleContainer': self.render_multiple,
+            'MultipleKeyWord': self.render_multiple,
+        }
+        self._root = root
+
+    def write_config(self, file):
+        config_tree = self.get_config()
+        config_tree.write(file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+
+    def get_config(self):
+        root = self.render_entry(self._root)[0]
+        return ElementTree(root)
+
+    def render_entry(self, entry):
+        try:
+            return self.render[type(entry).__name__](entry)
+        except:
+            pass
+
+    def render_container(self, container):
+        element = Element('container')
+        element.set('name', container.name)
+        for entry in container.entries.values():
+            sub=self.render_entry(entry)
+            element.extend(self.render_entry(entry))
+        return [element]
+
+    def render_key_word(self, entry):
+        element = Element('entry')
+        element.set('name', entry.name)
+        # element.set('group', entry.group.name)
+        value=Element('value')
+        value.text = str(entry.value)
+        element.append(value)
+        return [element]
+
+    def render_multiple(self, mult):
+        return [self.render_entry(entry)[0] for entry in mult.entries]
 
 
