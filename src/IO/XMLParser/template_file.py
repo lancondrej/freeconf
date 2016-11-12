@@ -117,11 +117,18 @@ class TemplateFileReader(FileReader):
             value=properties.findtext('regexp')
             if value is not None:
                 entry.reg_exp=value
-            # TODO: <data>
+            value = properties.findtext('data')
+            if value is not None:
+                list=self._package.lists.get(value)
+                entry.list=list
 
     def _inside_fuzzy(self, entry, element):
-        pass
-        # TODO: <data>
+        properties = element.find('properties')
+        if properties:
+            value = properties.findtext('data')
+            if value is not None:
+                list = self._package.lists.get(value)
+                entry.list = list
 
     types = [
         EntryType('container', 'container-name', Container, MultipleContainer, _inside_container),

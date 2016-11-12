@@ -29,9 +29,13 @@ class Package(object):
 
     def build_gui_tree(self):
         self._gui_tree=GWindow()
-        tab=GTab("all", "all")
-        tab.content=GSection(tab)
-        tab.content.append(self.tree)
+        tab=GTab()
+        tab.name="all"
+        tab.label="All entries"
+        tab.description="Generated gui Tree"
+        section=GSection()
+        section.append(self.tree)
+        tab.content.append(section)
         self._gui_tree.append(tab)
         return self._gui_tree
 

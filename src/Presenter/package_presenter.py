@@ -50,10 +50,10 @@ class PackagePresenter(Presenter):
         return True
 
     def tabs(self):
-        return [(tab.name, tab.label) for tab in self._package.gui_tree._entries]
+        return [(tab.name, tab.label) for tab in self._package.gui_tree.content]
 
     def tab(self, name):
-        return self._package.gui_tree.get_entry(name).content._entries
+        return self._package.gui_tree.get_tab(name).content
 
     def save_config(self):
         try:

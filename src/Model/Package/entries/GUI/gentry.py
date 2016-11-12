@@ -5,10 +5,10 @@ __author__ = 'Ondřej Lanč'
 
 class GEntry(object):
     """Base class for GUI entries"""
-    def __init__ (self, parent=None):
-        self._name = ""
-        self._parent = parent
-        self._label = {}
+    def __init__ (self):
+        self._name = None
+        # self._parent = None
+        self._label = None
 
     @property
     def name(self):
@@ -18,13 +18,13 @@ class GEntry(object):
     def name(self, name):
         self._name = name
 
-    @property
-    def parent(self):
-        return self._parent
-
-    @parent.setter
-    def parent(self, parent):
-        self._parent = parent
+    # @property
+    # def parent(self):
+    #     return self._parent
+    #
+    # @parent.setter
+    # def parent(self, parent):
+    #     self._parent = parent
 
     @property
     def type (self):

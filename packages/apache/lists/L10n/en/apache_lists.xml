@@ -1,120 +1,98 @@
 <freeconf-lists-help>
 <string-list name="apache_log_levels">
-	<entry>
-		<value>emerg</value>
+	<entry value="emerg">
 		<label>Emergencies</label>
 		<help>Emergencies - system is unusable.</help>
 	</entry>
-	<entry>
-		<value>alert</value>
+	<entry value="alert">
 		<label>Alert</label>
 		<help>Action must be taken immediately.</help>
 	</entry>
-	<entry>
-		<value>crit</value>
+	<entry value="crit">
 		<label>Critical</label>
 		<help>Critical Conditions.</help>
 	</entry>
-	<entry>
-		<value>error</value>
+	<entry value="error">
 		<label>Error</label>
 		<help>Error conditions.</help>
 	</entry>
-	<entry>
-		<value>warn</value>
+	<entry value="warn">
 		<label>Warning</label>
 		<help>Warning conditions.</help>
 	</entry>
-	<entry>
-		<value>notice</value>
+	<entry value="notice">
 		<label>Notice</label>
 		<help>ormal but significant condition.</help>
 	</entry>
-	<entry>
-		<value>info</value>
+	<entry value="info">
 		<label>Info</label>
 		<help>Informational.</help>
 	</entry>
-	<entry>
-		<value>debug</value>
+	<entry value="debug">
 		<label>Debug</label>
 		<help>Debug-level messages.</help>
 	</entry>
 </string-list>
 <string-list name="apache_server_tokens">
-	<entry>
-		<value>Full</value>
+	<entry value="Full">
 		<label>Full</label>
 		<help>Server sends (e.g.): Server: Apache/2.0.41 (Unix) PHP/4.2.2 MyMod/1.2</help>
 	</entry>
-	<entry>
-		<value>OS</value>
+	<entry value="OS">
 		<label>Operating System</label>
 		<help>Server sends (e.g.): Server: Apache/2.0.41 (Unix)</help>
 	</entry>
-	<entry>
-		<value>Minimal</value>
+	<entry value="Minimal">
 		<label>Minimal</label>
 		<help>Server sends (e.g.): Server: Apache/2.0.41</help>
 	</entry>
-	<entry>
-		<value>Minor</value>
+	<entry value="Minor">
 		<label>Minor</label>
 		<help>Server sends (e.g.): Server: Apache/2.0</help>
 	</entry>
-	<entry>
-		<value>Major</value>
+	<entry value="Major">
 		<label>Major</label>
 		<help>Server sends (e.g.): Server: Apache/2</help>
 	</entry>
-	<entry>
-		<value>Prod</value>
+	<entry value="Prod">
 		<label>Product Only</label>
 		<help>Server sends (e.g.): Server: Apache</help>
 	</entry>
 </string-list>
 <string-list name="apache_server_signature">
-	<entry>
-		<value>On</value>
+	<entry value="On">
 		<label>On</label>
 		<help>Adds a line with the server version number and ServerName of the serving virtual host.</help>
 	</entry>
-	<entry>
-		<value>Off</value>
+	<entry value="Off">
 		<label>Off</label>
 		<help>Suppresses the footer line (compatible with behaviour of Apache-1.2 and below.</help>
 	</entry>
-	<entry>
-		<value>EMail</value>
+	<entry value="EMail">
 		<label>E-Mail</label>
 		<help>Adds a line with "mailto:" reference to the ServerAdmin of the referenced document.</help>
 	</entry>
 </string-list>
 <string-list name="apache_trace_enable">
-	<entry>
-		<value>On</value>
+	<entry value="On">
 		<label>On</label>
 		<help>Permits TRACE requests.</help>
 	</entry>
-	<entry>
-		<value>Off</value>
+	<entry value="Off">
 		<label>Off</label>
 		<help>Does not permit TRACE requests. Returns error 405 (Method not allowed) to the client.</help>
 	</entry>
-	<entry>
-		<value>extended</value>
+	<entry value="extended">
 		<label>Extended</label>
 		<help>The core will reflect the full headers and all chunk headers with the response body. This can be used for testing and diagnostic purposes only.</help>
 	</entry>
 </string-list>
 <string-list name="apache_order">
-	<entry>
-		<value>Allow,Deny</value>
+	<entry value="Allow,Deny">
 		<label>Allow,Deny</label>
 		<help>First, all Allow directives are evaluated; at least one must match, or the request is rejected. Next, all Deny directives are evaluated. If any matches, the request is rejected. Last, any requests which do not match an Allow or a Deny directive are denied by default.</help>
 	</entry>
-	<entry>
-		<value>Deny,Allow</value>
+	<entry value="Deny,Allow">
 		<label>Deny,Allow</label>
 		<help>First, all Deny directives are evaluated; if any match, the request is denied unless it also matches an Allow directive. Any requests which do not match any Allow or Deny directives are permitted.</help>
 	</entry>

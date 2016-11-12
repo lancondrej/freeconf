@@ -15,28 +15,31 @@ class HelpFileReader(FileReader):
         super().__init__(help_file)
 
     def parse(self):
-        name=self._root.get('name')
-        try:
-            assert name == self._package.tree.name
-        except AssertionError:
-            log.error('invalid name of root element')
-        containers=self._root.findall('container')
-        for container in containers:
-            self._parse_container(container, self._package.tree)
-        entries=self._root.findall('entry')
-        for entry in entries:
-            self._parse_entry(entry, self._package.tree)
+        root_container=self._root.find('container')
+        if root_container:
+            name=root_container.get('name')
+            try:
+                assert name == self._package.tree.name
+            except AssertionError:
+                log.error('invalid name of root element')
+            containers=root_container.findall('container')
+            for container in containers:
+                self._parse_container(container, self._package.tree)
+            entries=root_container.findall('entry')
+            for entry in entries:
+                self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
         name=container_element.get('name')
         this_container=parent.get_entry(name)
-        self._set_help_label(this_container, container_element)
-        containers=container_element.findall('container')
-        for container in containers:
-            self._parse_container(container, this_container)
-        entries=container_element.findall('entry')
-        for entry in entries:
-            self._parse_entry(entry, this_container)
+        if this_container:
+            self._set_help_label(this_container, container_element)
+            containers=container_element.findall('container')
+            for container in containers:
+                self._parse_container(container, this_container)
+            entries=container_element.findall('entry')
+            for entry in entries:
+                self._parse_entry(entry, this_container)
 
     def _parse_entry(self, entry_element, parent):
         name = entry_element.get('name')

@@ -6,13 +6,13 @@ __author__ = 'Ondřej Lanč'
 
 class GSection(GEntry):
     """GUI container class"""
-    def __init__(self, parent=None):
-        GEntry.__init__(self, parent)
-        self._active_shown = 0
-        self._mandatory_shown = 0
-        self._section_shown = 0
-        self.empty = None
-        self._show_all_children = False
+    def __init__(self):
+        GEntry.__init__(self)
+        # self._active_shown = 0
+        # self._mandatory_shown = 0
+        # self._section_shown = 0
+        # self.empty = None
+        # self._show_all_children = False
         self._entries = []
 
     @property
@@ -20,12 +20,12 @@ class GSection(GEntry):
         return Types.SECTION
 
     @property
-    def entries (self):
+    def entries(self):
         return self._entries
-
-    @property
-    def show_all_children(self):
-        return self._show_all_children
+    #
+    # @property
+    # def show_all_children(self):
+    #     return self._show_all_children
 
     # @property
     # def primaryChildName(self):
