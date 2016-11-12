@@ -10,9 +10,9 @@ class ConfigFileReader(FileReader):
     def __init__(self, config, package):
         self._config = config
         self._package = package
-        list_file = self._config.default_values_file
-        log.info("Loading List file {}".format(list_file))
-        super().__init__(list_file)
+        config_file = self._config.config_file
+        log.info("Loading List file {}".format(config_file))
+        super().__init__(config_file)
 
     def parse(self):
         name=self._root.get('name')
@@ -29,15 +29,15 @@ class ConfigFileReader(FileReader):
 
     def _parse_container(self, container_element, parent):
         name=container_element.get('name')
-        parent=parent.get_entry(name)
-        if parent.is_multiple_entry_container():
-            parent = parent.append()
+        this_container=parent.get_entry(name)
+        if this_container.is_multiple_entry_container():
+            this_container = this_container.append()
         containers=container_element.findall('container')
         for container in containers:
-            self._parse_container(container, parent)
+            self._parse_container(container, this_container)
         entries=container_element.findall('entry')
         for entry in entries:
-            self._parse_entry(entry, parent)
+            self._parse_entry(entry, this_container)
 
     def _parse_entry(self, entry_element, parent):
         name = entry_element.get('name')

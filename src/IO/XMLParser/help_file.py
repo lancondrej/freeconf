@@ -1,17 +1,18 @@
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
+from lxml.etree import Element, ElementTree
 
 
 __author__ = 'Ondřej Lanč'
 
 
-class DefaultValuesFileReader(FileReader):
+class HelpFileReader(FileReader):
     def __init__(self, config, package):
         self._config = config
         self._package = package
-        default_values_file = self._config.default_values_file
-        log.info("Loading default values file {}".format(default_values_file))
-        super().__init__(default_values_file)
+        help_file = self._config.help_file
+        log.info("Loading Help file {}".format(help_file))
+        super().__init__(help_file)
 
     def parse(self):
         name=self._root.get('name')
@@ -29,8 +30,7 @@ class DefaultValuesFileReader(FileReader):
     def _parse_container(self, container_element, parent):
         name=container_element.get('name')
         this_container=parent.get_entry(name)
-        if this_container.is_multiple_entry_container():
-            this_container = this_container.append_default()
+        self._set_help_label(this_container, container_element)
         containers=container_element.findall('container')
         for container in containers:
             self._parse_container(container, this_container)
@@ -41,11 +41,8 @@ class DefaultValuesFileReader(FileReader):
     def _parse_entry(self, entry_element, parent):
         name = entry_element.get('name')
         entry = parent.get_entry(name)
-        value = entry_element.findtext('value')
-        if entry.is_multiple_entry_container():
-            entry = entry.append_default()
-        entry.default_value = value
+        self._set_help_label(entry, entry_element)
 
-
-
-
+    def _set_help_label(self, entry, entry_element):
+        entry.label = entry_element.findtext('label')
+        entry.help = entry_element.findtext('help')
