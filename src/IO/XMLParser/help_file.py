@@ -7,10 +7,10 @@ __author__ = 'Ondřej Lanč'
 
 
 class HelpFileReader(FileReader):
-    def __init__(self, config, package):
+    def __init__(self, config, package, language):
         self._config = config
         self._package = package
-        help_file = self._config.help_file
+        help_file = self._config.help_file(language)
         log.info("Loading Help file {}".format(help_file))
         super().__init__(help_file)
 

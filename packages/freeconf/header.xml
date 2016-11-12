@@ -10,14 +10,14 @@
   <template>freeconf_template.xml</template>
   <default-values>freeconf_default.xml</default-values>
   <help>freeconf_help.xml</help>
-  <output>$PACKAGE/freeconf.xml</output>
+  <output>freeconf.xml</output>
   <gui-template>freeconf_gui_template.xml</gui-template>
   <gui-label>freeconf_gui_help.xml</gui-label>
   <lists>freeconf_lists.xml</lists>
 </content>
 <entry-group name="default">
   <transform>None</transform>
-  <native-output>$PACKAGE/freeconf.xml</native-output>
+  <native-output>freeconf.xml</native-output>
   <output-defaults>yes</output-defaults>
 </entry-group>
 </freeconf-header>

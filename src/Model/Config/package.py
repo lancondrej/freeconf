@@ -9,6 +9,7 @@ class Package(object):
         self.file = self.Files()
         self._groups = {}
         self.available_language = ["en", "cs"]
+        self.default_language = None
 
     def add_group(self, group):
         self._groups[group.name]=group
@@ -33,20 +34,27 @@ class Package(object):
     def gui_template_file(self):
         return os.path.join(self.location, self.file.gui_template) if self.file.gui_template else None
 
-    @property
-    def help_file(self):
-        return os.path.join(self.location, self.file.help) if self.file.help else None
+    def help_file(self, language):
+        if language not in self.available_language:
+            language=self.default_language
+        return os.path.join(self.location, "L10n", language, self.file.help) if self.file.help else None
 
-    @property
-    def gui_label_file(self):
-        return os.path.join(self.location, self.file.gui_label) if self.file.gui_label else None
+    def list_help_file(self, language):
+        if language not in self.available_language:
+            language=self.default_language
+        return os.path.join(self._lists_dir, "L10n", language, self.file.list) if (self.file.list and language)  else None
+
+    def gui_label_file(self, language):
+        if language not in self.available_language:
+            language=self.default_language
+        return os.path.join(self.location, "L10n", language, self.file.gui_label) if (self.file.gui_label and language) else None
 
     @property
     def default_values_file(self):
         return os.path.join(self.location, self.file.default_values) if self.file.default_values else None
 
     @property
-    def output_file(self):
+    def config_file(self):
         return os.path.join(self.location, self.file.output) if self.file.output else None
 
     @property

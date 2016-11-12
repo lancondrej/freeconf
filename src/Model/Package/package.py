@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #
+from src.Model.Package.entries.GUI.gsection import GSection
+from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.GUI.gwindow import GWindow
 from src.Model.Package.exception_logging.exception import NotExistsError, AlreadyExistsError
 
@@ -19,7 +21,19 @@ class Package(object):
         self.lists = {}
         self.groups = {}
         self.dependencies = []
-        self.gui_tree = GWindow()
+        self._gui_tree = None
+
+    @property
+    def gui_tree(self):
+        return self._gui_tree or self.build_gui_tree()
+
+    def build_gui_tree(self):
+        self._gui_tree=GWindow()
+        tab=GTab("all", "all")
+        tab.content=GSection(tab)
+        tab.content.append(self.tree)
+        self._gui_tree.append(tab)
+        return self._gui_tree
 
     @property
     def is_plugin(self):

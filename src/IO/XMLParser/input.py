@@ -4,6 +4,8 @@ import os
 
 from src.IO.XMLParser.config_file import ConfigFileReader
 from src.IO.XMLParser.default_values_file import DefaultValuesFileReader
+from src.IO.XMLParser.help_file import HelpFileReader
+from src.IO.XMLParser.list_help_file import ListHelpFileReader
 from src.Model.Package.package import Package
 from src.IO.XMLParser.header_file import HeaderFileReader
 from src.IO.XMLParser.list_file import ListFileReader
@@ -25,6 +27,8 @@ class XMLParser(Input):
         self._load_header()
         self._load_lists()
         self._load_template()
+        self._load_help('en')
+        self._load_list_help('en')
         self._load_default_value()
         self._load_config()
         return self._package
@@ -49,10 +53,18 @@ class XMLParser(Input):
         """Load config file ignore help, only load like default values"""
         ConfigFileReader(self.config, self._package).parse()
 
+    def _load_help(self, language=None):
+        """Load help file"""
+        HelpFileReader(self.config, self._package, language).parse()
+
+    def _load_list_help(self, language=None):
+        """Load list help file"""
+        ListHelpFileReader(self.config, self._package, language).parse()
+
+
     def load_plugin(self, plugins=None):
         """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
+        pass
 
     def load_config(self, source):
         """Virtual function. Need to be reimplemented in subclass"""

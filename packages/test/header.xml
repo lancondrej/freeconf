@@ -10,14 +10,14 @@
         <template>test_template.xml</template>
         <default-values>test_default.xml</default-values>
         <help>test_help.xml</help>
-        <output>$PACKAGE/test_conf.xml</output>
+        <output>test_conf.xml</output>
         <gui-template>test_gui_template.xml</gui-template>
         <gui-label>test_gui_help.xml</gui-label>
         <lists>test_lists.xml</lists>
     </content>
     <entry-group name="default">
         <transform>None</transform>
-        <native-output>$PACKAGE/test.conf</native-output>
+        <native-output>test.conf</native-output>
         <output-defaults>yes</output-defaults>
     </entry-group>
 </freeconf-header>

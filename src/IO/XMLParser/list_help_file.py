@@ -1,18 +1,15 @@
-import os
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
-from src.IO.exception_logging.exception import ParseError
-from src.Model.Config.group import Group
-from src.Model.Package.lists import FuzzyList, StringList
+
 
 __author__ = 'Ondřej Lanč'
 
 
 class ListHelpFileReader(FileReader):
-    def __init__(self, config, package):
+    def __init__(self, config, package, language):
         self._config = config
         self._package = package
-        list_help_file = self._config.list_help_file
+        list_help_file = self._config.list_help_file(language)
         log.info("Loading List help file {}".format(list_help_file))
         super().__init__(list_help_file)
 
@@ -43,8 +40,8 @@ class ListHelpFileReader(FileReader):
     def _parse_entry(self, list, list_element):
         entries=list_element.findall('entry')
         for entry in entries:
-            value = entry.findtext('value')
-            if value is not None:
+            value = entry.get('value')
+            if value:
                 list_entry = list.get_entry(value)
                 if list_entry is not None:
                     list_entry.label = entry.findtext('label')

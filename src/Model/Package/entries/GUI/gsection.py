@@ -8,11 +8,11 @@ class GSection(GEntry):
     """GUI container class"""
     def __init__(self, parent=None):
         GEntry.__init__(self, parent)
-        self._activeShown = 0
-        self._mandatoryShown = 0
-        self._sectionShown = 0
+        self._active_shown = 0
+        self._mandatory_shown = 0
+        self._section_shown = 0
         self.empty = None
-        self._showAllChildren = False
+        self._show_all_children = False
         self._entries = []
 
     @property
@@ -24,17 +24,17 @@ class GSection(GEntry):
         return self._entries
 
     @property
-    def showAllChildren(self):
-        return self._showAllChildren
+    def show_all_children(self):
+        return self._show_all_children
 
-    @property
-    def primaryChildName(self):
-        raise AttributeError("Property primaryChildName is write only!")
-
-    @primaryChildName.setter
-    def primaryChildName(self, name):
-        self._primaryChildName = name
-        self._primaryChild = None
+    # @property
+    # def primaryChildName(self):
+    #     raise AttributeError("Property primaryChildName is write only!")
+    #
+    # @primaryChildName.setter
+    # def primaryChildName(self, name):
+    #     self._primaryChildName = name
+    #     self._primaryChild = None
 
     def append(self, entry):
         self._entries.append(entry)
