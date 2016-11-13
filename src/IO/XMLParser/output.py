@@ -20,9 +20,9 @@ class XMLOutput(Output):
                 if group in self._config.groups:
                     self._write_group(self._config.group(group))
         else:
-            for group in self._config.groups:
-                # TODO: group write in default
-                self._write_group(self._config.group(group))
+            for group in self._config.groups.values():
+                if group.output_defaults:
+                    self._write_group(group)
 
     def _write_group(self, group):
         config_file_writer = ConfigFileWriter(self._config, self._package)
