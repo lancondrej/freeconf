@@ -2,7 +2,7 @@
 #
 __author__ = 'Ondřej Lanč'
 
-from src.Model.Package.group import FcGroup
+from src.Model.Config.group import Group
 from src.IO.XMLPackageParser.sax_file import XMLFileReader
 from src.IO.exception_logging.exception import ParseError
 from src.IO.exception_logging.log import log
@@ -50,7 +50,7 @@ class HeaderStructure:
         # self.guiTemplateFile = name + "_gui_template.xml"
         # self.guiLabelFile = FcFileLocation(name + "_gui_label.xml")
         # Generate default group
-        default_group = FcGroup("default")
+        default_group = Group("default")
         default_group.transform = FcFileLocation(name + "_transform.xml")
         default_group.native_output = FcFileLocation("${PACKAGE}/" + name + ".conf")
         default_group.output_defaults = True
@@ -134,7 +134,7 @@ class HeaderFileReader(XMLFileReader):
             if group_name in self.headerStructure.groups or (self.plugin and group_name in self.plugin.availableGroups):
                 raise ParseError("Entry group %s is already defined!" % (group_name,))
             # Create new group
-            self.activeGroup = FcGroup(group_name)
+            self.activeGroup = Group(group_name)
 
         elif name == "change-group":  # Redefinition of existing group
             if self.plugin is None:

@@ -2,6 +2,7 @@ import os
 
 __author__ = 'Ondřej Lanč'
 
+
 class Package(object):
     def __init__(self):
         self.name = ""
@@ -10,10 +11,7 @@ class Package(object):
         self._groups = {}
         self.available_language = []
         self.default_language = None
-        self.available_plugins = []
-
-    def add_group(self, group):
-        self._groups[group.name]=group
+        self._plugins = {}
 
     @property
     def header_file(self):
@@ -43,7 +41,7 @@ class Package(object):
     def list_help_file(self, language):
         if language not in self.available_language:
             language=self.default_language
-        return os.path.join(self._lists_dir, "L10n", language, self.file.list) if (self.file.list and language)  else None
+        return os.path.join(self._lists_dir, "L10n", language, self.file.list) if (self.file.list and language) else None
 
     def gui_help_file(self, language):
         if language not in self.available_language:
@@ -70,6 +68,24 @@ class Package(object):
     def languages_dir(self):
         return os.path.join(self.location, 'L10n')
 
+    def group(self, name):
+        return self._groups.get(name)
+
+    def add_group(self, group):
+        self._groups[group.name] = group
+
+    def add_plugin(self, plugin):
+        plugin.parent=self
+        self._plugins[plugin.name]=plugin
+
+    @property
+    def plugins(self):
+        return self._plugins
+
+    def plugin(self, name):
+        return self._plugins.get(name)
+
+
     class Files(object):
         def __init__(self):
             self.header = "header.xml"
@@ -81,3 +97,9 @@ class Package(object):
             self.gui_label = None
             self.default_values = None
             self.output = None
+
+
+class Plugin(Package):
+    def __init__(self):
+        Package.__init__(self)
+        self.parent=None

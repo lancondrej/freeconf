@@ -6,6 +6,8 @@ __author__ = 'Ondřej Lanč'
 class FileReader(object):
 
     def __init__(self, file):
+        if file is None:
+            raise FileExistsError("file missing")
         self._file=file
         self._root = self._get_root()
 

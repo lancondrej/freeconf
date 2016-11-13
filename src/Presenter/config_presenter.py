@@ -2,7 +2,7 @@ from src.Model.Config.freeconf_config import Config
 import xml.etree.ElementTree as ET
 from os import scandir
 
-from src.Model.Config.package import Package
+from src.Model.Config.package import Package, Plugin
 
 __author__ = 'Ondřej Lanč'
 
@@ -32,8 +32,8 @@ class ConfigPresenter(object):
             p = self._load_package_info(package)
             self._config.packages[p.name] = p
 
-    def _load_package_info(self, dir):
-        package = Package()
+    def _load_package_info(self, dir, class_name=Package):
+        package = class_name()
         package.location=dir.path
         package.name=dir.name
         self._load_avaiable_plugins(package)
@@ -42,8 +42,8 @@ class ConfigPresenter(object):
 
     def _load_avaiable_plugins(self, package):
         try:
-            for plugin in scandir(package.plugins_dir):
-                package.available_plugins.append(plugin.name)
+            for plugin_dir in scandir(package.plugins_dir):
+                package.add_plugin(self._load_package_info(plugin_dir, Plugin))
         except FileNotFoundError:
             pass
         # TODO: zpráva do logu

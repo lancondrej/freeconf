@@ -27,14 +27,35 @@ class XMLParser(Input):
 
     def load_package(self):
         self._load_header()
-        self._load_lists()
+        try:
+            self._load_lists()
+        except FileExistsError:
+            log.info("list file missing")
         self._load_template()
-        self._load_GUI_template()
-        self._load_help('en')
-        self._load_list_help('en')
-        self._load_GUI_help('en')
-        self._load_default_value()
-        self._load_config()
+        try:
+            self._load_GUI_template()
+        except FileExistsError:
+            log.info("list file missing")
+        try:
+            self._load_help('en')
+        except FileExistsError:
+            log.info("list file missing")
+        try:
+            self._load_list_help('en')
+        except FileExistsError:
+            log.info("list file missing")
+        try:
+            self._load_GUI_help('en')
+        except FileExistsError:
+            log.info("list file missing")
+        try:
+            self._load_default_value()
+        except FileExistsError:
+            log.info("list file missing")
+        try:
+            self._load_config()
+        except FileExistsError:
+            log.info("list file missing")
         return self._package
 
     def _load_header(self):
@@ -74,10 +95,10 @@ class XMLParser(Input):
     def load_plugin(self, plugins=None):
         if plugins:
             for plugin in plugins:
-                if plugin in self._config.avaiable_plugins:
+                if plugin in self._config.plugins:
                     self._load_plugin(plugin)
         else:
-            for plugin in self._config.avaiable_plugins:
+            for plugin in self._config.plugins:
                 self._load_plugin(plugin)
 
     def _load_plugin(self, plugin_name):

@@ -3,7 +3,7 @@
 import os
 import re
 
-from src.Model.Package.group import FcGroup
+from src.Model.Config.group import Group
 from src.Model.Package.entries.GUI.gsection import GSection
 from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.GUI.gwindow import GWindow
@@ -149,7 +149,7 @@ class XMLParser(Input):
         # Create default group if there was no in the header file
         if len(package.groups) == 0:
             log.warning("No group defined in header file. Creating default group.")
-            group = FcGroup("default")
+            group = Group("default")
             package.groups[group.name] = group
 
         # Fill map of listFiles.
