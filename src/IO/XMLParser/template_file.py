@@ -9,6 +9,7 @@ from src.Model.Package.entries.multiple.multiple_container import MultipleContai
 from src.Model.Package.entries.multiple.multiple_key_word import MultipleKeyWord
 from src.Model.Package.entries.number import Number
 from src.Model.Package.entries.string import String
+from src.Model.Package.package import Plugin
 
 __author__ = 'Ondřej Lanč'
 
@@ -33,7 +34,12 @@ class TemplateFileReader(FileReader):
     def parse(self):
         name = self._root.findtext('container-name')
         if name:
-            container = Container(name)
+            if isinstance(self._package, Plugin):
+                container = self._package.package.tree
+                if container.name != name:
+                    raise ParseError("Plugin root container is different from Package root Container")
+            else:
+                container = Container(name)
             for entry in self._parse_entry(self._root):
                 container.add_entry(entry)
             self._package.tree = container
