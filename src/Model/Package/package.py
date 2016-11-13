@@ -19,7 +19,6 @@ class Package(object):
         self.package_name = name
         # self.freeconfDirs = []
         self.lists = {}
-        self.groups = {}
         self.dependencies = []
         self._gui_tree = None
 
@@ -62,31 +61,6 @@ class Package(object):
         """Return list of available value lists."""
         return self.lists
 
-    @property
-    def available_groups(self):
-        """Return list of available groups."""
-        return self.groups
-
-    @available_groups.setter
-    def available_groups(self, group):
-        """Return list of available groups."""
-        self.groups = group
-
-    def add_group(self, group):
-        if group.name in self.groups:
-            raise AlreadyExistsError("Group with name %s already exists!" % (group.name,))
-        self.groups[group.name] = group
-
-    def remove_group(self, name):
-        if name not in self.groups:
-            raise NotExistsError("Group with name %s does not exist!" % (name,))
-        del self.groups[name]
-
-    def transform(self, groupName="default"):
-        """Write native config files for all groups."""
-        for group in self.groups.values():
-            group.write_native(self.tree)
-
     def execute_dependencies(self):
         # Resolve all loaded dependencies using root_entry as configuration tree. Call this function after parse.
         for dep in self.dependencies[:]:
@@ -102,7 +76,6 @@ class Plugin(Package):
 
     def __init__(self, name, package):
         Package.__init__(self, name)
-        self.available_groups = package.available_groups
         self.package = package  # Reference to main package
         self.tree = package.tree
         self.gui_tree = package.gui_tree
