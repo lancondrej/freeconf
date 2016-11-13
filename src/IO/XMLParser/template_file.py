@@ -39,7 +39,7 @@ class TemplateFileReader(FileReader):
                 if container.name != name:
                     raise ParseError("Plugin root container is different from Package root Container")
             else:
-                container = Container(name)
+                container = Container(name, self._package)
                 container.group = self._config.group()
             for entry in self._parse_entry(self._root):
                 container.add_entry(entry)
@@ -58,7 +58,7 @@ class TemplateFileReader(FileReader):
         for element in elements:
             name = element.findtext(element_type.name_element)
             if name:
-                entry = element_type.class_name(name)
+                entry = element_type.class_name(name, self._package)
                 # Multiple manipulation
                 multiple = element.find('multiple')
                 if multiple:

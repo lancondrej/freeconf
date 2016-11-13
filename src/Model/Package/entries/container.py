@@ -17,12 +17,12 @@ class Container(BaseEntry):
     def is_multiple_entry_container(self):
         return False
 
-    def __init__(self, name):
-        BaseEntry.__init__(self, name)
+    def __init__(self, name, package):
+        BaseEntry.__init__(self, name, package)
         self._entries = {}
 
     def __deepcopy__(self, memo):
-        newone = type(self)(self.name)
+        newone = type(self)(self.name, self.package)
         newone.__dict__.update(self.__dict__)
         newone._entries = deepcopy(self._entries)
         for entry in newone._entries.values():

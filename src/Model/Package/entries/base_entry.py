@@ -9,7 +9,7 @@ __author__ = 'Ondřej Lanč'
 class BaseEntry(object):
     """This is basis class for all entries."""
 
-    def __init__(self, name):
+    def __init__(self, name, package):
         self._name = name
         self._label = None
         self._help = None
@@ -23,13 +23,13 @@ class BaseEntry(object):
         self._multiple = False
 
         self._group = None  # Group of entry
-        self._package = None  # Plugin or package, from which this entry originates.
+        self._package = package  # Plugin or package, from which this entry originates.
 
         self._inconsistent = False
         #self.guiBuddy = None
 
     def __deepcopy__(self, memo):
-        newone = type(self)(self.name)
+        newone = type(self)(self.name, self.package)
         newone.__dict__.update(self.__dict__)
         return newone
 

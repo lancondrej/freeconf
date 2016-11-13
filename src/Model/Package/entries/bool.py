@@ -11,8 +11,8 @@ __author__ = 'Ondřej Lanč'
 class Bool(Fuzzy):
     """This is a class for keyword entries of type bool from template file."""
 
-    def __init__(self, name):
-        Fuzzy.__init__(self, name)
+    def __init__(self, name, package):
+        Fuzzy.__init__(self, name, package)
         self.list = boolList
 
     @property

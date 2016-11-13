@@ -11,8 +11,8 @@ __author__ = 'Ondřej Lanč'
 class Fuzzy(KeyWord):
     """This is a class for keyword entries of type fuzzy."""
 
-    def __init__(self, name):
-        KeyWord.__init__(self, name)
+    def __init__(self, name, package):
+        KeyWord.__init__(self, name, package)
         # # Initialize Properties
         # Maximum possible value
         self._max_set = False

@@ -89,6 +89,8 @@ class ConfigFileWriter(object):
         if group:
             if entry.group != group:
                 return
+        if entry.package != self._package:
+            return
         element = Element('entry')
         element.set('name', entry.name)
         value = entry.value
