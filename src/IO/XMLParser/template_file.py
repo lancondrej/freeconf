@@ -2,7 +2,6 @@ import os
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
 from src.IO.exception_logging.exception import ParseError
-from src.Model.Config.group import Group
 from src.Model.Package.entries.bool import Bool
 from src.Model.Package.entries.container import Container
 from src.Model.Package.entries.fuzzy import Fuzzy
@@ -75,7 +74,7 @@ class TemplateFileReader(FileReader):
                 # group
                 value = element.findtext('group')
                 if value is not None:
-                    entry.group = value
+                    entry.group=self._config.group(value)
                 # other properties for specific type, and container recursion
                 if element_type.inside_func:
                     element_type.inside_func(self, entry, element)
