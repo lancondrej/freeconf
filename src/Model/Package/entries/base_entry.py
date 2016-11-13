@@ -127,7 +127,7 @@ class BaseEntry(object):
     @property
     def group(self):
         # Propagate group from entry's parent
-        return self._group or (self._parent.group if self._parent is not None else None)
+        return self._group or (self.parent.group if self.parent is not None else None)
 
     @group.setter
     def group(self, group):

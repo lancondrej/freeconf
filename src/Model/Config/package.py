@@ -72,7 +72,7 @@ class Package(object):
     def groups(self):
         return self._groups
 
-    def group(self, name):
+    def group(self, name='default'):
         return self._groups.get(name)
 
     def add_group(self, group):

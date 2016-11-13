@@ -40,8 +40,10 @@ class TemplateFileReader(FileReader):
                     raise ParseError("Plugin root container is different from Package root Container")
             else:
                 container = Container(name)
+                container.group = self._config.group()
             for entry in self._parse_entry(self._root):
                 container.add_entry(entry)
+                # add default group
             self._package.tree = container
         else:
             raise ParseError('root container name missing')
