@@ -3,7 +3,7 @@ from src.IO.exception_logging.log import log
 from src.Model.Package.entries.GUI.gwindow import GWindow
 from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.GUI.gsection import GSection
-
+from src.Model.Package.package import Plugin
 
 __author__ = 'Ondřej Lanč'
 
@@ -17,7 +17,10 @@ class GUITemplateFileReader(FileReader):
         super().__init__(gui_template_file)
 
     def parse(self):
-        window = GWindow()
+        if isinstance(self._package, Plugin):
+            window=self._package.package.gui_tree
+        else:
+            window = GWindow()
         tab_elements = self._root.findall('tab')
         for tab_element in tab_elements:
             window.append(self._parse_tab(tab_element))

@@ -1,6 +1,7 @@
 <freeconf-header>
 	<content>
 		<template>ssl_template.xml</template>
+		<default-values>ssl_default.xml</default-values>
 		<help>ssl_help.xml</help>
 		<output>ssl_conf.xml</output>
 		<gui-template>ssl_gui_template.xml</gui-template>

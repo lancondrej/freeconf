@@ -1,5 +1,5 @@
-from src.IO.XMLPackageParser.config_file import ConfigFileWriter
-from src.IO.XMLPackageParser.native_file import NativeFileWriter
+from src.IO.XMLParser.config_file import ConfigFileWriter
+from src.IO.XMLParser.native_file import NativeFileWriter
 from src.IO.output import Output
 
 __author__ = 'Ondřej Lanč'
