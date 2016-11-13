@@ -1,3 +1,4 @@
+import os
 
 
 class Group:
@@ -5,11 +6,11 @@ class Group:
 
     def __init__(self, name):
         self._name = name
-        ## Initialize properties
+        self.package = None
         ## Main XSL file
-        self.transform = None
+        self._transform_file = None
         self.included_transforms = []
-        self.native_output = None
+        self._native_output = None
         # Output defaults settings
         self.output_defaults = True
 
@@ -20,6 +21,22 @@ class Group:
     @name.setter
     def name(self, name):
         self._name = name
+
+    @property
+    def transform_file(self):
+        return os.path.join(self.package.location, self._transform_file) if self._transform_file else None
+
+    @transform_file.setter
+    def transform_file(self, transform_file):
+        self._transform_file=transform_file
+
+    @property
+    def native_output(self):
+        return os.path.join(self.package.location, self._native_output) if self._native_output else None
+
+    @native_output.setter
+    def native_output(self, native_output):
+        self._native_output=native_output
 
     def include_transform(self, filelocation):
         """Add transform file to list of included transform files."""

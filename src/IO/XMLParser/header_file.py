@@ -43,9 +43,9 @@ class HeaderFileReader(FileReader):
             log.info("Header file: parsing <entry-group> element")
             name = group_element.get('name')
             group=Group(name)
-            group.transform = group_element.findtext('transform')
-            group.native_output = group_element.findtext('native-output')
-            group.output_defaults = group_element.findtext('output-defaults')
+            group.transform_file = group_element.findtext('transform')
+            group._native_output = group_element.findtext('native-output')
+            group.output_defaults = True if group_element.findtext('output-defaults') == 'yes' else False
             self._config.add_group(group)
             group_not_set=False
 

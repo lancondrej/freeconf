@@ -6,15 +6,13 @@ __author__ = 'Ondřej Lanč'
 
 
 class NativeFileWriter (object):
-    def __init__(self, native, xslt, config_file_writer):
-        self._file = native
-        self._xslt = xslt
-        self._config_file_writer = config_file_writer
+    def __init__(self, group, dom):
+        self._group = group
+        self._dom = dom
 
     def write_native(self):
-        dom = self._config_file_writer.get_config()
-        xslt = ET.parse(self._xslt)
+        xslt = ET.parse(self._group.transform_file)
         transform = ET.XSLT(xslt)
-        newdom = transform(dom)
-        f = open(self._file, 'w')
+        newdom = transform(self._dom)
+        f = open(self._group.native_output, 'w')
         f.write(str(newdom))

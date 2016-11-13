@@ -68,10 +68,15 @@ class Package(object):
     def languages_dir(self):
         return os.path.join(self.location, 'L10n')
 
+    @property
+    def groups(self):
+        return self._groups
+
     def group(self, name):
         return self._groups.get(name)
 
     def add_group(self, group):
+        group.package=self
         self._groups[group.name] = group
 
     def add_plugin(self, plugin):

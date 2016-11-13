@@ -20,7 +20,7 @@
 
     <entry-group name="default">
       <transform>apache_default_transform.xsl</transform>
-      <native-output>$PACKAGE/apache2.conf</native-output>
+      <native-output>apache.conf</native-output>
       <output-defaults>yes</output-defaults>
     </entry-group>
 

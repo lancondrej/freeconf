@@ -126,10 +126,8 @@ class BaseEntry(object):
 
     @property
     def group(self):
-        if self._group is None and self._parent is not None:
-            # Propagate group from entry's parent
-            return self._parent.group
-        return self._group
+        # Propagate group from entry's parent
+        return self._group or (self._parent.group if self._parent is not None else None)
 
     @group.setter
     def group(self, group):

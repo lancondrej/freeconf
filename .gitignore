@@ -12,11 +12,8 @@ src/View/Flask/__pycache__/
 src/View/__pycache__/
 .directory
 .gitignore
-a
-b
 drawing-1.svg
 ico.png
-output.xml
 packages/apache/apache_conf_a.xml
 src/Model/Config/__pycache__/
 src/Model/Package/__pycache__/__init__.cpython-35.pyc

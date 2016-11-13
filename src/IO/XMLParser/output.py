@@ -17,13 +17,13 @@ class XMLOutput(Output):
     def write_native(self, groups=None):
         if groups:
             for group in groups:
-                if group in self._config.group:
-                    self._write_group(group)
+                if group in self._config.groups:
+                    self._write_group(self._config.group(group))
         else:
-            for group in self._config.group:
-                self._write_group(plugin)
+            for group in self._config.groups:
+                # TODO: group write in default
+                self._write_group(self._config.group(group))
 
-    def _write_group(self, groups):
+    def _write_group(self, group):
         config_file_writer = ConfigFileWriter(self._config, self._package)
-        native_file_writer = NativeFileWriter(self._native, self._xslt, config_file_writer)
-        native_file_writer.write_native()
+        NativeFileWriter(group, config_file_writer.get_config(group)).write_native()

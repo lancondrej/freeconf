@@ -2,7 +2,6 @@ from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
 from lxml.etree import Element, ElementTree
 
-
 __author__ = 'Ondřej Lanč'
 
 
@@ -15,27 +14,27 @@ class ConfigFileReader(FileReader):
         super().__init__(config_file)
 
     def parse(self):
-        name=self._root.get('name')
+        name = self._root.get('name')
         try:
             assert name == self._package.tree.name
         except AssertionError:
             log.error('invalid name of root element')
-        containers=self._root.findall('container')
+        containers = self._root.findall('container')
         for container in containers:
             self._parse_container(container, self._package.tree)
-        entries=self._root.findall('entry')
+        entries = self._root.findall('entry')
         for entry in entries:
             self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
-        name=container_element.get('name')
-        this_container=parent.get_entry(name)
+        name = container_element.get('name')
+        this_container = parent.get_entry(name)
         if this_container.is_multiple_entry_container():
             this_container = this_container.append()
-        containers=container_element.findall('container')
+        containers = container_element.findall('container')
         for container in containers:
             self._parse_container(container, this_container)
-        entries=container_element.findall('entry')
+        entries = container_element.findall('entry')
         for entry in entries:
             self._parse_entry(entry, this_container)
 
@@ -48,7 +47,7 @@ class ConfigFileReader(FileReader):
         entry.value = value
 
 
-class ConfigFileWriter (object):
+class ConfigFileWriter(object):
     def __init__(self, config, package):
         self._config = config
         self._package = package
@@ -65,42 +64,49 @@ class ConfigFileWriter (object):
 
     def write_config(self, file=None):
         config_tree = self.get_config()
-        pass
         config_tree.write(file or self._config.config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
 
-    def get_config(self):
-        root = self.render_container(self._root)[0]
+    def get_config(self, group=None):
+        root = self.render_container(self._root, group)[0]
         return ElementTree(root)
 
-    def render_entry(self, entry):
+    def render_entry(self, entry, group):
         try:
-            return self.render[type(entry).__name__](entry)
+            return self.render[type(entry).__name__](entry, group)
         except:
             pass
 
-    def render_container(self, container):
+    def render_container(self, container, group):
         element = Element('container')
         element.set('name', container.name)
         for entry in container.entries.values():
-            element.extend(self.render_entry(entry))
+            sub_element=self.render_entry(entry, group)
+            if sub_element:
+                element.extend(sub_element)
         return [element]
 
-    def render_key_word(self, entry):
+    def render_key_word(self, entry, group):
+        if group:
+            if entry.group != group:
+                return
         element = Element('entry')
         element.set('name', entry.name)
-        value=entry.value
-        if value:
-            val_el=Element('value')
-            val_el.text = str(value)
-            element.append(val_el)
-        help = entry.help
-        if help:
-            help_el=Element('help')
-            help_el.text = help
-            element.append(help_el)
+        value = entry.value
+        if value is None:
+            log.info("Value for entry {} missing".format(entry.full_name))
+            return
+        val_el = Element('value')
+        val_el.text = str(value)
+        element.append(val_el)
+
+        if group:
+            help = entry.help
+            if help:
+                help_el = Element('help')
+                help_el.text = help
+                element.append(help_el)
+
         return [element]
 
-    def render_multiple(self, mult):
-        return [self.render_entry(entry)[0] for entry in mult.entries]
-
-
+    def render_multiple(self, mult, group):
+        return [self.render_entry(entry, group)[0] for entry in mult.entries]
