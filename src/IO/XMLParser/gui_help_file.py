@@ -29,7 +29,7 @@ class GUIHelpFileReader(FileReader):
             self._parse_section(section_element, tab)
 
     def _parse_section(self, section_element, tab):
-        name=section_element.get('name')
+        name = section_element.get('name')
         section = tab.get_section(name)
         section.label = section_element.findtext('label')
 

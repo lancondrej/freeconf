@@ -8,7 +8,7 @@ from src.IO.XMLParser.gui_help_file import GUIHelpFileReader
 from src.IO.XMLParser.gui_template_file import GUITemplateFileReader
 from src.IO.XMLParser.help_file import HelpFileReader
 from src.IO.XMLParser.list_help_file import ListHelpFileReader
-from src.Model.Package.package import Package
+from src.Model.Package.package import Package, Plugin
 from src.IO.XMLParser.header_file import HeaderFileReader
 from src.IO.XMLParser.list_file import ListFileReader
 from src.IO.XMLParser.template_file import TemplateFileReader
@@ -21,7 +21,7 @@ __author__ = 'Ondřej Lanč'
 class XMLParser(Input):
     def __init__(self, config, package):
         # configuration of package
-        self.config = config
+        self._config = config
         # package itself
         self._package = package
 
@@ -39,41 +39,52 @@ class XMLParser(Input):
 
     def _load_header(self):
         """Load header file. Support function for load_package."""
-        HeaderFileReader(self.config).parse()
+        HeaderFileReader(self._config).parse()
 
     def _load_lists(self, ):
         """Load list files."""
-        ListFileReader(self.config, self._package).parse()
+        ListFileReader(self._config, self._package).parse()
 
     def _load_template(self):
         """Load template file. Support function for load_package."""
-        TemplateFileReader(self.config, self._package).parse()
+        TemplateFileReader(self._config, self._package).parse()
 
     def _load_default_value(self):
         """Load file with default values"""
-        DefaultValuesFileReader(self.config, self._package).parse()
+        DefaultValuesFileReader(self._config, self._package).parse()
 
     def _load_config(self):
         """Load config file ignore help, only load like default values"""
-        ConfigFileReader(self.config, self._package).parse()
+        ConfigFileReader(self._config, self._package).parse()
 
     def _load_help(self, language=None):
         """Load help file"""
-        HelpFileReader(self.config, self._package, language).parse()
+        HelpFileReader(self._config, self._package, language).parse()
 
     def _load_list_help(self, language=None):
         """Load list help file"""
-        ListHelpFileReader(self.config, self._package, language).parse()
+        ListHelpFileReader(self._config, self._package, language).parse()
 
     def _load_GUI_template(self):
-        GUITemplateFileReader(self.config, self._package).parse()
+        GUITemplateFileReader(self._config, self._package).parse()
 
     def _load_GUI_help(self, language=None):
-        GUIHelpFileReader(self.config, self._package, language).parse()
+        GUIHelpFileReader(self._config, self._package, language).parse()
 
     def load_plugin(self, plugins=None):
-        """Virtual function. Need to be reimplemented in subclass"""
-        pass
+        if plugins:
+            for plugin in plugins:
+                if plugin in self._config.avaiable_plugins:
+                    self._load_plugin(plugin)
+        else:
+            for plugin in self._config.avaiable_plugins:
+                self._load_plugin(plugin)
+
+    def _load_plugin(self, plugin_name):
+        plugin = Plugin(plugin_name, self._package)
+        input_parser=XMLParser(self._config.plugin(plugin_name), plugin)
+        input_parser.load_package()
+        self._package.plugins.append(plugin)
 
     def load_config(self, source):
         """Virtual function. Need to be reimplemented in subclass"""

@@ -36,4 +36,22 @@ class ConfigPresenter(object):
         package = Package()
         package.location=dir.path
         package.name=dir.name
+        self._load_avaiable_plugins(package)
+        self._load_avaiable_languages(package)
         return package
+
+    def _load_avaiable_plugins(self, package):
+        try:
+            for plugin in scandir(package.plugins_dir):
+                package.available_plugins.append(plugin.name)
+        except FileNotFoundError:
+            pass
+        # TODO: zpráva do logu
+
+    def _load_avaiable_languages(self, package):
+        try:
+            for lang in scandir(package.languages_dir):
+                package.available_language.append(lang.name)
+        except FileNotFoundError:
+            pass
+        # TODO: zpráva do logu

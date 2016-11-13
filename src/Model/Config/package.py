@@ -8,8 +8,9 @@ class Package(object):
         self.location = ""
         self.file = self.Files()
         self._groups = {}
-        self.available_language = ["en", "cs"]
+        self.available_language = []
         self.default_language = None
+        self.available_plugins = []
 
     def add_group(self, group):
         self._groups[group.name]=group
@@ -37,7 +38,7 @@ class Package(object):
     def help_file(self, language):
         if language not in self.available_language:
             language=self.default_language
-        return os.path.join(self.location, "L10n", language, self.file.help) if self.file.help else None
+        return os.path.join(self.languages_dir, language, self.file.help) if self.file.help else None
 
     def list_help_file(self, language):
         if language not in self.available_language:
@@ -47,7 +48,7 @@ class Package(object):
     def gui_help_file(self, language):
         if language not in self.available_language:
             language=self.default_language
-        return os.path.join(self.location, "L10n", language, self.file.gui_label) if (self.file.gui_label and language) else None
+        return os.path.join(self.languages_dir, language, self.file.gui_label) if (self.file.gui_label and language) else None
 
     @property
     def default_values_file(self):
@@ -62,9 +63,12 @@ class Package(object):
         return os.path.join(self.location, 'lists')
 
     @property
-    def _plugins_dir(self):
+    def plugins_dir(self):
         return os.path.join(self.location, 'plugins')
 
+    @property
+    def languages_dir(self):
+        return os.path.join(self.location, 'L10n')
 
     class Files(object):
         def __init__(self):
