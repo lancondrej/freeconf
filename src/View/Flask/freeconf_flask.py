@@ -135,7 +135,7 @@ class FreeconfFlask(Flask):
         return render_template('elements/flash.html')
 
     def _save_config(self):
-        result = self.presenter.save_config()
+        result = self.presenter.package.save_config()
         if result:
             flash(u'Configuration save', 'success')
         else:
@@ -143,7 +143,7 @@ class FreeconfFlask(Flask):
         return redirect(url_for('package', name=self.presenter.package.package_name))
 
     def _save_native(self):
-        result = self.presenter.save_native()
+        result = self.presenter.package.save_native()
         if result:
             flash(u'NAtive configuration save', 'success')
         else:

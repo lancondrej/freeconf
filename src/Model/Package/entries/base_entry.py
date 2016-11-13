@@ -12,7 +12,7 @@ class BaseEntry(object):
     def __init__(self, name):
         self._name = name
         self._label = None
-        self._help = {}
+        self._help = None
         self._parent = None
         self._static_active = True
         self._dynamic_active = True

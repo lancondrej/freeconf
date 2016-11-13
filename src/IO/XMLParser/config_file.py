@@ -49,7 +49,9 @@ class ConfigFileReader(FileReader):
 
 
 class ConfigFileWriter (object):
-    def __init__(self, root):
+    def __init__(self, config, package):
+        self._config = config
+        self._package = package
         self.render = {
             'Container': self.render_container,
             'Fuzzy': self.render_key_word,
@@ -59,14 +61,15 @@ class ConfigFileWriter (object):
             'MultipleContainer': self.render_multiple,
             'MultipleKeyWord': self.render_multiple,
         }
-        self._root = root
+        self._root = package.tree
 
-    def write_config(self, file):
+    def write_config(self, file=None):
         config_tree = self.get_config()
-        config_tree.write(file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+        pass
+        config_tree.write(file or self._config.config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
 
     def get_config(self):
-        root = self.render_entry(self._root)[0]
+        root = self.render_container(self._root)[0]
         return ElementTree(root)
 
     def render_entry(self, entry):
@@ -79,17 +82,22 @@ class ConfigFileWriter (object):
         element = Element('container')
         element.set('name', container.name)
         for entry in container.entries.values():
-            sub=self.render_entry(entry)
             element.extend(self.render_entry(entry))
         return [element]
 
     def render_key_word(self, entry):
         element = Element('entry')
         element.set('name', entry.name)
-        # element.set('group', entry.group.name)
-        value=Element('value')
-        value.text = str(entry.value)
-        element.append(value)
+        value=entry.value
+        if value:
+            val_el=Element('value')
+            val_el.text = str(value)
+            element.append(val_el)
+        help = entry.help
+        if help:
+            help_el=Element('help')
+            help_el.text = help
+            element.append(help_el)
         return [element]
 
     def render_multiple(self, mult):

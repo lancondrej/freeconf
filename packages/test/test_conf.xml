@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version='1.0' encoding='UTF-8'?>
 <container name="main-container">
-    <entry name="string1">
-        <value>pokus1</value>
+  <entry name="string1">
+    <value>pokus1</value>
+  </entry>
+  <entry name="bool1">
+    <value>no</value>
+  </entry>
+  <entry name="number1">
+    <value>225.55</value>
+  </entry>
+  <entry name="string3">
+    <value>err</value>
+  </entry>
+  <container name="multiple-container">
+    <entry name="number2">
+      <value>80.0</value>
     </entry>
-    <entry name="bool1">
-        <value>no</value>
+    <entry name="string2">
+      <value>pokus2</value>
     </entry>
-    <entry name="number1">
-        <value>00225.55</value>
-    </entry>
-    <entry name="string3">
-        <value>err</value>
-    </entry>
-
-    <container name="multiple-container">
-        <entry name="number2">
-            <value>80</value>
-        </entry>
-        <entry name="string2">
-            <value>pokus2</value>
-        </entry>
-    </container>
-
+  </container>
 </container>

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+from src.IO.XMLParser.output import XMLOutput
 from src.Model.Package.package import Package
 from src.IO.XMLParser.input import XMLParser
 from src.IO.input import Input
@@ -41,12 +41,6 @@ class PackagePresenter(Presenter):
         input_parser.load_package()
         input_parser.load_plugin()
         self._entry=EntryPresenter(self.package.tree)
-        # output = XMLOutput(self.package, self._config.output, self._config.native, self._config.xslt)
-        # self.output = output
-        # self.input.load_package()
-        # self.input.load_plugins()
-        # self._entry_controller = EntryController(self.package.tree)
-        # del input_parser
         return True
 
     def tabs(self):
@@ -56,15 +50,17 @@ class PackagePresenter(Presenter):
         return self._package.gui_tree.get_tab(name).content
 
     def save_config(self):
+        output = XMLOutput(self._config, self._package)
         try:
-            self.output.write_output()
+            output.write_output()
             return True
         except Exception:
             return False
 
     def save_native(self):
+        output = XMLOutput(self._config, self._package)
         try:
-            self.output.write_native()
+            output.write_native()
             return True
         except Exception:
             return False

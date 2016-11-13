@@ -6,3 +6,4 @@ _author__ = 'Ondřej Lanč'
 if __name__ == "__main__":
     app.presenter = MainPresenter()
     app.run()
+

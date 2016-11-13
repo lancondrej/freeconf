@@ -1,6 +1,6 @@
 import lxml.etree as ET
 
-from src.IO.XMLPackageParser.config_file import ConfigFileWriter
+from src.IO.XMLParser.config_file import ConfigFileWriter
 
 __author__ = 'Ondřej Lanč'
 

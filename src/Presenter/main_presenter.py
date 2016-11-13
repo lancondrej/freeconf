@@ -1,10 +1,8 @@
 from flask_debugtoolbar import DebugToolbarExtension
-
 from src.Presenter.config_presenter import ConfigPresenter
 from src.Presenter.package_presenter import PackagePresenter
 from src.View.Flask.freeconf_flask import FreeconfFlask
 from src.Presenter.presenter import Presenter
-
 __author__ = 'Ondřej Lanč'
 
 
@@ -13,7 +11,6 @@ class MainPresenter(Presenter):
         self._config=ConfigPresenter()
         self._package=None
         self._view=None
-
 
     def enable_view(self):
         app = FreeconfFlask(__name__)
