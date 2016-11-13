@@ -13,6 +13,8 @@ class XMLOutput(Output):
 
     def write_output(self):
         ConfigFileWriter(self._config, self._package).write_config()
+        for plugin in self._package.plugins:
+            ConfigFileWriter(self._config.plugin(plugin.name), plugin).write_config()
 
     def write_native(self, groups=None):
         if groups:

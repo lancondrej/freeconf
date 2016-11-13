@@ -27,7 +27,7 @@ class PackagePresenter(Presenter):
     @property
     def package_name(self):
         if self.package is not None:
-            return self.package.package_name
+            return self.package.name
         return ""
 
     def load_package(self, language=None):

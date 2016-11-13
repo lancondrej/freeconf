@@ -16,7 +16,7 @@ class Package(object):
         self.plugins = []
         self._language = None
         self._default_language = 'en'
-        self.package_name = name
+        self.name = name
         # self.freeconfDirs = []
         self.lists = {}
         self.dependencies = []
