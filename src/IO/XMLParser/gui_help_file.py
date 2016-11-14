@@ -15,8 +15,7 @@ class GUIHelpFileReader(FileReader):
 
     def parse(self):
         self._package.gui_tree.title=self._root.findtext('title')
-        tab_elements = self._root.findall('tab')
-        for tab_element in tab_elements:
+        for tab_element in self._root.iterfind('tab'):
             self._parse_tab(tab_element)
 
     def _parse_tab(self, tab_element):
@@ -24,8 +23,7 @@ class GUIHelpFileReader(FileReader):
         tab = self._package.gui_tree.get_tab(name)
         tab.label = tab_element.findtext('label')
         tab.description = tab_element.findtext('description')
-        section_elements=tab_element.findall('section')
-        for section_element in section_elements:
+        for section_element in tab_element.iterfind('section'):
             self._parse_section(section_element, tab)
 
     def _parse_section(self, section_element, tab):

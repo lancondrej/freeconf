@@ -19,11 +19,9 @@ class DefaultValuesFileReader(FileReader):
             assert name == self._package.tree.name
         except AssertionError:
             log.error('invalid name of root element')
-        containers=self._root.findall('container')
-        for container in containers:
+        for container in self._root.iterfind('container'):
             self._parse_container(container, self._package.tree)
-        entries=self._root.findall('entry')
-        for entry in entries:
+        for entry in self._root.iterfind('entry'):
             self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
@@ -31,11 +29,9 @@ class DefaultValuesFileReader(FileReader):
         this_container=parent.get_entry(name)
         if this_container.is_multiple_entry_container():
             this_container = this_container.append_default()
-        containers=container_element.findall('container')
-        for container in containers:
+        for container in container_element.iterfind('container'):
             self._parse_container(container, this_container)
-        entries=container_element.findall('entry')
-        for entry in entries:
+        for entry in container_element.iterfind('entry'):
             self._parse_entry(entry, this_container)
 
     def _parse_entry(self, entry_element, parent):

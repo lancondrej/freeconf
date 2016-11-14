@@ -54,8 +54,7 @@ class TemplateFileReader(FileReader):
                 yield entry
 
     def _parse_entry_of_type(self, container_element, element_type):
-        elements=container_element.findall(element_type.name)
-        for element in elements:
+        for element in container_element.iterfind(element_type.name):
             name = element.findtext(element_type.name_element)
             if name:
                 entry = element_type.class_name(name, self._package)

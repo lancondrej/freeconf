@@ -21,8 +21,7 @@ class GUITemplateFileReader(FileReader):
             window=self._package.package.gui_tree
         else:
             window = GWindow()
-        tab_elements = self._root.findall('tab')
-        for tab_element in tab_elements:
+        for tab_element in self._root.iterfind('tab'):
             window.append(self._parse_tab(tab_element))
         self._package.gui_tree = window
 
@@ -30,16 +29,14 @@ class GUITemplateFileReader(FileReader):
         tab = GTab()
         tab.name = tab_element.findtext('tab-name')
         tab.icon = tab_element.findtext('tab-icon')
-        section_elements=tab_element.findall('tab-section')
-        for section_element in section_elements:
+        for section_element in tab_element.iterfind('tab-section'):
             tab.append(self._parse_tab_section(section_element))
         return tab
 
     def _parse_tab_section(self, section_element):
         section = GSection()
         section.name = section_element.findtext('tab-section-name')
-        entries=section_element.findall('import-entry')
-        for entry_element in entries:
+        for entry_element in section_element.iterfind('import-entry'):
             name = entry_element.text
             if name:
                 entry = self._package.tree.find_entry(name)

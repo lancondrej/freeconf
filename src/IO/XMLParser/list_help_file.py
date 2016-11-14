@@ -24,8 +24,7 @@ class ListHelpFileReader(FileReader):
         return self._parse_list('fuzzy-list')
 
     def _parse_list(self, element):
-        list_elements = self._root.findall(element)
-        for list_element in list_elements:
+        for list_element in self._root.iterfind(element):
             log.info("List file: parsing <{}> element".format(element))
             name = list_element.get('name')
             if name:
@@ -38,8 +37,7 @@ class ListHelpFileReader(FileReader):
                 log.error("List file: in element <{}> missing attribute name".format(element))
 
     def _parse_entry(self, list, list_element):
-        entries=list_element.findall('entry')
-        for entry in entries:
+        for entry in list_element.iterfind('entry'):
             value = entry.get('value')
             if value:
                 list_entry = list.get_entry(value)

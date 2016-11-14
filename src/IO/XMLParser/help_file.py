@@ -1,6 +1,5 @@
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
-from lxml.etree import Element, ElementTree
 
 
 __author__ = 'Ondřej Lanč'
@@ -22,11 +21,9 @@ class HelpFileReader(FileReader):
                 assert name == self._package.tree.name
             except AssertionError:
                 log.error('invalid name of root element')
-            containers=root_container.findall('container')
-            for container in containers:
+            for container in root_container.iterfind('container'):
                 self._parse_container(container, self._package.tree)
-            entries=root_container.findall('entry')
-            for entry in entries:
+            for entry in root_container.iterfind('entry'):
                 self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
@@ -34,11 +31,9 @@ class HelpFileReader(FileReader):
         this_container=parent.get_entry(name)
         if this_container:
             self._set_help_label(this_container, container_element)
-            containers=container_element.findall('container')
-            for container in containers:
+            for container in container_element.iterfind('container'):
                 self._parse_container(container, this_container)
-            entries=container_element.findall('entry')
-            for entry in entries:
+            for entry in container_element.iterfind('entry'):
                 self._parse_entry(entry, this_container)
 
     def _parse_entry(self, entry_element, parent):

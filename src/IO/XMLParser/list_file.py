@@ -28,9 +28,8 @@ class ListFileReader(FileReader):
         return self._parse_list('fuzzy-list', FuzzyList, self._fuzzy_value)
 
     def _parse_list(self, element, ListClass, value_func):
-        list_elements = self._root.findall(element)
         lists={}
-        for list_element in list_elements:
+        for list_element in self._root.iterfind(element):
             log.info("List file: parsing <{}> element".format(element))
             name = list_element.get('name')
             if name:
@@ -44,8 +43,7 @@ class ListFileReader(FileReader):
 
     @staticmethod
     def _get_values(element, value_func):
-        values_element = element.findall('value')
-        for value_element in values_element:
+        for value_element in element.iterfind('value'):
             yield value_func(value_element)
 
     @staticmethod

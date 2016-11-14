@@ -38,8 +38,7 @@ class HeaderFileReader(FileReader):
     def parse_group(self):
         group_not_set=True
 
-        group_elements = self._root.findall('entry-group')
-        for group_element in group_elements:
+        for group_element in self._root.iterfind('entry-group'):
             log.info("Header file: parsing <entry-group> element")
             name = group_element.get('name')
             group=Group(name)
@@ -50,8 +49,7 @@ class HeaderFileReader(FileReader):
             group_not_set=False
 
         if isinstance(self._config, Plugin):
-            group_change_elements = self._root.findall('change-group')
-            for group_element in group_change_elements:
+            for group_element in self._root.iterfind('change-group'):
                 log.info("Header file: parsing <change-group> element")
                 name = group_element.get('name')
                 group=self._config.parent.group(name)
