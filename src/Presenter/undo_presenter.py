@@ -1,5 +1,4 @@
-from src.Model.Undo.change import ValueChange, NewMultipleChange, RemoveMultipleChange, \
-    MoveDownMultipleChange, MoveUpMultipleChange
+from src.Model.Undo.change import ValueChange, NewMultipleChange, RemoveMultipleChange, MoveDownMultipleChange, MoveUpMultipleChange
 from src.Model.Undo.undo import Undo
 from src.Presenter.presenter import Presenter
 
@@ -24,11 +23,12 @@ class UndoPresenter(Presenter):
 
     def multiple_up(self, entry, index, is_move):
         if is_move:
-            self._undo.save(MoveUpMultipleChange(entry, index+1))
+            self._undo.save(MoveUpMultipleChange(entry, int(index) - 1))
+            pass
 
     def multiple_down(self, entry, index, is_move):
         if is_move:
-            self._undo.save(MoveDownMultipleChange(entry, index-1))
+            self._undo.save(MoveDownMultipleChange(entry, int(index)+1))
 
     def undo(self):
         change = self._undo.undo()

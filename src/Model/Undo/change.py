@@ -51,10 +51,10 @@ class RemoveMultipleChange(Change):
 class MoveUpMultipleChange(Change):
     def __init__(self, entry, index):
         Change.__init__(self, entry)
-        self.index = index
+        self.index = int(index)
 
     def transform(self):
-        return MoveDownMultipleChange(self.entry, self.index - 1)
+        return MoveDownMultipleChange(self.entry, self.index + 1)
 
     def change(self):
         self.entry.move_down(self.index)
@@ -63,10 +63,10 @@ class MoveUpMultipleChange(Change):
 class MoveDownMultipleChange(Change):
     def __init__(self, entry, index):
         Change.__init__(self, entry)
-        self.index = index
+        self.index = int(index)
 
     def transform(self):
-        return MoveUpMultipleChange(self.entry, self.index + 1)
+        return MoveUpMultipleChange(self.entry, self.index - 1)
 
     def change(self):
         self.entry.move_up(self.index)
