@@ -119,24 +119,24 @@ class MultipleEntry(BaseEntry):
         if self.multiple_max is None or length < self.multiple_max:
             self._entries.append(deepcopy(self._template))
             self._entries[-1].index = length
-            return True
-        return False
+            return self._entries[-1]
+        return None
 
     def create_new_default(self):
         length = self.default_size()
         if self.multiple_max is None or length < self.multiple_max:
             self._default.append(deepcopy(self._template))
             self._default[-1].index = length
-            return True
-        return False
+            return self._entries[-1]
+        return None
 
     def delete_entry(self, index):
         length = self.size()
         if self.multiple_min is None or length > self.multiple_min:
-            del self._entries[int(index)]
+            entry = self._entries.pop(int(index))
             self._rename_all()
-            return True
-        return False
+            return entry
+        return None
 
     def _rename_all(self):
         for i, entry in enumerate(self._entries):
