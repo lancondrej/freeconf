@@ -9,7 +9,6 @@ class Stack(object):
 
     def push(self, item):
         if self._len < self._max_length:
-            item.transform()
             self._items.append(item)
             self._len += 1
             return True

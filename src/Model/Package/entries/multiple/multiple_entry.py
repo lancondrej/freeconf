@@ -201,16 +201,18 @@ class MultipleEntry(BaseEntry):
         if i != j:
             (self._entries[i], self._entries[j]) = (self._entries[j], self._entries[i])
             self._rename_all()
+            return True
+        return False
 
     def move_up(self, i):
         """Move given entry up in the list. If it is on the top of the list, nothing happens."""
         i = int(i)
-        self._swap(i, i - 1)
+        return self._swap(i, i - 1)
 
     def move_down(self, i):
         """Move given entry down in the list. If it is no the bottom of the list, nothing happens."""
         i = int(i)
-        self._swap(i, i + 1)
+        return self._swap(i, i + 1)
 
     @property
     def type(self):
