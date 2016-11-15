@@ -12,6 +12,7 @@ class Package(object):
         self.available_language = []
         self.default_language = None
         self._plugins = {}
+        self.root = self
 
     @property
     def header_file(self):
@@ -81,6 +82,7 @@ class Package(object):
 
     def add_plugin(self, plugin):
         plugin.parent=self
+        plugin.root=self.root
         self._plugins[plugin.name]=plugin
 
     @property
@@ -107,4 +109,4 @@ class Package(object):
 class Plugin(Package):
     def __init__(self):
         Package.__init__(self)
-        self.parent=None
+        self.parent = None

@@ -1,3 +1,7 @@
+import os
+
+import re
+
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
 from src.IO.exception_logging.exception import ParseError
@@ -43,7 +47,7 @@ class HeaderFileReader(FileReader):
             name = group_element.get('name')
             group=Group(name)
             group.transform_file = group_element.findtext('transform')
-            group._native_output = group_element.findtext('native-output')
+            group._native_output = self._expand_file_name(group_element.findtext('native-output'))
             group.output_defaults = True if group_element.findtext('output-defaults') == 'yes' else False
             self._config.add_group(group)
             group_not_set=False
@@ -54,7 +58,7 @@ class HeaderFileReader(FileReader):
                 name = group_element.get('name')
                 group=self._config.parent.group(name)
                 if group:
-                    group.include_transform(group_element.findtext('add-transform'))
+                    group.include_transform(self._config, group_element.findtext('add-transform'))
                 else:
                     log.error("group name {} is not in Package".format(name))
 
@@ -71,4 +75,62 @@ class HeaderFileReader(FileReader):
             log.info("Header file: parsing <package-info> element")
         else:
             log.info("Header file: element <package-info> missing")
+
+    def _expand_file_name(self, file):
+        # TODO: vyřešit kdy to používat a kdy ne + jestl ito nemá být raději u package/group (problém s list a jazyky)
+        def _home_dir():
+            """Get HOME location."""
+            try:
+                return os.environ['HOME']
+            except KeyError:
+                log.warning('Unable to get the location of HOME directory!')
+                return None
+
+        def _package_dir():
+            return self._config.root.location
+
+        def _parent_dir():
+            if isinstance(self._config, Plugin):
+                return self._config.parent.location
+            else:
+                log.warning('Using of $PARENT variable in base Package. Ignoring variable.')
+                return None
+
+        def _plugin_dir():
+            if isinstance(self._config, Plugin):
+                return self._config.location
+            else:
+                log.warning('Using of $PLUGIN variable in base Package. Ignoring variable.')
+
+        def _this_dir():
+            return self._config.location
+
+        variables={
+            "HOME": _home_dir(),
+            "PACKAGE": _package_dir(),
+            "PLUGIN": _plugin_dir(),
+            "PARENT": _parent_dir(),
+        }
+
+        # TODO: vyřešit strukturu sub pluginů samozřejmě i v config a package
+        val = None
+        match = re.match(r"\$\{?(?P<env>\w+)\}?/(?P<file>.+)", file)
+        if match:
+            var = match.group('env')
+            file = match.group('file')
+            if var in variables:
+                val = variables[var]
+            else:
+                val = None
+                log.warning("Variable {} not found in allowed list".format(var))
+        if val is None:
+            # If variable is not found, replace it's occurence with empty string
+            val = _this_dir()
+            match = re.match(r"/", file)
+            if match:
+                val = ""
+        file = os.path.normpath(os.path.join(val, file))
+        return file
+
+
 

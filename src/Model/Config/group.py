@@ -24,7 +24,7 @@ class Group:
 
     @property
     def transform_file(self):
-        return os.path.join(self.package.location, self._transform_file) if self._transform_file else None
+        return os.path.abspath(os.path.join(self.package.location, self._transform_file)) if self._transform_file else None
 
     @transform_file.setter
     def transform_file(self, transform_file):
@@ -32,12 +32,12 @@ class Group:
 
     @property
     def native_output(self):
-        return os.path.join(self.package.location, self._native_output) if self._native_output else None
+        return self._native_output
 
     @native_output.setter
     def native_output(self, native_output):
         self._native_output=native_output
 
-    def include_transform(self, filelocation):
+    def include_transform(self, plugin, filelocation):
         """Add transform file to list of included transform files."""
-        self.included_transforms.append(filelocation)
+        self.included_transforms.append(os.path.abspath(os.path.join(plugin.location, filelocation)))
