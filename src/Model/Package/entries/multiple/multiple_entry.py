@@ -114,20 +114,11 @@ class MultipleEntry(BaseEntry):
     def help(self, help):
         self.template.help=help
 
-    def create_new(self):
-        length = self.size()
+    def create_new(self, length):
         if self.multiple_max is None or length < self.multiple_max:
-            self._entries.append(deepcopy(self._template))
-            self._entries[-1].index = length
-            return self._entries[-1]
-        return None
-
-    def create_new_default(self):
-        length = self.default_size()
-        if self.multiple_max is None or length < self.multiple_max:
-            self._default.append(deepcopy(self._template))
-            self._default[-1].index = length
-            return self._default[-1]
+            newone = deepcopy(self._template)
+            newone.index = length
+            return newone
         return None
 
     def delete_entry(self, index):
@@ -154,24 +145,19 @@ class MultipleEntry(BaseEntry):
     def get_multiple_entry(self, i):
         return self._entries[i]
 
-    def insert_multiple_entry(self, entry, position):
-        # assert isinstance(entry, BaseEntry)
-        # entry.parent = self
+    def insert(self, position, entry):
         self._entries.insert(int(position), entry)
+        self._rename_all()
 
-    def append(self):
-        return self.create_new()
+    def append(self, entry=None):
+        entry = entry or self.create_new(self.size())
+        self._entries.append(entry)
+        return entry
 
-    def append_default(self):
-        return self.create_new_default()
-
-    def disconnect(self, entry):
-        try:
-            self._entries.remove(entry)
-            entry.parent = None
-            return True
-        except ValueError as KeyError:
-            return False
+    def append_default(self, entry=None):
+        entry = entry or self.create_new(self.default_size())
+        self._default.append(entry)
+        return entry
 
     @property
     def entries(self):

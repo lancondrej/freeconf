@@ -45,9 +45,7 @@ class RemoveMultipleChange(Change):
         return NewMultipleChange(self.entry, self.removed)
 
     def change(self):
-        pass
-        # TODO: potřeba udělat funkci je třeba přepsat přidávíní prvků v modelu multiple
-
+        self.entry.insert(self.removed.index, self.removed)
 
 class MoveUpMultipleChange(Change):
     def __init__(self, entry, index):
