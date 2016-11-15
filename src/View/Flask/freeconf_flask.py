@@ -94,7 +94,8 @@ class FreeconfFlask(Flask):
         result = self.presenter.entry.multiple_new(full_name)
         if result is None:
             flash(u'Maximum element reach', 'warning')
-        return jsonify(result=result)
+        return jsonify(result=True)
+        # TODO: vyřešit odpověď
 
     def multiple_delete(self):
         full_name = request.args.get('full_name')
@@ -102,7 +103,8 @@ class FreeconfFlask(Flask):
         result = self.presenter.entry.multiple_delete(full_name, value)
         if result is None:
             flash(u'Minimum element reach', 'warning')
-        return jsonify(result=result)
+        return jsonify(result=True)
+        # TODO: vyřešit odpověď
 
     def multiple_up(self):
         full_name = request.args.get('full_name')

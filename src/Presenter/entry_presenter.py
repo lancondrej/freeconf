@@ -25,7 +25,7 @@ class EntryPresenter(Presenter):
 
     def multiple_new(self, path):
         entry = self.get_entry(path)
-        newone = entry.create_new()
+        newone = entry.append()
         self._undo.multiple_new(entry, newone)
         return newone
 
