@@ -3,6 +3,7 @@ function load() {
     load_modal();
         flash();
 
+
 }
 
 function reload(elem) {
@@ -26,6 +27,31 @@ function flash() {
     })
 }
 
+
+function undo() {
+    $.getJSON($SCRIPT_ROOT + '/_undo',function (data) {
+       if(data.result){
+        reload($("[id*='"+data.full_name+"']"));
+        }
+    });
+}
+
+function redo() {
+    $.getJSON($SCRIPT_ROOT + '/_redo',function (data) {
+        if(data.result){
+        reload($("[id*='"+data.full_name+"']"));
+        }
+    });
+}
+
 $(function () {
-    load()
+    load();
+
+    $('#undo').on('click', function () {
+        undo()
+    });
+
+    $('#redo').on('click', function () {
+        redo()
+    });
 });

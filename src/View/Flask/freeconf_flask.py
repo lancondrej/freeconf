@@ -42,7 +42,9 @@ class FreeconfFlask(Flask):
         self.add_url_rule('/configure', 'configure', self.configure)
         self.add_url_rule('/_save_config', 'save_config', self._save_config)
         self.add_url_rule('/_save_native', 'save_native', self._save_native)
-        # self.add_url_rule('/', 'index', self.index)
+
+        self.add_url_rule('/_undo', 'undo', self._undo)
+        self.add_url_rule('/_redo', 'redo', self._redo)
 
         # app.add_url_rule('/users/', view_func=ShowUsers.as_view('show_users'))
 
@@ -94,8 +96,7 @@ class FreeconfFlask(Flask):
         result = self.presenter.entry.multiple_new(full_name)
         if result is None:
             flash(u'Maximum element reach', 'warning')
-        return jsonify(result=True)
-        # TODO: vyřešit odpověď
+        return jsonify(result=result)
 
     def multiple_delete(self):
         full_name = request.args.get('full_name')
@@ -103,8 +104,7 @@ class FreeconfFlask(Flask):
         result = self.presenter.entry.multiple_delete(full_name, value)
         if result is None:
             flash(u'Minimum element reach', 'warning')
-        return jsonify(result=True)
-        # TODO: vyřešit odpověď
+        return jsonify(result=result)
 
     def multiple_up(self):
         full_name = request.args.get('full_name')
@@ -151,3 +151,11 @@ class FreeconfFlask(Flask):
         else:
             flash(u'Native Configuration not save', 'danger')
         return redirect(url_for('package', name=self.presenter.package.package_name))
+
+    def _undo(self):
+        undo = self.presenter.package.undo.undo()
+        return jsonify(result=(undo is not None), full_name=undo)
+
+    def _redo(self):
+        redo = self.presenter.package.undo.redo()
+        return jsonify(result=(redo is not None), full_name=redo)

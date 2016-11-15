@@ -13,12 +13,14 @@ class Undo(object):
         item = self._undo_stack.pop()
         if item:
             self._redu_stack.push(item.transform())
+            item.change()
         return item
 
     def redo(self):
         item = self._redu_stack.pop()
         if item:
             self._undo_stack.push(item.transform())
+            item.change()
         return item
 
     def save(self, item):

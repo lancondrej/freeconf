@@ -31,7 +31,13 @@ class UndoPresenter(Presenter):
             self._undo.save(MoveDownMultipleChange(entry, index-1))
 
     def undo(self):
-        self._undo.undo()
+        change = self._undo.undo()
+        if change is not None:
+            return str(change.entry.full_name)
+        return None
 
     def redo(self):
-        self._undo.redo()
+        change = self._undo.redo()
+        if change is not None:
+            return str(change.entry.full_name)
+        return None

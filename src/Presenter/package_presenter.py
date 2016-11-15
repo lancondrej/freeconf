@@ -5,6 +5,7 @@ from src.IO.XMLParser.input import XMLParser
 from src.IO.input import Input
 from src.Presenter.entry_presenter import EntryPresenter
 from src.Presenter.presenter import Presenter
+from src.Presenter.undo_presenter import UndoPresenter
 
 __author__ = 'Ondřej Lanč'
 
@@ -12,17 +13,21 @@ __author__ = 'Ondřej Lanč'
 class PackagePresenter(Presenter):
     def __init__(self, config):
         self._config=config
-        self._entry=None
+        self._entry = None
+        self._undo = UndoPresenter()
         self._package = Package(self._config.name)
 
     @property
     def package(self):
         return self._package
 
-
     @property
     def entry(self):
         return self._entry
+
+    @property
+    def undo(self):
+        return self._undo
 
     @property
     def package_name(self):
@@ -40,7 +45,7 @@ class PackagePresenter(Presenter):
         # input_parser.package = self.package
         input_parser.load_package()
         input_parser.load_plugin()
-        self._entry=EntryPresenter(self.package.tree)
+        self._entry = EntryPresenter(self.package.tree, self._undo)
         return True
 
     def tabs(self):

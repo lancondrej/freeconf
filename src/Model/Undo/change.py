@@ -47,6 +47,7 @@ class RemoveMultipleChange(Change):
     def change(self):
         self.entry.insert(self.removed.index, self.removed)
 
+
 class MoveUpMultipleChange(Change):
     def __init__(self, entry, index):
         Change.__init__(self, entry)
