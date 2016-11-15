@@ -127,7 +127,7 @@ class MultipleEntry(BaseEntry):
         if self.multiple_max is None or length < self.multiple_max:
             self._default.append(deepcopy(self._template))
             self._default[-1].index = length
-            return self._entries[-1]
+            return self._default[-1]
         return None
 
     def delete_entry(self, index):
@@ -160,12 +160,10 @@ class MultipleEntry(BaseEntry):
         self._entries.insert(int(position), entry)
 
     def append(self):
-        self.create_new()
-        return self.entries[-1]
+        return self.create_new()
 
     def append_default(self):
-        self.create_new_default()
-        return self._default[-1]
+        return self.create_new_default()
 
     def disconnect(self, entry):
         try:
