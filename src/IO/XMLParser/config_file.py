@@ -38,7 +38,8 @@ class ConfigFileReader(FileReader):
         for entry in entries:
             self._parse_entry(entry, this_container)
 
-    def _parse_entry(self, entry_element, parent):
+    @staticmethod
+    def _parse_entry(entry_element, parent):
         name = entry_element.get('name')
         entry = parent.get_entry(name)
         value = entry_element.findtext('value')
@@ -80,7 +81,7 @@ class ConfigFileWriter(object):
         element = Element('container')
         element.set('name', container.name)
         for entry in container.entries.values():
-            sub_element=self.render_entry(entry, group)
+            sub_element = self.render_entry(entry, group)
             if sub_element:
                 element.extend(sub_element)
         return [element]
@@ -102,10 +103,10 @@ class ConfigFileWriter(object):
         element.append(val_el)
 
         if group:
-            help = entry.help
-            if help:
+            help_text = entry.help
+            if help_text:
                 help_el = Element('help')
-                help_el.text = help
+                help_el.text = help_text
                 element.append(help_el)
 
         return [element]
