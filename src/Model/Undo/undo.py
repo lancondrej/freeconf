@@ -25,3 +25,4 @@ class Undo(object):
 
     def save(self, item):
         self._undo_stack.push(item)
+        self._redu_stack.flush()

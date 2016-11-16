@@ -19,3 +19,7 @@ class Stack(object):
             self._len -= 1
             return self._items.pop()
         return None
+
+    def flush(self):
+        self._items = []
+        self._len = 0
