@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-
+from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
 
@@ -11,7 +11,7 @@ from src.Model.Package.entries.base_entry import BaseEntry
 from src.Model.Package.exception_logging.exception import AlreadyExistsError
 
 
-class Container(BaseEntry):
+class Container(BaseEntry, ContainerInconsistency):
     """This is a class for keyword entries from Template File"""
 
     def is_multiple_entry_container(self):
@@ -19,6 +19,7 @@ class Container(BaseEntry):
 
     def __init__(self, name, package):
         BaseEntry.__init__(self, name, package)
+        ContainerInconsistency.__init__(self)
         self._entries = {}
 
     def __deepcopy__(self, memo):
@@ -94,6 +95,15 @@ class Container(BaseEntry):
             if self.is_in_container(relative_name):
                 return self.get_entry(relative_name)
         return None
+
+    def init_inconsistency(self):
+        for entry in self._entries.values():
+            entry.init_inconsistency()
+    # @property
+    # def inconsistent(self):
+    #     if self.mandatory and self.active:
+    #         return super().inconsistent
+    #     return False
 
     # # @property
     # def primary(self):

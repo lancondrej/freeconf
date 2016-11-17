@@ -15,3 +15,11 @@
     .navbar-brand{
         padding: 0px;
     }
+
+    .inconsistent{
+        background-color: red;
+    }
+
+    .inconsistent >.panel >.panel-heading {
+        background-color: orange;
+    }

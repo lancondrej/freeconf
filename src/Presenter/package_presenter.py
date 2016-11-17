@@ -45,6 +45,7 @@ class PackagePresenter(Presenter):
         # input_parser.package = self.package
         input_parser.load_package()
         input_parser.load_plugin()
+        self.package.tree.init_inconsistency()
         self._entry = EntryPresenter(self.package.tree, self._undo)
         return True
 

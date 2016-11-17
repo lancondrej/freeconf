@@ -2,16 +2,18 @@
 #
 from copy import deepcopy
 
+from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
 
 from src.Model.Package.entries.base_entry import BaseEntry
 
 
-class MultipleEntry(BaseEntry):
+class MultipleEntry(BaseEntry, ContainerInconsistency):
     """Container for multiple config entries."""
 
     def __init__(self, entry=None):
+        ContainerInconsistency.__init__(self)
         if entry is not None:
             self._template = entry
             self._template.multiple = True
@@ -114,6 +116,22 @@ class MultipleEntry(BaseEntry):
     def help(self, help):
         self.template.help=help
 
+    @property
+    def active(self):
+        return self.template.active
+
+    @active.setter
+    def active(self, active):
+        self.template.active=active
+
+    @property
+    def mandatory(self):
+        return self.template.mandatory
+
+    @mandatory.setter
+    def mandatory(self, mandatory):
+        self.template.mandatory =mandatory
+
     def create_new(self, length):
         if self.multiple_max is None or length < self.multiple_max:
             newone = deepcopy(self._template)
@@ -212,4 +230,9 @@ class MultipleEntry(BaseEntry):
             return self._entries[int(relative_name)]
         return None
 
-
+    def init_inconsistency(self):
+        for entry in self._entries:
+            entry.init_inconsistency()
+        for entry in self._default:
+            entry.init_inconsistency()
+        self.template.init_inconsistency()

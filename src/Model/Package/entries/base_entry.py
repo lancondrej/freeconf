@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
 from src.Model.Package.constants import Types
-from src.Model.Package.exception_logging import log
+from src.Model.Package.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'
 
@@ -181,8 +181,12 @@ class BaseEntry(object):
 
     # @property
     # def inconsistent(self):
-    #     return self._inconsistent
-    #
+    #     if self.mandatory and self.active:
+    #         return self._inconsistent
+    #     return False
+
+
+
     # def handle_dependency_event (self, event, value):
     #     """This property is a bridge between the tree and the dependency code. Special dependency signals
     #     can be handled in sub-classes"""

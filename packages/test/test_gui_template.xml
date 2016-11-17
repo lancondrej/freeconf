@@ -6,9 +6,7 @@
         <tab-icon>categories/preferences-other</tab-icon>
         <tab-section>
             <tab-section-name>sekce-1</tab-section-name>
-            <import-entry>/main-container/string1</import-entry>
-            <import-entry>/main-container/bool1</import-entry>
-            <import-entry>/main-container/string3</import-entry>
+            <import-entry>/main-container/prvni</import-entry>
         </tab-section>
     </tab>
 
@@ -17,13 +15,7 @@
         <tab-icon>categories/applications-internet</tab-icon>
         <tab-section>
             <tab-section-name>sekce-2</tab-section-name>
-            <import-entry primary="string2">/main-container/multiple-container</import-entry>
-        </tab-section>
-        <tab-section>
-            <tab-section-name>sekce-3</tab-section-name>
-            <import-entry>/main-container/number1</import-entry>
-            <import-entry>/main-container/number5</import-entry>
-
+            <import-entry>/main-container/druhy</import-entry>
         </tab-section>
     </tab>
 </freeconf-gui-template>

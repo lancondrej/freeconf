@@ -18,6 +18,8 @@ class EntryPresenter(Presenter):
     def save_value(self, path, value):
         entry = self.get_entry(path)
         old_value=entry.value
+        if value == "":
+            value = None
         entry.value = value
         new_value=entry.value
         self._undo.value_change(entry, old_value, new_value)

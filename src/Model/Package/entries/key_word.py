@@ -1,18 +1,19 @@
 #!/usr/bin/python3
 #
-
-__author__ = 'Ondřej Lanč'
-
 from src.Model.Package.constants import Types
 from src.Model.Package.entries.base_entry import BaseEntry
 from src.Model.Package.exception_logging.log import log
+from src.Model.Package.inconsistency import Inconsistency
+
+__author__ = 'Ondřej Lanč'
 
 
-class KeyWord(BaseEntry):
+class KeyWord(BaseEntry, Inconsistency):
     """This is a class for keyword entries"""
 
     def __init__(self, name, package):
         BaseEntry.__init__(self, name, package)
+        Inconsistency.__init__(self)
         self._default_value = None
         self._value = None
         self._dependents = []
@@ -34,6 +35,8 @@ class KeyWord(BaseEntry):
         if value is not None:
             value = self.convert_value(value)
         self._default_value = value
+        if self._value is None:
+            self._value = value
         log.debug("setting default def %s on %s" % (str(self._default_value), str(self.name)))
 
     def is_container(self):
@@ -47,13 +50,17 @@ class KeyWord(BaseEntry):
 
     @property
     def value(self):
-        if self._value is None:
-            return self._default_value
         return self._value
 
     @value.setter
     def value(self, value):
-        self._value = self.convert_value(value)
+        if value is None:
+            self._value = None
+            if self.mandatory and self.active:
+                self.change_inconsistency(True)
+        else:
+            self._value = self.convert_value(value)
+            self.change_inconsistency(False)
 
     @property
     def type(self):
@@ -97,3 +104,12 @@ class KeyWord(BaseEntry):
     #     log.debug("Updating dependencies on " + str(self))
     #     for d in self._dependents:
     #         d.execute()
+
+    def init_inconsistency(self):
+        if self.mandatory and self.active and (self._default_value is None) and (self._value is None):
+            self.change_inconsistency(True)
+    # @property
+    # def inconsistent(self):
+    #     if self.mandatory and self.active:
+    #         return super().inconsistent
+    #     return False

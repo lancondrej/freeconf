@@ -136,8 +136,6 @@ class Number(KeyWord):
 
     def check_value(self, value=None):
         """Check if entry's value is within permitted range. If not, return nearest value that is in the range."""
-        if value is None:
-            value = self.value
         if self.max_set and value > self.max:
             return self.max
         elif self.min_set and value < self.min:
