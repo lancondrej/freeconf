@@ -47,11 +47,27 @@ function redo() {
 $(function () {
     load();
 
+
     $('#undo').on('click', function () {
         undo();
     });
 
     $('#redo').on('click', function () {
         redo();
+    });
+
+
+    
+});
+
+$(document).ready(function() {
+        namespace = '/test';
+
+    // Connect to the Socket.IO server.
+    // The connection URL has the following format:
+    //     http[s]://<domain>:<port>[/<namespace>]
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+    socket.on('my_response', function(msg) {
+        $('#log').empty().append('<br>' + $('<div/>').text('Receivfffed #' + msg.count).html());
     });
 });
