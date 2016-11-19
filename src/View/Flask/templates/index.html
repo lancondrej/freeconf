@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Freeconf  {% if title %} - {{title}} {%endif%}</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="{{ url_for('static', filename='css/bootstrap-switch.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='js/bootstrap-switch.js') }}" ></script>
-    <link href="{{ url_for('static', filename='css/jquery-ui.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='js/jquery-ui.js') }}" ></script>
 
     <script type="text/javascript">
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/socket.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/form.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/modal.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
+
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/main.css') }}">
 
 </head>
