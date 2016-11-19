@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 #
 
-from . import events
+# from . import events
