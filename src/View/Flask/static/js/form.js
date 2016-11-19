@@ -1,72 +1,58 @@
 function submit_form_input(input) {
-    $.getJSON($SCRIPT_ROOT + '/_submit', {
+    socket.emit('submit', {
         full_name: input.attr("id"),
         value: input.val()
-    }, function (data) {
-        // $('#result').text(data.result);
     });
     return false;
 }
 
 function submit_form_checkbox(input) {
-    $.getJSON($SCRIPT_ROOT + '/_submit', {
+    socket.emit('submit', {
         full_name: input.attr("id"),
         value: input.is(":checked") ? "yes" : "no"
-    }, function (data) {
-        // $('#result').text(data.result);
     });
     return false;
 }
+
 function submit_form_select(select) {
-    $.getJSON($SCRIPT_ROOT + '/_submit', {
+    socket.emit('submit', {
         full_name: select.attr("id"),
         value: select.val()
-    }, function (data) {
-        // $('#result').text(data.result);
     });
     return false;
 }
 
 function multiple_new(input) {
-    $.getJSON($SCRIPT_ROOT + '/_multiple_new', {
+    socket.emit('multiple_new', {
         full_name: input.attr("full_name")
-    }, function (data){
-        if(data.result){reload(input)}
-        else{flash()}
-    });
-}
-
-function multiple_delete(input) {
-    $.getJSON($SCRIPT_ROOT + '/_multiple_delete', {
-        full_name: input.attr("full_name"),
-        value: input.attr("value")
-    }, function (data){
-        if(data.result){reload(input)}
-        else{flash()}
     });
     return false;
 }
 
-function multiple_up(input) {
-    $.getJSON($SCRIPT_ROOT + '/_multiple_up', {
+function multiple_delete(input) {
+    socket.emit('multiple_delete', {
         full_name: input.attr("full_name"),
         value: input.attr("value")
-    }).done(reload(input));
+    });
+    return false;
+}
+
+
+function multiple_up(input) {
+    socket.emit('multiple_up', {
+        full_name: input.attr("full_name"),
+        value: input.attr("value")
+    });
     return false;
 }
 
 function multiple_down(input) {
-    $.getJSON($SCRIPT_ROOT + '/_multiple_down', {
+    socket.emit('multiple_down', {
         full_name: input.attr("full_name"),
         value: input.attr("value")
-    }).done(reload(input));
+    });
     return false;
 }
-
-
-
-
-
 
 
 
@@ -94,6 +80,7 @@ function load_form() {
     $('input').off().on('change', function () {
         submit_form_input($(this))
     });
+    
     $('input[type="checkbox"]').off().on('switchChange.bootstrapSwitch', function () {
         submit_form_checkbox($(this))
     });

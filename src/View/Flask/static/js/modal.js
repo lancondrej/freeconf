@@ -4,6 +4,7 @@ function open_modal(input) {
         // load_form()
     }
     else {
+
         $.get($SCRIPT_ROOT + '/_multiple_modal', {
             full_name: input.attr("full_name")
         }, function (data) {

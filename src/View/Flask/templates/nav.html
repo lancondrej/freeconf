@@ -8,31 +8,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}"><img
+                <a class="navbar-brand" href="{{ url_for('main.index') }}"><img
                         src="{{ url_for('static', filename='img/ico.png') }}"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
 
-                    <li><a href="{{ url_for('configure') }}">Configure</a></li>
+                    <li><a href="{{ url_for('main.configure') }}">Configure</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Freeconf<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('setting') }}">Setting</a></li>
-                            <li><a href="{{ url_for('about') }}">About</a></li>
+                            <li><a href="{{ url_for('main.setting') }}">Setting</a></li>
+                            <li><a href="{{ url_for('main.about') }}">About</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ url_for('save_config') }}">Save config</a></li>
-                    <li><a href="{{ url_for('save_native') }}">Save native</a></li>
+                    <li><button id="save_config">Save config</button></li>
+                    <li><button id="save_native">Save native</button></li>
 
-                    <li><a id="undo" href="#">Undo</a></li>
-                    <li><a id="redo" href="#">Redu</a></li>
+                    <li><button id="undo">Undo</button></li>
+                    <li><button id="redo">Redu</button></li>
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
+{#                <ul class="nav navbar-nav navbar-right">#}
+{#                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>#}
+{#                </ul>#}
             </div>
         </div>
     </nav>

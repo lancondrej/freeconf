@@ -1,73 +1,48 @@
 function load() {
     load_form();
     load_modal();
-        flash();
-
 
 }
 
-function reload(elem) {
-    var entry = elem.closest(".entry");
-    reload_element(entry);
-    flash();
-}
 
-function reload_element(elem) {
-    $.get($SCRIPT_ROOT + '/_reload_element', {
-        full_name: elem.attr("full_name")
-    }, function (data) {
-        elem.replaceWith(data);
+
+
+$(document).ready(function() {
+
+    
+    socket.on('log', function(data) {
+        $('#log').prepend('<br>' + $('<div/>').text(data.log_record).html());
+    });
+
+    socket.on('flash', function(data) {
+        $('#flash').prepend(data.flash);
+        setTimeout(function() {$('#flash').find('div:first-child' ).remove()}, 5000);
+    });
+
+    socket.on('reload', function(data) {
+        $("[id='entry_"+data.full_name+"']").replaceWith(data.rendered_entry);
+        console.log(data);
         load()
+
     });
-}
-
-function flash() {
-    $.get($SCRIPT_ROOT + '/_flash', function (data) {
-        $('#flash').empty().append(data);
-    })
-}
-
-
-function undo() {
-    $.getJSON($SCRIPT_ROOT + '/_undo',function (data) {
-       if(data.result){
-        reload($("[id*='"+data.full_name+"']"));
-        }
-    });
-}
-
-function redo() {
-    $.getJSON($SCRIPT_ROOT + '/_redo',function (data) {
-        if(data.result){
-        reload($("[id*='"+data.full_name+"']"));
-        }
-    });
-}
-
-$(function () {
-    load();
 
 
     $('#undo').on('click', function () {
-        undo();
+    socket.emit('undo');
     });
 
     $('#redo').on('click', function () {
-        redo();
+    socket.emit('redo');
     });
 
-
+    $('#save_config').on('click', function () {
+    socket.emit('save_config');
+    });
     
-});
-
-$(document).ready(function() {
-        namespace = '/test';
-
-    // Connect to the Socket.IO server.
-    // The connection URL has the following format:
-    //     http[s]://<domain>:<port>[/<namespace>]
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-    socket.on('my_response', function(msg) {
-        $('#log').empty().append('<br>' + $('<div/>').text('Receivfffed #' + msg.count).html());
+    $('#save_native').on('click', function () {
+    socket.emit('save_native');
     });
+
+    load();
+
 });
