@@ -74,9 +74,8 @@ class PackageView(BaseView):
         entry = self.presenter.get_entry(full_name)
         return self._renderer.render_collapse(entry)
 
-    def reload_element(self, full_name):
-        entry = self.presenter.get_entry(full_name)
-        return self._renderer.reload_element(entry)
+    def reload_entry(self, entry):
+        emit('reload', {'full_name': entry.full_name, 'rendered_entry': self._renderer.reload_element(entry)}, namespace='/freeconf')
 
     def submit(self, data):
         full_name = data['full_name']
@@ -85,51 +84,31 @@ class PackageView(BaseView):
 
     def multiple_new(self, data):
         full_name = data['full_name']
-        result = self.presenter.multiple_new(full_name)
-        if result is None:
-            self.flash_message("Cannot add element. Maximum element reach!", 'error')
-        else:
-            emit('reload', {'full_name': full_name, 'rendered_entry': self.reload_element(full_name)}, namespace='/freeconf')
+        self.presenter.multiple_new(full_name)
 
     def multiple_delete(self, data):
         full_name = data['full_name']
         value = data['value']
-        result = self.presenter.multiple_delete(full_name, value)
-        if result is None:
-            self.flash_message("Cannot remove element. Minimum element reach!", 'error')
-        else:
-            emit('reload', {'full_name': full_name, 'rendered_entry': self.reload_element(full_name)}, namespace='/freeconf')
+        self.presenter.multiple_delete(full_name, value)
 
     def multiple_up(self, data):
         full_name = data['full_name']
         value = data['value']
         self.presenter.multiple_up(full_name, value)
-        emit('reload', {'full_name': full_name, 'rendered_entry': self.reload_element(full_name)}, namespace='/freeconf')
 
     def multiple_down(self, data):
         full_name = data['full_name']
         value = data['value']
         self.presenter.multiple_down(full_name, value)
-        emit('reload', {'full_name': full_name, 'rendered_entry': self.reload_element(full_name)}, namespace='/freeconf')
 
     def undo(self):
-        full_name = self.presenter.undo()
-        emit('reload', {'full_name': full_name, 'rendered_entry': self.reload_element(full_name)}, namespace='/freeconf')
+        self.presenter.undo()
 
     def redo(self):
-        full_name = self.presenter.redo()
-        emit('reload', {'full_name': full_name, 'rendered_entry': self.reload_element(full_name)}, namespace='/freeconf')
+        self.presenter.redo()
 
     def save_config(self):
-        result = self.presenter.package.save_config()
-        if result:
-            self.flash_message('Configuration save', 'success')
-        else:
-            self.flash_message('Configuration not save', 'danger')
+        self.presenter.save_config()
 
     def save_native(self):
-        result = self.presenter.package.save_native()
-        if result:
-            self.flash_message('Native configuration save', 'success')
-        else:
-            self.flash_message('Native Configuration not save', 'danger')
+        self.presenter.save_native()

@@ -27,15 +27,13 @@ class PackagePresenter(Presenter):
         change = self._undo.undo()
         if change is not None:
             self.log("redo entry {}".format(change.entry.name))
-            return str(change.entry.full_name)
-        return None
+            self.view.reload_entry(change.entry)
 
     def redo(self):
         change = self._undo.redo()
         if change is not None:
             self.log("redo entry {}".format(change.entry.name))
-            return str(change.entry.full_name)
-        return None
+            self.view.reload_entry(change.entry)
 
     def log(self, message):
         localtime = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
@@ -48,10 +46,6 @@ class PackagePresenter(Presenter):
         return ""
 
     def load_package(self, language=None):
-        # self._package = Package(self._config.name)
-        # if language in self._config.available_language:
-        #     self._package.language = language
-
         input_parser=XMLParser(self._config, self._package)
         assert isinstance(input_parser, Input)
         # input_parser.package = self.package
@@ -72,17 +66,17 @@ class PackagePresenter(Presenter):
         output = XMLOutput(self._config, self._package)
         try:
             output.write_output()
-            return True
+            self.view.flash_message('Configuration save', 'success')
         except Exception:
-            return False
+            self.view.flash_message('Configuration not save', 'danger')
 
     def save_native(self):
         output = XMLOutput(self._config, self._package)
         try:
             output.write_native()
-            return True
+            self.view.flash_message('Native configuration save', 'success')
         except Exception:
-            return False
+            self.view.flash_message('Native Configuration not save', 'danger')
 
     @property
     def tree(self):
@@ -101,14 +95,15 @@ class PackagePresenter(Presenter):
         self._undo.value_change(entry, old_value, new_value)
         self.log("{} key word change value from {} to {}".format(entry.name, old_value, new_value))
 
-
     def multiple_new(self, path):
         entry = self.get_entry(path)
         newone = entry.append()
         self._undo.multiple_new(entry, newone)
         if newone is not None:
             self.log("delete entry for {}".format(newone.full_name))
-        return newone is not None
+            self.view.reload_entry(entry)
+        else:
+            self.view.flash_message("Cannot add element. Maximum element reach!", 'error')
 
     def multiple_delete(self, path, index):
         entry = self.get_entry(path)
@@ -116,7 +111,9 @@ class PackagePresenter(Presenter):
         self._undo.multiple_delete(entry, removed)
         if removed is not None:
             self.log("delete entry for {}".format(removed.full_name))
-        return removed is not None
+            self.view.reload_entry(entry)
+        else:
+            self.view.flash_message("Cannot remove element. Minimum element reach!", 'error')
 
     def multiple_up(self, path, index):
         entry = self.get_entry(path)
@@ -124,7 +121,7 @@ class PackagePresenter(Presenter):
         self._undo.multiple_up(entry, index, is_move)
         if is_move:
             self.log("entry move up")
-        return is_move
+            self.view.reload_entry(entry)
 
     def multiple_down(self, path, index):
         entry = self.get_entry(path)
@@ -132,4 +129,5 @@ class PackagePresenter(Presenter):
         self._undo.multiple_down(entry, index, is_move)
         if is_move:
             self.log("entry move down")
-        return is_move
+            self.view.reload_entry(entry)
+
