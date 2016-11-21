@@ -26,7 +26,7 @@ class BaseEntry(object):
         self._package = package  # Plugin or package, from which this entry originates.
 
         self._inconsistent = False
-        #self.guiBuddy = None
+        self._gui_parent = None
 
     def __deepcopy__(self, memo):
         newone = type(self)(self.name, self.package)
@@ -52,6 +52,18 @@ class BaseEntry(object):
     def parent(self, parent):
         """set name"""
         self._parent = parent
+
+    @property
+    def gui_parent(self):
+        return self._gui_parent
+
+    @gui_parent.setter
+    def gui_parent(self, gui_parent):
+        self._gui_parent = gui_parent
+
+    @property
+    def parents(self):
+        return [self.parent, self.gui_parent]
 
     @property
     def package(self):

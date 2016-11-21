@@ -79,6 +79,20 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
         self.template.parent = parent
 
     @property
+    def gui_parent(self):
+        """get name"""
+        return self.template.gui_parent
+
+    @gui_parent.setter
+    def gui_parent(self, gui_parent):
+        """set name"""
+        self.template.gui_parent = gui_parent
+
+    @property
+    def parents(self):
+        return self.template.parents
+
+    @property
     def package(self):
         """get package"""
         return self.template.package
