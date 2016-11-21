@@ -27,7 +27,7 @@ class Renderer(object):
         entries = []
         for entry in container.entries.values():
             entries.append(self.entry_render(entry))
-        return render_template('entries/container.html',
+        return render_template('package/entries/container.html',
                                name=container.name,
                                full_name=container.full_name,
                                label=container.label,
@@ -39,7 +39,7 @@ class Renderer(object):
         pass
 
     def render_bool(self, entry):
-        return render_template('entries/bool.html',
+        return render_template('package/entries/bool.html',
                                name=entry.name,
                                full_name=entry.full_name,
                                label=entry.label,
@@ -49,7 +49,7 @@ class Renderer(object):
                                )
 
     def render_number(self, entry):
-        return render_template('entries/number.html',
+        return render_template('package/entries/number.html',
                                name=entry.name,
                                full_name=entry.full_name,
                                label=entry.label,
@@ -63,7 +63,7 @@ class Renderer(object):
 
     def render_string(self, entry):
         if entry.list and not entry.user_values:
-            return render_template('entries/select.html',
+            return render_template('package/entries/select.html',
                                    name=entry.name,
                                    full_name=entry.full_name,
                                    label=entry.label,
@@ -72,7 +72,7 @@ class Renderer(object):
                                    value=entry.value,
                                    list=entry.list,
                                    )
-        return render_template('entries/string.html',
+        return render_template('package/entries/string.html',
                                name=entry.name,
                                full_name=entry.full_name,
                                label=entry.label,
@@ -84,7 +84,7 @@ class Renderer(object):
 
     def render_multiple_container(self, container):
         entries = [(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
-        return render_template('entries/multiple_cont.html',
+        return render_template('package/entries/multiple_cont.html',
                                name=container.name,
                                full_name=container.full_name,
                                inconsistent=container.inconsistent,
@@ -95,7 +95,7 @@ class Renderer(object):
 
     def render_multiple_container_collapse(self, container):
         entries = [(i, container.primary_value(i), entry.full_name) for i, entry in enumerate(container.entries)]
-        return render_template('entries/multiple_cont_collapse.html',
+        return render_template('package/entries/multiple_cont_collapse.html',
                                name=container.name,
                                full_name=container.full_name,
                                inconsistent=container.inconsistent,
@@ -106,7 +106,7 @@ class Renderer(object):
 
     def render_multiple_key_word(self, mult_entry):
         entries = [(i, entry.name, self.entry_render(entry)) for i, entry in enumerate(mult_entry.entries)]
-        return render_template('entries/multiple_key.html',
+        return render_template('package/entries/multiple_key.html',
                                name=mult_entry.name,
                                full_name=mult_entry.full_name,
                                # inconsistent=mult_entry.inconsistent,
@@ -119,7 +119,7 @@ class Renderer(object):
         entries = []
         for entry in section.entries:
             entries.append(self.entry_render(entry))
-        return render_template('entries/section.html',
+        return render_template('package/entries/section.html',
                                label=section.label,
                                entries=entries,
                                )

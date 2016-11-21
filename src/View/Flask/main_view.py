@@ -42,7 +42,4 @@ class MainView(BaseView):
 
     def configure(self):
         packages=self.presenter.config.packages_list
-        return self.render_default(body= render_template("configure.html", packages=packages))
-
-    def render_default(self, tabs=None, body=""):
-        return render_template('index.html', package_name=session.get('package_name'), tabs=tabs, main=body)
+        return self.render_default(main=render_template("configure.html", packages=packages))

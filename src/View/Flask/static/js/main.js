@@ -1,11 +1,19 @@
 function load() {
     load_form();
     load_modal();
-
 }
 
 
 
+function tabs_on() {
+    $('#tabs button').on('click', function () {
+        socket.emit('tab', {
+            name: $(this).attr('value')
+        });
+        $('#tabs button').removeClass('active');
+        $(this).addClass( 'active' );
+    });
+}
 
 $(document).ready(function() {
 
@@ -19,11 +27,20 @@ $(document).ready(function() {
         setTimeout(function() {$('#flash').find('div:first-child' ).remove()}, 5000);
     });
 
-    socket.on('reload', function(data) {
+    socket.on('reload_entry', function(data) {
         $("[id='entry_"+data.full_name+"']").replaceWith(data.rendered_entry);
-        console.log(data);
         load()
 
+    });
+
+    socket.on('reload_tabs', function(data) {
+        $("#tabs").replaceWith(data.rendered_tabs);
+        tabs_on();
+    });
+
+    socket.on('reload_tab', function(data) {
+        $("#tab").replaceWith(data.rendered_tab);
+        load()
     });
 
 
@@ -43,6 +60,7 @@ $(document).ready(function() {
     socket.emit('save_native');
     });
 
+    tabs_on();
     load();
 
 });

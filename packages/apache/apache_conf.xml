@@ -1,71 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <container name="apache-config">
-  <container name="Listen">
-    <entry name="Port">
-      <value>80.0</value>
-    </entry>
-  </container>
-  <container name="Listen">
-    <entry name="Port">
-      <value>50.0</value>
-    </entry>
-  </container>
-  <container name="Listen"/>
-  <container name="Listen"/>
-  <container name="Listen"/>
-  <container name="Listen"/>
-  <container name="Listen"/>
-  <container name="Listen"/>
-  <entry name="TraceEnable">
-    <value>Off</value>
-  </entry>
-  <entry name="MaxKeepAliveRequests">
-    <value>98.0</value>
-  </entry>
-  <entry name="DefaultType">
-    <value>text/plain</value>
-  </entry>
-  <entry name="LockFile">
-    <value>/var/lock/apache2/accept.lock</value>
-  </entry>
-  <entry name="HostnameLookups">
-    <value>no</value>
-  </entry>
-  <entry name="Group">
-    <value>www-data</value>
-  </entry>
-  <container name="NameVirtualHost">
-    <entry name="Address">
-      <value>localhost</value>
-    </entry>
-    <entry name="Port">
-      <value>80.0</value>
-    </entry>
-  </container>
-  <entry name="KeepAliveTimeout">
-    <value>5.0</value>
-  </entry>
   <entry name="KeepAlive">
     <value>yes</value>
   </entry>
-  <entry name="AccessFileName">
-    <value>.htaccess</value>
-  </entry>
-  <entry name="TimeOut">
-    <value>300.0</value>
-  </entry>
   <container name="VirtualHost">
-    <container name="ServerAlias">
-      <entry name="Hostname">
-        <value>www.pokus.net</value>
-      </entry>
-    </container>
-    <entry name="DocumentRoot">
-      <value>/var/www</value>
-    </entry>
     <container name="Directory">
-      <entry name="Deny">
-        <value>1.2.3.4</value>
+      <entry name="Order">
+        <value>Allow,Deny</value>
       </entry>
       <container name="AllowOverride">
         <entry name="Indexes">
@@ -74,55 +15,43 @@
         <entry name="Limit">
           <value>no</value>
         </entry>
-        <entry name="Options">
-          <value>no</value>
-        </entry>
         <entry name="AuthConfig">
           <value>no</value>
         </entry>
         <entry name="FileInfo">
           <value>no</value>
         </entry>
+        <entry name="Options">
+          <value>no</value>
+        </entry>
       </container>
+      <entry name="Allow">
+        <value>all</value>
+      </entry>
+      <entry name="Path">
+        <value>/var/www</value>
+      </entry>
+      <entry name="Deny">
+        <value>1.2.3.4</value>
+      </entry>
       <container name="Options">
-        <entry name="Includes">
-          <value>no</value>
-        </entry>
-        <entry name="SymLinksIfOwnerMatch">
-          <value>no</value>
-        </entry>
-        <entry name="ExecCGI">
+        <entry name="IncludesNOEXEC">
           <value>no</value>
         </entry>
         <entry name="MultiViews">
           <value>yes</value>
         </entry>
-        <entry name="IncludesNOEXEC">
+        <entry name="SymLinksIfOwnerMatch">
+          <value>no</value>
+        </entry>
+        <entry name="Includes">
+          <value>no</value>
+        </entry>
+        <entry name="ExecCGI">
           <value>no</value>
         </entry>
       </container>
-      <entry name="Order">
-        <value>Allow,Deny</value>
-      </entry>
-      <entry name="Path">
-        <value>/var/www</value>
-      </entry>
-      <entry name="Allow">
-        <value>all</value>
-      </entry>
     </container>
-    <entry name="ServerName">
-      <value>pokus.net</value>
-    </entry>
-    <entry name="ServerAdmin">
-      <value>admin</value>
-    </entry>
-    <entry name="Address">
-      <value>localhost</value>
-    </entry>
-    <entry name="Port">
-      <value>80</value>
-    </entry>
     <container name="Alias">
       <entry name="URLPath">
         <value>temp</value>
@@ -131,71 +60,88 @@
         <value>/tmp</value>
       </entry>
     </container>
+    <entry name="ServerAdmin">
+      <value>admin</value>
+    </entry>
+    <entry name="DocumentRoot">
+      <value>/var/www</value>
+    </entry>
+    <entry name="ServerName">
+      <value>pokus.net</value>
+    </entry>
+    <entry name="Port">
+      <value>80</value>
+    </entry>
+    <entry name="Address">
+      <value>localhost</value>
+    </entry>
+    <container name="ServerAlias">
+      <entry name="Hostname">
+        <value>www.pokus.net</value>
+      </entry>
+    </container>
   </container>
   <container name="VirtualHost">
-    <container name="ServerAlias"/>
     <container name="Directory">
       <container name="AllowOverride"/>
       <container name="Options"/>
     </container>
     <container name="Alias"/>
+    <container name="ServerAlias"/>
   </container>
   <container name="VirtualHost">
-    <container name="ServerAlias"/>
     <container name="Directory">
       <container name="AllowOverride"/>
       <container name="Options"/>
     </container>
     <container name="Alias"/>
+    <container name="ServerAlias"/>
   </container>
   <container name="VirtualHost">
-    <container name="ServerAlias"/>
     <container name="Directory">
       <container name="AllowOverride"/>
       <container name="Options"/>
     </container>
     <container name="Alias"/>
-  </container>
-  <container name="VirtualHost">
     <container name="ServerAlias"/>
-    <container name="Directory">
-      <container name="AllowOverride"/>
-      <container name="Options"/>
-    </container>
-    <container name="Alias"/>
-  </container>
-  <container name="VirtualHost">
-    <container name="ServerAlias"/>
-    <container name="Directory">
-      <container name="AllowOverride"/>
-      <container name="Options"/>
-    </container>
-    <container name="Alias"/>
-  </container>
-  <container name="VirtualHost">
-    <container name="ServerAlias"/>
-    <container name="Directory">
-      <container name="AllowOverride"/>
-      <container name="Options"/>
-    </container>
-    <container name="Alias"/>
-  </container>
-  <container name="VirtualHost">
-    <container name="ServerAlias"/>
-    <container name="Directory">
-      <container name="AllowOverride"/>
-      <container name="Options"/>
-    </container>
-    <container name="Alias"/>
   </container>
   <entry name="ServerTokens">
     <value>OS</value>
   </entry>
-  <entry name="PidFile">
-    <value>/var/run/apache2.pid</value>
+  <entry name="ErrorLog">
+    <value>/var/log/apache2/error.log</value>
   </entry>
   <entry name="LogLevel">
     <value>Critical</value>
+  </entry>
+  <entry name="AccessFileName">
+    <value>.htaccess</value>
+  </entry>
+  <entry name="LockFile">
+    <value>/var/lock/apache2/accept.lock</value>
+  </entry>
+  <entry name="HostnameLookups">
+    <value>no</value>
+  </entry>
+  <entry name="ServerRoot">
+    <value>/etc/apache2</value>
+  </entry>
+  <entry name="Group">
+    <value>www-data</value>
+  </entry>
+  <entry name="MaxKeepAliveRequests">
+    <value>98.0</value>
+  </entry>
+  <container name="NameVirtualHost">
+    <entry name="Port">
+      <value>80.0</value>
+    </entry>
+    <entry name="Address">
+      <value>localhost</value>
+    </entry>
+  </container>
+  <entry name="TraceEnable">
+    <value>Off</value>
   </entry>
   <entry name="User">
     <value>www-data</value>
@@ -203,10 +149,16 @@
   <entry name="ServerSignature">
     <value>On</value>
   </entry>
-  <entry name="ServerRoot">
-    <value>/etc/apache2</value>
+  <entry name="DefaultType">
+    <value>text/plain</value>
   </entry>
-  <entry name="ErrorLog">
-    <value>/var/log/apache2/error.log</value>
+  <entry name="TimeOut">
+    <value>300.0</value>
+  </entry>
+  <entry name="PidFile">
+    <value>/var/run/apache2.pid</value>
+  </entry>
+  <entry name="KeepAliveTimeout">
+    <value>5.0</value>
   </entry>
 </container>

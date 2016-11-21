@@ -22,7 +22,7 @@ class FreeconfFlask(object):
         self._presenter = MainPresenter()
         self._flask.debug = debug
         self._flask.config['SECRET_KEY'] = '56asdasss545'
-
+        self._flask.config['TEMPLATES_AUTO_RELOAD'] = True
         DebugToolbarExtension(self._flask)
 
         self._mainView=MainView(self._flask, self._socketio)

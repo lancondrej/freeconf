@@ -17,8 +17,8 @@ class BaseView(object):
         self._flask = flask
         self._socketio = socketio
 
-    def render_default(self, tabs=None, body=""):
-        return render_template('index.html', package_name=session.get('package_name'), tabs=tabs, main=body)
+    def render_default(self, left="", main="", right=""):
+        return render_template('index.html', left=left, main=main, right=right)
 
     def flash_message(self, message, category):
         flash = render_template('elements/flash.html', category=category, message=message)

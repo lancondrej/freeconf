@@ -57,10 +57,11 @@ class PackagePresenter(Presenter):
     def tabs(self):
         return [(tab.name, tab.label) for tab in self._package.gui_tree.content]
 
-    def tab(self, name):
+    def tab(self, name=None):
         if name is None:
             return self._package.gui_tree.first_tab().content
-        return self._package.gui_tree.get_tab(name).content
+        self.view.reload_tab(self._package.gui_tree.get_tab(name).content)
+        return True
 
     def save_config(self):
         output = XMLOutput(self._config, self._package)

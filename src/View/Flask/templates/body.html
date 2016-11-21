@@ -2,17 +2,15 @@
 
     <div class="container-fluid">
         <div class="row content">
-            <div class="col-sm-2">
-{% include "tabs.html" %}
-
-
-
-            </div>
-            <div class="col-sm-8">
+            <nav class="col-sm-2">
+                {{ left }}
+            </nav>
+            <main class="col-sm-8">
                 {{ main }}
-            </div>
-            <div class="col-sm-2">
-            </div>
+            </main>
+            <aside class="col-sm-2">
+                {{ right }}
+            </aside>
         </div>
     </div>
 

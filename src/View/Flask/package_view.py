@@ -22,13 +22,15 @@ class PackageView(BaseView):
         self._presenter = None
 
         self._flask.add_url_rule('/<package_name>', 'package', self.package)
-        self._flask.add_url_rule('/<package_name>/<tab_name>', 'tab', self.tab)
         self._flask.add_url_rule('/_multiple_modal', 'multiple_modal', self.multiple_modal)
         self._flask.add_url_rule('/_multiple_collapse', 'multiple_collapse', self.multiple_collapse)
 
-        self._socketio.on_event('submit', self.submit, namespace='/freeconf')
         self._socketio.on_event('undo', self.undo, namespace='/freeconf')
         self._socketio.on_event('redo', self.redo, namespace='/freeconf')
+
+        self._socketio.on_event('tab', self.tab, namespace='/freeconf')
+
+        self._socketio.on_event('submit', self.submit, namespace='/freeconf')
         self._socketio.on_event('multiple_new', self.multiple_new, namespace='/freeconf')
         self._socketio.on_event('multiple_delete', self.multiple_delete, namespace='/freeconf')
         self._socketio.on_event('multiple_up', self.multiple_up, namespace='/freeconf')
@@ -47,22 +49,33 @@ class PackageView(BaseView):
 
     def package(self, package_name):
         self.presenter = MainPresenter.load_package(package_name)
-        self.presenter.view = self
         if self.presenter is not None:
+            self.presenter.view = self
             session['package_name']=package_name
-            return self.tab(package_name)
+            sections = self.presenter.tab()
+            rendered_sections = []
+            for section in sections:
+                rendered_sections.append(self._renderer.entry_render(section))
+            main = render_template("package/tab.html", sections=rendered_sections)
+            tabs = render_template("package/tabs.html", tabs=self.presenter.tabs(), package_name=session.get('package_name'))
+            buttons = render_template("package/buttons.html")
+            return self.render_default(left=tabs, main=main, right=buttons)
         else:
-            return "error"
+            return self.render_default(main="error")
 
-    def render_default(self, tabs=None, body=""):
-        return render_template('index.html', package_name=session.get('package_name'), tabs=tabs, main=body)
+    def tab(self, data=None):
+        self.presenter.tab(data['name'])
 
-    def tab(self, package_name, tab_name=None):
-        sections = self.presenter.tab(tab_name)
-        Rsection = ""
+    def reload_tab(self, sections):
+        rendered_sections=[]
         for section in sections:
-            Rsection = Rsection + self._renderer.entry_render(section)
-        return self.render_default(tabs = self.presenter.tabs(), body = Rsection)
+            rendered_sections.append(self._renderer.entry_render(section))
+        rendered_tab=render_template("package/tab.html", sections = rendered_sections)
+        emit('reload_tab', {'rendered_tab': rendered_tab}, namespace='/freeconf')
+
+    def reload_tabs(self, tabs):
+        rendered_tabs=render_template("package/tabs.html", tabs = tabs, package_name=session.get('package_name'))
+        emit('reload_tabs', {'rendered_tabs': rendered_tabs}, namespace='/freeconf')
 
     def multiple_modal(self):
         full_name = request.args.get('full_name')
@@ -75,7 +88,7 @@ class PackageView(BaseView):
         return self._renderer.render_collapse(entry)
 
     def reload_entry(self, entry):
-        emit('reload', {'full_name': entry.full_name, 'rendered_entry': self._renderer.reload_element(entry)}, namespace='/freeconf')
+        emit('reload_entry', {'full_name': entry.full_name, 'rendered_entry': self._renderer.reload_element(entry)}, namespace='/freeconf')
 
     def submit(self, data):
         full_name = data['full_name']
