@@ -38,7 +38,7 @@ class Package(object):
         tab.description="Generated gui Tree"
         section=GSection()
         section.append(self.tree)
-        tab.content.append(section)
+        tab.append(section)
         self._gui_tree.append(tab)
         return self._gui_tree
 

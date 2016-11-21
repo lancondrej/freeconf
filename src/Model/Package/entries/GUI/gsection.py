@@ -1,19 +1,40 @@
 from src.Model.Package.constants import Types
-from src.Model.Package.entries.GUI.gentry import GEntry
+from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
 
 
-class GSection(GEntry):
+class GSection(ContainerInconsistency):
     """GUI container class"""
     def __init__(self):
-        GEntry.__init__(self)
+        self._name = None
+        # self._parent = None
+        self._label = None
+
+        ContainerInconsistency.__init__(self)
         # self._active_shown = 0
         # self._mandatory_shown = 0
         # self._section_shown = 0
         # self.empty = None
         # self._show_all_children = False
         self._entries = []
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+
+    @property
+    def label(self):
+        """Returns the correct mutation of the entry's label"""
+        return self._label or self.name
+
+    @label.setter
+    def label(self, label):
+        self._label = label
 
     @property
     def type(self):

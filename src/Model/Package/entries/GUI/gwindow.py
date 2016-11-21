@@ -1,22 +1,26 @@
-from src.Model.Package.entries.GUI.gtab import GTab
+from src.Model.Package.entries.GUI.gsection import GSection
 
 __author__ = 'Ondřej Lanč'
 
 
-class GWindow(GTab):
+class GWindow(GSection):
     """Class that represents the top-level dialogue window"""
     def __init__ (self):
-        GTab.__init__(self)
+        GSection.__init__(self)
         self.title = "Freeconf generated config dialog"
 
     # def show_all (self, value):
     #     for tab in self.entries:
     #         tab.show_all(value)
 
+    @property
+    def tabs(self):
+        return self._entries
+
     def get_tab(self, name):
         """Find tab with given name."""
-        return self.get_section(name)
+        return self.get_entry(name)
 
     def first_tab(self):
         """Find tab with given name."""
-        return self._content[0]
+        return self._entries[0]

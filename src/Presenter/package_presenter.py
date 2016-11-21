@@ -16,6 +16,7 @@ class PackagePresenter(Presenter):
         self._undo = UndoPresenter()
         self._package = Package(self._config.name)
         self.view = None
+        self.active_tab = None
         self.load_package()
 
     @property
@@ -55,12 +56,14 @@ class PackagePresenter(Presenter):
         return True
 
     def tabs(self):
-        return [(tab.name, tab.label) for tab in self._package.gui_tree.content]
+        return [(tab.name, tab.label) for tab in self._package.gui_tree.tabs]
 
     def tab(self, name=None):
         if name is None:
-            return self._package.gui_tree.first_tab().content
-        self.view.reload_tab(self._package.gui_tree.get_tab(name).content)
+            self.active_tab = self._package.gui_tree.first_tab()
+            return self.active_tab.sections
+        self.active_tab = self._package.gui_tree.get_tab(name)
+        self.view.reload_tab(self.active_tab.sections)
         return True
 
     def save_config(self):
