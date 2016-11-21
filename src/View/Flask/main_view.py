@@ -34,12 +34,11 @@ class MainView(BaseView):
         self._presenter=presenter
 
     def setting(self):
-        return "baf"
+        return redirect(url_for('package', package='freeconf'))
 
     def about(self):
         self._flask.update_template_context({'body': render_template("about.html")})
         return render_template('index.html')
-        # return self.render_default(body= render_template("about.html"))
 
     def configure(self):
         packages=self.presenter.config.packages_list

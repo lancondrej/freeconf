@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     
     socket.on('log', function(data) {
-        $('#log').prepend('<br>' + $('<div/>').text(data.log_record).html());
+        $('#log').prepend('<li>'+data.log_time +': ' + data.log_record + '</li>');
     });
 
     socket.on('flash', function(data) {

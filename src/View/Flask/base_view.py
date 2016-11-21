@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 from flask_socketio import SocketIO, emit
 from src.View.Flask.renderer import Renderer
 from flask.views import View
+import time;
 
 __author__ = 'Ondřej Lanč'
 
@@ -23,5 +24,5 @@ class BaseView(object):
         flash = render_template('elements/flash.html', category=category, message=message)
         emit('flash', {'flash': flash},  namespace='/freeconf')
 
-    def log(self, message):
-        emit('log', {'log_record': message},  namespace='/freeconf')
+    def log(self, time, message):
+        emit('log', {'log_time': time, 'log_record': message},  namespace='/freeconf')

@@ -5,6 +5,7 @@ from src.IO.XMLParser.input import XMLParser
 from src.IO.input import Input
 from src.Presenter.presenter import Presenter
 from src.Presenter.undo_presenter import UndoPresenter
+import time
 
 __author__ = 'Ondřej Lanč'
 
@@ -14,16 +15,31 @@ class PackagePresenter(Presenter):
         self._config=config
         self._undo = UndoPresenter()
         self._package = Package(self._config.name)
-        self._view = None
+        self.view = None
         self.load_package()
 
     @property
     def package(self):
         return self._package
 
-    @property
+# TODO: lépe výpuis logu
     def undo(self):
-        return self._undo
+        change = self._undo.undo()
+        if change is not None:
+            self.log("redo entry {}".format(change.entry.name))
+            return str(change.entry.full_name)
+        return None
+
+    def redo(self):
+        change = self._undo.redo()
+        if change is not None:
+            self.log("redo entry {}".format(change.entry.name))
+            return str(change.entry.full_name)
+        return None
+
+    def log(self, message):
+        localtime = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+        self.view.log(localtime, message)
 
     @property
     def package_name(self):
@@ -83,27 +99,37 @@ class PackagePresenter(Presenter):
         entry.value = value
         new_value=entry.value
         self._undo.value_change(entry, old_value, new_value)
+        self.log("{} key word change value from {} to {}".format(entry.name, old_value, new_value))
+
 
     def multiple_new(self, path):
         entry = self.get_entry(path)
         newone = entry.append()
         self._undo.multiple_new(entry, newone)
+        if newone is not None:
+            self.log("delete entry for {}".format(newone.full_name))
         return newone is not None
 
     def multiple_delete(self, path, index):
         entry = self.get_entry(path)
         removed = entry.delete_entry(index)
         self._undo.multiple_delete(entry, removed)
+        if removed is not None:
+            self.log("delete entry for {}".format(removed.full_name))
         return removed is not None
 
     def multiple_up(self, path, index):
         entry = self.get_entry(path)
         is_move = entry.move_up(index)
         self._undo.multiple_up(entry, index, is_move)
+        if is_move:
+            self.log("entry move up")
         return is_move
 
     def multiple_down(self, path, index):
         entry = self.get_entry(path)
         is_move = entry.move_down(index)
         self._undo.multiple_down(entry, index, is_move)
+        if is_move:
+            self.log("entry move down")
         return is_move

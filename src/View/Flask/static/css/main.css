@@ -16,6 +16,11 @@
         padding: 0px;
     }
 
+    ul#log{
+        height: 100px;
+        overflow: auto;
+    }
+
     .inconsistent{
         background-color: red;
     }
