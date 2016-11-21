@@ -56,7 +56,7 @@ class PackagePresenter(Presenter):
         return True
 
     def tabs(self):
-        return [(tab.name, tab.label) for tab in self._package.gui_tree.tabs]
+        return [(tab.name, tab.label, tab.inconsistent) for tab in self._package.gui_tree.tabs]
 
     def tab(self, name=None):
         if name is None:

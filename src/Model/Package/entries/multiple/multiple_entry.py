@@ -250,3 +250,7 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
         for entry in self._default:
             entry.init_inconsistency()
         self.template.init_inconsistency()
+
+    @property
+    def inconsistent(self):
+        return self.template.inconsistent
