@@ -16,3 +16,7 @@ class GWindow(GTab):
     def get_tab(self, name):
         """Find tab with given name."""
         return self.get_section(name)
+
+    def first_tab(self):
+        """Find tab with given name."""
+        return self._content[0]

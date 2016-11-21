@@ -1,0 +1,16 @@
+{% block tabs %}
+
+    {% if tabs %}
+        <h1>{{package_name}}</h1>
+        <ul class="nav nav-pills nav-stacked">
+            {% for tab in tabs %}
+                <li><a href="{{ url_for('tab', package_name=package_name, tab_name=tab[0]) }}">{{ tab[1] }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+{% endblock %}
+
+
+
