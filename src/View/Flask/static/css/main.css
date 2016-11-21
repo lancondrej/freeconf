@@ -28,3 +28,7 @@
     .inconsistent >.panel >.panel-heading {
         background-color: orange;
     }
+
+    nav.package_menu{
+        position: fixed;
+    }
