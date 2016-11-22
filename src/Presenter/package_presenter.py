@@ -17,6 +17,7 @@ class PackagePresenter(Presenter):
         self._package = Package(self._config.name)
         self.view = None
         self.active_tab = None
+        self.gui_inconsistent_count = 0
         self.load_package()
 
     @property
@@ -28,12 +29,14 @@ class PackagePresenter(Presenter):
         change = self._undo.undo()
         if change is not None:
             self.log("redo entry {}".format(change.entry.name))
+            self.test_inconsistency()
             self.view.reload_entry(change.entry)
 
     def redo(self):
         change = self._undo.redo()
         if change is not None:
             self.log("redo entry {}".format(change.entry.name))
+            self.test_inconsistency()
             self.view.reload_entry(change.entry)
 
     def log(self, message):
@@ -53,12 +56,15 @@ class PackagePresenter(Presenter):
         input_parser.load_package()
         input_parser.load_plugin()
         self.package.tree.init_inconsistency()
+        self.gui_inconsistent_count = self._package.gui_tree._inconsistent_count
         return True
 
+    @property
     def tabs(self):
         return [(tab.name, tab.label, tab.inconsistent) for tab in self._package.gui_tree.tabs]
 
     def tab(self, name=None):
+        # TODO: možná rozdělit na dvě funkce
         if name is None:
             self.active_tab = self._package.gui_tree.first_tab()
             return self.active_tab.sections
@@ -97,6 +103,7 @@ class PackagePresenter(Presenter):
         entry.value = value
         new_value=entry.value
         self._undo.value_change(entry, old_value, new_value)
+        self.test_inconsistency()
         self.log("{} key word change value from {} to {}".format(entry.name, old_value, new_value))
 
     def multiple_new(self, path):
@@ -105,6 +112,7 @@ class PackagePresenter(Presenter):
         self._undo.multiple_new(entry, newone)
         if newone is not None:
             self.log("delete entry for {}".format(newone.full_name))
+            self.test_inconsistency()
             self.view.reload_entry(entry)
         else:
             self.view.flash_message("Cannot add element. Maximum element reach!", 'error')
@@ -115,6 +123,7 @@ class PackagePresenter(Presenter):
         self._undo.multiple_delete(entry, removed)
         if removed is not None:
             self.log("delete entry for {}".format(removed.full_name))
+            self.test_inconsistency()
             self.view.reload_entry(entry)
         else:
             self.view.flash_message("Cannot remove element. Minimum element reach!", 'error')
@@ -135,3 +144,8 @@ class PackagePresenter(Presenter):
             self.log("entry move down")
             self.view.reload_entry(entry)
 
+    def test_inconsistency(self):
+        if self._package.gui_tree._inconsistent_count != self.gui_inconsistent_count:
+            self.gui_inconsistent_count = self._package.gui_tree._inconsistent_count
+            self.view.reload_tab(self.active_tab.sections)
+            self.view.reload_tabs(self.tabs)

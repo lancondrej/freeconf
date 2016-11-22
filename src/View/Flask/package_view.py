@@ -57,7 +57,7 @@ class PackageView(BaseView):
             for section in sections:
                 rendered_sections.append(self._renderer.entry_render(section))
             main = render_template("package/tab.html", sections=rendered_sections)
-            tabs = render_template("package/tabs.html", tabs=self.presenter.tabs(), package_name=session.get('package_name'))
+            tabs = render_template("package/tabs.html", tabs=self.presenter.tabs, package_name=session.get('package_name'))
             buttons = render_template("package/buttons.html")
             return self.render_default(left=tabs, main=main, right=buttons)
         else:

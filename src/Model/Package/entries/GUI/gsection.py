@@ -8,7 +8,7 @@ class GSection(ContainerInconsistency):
     """GUI container class"""
     def __init__(self):
         self._name = None
-        self._parent = None
+        self._inc_parents = set()
         self._label = None
 
         ContainerInconsistency.__init__(self)
@@ -37,17 +37,8 @@ class GSection(ContainerInconsistency):
         self._label = label
 
     @property
-    def parents(self):
-        return [self.gui_parent]
-
-    @property
-    def gui_parent(self):
-        return self._parent
-
-    @gui_parent.setter
-    def gui_parent(self, parent):
-        self._parent = parent
-
+    def inc_parents(self):
+        return self._inc_parents
 
     @property
     def type(self):
@@ -71,7 +62,7 @@ class GSection(ContainerInconsistency):
     #     self._primaryChild = None
 
     def append(self, entry):
-        entry.gui_parent = self
+        entry.inc_parents.add(self)
         self._entries.append(entry)
 
     def get_entry(self, name):

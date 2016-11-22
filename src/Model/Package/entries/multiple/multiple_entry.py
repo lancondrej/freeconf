@@ -19,19 +19,24 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
             self._template.multiple = True
             self._template.multiple_entry = self
             self._template.index=-1
+            self._template.inc_parents.add(self)
+            self.template.init_inconsistency()
         self._entries = []
         self._default = []
         # Multiple properties
         self._multiple_min = None
         self._multiple_max = None
+        self._inc_parents = set()
+
 
     def __deepcopy__(self, memo):
-        newone = type(self)(None)
+        template=deepcopy(self.template)
+        newone = type(self)(template)
+        # TODO: není potřeba kopíravat template, ale je v tom případě potřeba vyřešit správně směrování na parent
         newone.__dict__.update(self.__dict__)
         newone._entries = deepcopy(self.entries)
         newone._default = deepcopy(self._default)
-        newone._template = deepcopy(self.template)
-        # TODO: není potřeba kopíravat template, ale je v tom případě potřeba vyřešit správně směrování na parent
+        newone._inc_parents = set()
         return newone
 
     @property
@@ -76,21 +81,8 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
     @parent.setter
     def parent(self, parent):
         """set name"""
-        self.template.parent = parent
-
-    @property
-    def gui_parent(self):
-        """get name"""
-        return self.template.gui_parent
-
-    @gui_parent.setter
-    def gui_parent(self, gui_parent):
-        """set name"""
-        self.template.gui_parent = gui_parent
-
-    @property
-    def parents(self):
-        return self.template.parents
+        self.inc_parents.add(parent)
+        self.template._parent = parent
 
     @property
     def package(self):
@@ -158,6 +150,8 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
         if self.multiple_min is None or length > self.multiple_min:
             entry = self._entries.pop(int(index))
             self._rename_all()
+            if entry.inconsistent:
+                self.change_inconsistency(False)
             return entry
         return None
 
@@ -179,11 +173,18 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
 
     def insert(self, position, entry):
         self._entries.insert(int(position), entry)
+        entry.inc_parents.add(self)
+        if entry.inconsistent:
+            self.change_inconsistency(True)
         self._rename_all()
 
     def append(self, entry=None):
         entry = entry or self.create_new(self.size())
-        self._entries.append(entry)
+        if entry:
+            self._entries.append(entry)
+            entry.inc_parents.add(self)
+            if entry.inconsistent:
+                self.change_inconsistency(True)
         return entry
 
     def append_default(self, entry=None):
@@ -247,10 +248,7 @@ class MultipleEntry(BaseEntry, ContainerInconsistency):
     def init_inconsistency(self):
         for entry in self._entries:
             entry.init_inconsistency()
-        for entry in self._default:
-            entry.init_inconsistency()
+        self.template.inc_parents.clear()
         self.template.init_inconsistency()
+        self.template.inc_parents.add(self)
 
-    @property
-    def inconsistent(self):
-        return self.template.inconsistent

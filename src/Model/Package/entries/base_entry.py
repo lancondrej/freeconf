@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #
+from copy import deepcopy
+
 from src.Model.Package.constants import Types
 from src.Model.Package.exception_logging.log import log
 
@@ -19,6 +21,7 @@ class BaseEntry(object):
         self._static_mandatory = False
         self._dynamic_mandatory = False
         self._enabled = True
+        self._inc_parents = set()
 
         self._multiple = False
 
@@ -26,11 +29,11 @@ class BaseEntry(object):
         self._package = package  # Plugin or package, from which this entry originates.
 
         self._inconsistent = False
-        self._gui_parent = None
 
     def __deepcopy__(self, memo):
         newone = type(self)(self.name, self.package)
         newone.__dict__.update(self.__dict__)
+        newone._inc_parents = set()
         return newone
 
     @property
@@ -51,19 +54,12 @@ class BaseEntry(object):
     @parent.setter
     def parent(self, parent):
         """set name"""
+        self.inc_parents.add(parent)
         self._parent = parent
 
     @property
-    def gui_parent(self):
-        return self._gui_parent
-
-    @gui_parent.setter
-    def gui_parent(self, gui_parent):
-        self._gui_parent = gui_parent
-
-    @property
-    def parents(self):
-        return [self.parent, self.gui_parent]
+    def inc_parents(self):
+        return self._inc_parents
 
     @property
     def package(self):

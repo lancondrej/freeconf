@@ -26,6 +26,8 @@ class Container(BaseEntry, ContainerInconsistency):
         newone = type(self)(self.name, self.package)
         newone.__dict__.update(self.__dict__)
         newone._entries = deepcopy(self._entries)
+        newone._inc_parents = set()
+
         for entry in newone._entries.values():
             entry.parent=newone
         return newone
@@ -73,14 +75,6 @@ class Container(BaseEntry, ContainerInconsistency):
     def type(self):
         return Types.CONTAINER
 
-    def disconnect(self, entry):
-        try:
-            self._entries.pop(entry.name)
-            entry.parent = None
-            return True
-        except KeyError or ValueError:
-            return False
-
     def find_entry(self, relative_name):
         """Find entry in tree. Name is given in format: a/b/c../entry"""
         try:
@@ -99,6 +93,7 @@ class Container(BaseEntry, ContainerInconsistency):
     def init_inconsistency(self):
         for entry in self._entries.values():
             entry.init_inconsistency()
+
     # @property
     # def inconsistent(self):
     #     if self.mandatory and self.active:

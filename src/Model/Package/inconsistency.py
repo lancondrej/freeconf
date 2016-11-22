@@ -27,12 +27,12 @@ class Inconsistency(object):
 
     def _notify_parent(self, inconsistent):
         """Notifies parent about change of inconsistency"""
-        for parent in self.parents:
+        for parent in self.inc_parents:
             if parent is not None:
                 parent.change_inconsistency(inconsistent)
 
     @property
-    def parents(self):
+    def inc_parents(self):
         """get parent entry. Must be reimplemented in sub-class"""
         raise NotImplementedError
 
@@ -66,6 +66,6 @@ class ContainerInconsistency(Inconsistency):
             self._notify_parent(self._inconsistent)
 
     @property
-    def parents(self):
+    def inc_parents(self):
         """get parent entry. Must be reimplemented in sub-class"""
         raise NotImplementedError

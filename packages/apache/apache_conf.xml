@@ -89,22 +89,7 @@
     <container name="Alias"/>
     <container name="ServerAlias"/>
   </container>
-  <container name="VirtualHost">
-    <container name="Directory">
-      <container name="AllowOverride"/>
-      <container name="Options"/>
-    </container>
-    <container name="Alias"/>
-    <container name="ServerAlias"/>
-  </container>
-  <container name="VirtualHost">
-    <container name="Directory">
-      <container name="AllowOverride"/>
-      <container name="Options"/>
-    </container>
-    <container name="Alias"/>
-    <container name="ServerAlias"/>
-  </container>
+
   <entry name="ServerTokens">
     <value>OS</value>
   </entry>

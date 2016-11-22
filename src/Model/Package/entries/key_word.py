@@ -22,8 +22,9 @@ class KeyWord(BaseEntry, Inconsistency):
         # If true, user can insert value which is not in the list
         self.user_values = False
 
-    # def __deepcopy__(self):
-    #     entry = BaseEntry.__deepcopy__(self)
+    #
+    # def __deepcopy__(self, memo):
+    #     return BaseEntry.__deepcopy__(self, memo)
 
     @property
     def default_value(self):
