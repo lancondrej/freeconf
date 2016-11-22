@@ -27,6 +27,8 @@ class Inconsistency(object):
 
     def _notify_parent(self, inconsistent):
         """Notifies parent about change of inconsistency"""
+        if self.package is not None:
+            self.package.inconsistency_signal(self)
         for parent in self.inc_parents:
             if parent is not None:
                 parent.change_inconsistency(inconsistent)

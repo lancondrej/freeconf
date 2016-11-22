@@ -1,5 +1,11 @@
 #!/usr/bin/python3
+from blinker import signal
+
 from src.IO.XMLParser.output import XMLOutput
+from src.Model.Package.entries.GUI.gsection import GSection
+from src.Model.Package.entries.GUI.gtab import GTab
+from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 from src.Model.Package.package import Package
 from src.IO.XMLParser.input import XMLParser
 from src.IO.input import Input
@@ -17,7 +23,7 @@ class PackagePresenter(Presenter):
         self._package = Package(self._config.name)
         self.view = None
         self.active_tab = None
-        self.gui_inconsistent_count = 0
+        self.inc_signal = signal('inconsistency_change')
         self.load_package()
 
     @property
@@ -29,14 +35,12 @@ class PackagePresenter(Presenter):
         change = self._undo.undo()
         if change is not None:
             self.log("redo entry {}".format(change.entry.name))
-            self.test_inconsistency()
             self.view.reload_entry(change.entry)
 
     def redo(self):
         change = self._undo.redo()
         if change is not None:
             self.log("redo entry {}".format(change.entry.name))
-            self.test_inconsistency()
             self.view.reload_entry(change.entry)
 
     def log(self, message):
@@ -56,7 +60,7 @@ class PackagePresenter(Presenter):
         input_parser.load_package()
         input_parser.load_plugin()
         self.package.tree.init_inconsistency()
-        self.gui_inconsistent_count = self._package.gui_tree._inconsistent_count
+        self.inc_signal.connect(self.test_inc, sender=self.package)
         return True
 
     @property
@@ -103,7 +107,6 @@ class PackagePresenter(Presenter):
         entry.value = value
         new_value=entry.value
         self._undo.value_change(entry, old_value, new_value)
-        self.test_inconsistency()
         self.log("{} key word change value from {} to {}".format(entry.name, old_value, new_value))
 
     def multiple_new(self, path):
@@ -112,7 +115,6 @@ class PackagePresenter(Presenter):
         self._undo.multiple_new(entry, newone)
         if newone is not None:
             self.log("delete entry for {}".format(newone.full_name))
-            self.test_inconsistency()
             self.view.reload_entry(entry)
         else:
             self.view.flash_message("Cannot add element. Maximum element reach!", 'error')
@@ -123,7 +125,6 @@ class PackagePresenter(Presenter):
         self._undo.multiple_delete(entry, removed)
         if removed is not None:
             self.log("delete entry for {}".format(removed.full_name))
-            self.test_inconsistency()
             self.view.reload_entry(entry)
         else:
             self.view.flash_message("Cannot remove element. Minimum element reach!", 'error')
@@ -144,8 +145,23 @@ class PackagePresenter(Presenter):
             self.log("entry move down")
             self.view.reload_entry(entry)
 
-    def test_inconsistency(self):
-        if self._package.gui_tree._inconsistent_count != self.gui_inconsistent_count:
-            self.gui_inconsistent_count = self._package.gui_tree._inconsistent_count
-            self.view.reload_tab(self.active_tab.sections)
-            self.view.reload_tabs(self.tabs)
+    # def global_test_inconsistency(self):
+    #     if self._package.gui_tree._inconsistent_count != self.gui_inconsistent_count:
+    #         self.gui_inconsistent_count = self._package.gui_tree._inconsistent_count
+    #         self.view.reload_tab(self.active_tab.sections)
+    #         self.view.reload_tabs(self.tabs)
+
+    def test_inc(self, sender, **kw):
+        entry = kw.get('entry')
+        if entry is not None:
+            if isinstance(entry, GTab):
+                self.view.reload_tabs(self.tabs)
+            elif isinstance(entry, GSection):
+                pass
+                # self.view.reload_section(self.tabs)
+            elif isinstance(entry, BaseEntry):
+                self.view.reload_entry(entry)
+                print(entry.full_name)
+                # print('ahoj {}'.format(kw.get('entry')))
+
+                # self.view.reload_tab(self.active_tab.sections)

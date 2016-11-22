@@ -6,8 +6,8 @@ __author__ = 'Ondřej Lanč'
 class GTab(GSection):
     """GUI tab representation class"""
 
-    def __init__(self):
-        GSection.__init__(self)
+    def __init__(self, package):
+        GSection.__init__(self, package)
         self.description = None
         self.icon = "mimetypes/unknown"
 

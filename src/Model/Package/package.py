@@ -4,6 +4,7 @@ from src.Model.Package.entries.GUI.gsection import GSection
 from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.GUI.gwindow import GWindow
 from src.Model.Package.exception_logging.exception import NotExistsError, AlreadyExistsError
+from blinker import signal
 
 __author__ = 'Ondřej Lanč'
 
@@ -22,6 +23,9 @@ class Package(object):
         self.dependencies = []
         self._gui_tree = None
 
+    def __repr__(self):
+        return self.__class__.__name__ + '(' + self.name + ')'
+
     @property
     def gui_tree(self):
         return self._gui_tree or self.build_gui_tree()
@@ -31,12 +35,12 @@ class Package(object):
         self._gui_tree=gui_tree
 
     def build_gui_tree(self):
-        self._gui_tree=GWindow()
-        tab=GTab()
+        self._gui_tree=GWindow(self)
+        tab=GTab(self)
         tab.name="all"
         tab.label="All entries"
         tab.description="Generated gui Tree"
-        section=GSection()
+        section=GSection(self)
         section.append(self.tree)
         tab.append(section)
         self._gui_tree.append(tab)
@@ -70,6 +74,8 @@ class Package(object):
     def inconsistent(self):
         return self.tree.inconsistent
 
+    def inconsistency_signal(self, entry):
+        signal('inconsistency_change').send(self, entry=entry)
 
 class Plugin(Package):
     """Class representing plugin."""

@@ -5,8 +5,9 @@ __author__ = 'Ondřej Lanč'
 
 class GWindow(GSection):
     """Class that represents the top-level dialogue window"""
-    def __init__ (self):
-        GSection.__init__(self)
+    def __init__ (self, package):
+        GSection.__init__(self, package)
+        self._name = package.name
         self.title = "Freeconf generated config dialog"
 
     # def show_all (self, value):

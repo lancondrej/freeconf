@@ -1,4 +1,5 @@
 from src.Model.Package.constants import Types
+from src.Model.Package.constants import Types
 from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
@@ -6,10 +7,11 @@ __author__ = 'Ondřej Lanč'
 
 class GSection(ContainerInconsistency):
     """GUI container class"""
-    def __init__(self):
+    def __init__(self, package):
         self._name = None
         self._inc_parents = set()
         self._label = None
+        self._package = package
 
         ContainerInconsistency.__init__(self)
         # self._active_shown = 0
@@ -25,7 +27,12 @@ class GSection(ContainerInconsistency):
 
     @name.setter
     def name(self, name):
-        self._name = name
+        self._name = str(name)
+
+
+    def __repr__(self):
+        return self.__class__.__name__ + '(' + self.name + ')'
+
 
     @property
     def label(self):
@@ -47,6 +54,17 @@ class GSection(ContainerInconsistency):
     @property
     def entries(self):
         return self._entries
+
+    @property
+    def package(self):
+        """get package"""
+        return self._package
+
+    @package.setter
+    def package(self, package):
+        """set package"""
+        self._package = package
+
     #
     # @property
     # def show_all_children(self):
