@@ -2,7 +2,7 @@
 {% from 'elements/macros.html'  import help as help_button %}
 
 {% block entry %}
-    <div class="panel panel-default" id="full_name">
+    <div class="panel {{'panel-danger' if inconsistent else 'panel-default'}}" id="full_name">
         <div class="panel-heading"><h2>{{ label }}</h2>
             {% if help %}
             {{ help_button(label, help) }}
