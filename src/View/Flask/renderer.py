@@ -11,8 +11,8 @@ class Renderer(object):
             'Bool': self.render_bool,
             'Number': self.render_number,
             'String': self.render_string,
-            # 'MultipleContainer': self.render_multiple_container,
-            'MultipleContainer': self.render_multiple_container_collapse,
+            'MultipleContainer': self.render_multiple_container,
+            # 'MultipleContainer': self.render_multiple_container_collapse,
             'MultipleKeyWord': self.render_multiple_key_word,
             'GSection': self.render_section,
         }

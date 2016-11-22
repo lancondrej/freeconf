@@ -1,10 +1,8 @@
 <h1>Programs</h1>
 
 {% if packages %}
-    <ul class="">
         {% for package in packages %}
-            <li><a href="{{ url_for('package', package_name=package) }}"><h2>{{ package }}</h2></a></li>
+            <a class="btn btn-block btn-default btn-lg" href="{{ url_for('package', package_name=package) }}"><h2>{{ package }}</h2></a>
         {% endfor %}
-    </ul>
 {% endif %}
 
