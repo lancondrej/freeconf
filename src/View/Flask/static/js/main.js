@@ -43,6 +43,11 @@ $(document).ready(function() {
         load()
     });
 
+    socket.on('reload_section', function(data) {
+        $("[id='section_"+data.full_name+"']").replaceWith(data.rendered_section);
+        load()
+    });
+
 
     $('#undo').on('click', function () {
     socket.emit('undo');

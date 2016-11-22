@@ -120,6 +120,7 @@ class Renderer(object):
         for entry in section.entries:
             entries.append(self.entry_render(entry))
         return render_template('package/entries/section.html',
+                               full_name=section.full_name,
                                label=section.label,
                                inconsistent=section.inconsistent,
                                entries=entries,

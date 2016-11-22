@@ -73,6 +73,10 @@ class PackageView(BaseView):
         rendered_tab=render_template("package/tab.html", sections = rendered_sections)
         emit('reload_tab', {'rendered_tab': rendered_tab}, namespace='/freeconf')
 
+    def reload_section(self, section):
+        rendered_section=self._renderer.entry_render(section)
+        emit('reload_section', {'full_name': section.full_name, 'rendered_section': rendered_section}, namespace='/freeconf')
+
     def reload_tabs(self, tabs):
         rendered_tabs=render_template("package/tabs.html", tabs = tabs, package_name=session.get('package_name'))
         emit('reload_tabs', {'rendered_tabs': rendered_tabs}, namespace='/freeconf')

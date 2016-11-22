@@ -12,6 +12,7 @@ class GSection(ContainerInconsistency):
         self._inc_parents = set()
         self._label = None
         self._package = package
+        self.parent = None
 
         ContainerInconsistency.__init__(self)
         # self._active_shown = 0
@@ -90,3 +91,12 @@ class GSection(ContainerInconsistency):
             return None
         else:
             return self._entries[indices[0]]
+
+
+    @property
+    def full_name(self):
+        """Return full path in current tree in form of: /a/b/c/..."""
+        path = "/" + self.name
+        if self.parent:
+            path = self.parent.full_name + path
+        return path

@@ -157,11 +157,8 @@ class PackagePresenter(Presenter):
             if isinstance(entry, GTab):
                 self.view.reload_tabs(self.tabs)
             elif isinstance(entry, GSection):
-                pass
-                # self.view.reload_section(self.tabs)
+                self.view.reload_section(entry)
             elif isinstance(entry, BaseEntry):
                 self.view.reload_entry(entry)
                 print(entry.full_name)
-                # print('ahoj {}'.format(kw.get('entry')))
 
-                # self.view.reload_tab(self.active_tab.sections)
