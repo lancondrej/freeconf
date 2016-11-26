@@ -21,7 +21,7 @@ class PackageView(BaseView):
         self._socketio = socketio
         self._presenter = None
 
-        self._flask.add_url_rule('/<package_name>', 'package', self.package)
+        self._flask.add_url_rule('/package/<package_name>', 'package', self.package)
         self._flask.add_url_rule('/_multiple_modal', 'multiple_modal', self.multiple_modal)
         self._flask.add_url_rule('/_multiple_collapse', 'multiple_collapse', self.multiple_collapse)
 
