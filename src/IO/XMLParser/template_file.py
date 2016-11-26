@@ -9,6 +9,7 @@ from src.Model.Package.entries.multiple.multiple_container import MultipleContai
 from src.Model.Package.entries.multiple.multiple_key_word import MultipleKeyWord
 from src.Model.Package.entries.number import Number
 from src.Model.Package.entries.string import String
+from src.Model.Package.exception_logging.exception import AlreadyExistsError
 from src.Model.Package.package import Plugin
 
 __author__ = 'Ondřej Lanč'
@@ -42,7 +43,10 @@ class TemplateFileReader(FileReader):
                 container = Container(name, self._package)
                 container.group = self._config.group()
             for entry in self._parse_entry(self._root):
-                container.add_entry(entry)
+                try:
+                    container.add_entry(entry)
+                except AlreadyExistsError:
+                    print('no jo no')
                 # add default group
             self._package.tree = container
         else:
@@ -93,7 +97,10 @@ class TemplateFileReader(FileReader):
 
     def _inside_container(self, container, element):
         for entry in self._parse_entry(element):
-            container.add_entry(entry)
+            try:
+                container.add_entry(entry)
+            except AlreadyExistsError:
+                print('no jo no')
 
     def _inside_number(self, entry, element):
         properties = element.find('properties')

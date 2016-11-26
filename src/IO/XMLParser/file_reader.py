@@ -12,7 +12,10 @@ class FileReader(object):
         self._root = self._get_root()
 
     def _get_root(self):
-        return ET.parse(self._file).getroot()
+        try:
+            return ET.parse(self._file).getroot()
+        except FileNotFoundError:
+            raise FileExistsError("file missing")
 
     def parse(self):
         raise NotImplementedError

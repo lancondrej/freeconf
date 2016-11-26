@@ -42,5 +42,6 @@ class HelpFileReader(FileReader):
         self._set_help_label(entry, entry_element)
 
     def _set_help_label(self, entry, entry_element):
-        entry.label = entry_element.findtext('label')
-        entry.help = entry_element.findtext('help')
+        if entry is not None:
+            entry.label = entry_element.findtext('label')
+            entry.help = entry_element.findtext('help')
