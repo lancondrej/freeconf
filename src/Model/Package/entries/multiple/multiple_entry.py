@@ -28,7 +28,6 @@ class MultipleEntry(Entry, ContainerInconsistency):
         self._multiple_max = None
         self._inc_parents = set()
 
-
     def __deepcopy__(self, memo):
         template=deepcopy(self.template)
         newone = type(self)(template)

@@ -141,16 +141,3 @@ class Number(KeyWord):
         elif self.min_set and value < self.min:
             return self.min
         return value
-
-    # def handle_dependency_event(self, event, value):
-    #     """Handles incoming dependency events"""
-    #     KeyWord.handleDependencyEvent(self, event, value)
-    #     if event == "min":
-    #         if value == self.min:
-    #             return
-    #         self.min = value
-    #     elif event == "max":
-    #         if value == self.max:
-    #             return
-    #         self.max = value
-    #

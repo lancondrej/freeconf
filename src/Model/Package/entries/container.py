@@ -54,11 +54,6 @@ class Container(Entry, ContainerInconsistency):
         if entry.name in self._entries:
             raise AlreadyExistsError(u"Can't add child! There is already entry with name ({})"
                                      u" in the container ({}).".format(entry.name, self.name))
-        # elif isinstance(entry, BaseEntry):
-            # if entry.multiple:
-            #     # Create multiple container
-            #     entry = MultipleEntryContainer(entry)
-            #     # add multiple entry to the tree
         entry.parent = self
         self._entries[entry.name] = entry
         return True
@@ -88,20 +83,3 @@ class Container(Entry, ContainerInconsistency):
     def init_inconsistency(self):
         for entry in self._entries.values():
             entry.init_inconsistency()
-
-    # @property
-    # def inconsistent(self):
-    #     if self.mandatory and self.active:
-    #         return super().inconsistent
-    #     return False
-
-    # # @property
-    # def primary(self):
-    #     if self.multiple:
-    #         primary = self.get_entry(self.multiple_entry.primary)
-    #         if primary:
-    #             primary = primary.value
-    #         else:
-    #             primary = self.index
-    #         return primary
-    #     return None

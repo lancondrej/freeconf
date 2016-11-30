@@ -116,20 +116,6 @@ class Fuzzy(KeyWord):
             e = self.list.getMinGrade(self.min)
         return e.value
 
-    def handle_dependency_event(self, event, value):
-        """Handles incoming dependency events"""
-        KeyWord.handle_dependency_event(self, event, value)
-        if event == "min":
-            if value == self.min:
-                return
-            self.min = value
-            # self.set_value(self.check_value(), True)
-        elif event == "max":
-            if value == self.max:
-                return
-            self.max = value
-            # self.set_value(self.check_value(), True)
-
     @property
     def grade(self):
         return self.value_to_grade(self.value)
