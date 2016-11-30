@@ -4,12 +4,17 @@ __author__ = 'Ondřej Lanč'
 
 
 class Undo(object):
+    """Undo model object. It contains two stacks, first is for storing undo changes and second for redo changes.
+    :param limit: max value of changes stored in both stacks
+    """
     def __init__(self, limit=20):
-        self._stack_limit = limit
-        self._undo_stack = Stack(self._stack_limit)
-        self._redo_stack = Stack(self._stack_limit)
+        self._undo_stack = Stack(limit)
+        self._redo_stack = Stack(limit)
 
     def undo(self):
+        """Retrieve change if is available and push it to redo stack.
+        :return Change object or None
+        """
         item = self._undo_stack.pop()
         if item:
             self._redo_stack.push(item.transform())
@@ -17,6 +22,9 @@ class Undo(object):
         return item
 
     def redo(self):
+        """Retrieve change if is available and push it back to undo stack.
+        :return Change object or None
+        """
         item = self._redo_stack.pop()
         if item:
             self._undo_stack.push(item.transform())
@@ -24,5 +32,8 @@ class Undo(object):
         return item
 
     def save(self, item):
+        """Save new change to undo stack.
+        :param item object
+        """
         self._undo_stack.push(item)
         self._redo_stack.flush()
