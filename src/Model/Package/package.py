@@ -40,15 +40,34 @@ class Package(object):
     def _build_gui_tree(self):
         """"build default gui_tree"""
         self._gui_tree = GWindow(self.name, self)
-        tab = GTab("all", self)
-        tab.parent = self._gui_tree
-        tab.label = "All entries"
-        tab.description = "Generated gui Tree"
-        section = GSection("all", self)
-        section.parent = tab
-        section.append(self.tree)
-        tab.append(section)
-        self._gui_tree.append(tab)
+
+        all = GTab("all", self)
+        all.parent = self._gui_tree
+        all.label = "All uncontainered entries"
+        all.description = "Generated gui Tree"
+        all_section = GSection("all", self)
+        all_section.parent = all
+
+
+        from src.Model.Package.entries.container import Container
+        for entry in self.tree.entries.values():
+            if isinstance(entry, Container):
+                cont_tab = GTab(entry.name, self)
+                cont_tab.parent = self._gui_tree
+                cont_tab.label = entry.label
+                cont_tab.description = "Generated tab"
+                cont_section = GSection(entry.name, self)
+                cont_section.parent = cont_tab
+                cont_section.append(entry)
+                cont_tab.append(cont_section)
+                self._gui_tree.append(cont_tab)
+            else:
+                all_section.append(entry)
+
+        all.append(all_section)
+        self._gui_tree.append(all)
+
+
         return self._gui_tree
 
     @property
