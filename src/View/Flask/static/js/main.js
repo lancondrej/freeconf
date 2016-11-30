@@ -6,12 +6,14 @@ function load() {
 
 
 function tabs_on() {
-    $('#tabs button').on('click', function () {
+    $('#tabs').find('button').on('click', function () {
         socket.emit('tab', {
             name: $(this).attr('value')
         });
-        $('#tabs button').removeClass('active');
+        $('#tabs').find('button').removeClass('active');
         $(this).addClass( 'active' );
+        $(".tab_shader").css("display", "block");
+        $("#loader").css("display", "block");
     });
 }
 
@@ -39,8 +41,10 @@ $(document).ready(function() {
     });
 
     socket.on('reload_tab', function(data) {
+        $(".tab_shader").css("display", "none");
         $("#tab").replaceWith(data.rendered_tab);
-        load()
+        load();
+        $("#loader").css("display", "none");
     });
 
     socket.on('reload_section', function(data) {
