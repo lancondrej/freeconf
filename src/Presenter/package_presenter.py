@@ -34,7 +34,7 @@ class PackagePresenter(Presenter):
     def undo(self):
         change = self._undo.undo()
         if change is not None:
-            self.log("redo entry {}".format(change.entry.name))
+            self.log("undo entry {}".format(change.entry.name))
             self.view.reload_entry(change.entry)
 
     def redo(self):
@@ -144,12 +144,6 @@ class PackagePresenter(Presenter):
         if is_move:
             self.log("entry move down")
             self.view.reload_entry(entry)
-
-    # def global_test_inconsistency(self):
-    #     if self._package.gui_tree._inconsistent_count != self.gui_inconsistent_count:
-    #         self.gui_inconsistent_count = self._package.gui_tree._inconsistent_count
-    #         self.view.reload_tab(self.active_tab.sections)
-    #         self.view.reload_tabs(self.tabs)
 
     def test_inc(self, sender, **kw):
         entry = kw.get('entry')
