@@ -40,11 +40,26 @@
         <string>
             <entry-name>string2</entry-name>
             <mandatory>yes</mandatory>
-            <group>default</group>
             <properties>
                 <data>list_test</data>
             </properties>
         </string>
+        <container>
+            <container-name>druhy</container-name>
+            <string>
+                <entry-name>string2</entry-name>
+                <mandatory>yes</mandatory>
+                <group>default</group>
+            </string>
+            <fuzzy>
+            <entry-name>fuzzy</entry-name>
+            <properties>
+                <data>list_fuzzy</data>
+            </properties>
+
+            </fuzzy>
+
+        </container>
     </container>
 
 

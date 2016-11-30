@@ -47,10 +47,18 @@ class StringList(List):
         It contains string value, optional label and help as an explanation for
         meaning of given string value."""
 
-        def __init__(self, value="", label="", help=""):
+        def __init__(self, value, label=None, help=None):
             self.value = value
             self.help = help
-            self.label = label
+            self._label = label
+
+        @property
+        def label(self):
+            return self._label or self.value
+
+        @label.setter
+        def label(self, label):
+            self._label = label
 
         def __repr__(self):
             return 'StringEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)
@@ -70,12 +78,20 @@ class FuzzyList(List):
     class Entry:
         """This class describes particular value for fuzzy config keyword."""
 
-        def __init__(self, grade, value="", label="", help=""):
+        def __init__(self, grade, value, label=None, help=None):
             assert 0 <= grade <= 1
             self.grade = grade
             self.value = value
             self.help = help
-            self.label = label
+            self._label = label
+
+        @property
+        def label(self):
+            return self._label or self.value
+
+        @label.setter
+        def label(self, label):
+            self._label = label
 
         def __repr__(self):
             return 'FuzzyEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)

@@ -2,7 +2,7 @@
 
 {% block key_word %}
     <select class="form-control" id="{{full_name}}" name="{{name}}">
-        <option disabled selected value> -- select an option -- </option>
+        <option selected value> -- unselected -- </option>
 
         {% for item in list.entries %}
       <option value="{{item.value}}" {{ 'selected' if value==item.value }}>{{item.label}}</option>

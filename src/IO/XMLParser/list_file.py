@@ -53,10 +53,10 @@ class ListFileReader(FileReader):
     @staticmethod
     def _fuzzy_value(element):
         grade = element.get('grade')
-        if grade:
+        if grade is not None:
             try:
-                FuzzyList.Entry(grade, element.text)
+                return FuzzyList.Entry(float(grade), element.text)
             except AssertionError:
                 log.error("Attribute grade={} is out of range for fuzzy value!".format(grade))
         else:
-            log.error("Attribute grad missing")
+            log.error("Attribute grade missing")

@@ -6,4 +6,10 @@
         <value>err</value>
         <value>war</value>
     </string-list>
+
+    <fuzzy-list name="list_fuzzy">
+        <value grade="0">No</value>
+        <value grade="0.5">Maybe</value>
+        <value grade="1">Yes</value>
+    </fuzzy-list>
 </freeconf-lists>

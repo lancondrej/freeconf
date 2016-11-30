@@ -41,8 +41,15 @@ class Renderer(object):
                                entries=entries)
 
     def render_fuzzy(self, entry):
-        # TODO: konečně dodělat
-        pass
+        return render_template('package/entries/select.html',
+                               name=entry.name,
+                               full_name=entry.full_name,
+                               label=entry.label,
+                               help=entry.help,
+                               inconsistent=entry.inconsistent,
+                               value=entry.value,
+                               list=entry.list,
+                               )
 
     @staticmethod
     def render_bool(entry):

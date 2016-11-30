@@ -104,7 +104,7 @@ class TemplateFileReader(FileReader):
 
     def _inside_number(self, entry, element):
         properties = element.find('properties')
-        if properties:
+        if properties is not None:
             value=properties.findtext('max')
             if value is not None:
                 entry.max = float(value)
@@ -126,22 +126,28 @@ class TemplateFileReader(FileReader):
 
     def _inside_string(self, entry, element):
         properties = element.find('properties')
-        if properties:
+        if properties is not None:
             value=properties.findtext('regexp')
             if value is not None:
                 entry.reg_exp=value
             value = properties.findtext('data')
             if value is not None:
                 list=self._package.lists.get(value)
-                entry.list=list
+                if list is not None:
+                    entry.list = list
+                else:
+                    log.error("list not set")
 
     def _inside_fuzzy(self, entry, element):
         properties = element.find('properties')
-        if properties:
+        if properties is not None:
             value = properties.findtext('data')
             if value is not None:
                 list = self._package.lists.get(value)
-                entry.list = list
+                if list is not None:
+                    entry.list = list
+                else:
+                    raise AttributeError
 
     types = [
         EntryType('container', 'container-name', Container, MultipleContainer, _inside_container),
