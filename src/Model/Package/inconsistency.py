@@ -1,18 +1,17 @@
-#!/usr/bin/python3
-#
 __author__ = 'Ondřej Lanč'
 
 
 class Inconsistency(object):
     """This class is used for handling inconsistent states in non-container entries.
-    The entry is inconsistent iff    it is active, mandatory and its value and default
-     value has not been set. Inconsistent entries can not be disabled"""
+    The entry is inconsistent if it is active, mandatory and its value
+     has not been set. Inconsistent entries can not be disabled"""
 
     def __init__(self):
         self._inconsistent = False
 
     @property
     def inconsistent(self):
+        """inconsistent getter"""
         return self._inconsistent
 
     def change_inconsistency(self, value):
@@ -22,7 +21,7 @@ class Inconsistency(object):
             self._evaluate_inconsistency()
 
     def _evaluate_inconsistency(self):
-        """Check if the entry is still inconsistent. Usually reimplemented in sub-class"""
+        """Check if the entry is still inconsistent and notify parent."""
         self._notify_parent(self._inconsistent)
 
     def _notify_parent(self, inconsistent):
@@ -35,7 +34,7 @@ class Inconsistency(object):
 
     @property
     def inc_parents(self):
-        """get parent entry. Must be reimplemented in sub-class"""
+        """get parents entry. Must be reimplemented in sub-class"""
         raise NotImplementedError
 
 
@@ -50,9 +49,11 @@ class ContainerInconsistency(Inconsistency):
 
     @property
     def inconsistent(self):
+        """inconsistent getter"""
         return bool(self._inconsistent_count)
 
     def change_inconsistency(self, value):
+        """This method is called whenever the inconsistency must be changed"""
         assert self._inconsistent_count >= 0
 
         if value:
@@ -62,12 +63,12 @@ class ContainerInconsistency(Inconsistency):
         self._evaluate_inconsistency()
 
     def _evaluate_inconsistency(self):
-        # if change happends
+        """Check if the entry is still inconsistent and notify parent."""
         if self._inconsistent != self.inconsistent:
             self._inconsistent = self.inconsistent
             self._notify_parent(self._inconsistent)
 
     @property
     def inc_parents(self):
-        """get parent entry. Must be reimplemented in sub-class"""
+        """get parents entry. Must be reimplemented in sub-class"""
         raise NotImplementedError

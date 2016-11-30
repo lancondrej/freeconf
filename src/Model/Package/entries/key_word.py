@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 #
-from src.Model.Package.constants import Types
 from src.Model.Package.entries.base_entry import BaseEntry
 from src.Model.Package.exception_logging.log import log
 from src.Model.Package.inconsistency import Inconsistency
+from src.Model.Package.lists.constants import Types
 
 __author__ = 'Ondřej Lanč'
 
