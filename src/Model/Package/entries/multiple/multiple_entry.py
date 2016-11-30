@@ -6,10 +6,10 @@ from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
 
-from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.entries.entry import Entry
 
 
-class MultipleEntry(BaseEntry, ContainerInconsistency):
+class MultipleEntry(Entry, ContainerInconsistency):
     """Container for multiple config entries."""
 
     def __init__(self, entry=None):

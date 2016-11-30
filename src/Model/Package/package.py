@@ -39,15 +39,13 @@ class Package(object):
 
     def _build_gui_tree(self):
         """"build default gui_tree"""
-        self._gui_tree = GWindow(self)
-        tab = GTab(self)
+        self._gui_tree = GWindow(self.name, self)
+        tab = GTab("all", self)
         tab.parent = self._gui_tree
-        tab.name = "all"
         tab.label = "All entries"
         tab.description = "Generated gui Tree"
-        section = GSection(self)
+        section = GSection("all", self)
         section.parent = tab
-        section.name = "all"
         section.append(self.tree)
         tab.append(section)
         self._gui_tree.append(tab)

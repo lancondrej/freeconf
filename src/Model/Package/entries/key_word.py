@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.entries.entry import Entry
 from src.Model.Package.exception_logging.log import log
 from src.Model.Package.inconsistency import Inconsistency
 from src.Model.Package.lists.constants import Types
@@ -8,11 +8,11 @@ from src.Model.Package.lists.constants import Types
 __author__ = 'Ondřej Lanč'
 
 
-class KeyWord(BaseEntry, Inconsistency):
+class KeyWord(Entry, Inconsistency):
     """This is a class for keyword entries"""
 
     def __init__(self, name, package):
-        BaseEntry.__init__(self, name, package)
+        Entry.__init__(self, name, package)
         Inconsistency.__init__(self)
         self._default_value = None
         self._value = None

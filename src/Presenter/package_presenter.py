@@ -4,7 +4,7 @@ from blinker import signal
 from src.IO.XMLParser.output import XMLOutput
 from src.Model.Package.entries.GUI.gsection import GSection
 from src.Model.Package.entries.GUI.gtab import GTab
-from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.entries.entry import Entry
 from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 from src.Model.Package.package import Package
 from src.IO.XMLParser.input import XMLParser
@@ -158,7 +158,7 @@ class PackagePresenter(Presenter):
                 self.view.reload_tabs(self.tabs)
             elif isinstance(entry, GSection):
                 self.view.reload_section(entry)
-            elif isinstance(entry, BaseEntry):
+            elif isinstance(entry, Entry):
                 self.view.reload_entry(entry)
                 print(entry.full_name)
 

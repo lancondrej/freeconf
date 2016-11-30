@@ -6,18 +6,18 @@ __author__ = 'Ondřej Lanč'
 
 from copy import deepcopy
 
-from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.entries.entry import Entry
 from src.Model.Package.exception_logging.exception import AlreadyExistsError
 
 
-class Container(BaseEntry, ContainerInconsistency):
+class Container(Entry, ContainerInconsistency):
     """This is a class for keyword entries from Template File"""
 
     def is_multiple_entry_container(self):
         return False
 
     def __init__(self, name, package):
-        BaseEntry.__init__(self, name, package)
+        Entry.__init__(self, name, package)
         ContainerInconsistency.__init__(self)
         self._entries = {}
 

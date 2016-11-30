@@ -1,15 +1,15 @@
+from src.Model.Package.entries.base_entry import BaseEntry
 from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
 
 
-class GSection(ContainerInconsistency):
+class GSection(BaseEntry, ContainerInconsistency):
     """GUI container class"""
-    def __init__(self, package):
-        self._name = None
+    def __init__(self, name, package):
+        BaseEntry.__init__(self, name, package)
         self._inc_parents = set()
         self._label = None
-        self._package = package
         self.parent = None
 
         ContainerInconsistency.__init__(self)
@@ -20,27 +20,6 @@ class GSection(ContainerInconsistency):
         # self._show_all_children = False
         self._entries = []
 
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        self._name = str(name)
-
-
-    def __repr__(self):
-        return self.__class__.__name__ + '(' + self.name + ')'
-
-
-    @property
-    def label(self):
-        """Returns the correct mutation of the entry's label"""
-        return self._label or self.name
-
-    @label.setter
-    def label(self, label):
-        self._label = label
 
     @property
     def inc_parents(self):
@@ -49,16 +28,6 @@ class GSection(ContainerInconsistency):
     @property
     def entries(self):
         return self._entries
-
-    @property
-    def package(self):
-        """get package"""
-        return self._package
-
-    @package.setter
-    def package(self, package):
-        """set package"""
-        self._package = package
 
     #
     # @property
@@ -85,12 +54,3 @@ class GSection(ContainerInconsistency):
             return None
         else:
             return self._entries[indices[0]]
-
-
-    @property
-    def full_name(self):
-        """Return full path in current tree in form of: /a/b/c/..."""
-        path = "/" + self.name
-        if self.parent:
-            path = self.parent.full_name + path
-        return path

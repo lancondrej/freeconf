@@ -1,9 +1,8 @@
 import os
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception_logging.log import log
-from src.IO.exception_logging.exception import ParseError
-from src.Model.Config.group import Group
-from src.Model.Package.lists import FuzzyList, StringList
+from src.Model.Package.lists.fuzzy_list import FuzzyList
+from src.Model.Package.lists.string_list import StringList
 
 __author__ = 'Ondřej Lanč'
 
