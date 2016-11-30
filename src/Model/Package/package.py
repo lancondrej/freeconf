@@ -1,16 +1,15 @@
-#!/usr/bin/python3
-#
 from src.Model.Package.entries.GUI.gsection import GSection
 from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.GUI.gwindow import GWindow
-from src.Model.Package.exception_logging.exception import NotExistsError, AlreadyExistsError
 from blinker import signal
 
 __author__ = 'Ondřej Lanč'
 
 
 class Package(object):
-    """Base class for package and plugin classes."""
+    """Base class for package and plugin classes.
+    :param name: name of package
+    """
 
     def __init__(self, name):
         self.tree = None
@@ -28,34 +27,36 @@ class Package(object):
 
     @property
     def gui_tree(self):
-        return self._gui_tree or self.build_gui_tree()
+        """gui tree getter if no one available create default.
+        :return GWindow"""
+        return self._gui_tree or self._build_gui_tree()
 
     @gui_tree.setter
     def gui_tree(self, gui_tree):
-        self._gui_tree=gui_tree
+        """gui tree setter
+        :param gui_tree: GWindow object"""
+        self._gui_tree = gui_tree
 
-    def build_gui_tree(self):
-        self._gui_tree=GWindow(self)
-        tab=GTab(self)
-        tab.parent=self._gui_tree
-        tab.name="all"
-        tab.label="All entries"
-        tab.description="Generated gui Tree"
-        section=GSection(self)
-        section.parent=tab
-        section.name="all"
+    def _build_gui_tree(self):
+        """"build default gui_tree"""
+        self._gui_tree = GWindow(self)
+        tab = GTab(self)
+        tab.parent = self._gui_tree
+        tab.name = "all"
+        tab.label = "All entries"
+        tab.description = "Generated gui Tree"
+        section = GSection(self)
+        section.parent = tab
+        section.name = "all"
         section.append(self.tree)
         tab.append(section)
         self._gui_tree.append(tab)
         return self._gui_tree
 
-
-    @property
-    def is_plugin(self):
-        return False
-
     @property
     def language(self):
+        """language getter get current language or default language
+        :return language code"""
         return self._language or self._default_language
 
     @language.setter
@@ -68,17 +69,14 @@ class Package(object):
         """Return list of available value lists."""
         return self.lists
 
-    def execute_dependencies(self):
-        # Resolve all loaded dependencies using root_entry as configuration tree. Call this function after parse.
-        for dep in self.dependencies[:]:
-            # Dependency resolved -> execute it
-            dep.execute()
-
     def inconsistent(self):
+        """inconsistency getter"""
         return self.tree.inconsistent
 
     def inconsistency_signal(self, entry):
+        """send inconsistency signal sending is from Inconsistency class"""
         signal('inconsistency_change').send(self, entry=entry)
+
 
 class Plugin(Package):
     """Class representing plugin."""
@@ -88,11 +86,3 @@ class Plugin(Package):
         self.package = package  # Reference to main package
         self.tree = package.tree
         self.gui_tree = package.gui_tree
-
-    @property
-    def is_plugin(self):
-        return True
-
-
-
-
