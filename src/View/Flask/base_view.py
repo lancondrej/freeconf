@@ -1,28 +1,33 @@
-#!/usr/bin/python3
-
-
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
-from flask_socketio import SocketIO, emit
+from flask import render_template
+from flask_socketio import emit
 from src.View.Flask.renderer import Renderer
-from flask.views import View
-import time;
+
 
 __author__ = 'Ondřej Lanč'
 
 
 class BaseView(object):
-    _renderer = Renderer()
+    """Base view class for Flask view in Freeconf.
+    :param flask: Flask
+    :param socketio Flask SocketIO
+    """
 
     def __init__(self, flask, socketio):
         self._flask = flask
         self._socketio = socketio
 
-    def render_default(self, left="", main="", right=""):
+    @staticmethod
+    def render_default(left="", main="", right=""):
+        """default render function"""
         return render_template('index.html', left=left, main=main, right=right)
 
-    def flash_message(self, message, category):
+    @staticmethod
+    def flash_message(message, category):
+        """flash message through socketio, need to be catch by javascript"""
         flash = render_template('elements/flash.html', category=category, message=message)
         emit('flash', {'flash': flash},  namespace='/freeconf')
 
-    def log(self, time, message):
+    @staticmethod
+    def log(time, message):
+        """send log message through socketio, need to be catch by javascript"""
         emit('log', {'log_time': time, 'log_record': message},  namespace='/freeconf')

@@ -1,24 +1,24 @@
-#!/usr/bin/python3
-
-
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session, Blueprint
-from flask_socketio import SocketIO, emit
-from flask_debugtoolbar import DebugToolbarExtension
+from flask import render_template, request, session
+from flask_socketio import emit
 from src.Presenter.main_presenter import MainPresenter
-from src.Presenter.package_presenter import PackagePresenter
 from src.View.Flask.base_view import BaseView
 from src.View.Flask.renderer import Renderer
 
 __author__ = 'Ondřej Lanč'
 
 
-
 class PackageView(BaseView):
+    """Main view for Freeconf.
+    Attend to main pages of Freeconf.
+    :param flask: Flask object
+    :param socketio: SocketIO object
+    """
+
+    #: _render: class variable with renderer object
     _renderer = Renderer()
 
     def __init__(self, flask, socketio):
-        self._flask = flask
-        self._socketio = socketio
+        BaseView.__init__(self, flask, socketio)
         self._presenter = None
 
         self._flask.add_url_rule('/package/<package_name>', 'package', self.package)
@@ -40,92 +40,130 @@ class PackageView(BaseView):
 
     @property
     def presenter(self):
+        """package presenter getter"""
         # TODO: přidělovat presenter podle uživatelu (až bude)
         return self._presenter
 
     @presenter.setter
     def presenter(self, presenter):
-        self._presenter=presenter
+        """package presenter setter"""
+        self._presenter = presenter
 
     def package(self, package_name):
+        """method for load new package"""
         self.presenter = MainPresenter.load_package(package_name)
         if self.presenter is not None:
             self.presenter.view = self
-            session['package_name']=package_name
+            session['package_name'] = package_name
             sections = self.presenter.tab()
             rendered_sections = []
             for section in sections:
                 rendered_sections.append(self._renderer.entry_render(section))
-            main = render_template("package/tab.html", sections=rendered_sections)
-            tabs = render_template("package/tabs.html", tabs=self.presenter.tabs, package_name=session.get('package_name'))
+            main = render_template("package/tab.html",
+                                   sections=rendered_sections)
+            tabs = render_template("package/tabs.html",
+                                   tabs=self.presenter.tabs,
+                                   package_name=session.get('package_name'))
             buttons = render_template("package/buttons.html")
-            return self.render_default(left=tabs, main=main, right=buttons)
+            return self.render_default(left=tabs,
+                                       main=main,
+                                       right=buttons)
         else:
             return self.render_default(main="error")
 
     def tab(self, data=None):
+        """socketIO event for select tab"""
         self.presenter.tab(data['name'])
 
     def reload_tab(self, sections):
-        rendered_sections=[]
+        """socketIO emit function for reload full tab, usually call from presenter"""
+        rendered_sections = []
         for section in sections:
             rendered_sections.append(self._renderer.entry_render(section))
-        rendered_tab=render_template("package/tab.html", sections = rendered_sections)
-        emit('reload_tab', {'rendered_tab': rendered_tab}, namespace='/freeconf')
+        rendered_tab = render_template("package/tab.html",
+                                       sections=rendered_sections)
+        emit('reload_tab',
+             {'rendered_tab': rendered_tab},
+             namespace='/freeconf')
 
     def reload_section(self, section):
-        rendered_section=self._renderer.entry_render(section)
-        emit('reload_section', {'full_name': section.full_name, 'rendered_section': rendered_section}, namespace='/freeconf')
+        """socketIO emit function for reload section, usually call from presenter"""
+        rendered_section = self._renderer.entry_render(section)
+        emit('reload_section',
+             {'full_name': section.full_name,
+              'rendered_section': rendered_section},
+             namespace='/freeconf')
 
-    def reload_tabs(self, tabs):
-        rendered_tabs=render_template("package/tabs.html", tabs = tabs, package_name=session.get('package_name'))
-        emit('reload_tabs', {'rendered_tabs': rendered_tabs}, namespace='/freeconf')
+    @staticmethod
+    def reload_tabs(tabs):
+        """socketIO emit function for reload tabs, usually call from presenter"""
+        rendered_tabs = render_template("package/tabs.html",
+                                        tabs=tabs,
+                                        package_name=session.get('package_name'))
+        emit('reload_tabs',
+             {'rendered_tabs': rendered_tabs},
+             namespace='/freeconf')
 
     def multiple_modal(self):
+        """render modal window"""
         full_name = request.args.get('full_name')
         entry = self.presenter.get_entry(full_name)
         return self._renderer.render_modal(entry)
 
     def multiple_collapse(self):
+        """render collapse multiple"""
         full_name = request.args.get('full_name')
         entry = self.presenter.get_entry(full_name)
         return self._renderer.render_collapse(entry)
 
     def reload_entry(self, entry):
-        emit('reload_entry', {'full_name': entry.full_name, 'rendered_entry': self._renderer.reload_element(entry)}, namespace='/freeconf')
+        """socketIO emit function for reload entry, usually call from presenter"""
+        emit('reload_entry',
+             {'full_name': entry.full_name,
+              'rendered_entry': self._renderer.reload_element(entry)},
+             namespace='/freeconf')
 
     def submit(self, data):
+        """socketIO event for submit"""
         full_name = data['full_name']
         value = data['value']
         self.presenter.save_value(full_name, value)
 
     def multiple_new(self, data):
+        """socketIO event for multiple new"""
         full_name = data['full_name']
         self.presenter.multiple_new(full_name)
 
     def multiple_delete(self, data):
+        """socketIO event for multiple delete"""
         full_name = data['full_name']
         value = data['value']
         self.presenter.multiple_delete(full_name, value)
 
     def multiple_up(self, data):
+        """socketIO event for multiple up"""
         full_name = data['full_name']
         value = data['value']
         self.presenter.multiple_up(full_name, value)
 
     def multiple_down(self, data):
+        """socketIO event for multiple down"""
         full_name = data['full_name']
         value = data['value']
         self.presenter.multiple_down(full_name, value)
 
     def undo(self):
+        """socketIO event for undo"""
         self.presenter.undo()
 
     def redo(self):
+        """socketIO event for redo"""
         self.presenter.redo()
 
     def save_config(self):
+        """socketIO event for save configuration"""
         self.presenter.save_config()
 
     def save_native(self):
+        """socketIO event for save native"""
         self.presenter.save_native()

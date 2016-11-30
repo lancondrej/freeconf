@@ -1,9 +1,10 @@
-__author__ = 'Ondřej Lanč'
-
 from flask import render_template
+
+__author__ = 'Ondřej Lanč'
 
 
 class Renderer(object):
+    """class for render package elements"""
     def __init__(self):
         self.render = {
             'Container': self.render_container,
@@ -21,9 +22,13 @@ class Renderer(object):
         try:
             return self.render[type(entry).__name__](entry)
         except:
+            # TODO: tady něco zařvat
             pass
 
     def render_container(self, container):
+        """render container
+        :param container
+        :return string with renderer container"""
         entries = []
         for entry in container.entries.values():
             entries.append(self.entry_render(entry))
@@ -35,10 +40,15 @@ class Renderer(object):
                                inconsistent=container.inconsistent,
                                entries=entries)
 
-    def render_fuzzy(entry):
+    def render_fuzzy(self, entry):
+        # TODO: konečně dodělat
         pass
 
-    def render_bool(self, entry):
+    @staticmethod
+    def render_bool(entry):
+        """render entry
+        :param entry
+        :return string with renderer entry"""
         return render_template('package/entries/bool.html',
                                name=entry.name,
                                full_name=entry.full_name,
@@ -48,7 +58,11 @@ class Renderer(object):
                                checked=entry.grade,
                                )
 
-    def render_number(self, entry):
+    @staticmethod
+    def render_number(entry):
+        """render entry
+        :param entry
+        :return string with renderer entry"""
         return render_template('package/entries/number.html',
                                name=entry.name,
                                full_name=entry.full_name,
@@ -61,7 +75,11 @@ class Renderer(object):
                                max=entry.max,
                                )
 
-    def render_string(self, entry):
+    @staticmethod
+    def render_string(entry):
+        """render entry
+        :param entry
+        :return string with renderer entry"""
         if entry.list and not entry.user_values:
             return render_template('package/entries/select.html',
                                    name=entry.name,
@@ -82,8 +100,13 @@ class Renderer(object):
                                list=entry.list,
                                )
 
-    def render_multiple_container(self, container):
-        entries = [(i, container.primary_value(i), entry.full_name, entry.inconsistent) for i, entry in enumerate(container.entries)]
+    @staticmethod
+    def render_multiple_container(container):
+        """render entry
+        :param container
+        :return string with renderer entry"""
+        entries = [(i, container.primary_value(i), entry.full_name, entry.inconsistent)
+                   for i, entry in enumerate(container.entries)]
         return render_template('package/entries/multiple_cont.html',
                                name=container.name,
                                full_name=container.full_name,
@@ -93,8 +116,13 @@ class Renderer(object):
                                entries=entries,
                                )
 
-    def render_multiple_container_collapse(self, container):
-        entries = [(i, container.primary_value(i), entry.full_name, entry.inconsistent) for i, entry in enumerate(container.entries)]
+    @staticmethod
+    def render_multiple_container_collapse(container):
+        """render entry
+        :param container
+        :return string with renderer entry"""
+        entries = [(i, container.primary_value(i), entry.full_name, entry.inconsistent)
+                   for i, entry in enumerate(container.entries)]
         return render_template('package/entries/multiple_cont_collapse.html',
                                name=container.name,
                                full_name=container.full_name,
@@ -105,7 +133,11 @@ class Renderer(object):
                                )
 
     def render_multiple_key_word(self, mult_entry):
-        entries = [(i, entry.name, self.entry_render(entry), entry.inconsistent) for i, entry in enumerate(mult_entry.entries)]
+        """render entry
+        :param mult_entry
+        :return string with renderer entry"""
+        entries = [(i, entry.name, self.entry_render(entry), entry.inconsistent)
+                   for i, entry in enumerate(mult_entry.entries)]
         return render_template('package/entries/multiple_key.html',
                                name=mult_entry.name,
                                full_name=mult_entry.full_name,
@@ -116,6 +148,9 @@ class Renderer(object):
                                )
 
     def render_section(self, section):
+        """render section
+        :param section
+        :return string with renderer section"""
         entries = []
         for entry in section.entries:
             entries.append(self.entry_render(entry))
@@ -127,6 +162,9 @@ class Renderer(object):
                                )
 
     def render_modal(self, entry):
+        """render section
+        :param entry
+        :return string with renderer entry"""
         content = self.entry_render(entry)
         return render_template('elements/modal.html',
                                name=entry.name,
@@ -137,6 +175,9 @@ class Renderer(object):
                                )
 
     def render_collapse(self, entry):
+        """render section
+        :param entry
+        :return string with renderer entry"""
         content = self.entry_render(entry)
         return render_template('elements/collapse.html',
                                name=entry.name,
@@ -147,5 +188,8 @@ class Renderer(object):
                                )
 
     def reload_element(self, entry):
+        """render entry
+        :param entry
+        :return string with renderer entry"""
         content = self.entry_render(entry)
         return content
