@@ -1,5 +1,3 @@
-from src.Model.Package.constants import Types
-from src.Model.Package.constants import Types
 from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
@@ -47,10 +45,6 @@ class GSection(ContainerInconsistency):
     @property
     def inc_parents(self):
         return self._inc_parents
-
-    @property
-    def type(self):
-        return Types.SECTION
 
     @property
     def entries(self):

@@ -3,11 +3,29 @@
 __author__ = 'Ondřej Lanč'
 
 from src.Model.Package.constants import Types
-from src.Model.Package.exception_logging import log
+from src.Model.Package.exception_logging.log import log
 
 
 class List:
     """Class for string lists and fuzzy lists."""
+
+    class Entry:
+
+        def __init__(self, value, label=None, help=None):
+            self.value = value
+            self.help = help
+            self._label = label
+
+        @property
+        def label(self):
+            return self._label or self.value
+
+        @label.setter
+        def label(self, label):
+            self._label = label
+
+        def __repr__(self):
+            return 'Entry(%s, "%s", "%s")' % (self.value, self.label, self.help)
 
     def __init__(self, name):
         self.name = name
@@ -27,10 +45,7 @@ class List:
 
     def get_entry(self, value):
         """Return entry by value."""
-        try:
-            return self.values[value]
-        except KeyError:
-            return None
+        return self.values.get(value)
 
     def get_first_entry(self):
         """Return first entry in the list. If there is no entry, return None"""
@@ -42,23 +57,10 @@ class List:
 class StringList(List):
     """Class for string lists."""
 
-    class Entry:
+    class Entry(List.Entry):
         """This class describes particular string for string config keyword.
         It contains string value, optional label and help as an explanation for
         meaning of given string value."""
-
-        def __init__(self, value, label=None, help=None):
-            self.value = value
-            self.help = help
-            self._label = label
-
-        @property
-        def label(self):
-            return self._label or self.value
-
-        @label.setter
-        def label(self, label):
-            self._label = label
 
         def __repr__(self):
             return 'StringEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)
@@ -75,23 +77,13 @@ class StringList(List):
 class FuzzyList(List):
     """Class for fuzzy lists."""
 
-    class Entry:
+    class Entry(List.Entry):
         """This class describes particular value for fuzzy config keyword."""
 
         def __init__(self, grade, value, label=None, help=None):
             assert 0 <= grade <= 1
             self.grade = grade
-            self.value = value
-            self.help = help
-            self._label = label
-
-        @property
-        def label(self):
-            return self._label or self.value
-
-        @label.setter
-        def label(self, label):
-            self._label = label
+            List.Entry.__init__(self, value, label, help)
 
         def __repr__(self):
             return 'FuzzyEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)

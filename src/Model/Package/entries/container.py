@@ -6,7 +6,6 @@ __author__ = 'Ondřej Lanč'
 
 from copy import deepcopy
 
-from src.Model.Package.constants import Types
 from src.Model.Package.entries.base_entry import BaseEntry
 from src.Model.Package.exception_logging.exception import AlreadyExistsError
 
@@ -70,10 +69,6 @@ class Container(BaseEntry, ContainerInconsistency):
 
     def size(self):
         return len(self._entries)
-
-    @property
-    def type(self):
-        return Types.CONTAINER
 
     def find_entry(self, relative_name):
         """Find entry in tree. Name is given in format: a/b/c../entry"""

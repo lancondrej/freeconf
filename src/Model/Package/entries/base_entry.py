@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 #
-from copy import deepcopy
-
-from src.Model.Package.constants import Types
 from src.Model.Package.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'
@@ -89,10 +86,6 @@ class BaseEntry(object):
     def is_multiple_entry_container(self):
         """Return true if it is a multiple container."""
         raise NotImplementedError
-
-    @property
-    def type(self):
-        return Types.UNKNOWN_ENTRY
 
     @property
     def full_name(self):
