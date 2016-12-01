@@ -1,6 +1,5 @@
 from flask import render_template
 from flask_socketio import emit
-from src.View.Flask.renderer import Renderer
 
 
 __author__ = 'Ondřej Lanč'

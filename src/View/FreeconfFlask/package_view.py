@@ -1,8 +1,8 @@
 from flask import render_template, request, session
 from flask_socketio import emit
 from src.Presenter.main_presenter import MainPresenter
-from src.View.Flask.base_view import BaseView
-from src.View.Flask.renderer import Renderer
+from src.View.FreeconfFlask.base_view import BaseView
+from src.View.FreeconfFlask.renderer import Renderer
 
 __author__ = 'Ondřej Lanč'
 
