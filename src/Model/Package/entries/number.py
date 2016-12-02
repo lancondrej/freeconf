@@ -68,6 +68,14 @@ class Number(KeyWord):
     def precision(self):
         return self._precision
 
+    def convert_precision(self, value):
+        if self._precision_set:
+            if self._precision == 0:
+                return int(value)
+            else:
+                return round(value, self._precision)
+        return value
+
     @property
     def print_sign(self):
         return self._print_sign
@@ -80,37 +88,19 @@ class Number(KeyWord):
     def max(self, value):
         assert type(value) in [float, int]
         self._max_set = True
-        if self._precision_set:
-            if self._precision == 0:
-                self._max = int(value)
-            else:
-                self._max = round(value, self._precision)
-        else:
-            self._max = value
+        self._max = self.convert_precision(value)
 
     @min.setter
     def min(self, value):
         assert type(value) in [float, int]
         self._min_set = True
-        if self._precision_set:
-            if self._precision == 0:
-                self._min = int(value)
-            else:
-                self._min = round(value, self._precision)
-        else:
-            self._min = value
+        self._min = self.convert_precision(value)
 
     @step.setter
     def step(self, step):
         assert type(step) in [float, int]
         self._step_set = True
-        if self._precision_set:
-            if self._precision == 0:
-                self._step = int(step)
-            else:
-                self._step = round(step, self._precision)
-        else:
-            self._step = step
+        self._step = self.convert_precision(step)
 
     @precision.setter
     def precision(self, precision):
@@ -140,4 +130,4 @@ class Number(KeyWord):
             return self.max
         elif self.min_set and value < self.min:
             return self.min
-        return value
+        return self.convert_precision(value)
