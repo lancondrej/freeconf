@@ -72,15 +72,11 @@ class TemplateFileReader(FileReader):
                     if value is not None:
                         entry.multiple_min = int(value)
                     entry.primary = multiple.findtext('primary')
-                # BaseEntry properties
+                # Entry properties
                 # active
                 value = element.findtext('active')
                 if value is not None:
                     entry.static_active = True if value == 'yes' else False
-                # mandatory
-                value = element.findtext('mandatory')
-                if value is not None:
-                    entry.static_mandatory = True if value == 'yes' else False
                 # group
                 value = element.findtext('group')
                 if value is not None:
@@ -101,7 +97,14 @@ class TemplateFileReader(FileReader):
             except AlreadyExistsError:
                 print('no jo no')
 
+    def _inside_key_word(self, entry, element):
+        # mandatory
+        value = element.findtext('mandatory')
+        if value is not None:
+            entry.static_mandatory = True if value == 'yes' else False
+
     def _inside_number(self, entry, element):
+        self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
             value=properties.findtext('max')
@@ -124,6 +127,7 @@ class TemplateFileReader(FileReader):
                 entry.leading_zeros = True if value == 'yes' else False
 
     def _inside_string(self, entry, element):
+        self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
             value=properties.findtext('regexp')
@@ -138,6 +142,7 @@ class TemplateFileReader(FileReader):
                     logger.error("list not set")
 
     def _inside_fuzzy(self, entry, element):
+        self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
             value = properties.findtext('data')
@@ -150,7 +155,7 @@ class TemplateFileReader(FileReader):
 
     types = [
         EntryType('container', 'container-name', Container, MultipleContainer, _inside_container),
-        EntryType('bool', 'entry-name', Bool, MultipleKeyWord),
+        EntryType('bool', 'entry-name', Bool, MultipleKeyWord, _inside_key_word),
         EntryType('string', 'entry-name', String, MultipleKeyWord, _inside_string),
         EntryType('fuzzy', 'entry-name', Fuzzy, MultipleKeyWord, _inside_fuzzy),
         EntryType('number', 'entry-name', Number, MultipleKeyWord, _inside_number)

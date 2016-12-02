@@ -7,7 +7,7 @@ from src.Model.Package.inconsistency import ContainerInconsistency
 __author__ = 'Ondřej Lanč'
 
 from src.Model.Package.entries.entry import Entry
-
+ # TODO: nekonzistentní pokud mám záznamů mimom rozsah
 
 class MultipleEntry(Entry, ContainerInconsistency):
     """Container for multiple config entries."""

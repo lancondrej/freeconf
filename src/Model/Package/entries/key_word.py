@@ -17,7 +17,8 @@ class KeyWord(Entry, Inconsistency):
         self._default_value = None
         self._value = None
         self._dependents = []
-        self._enabled = True
+        self._static_mandatory = False
+        self._dynamic_mandatory = False
         self._list = None
         # If true, user can insert value which is not in the list
         self.user_values = False
@@ -74,6 +75,29 @@ class KeyWord(Entry, Inconsistency):
         else:
             log.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
             pass
+
+    @property
+    def static_mandatory(self):
+        """Static mandatority indicates that the entry is mandatory or not. Entries that are statically mandatory
+        cannot be set non-mandatory by dependencies"""
+        return self._static_mandatory
+
+    @static_mandatory.setter
+    def static_mandatory(self, mandatory):
+        self._static_mandatory = mandatory
+        self._dynamic_mandatory = mandatory
+
+    @property
+    def mandatory(self):
+        """Dynamic mandatority is the mandatority set by dependencies"""
+        return self._static_mandatory or self._dynamic_mandatory
+
+    @mandatory.setter
+    def mandatory(self, mandatory):
+        if self._static_mandatory and not mandatory:
+            log.error("Key " + self.name +
+                      " cannot be set non-mandatory by a dependency because it is set mandatory in the template.")
+        self._dynamic_mandatory = mandatory
 
     def convert_value(self, value):
         """Check if given value can be converted to value for this entry, and if so, return converted value."""
