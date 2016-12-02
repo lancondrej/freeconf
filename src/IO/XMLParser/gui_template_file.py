@@ -1,8 +1,8 @@
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
-from src.Model.Package.entries.GUI.gwindow import GWindow
-from src.Model.Package.entries.GUI.gtab import GTab
+from src.IO.log import logger
 from src.Model.Package.entries.GUI.gsection import GSection
+from src.Model.Package.entries.GUI.gtab import GTab
+from src.Model.Package.entries.GUI.gwindow import GWindow
 from src.Model.Package.package import Plugin
 
 __author__ = 'Ondřej Lanč'
@@ -13,7 +13,7 @@ class GUITemplateFileReader(FileReader):
         self._config = config
         self._package = package
         gui_template_file = self._config.gui_template_file
-        log.info("Loading GUI template file {}".format(gui_template_file))
+        logger.info("Loading GUI template file {}".format(gui_template_file))
         super().__init__(gui_template_file)
 
     def parse(self):

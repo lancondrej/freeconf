@@ -9,6 +9,7 @@ from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 from src.Model.Package.package import Package
 from src.IO.XMLParser.input import XMLParser
 from src.IO.input import Input
+from src.Presenter.log import logger
 from src.Presenter.presenter import Presenter
 from src.Presenter.undo_presenter import UndoPresenter
 import time
@@ -45,6 +46,7 @@ class PackagePresenter(Presenter):
 
     def log(self, message):
         localtime = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+        logger.debug(message)
         self.view.log(localtime, message)
 
     @property
@@ -61,20 +63,20 @@ class PackagePresenter(Presenter):
         input_parser.load_plugin()
         self.package.tree.init_inconsistency()
         self.inc_signal.connect(self.test_inc, sender=self.package)
+        self.active_tab = self._package.gui_tree.first_tab()
         return True
 
     @property
     def tabs(self):
         return [(tab.name, tab.label, tab.inconsistent) for tab in self._package.gui_tree.tabs]
 
-    def tab(self, name=None):
-        # TODO: možná rozdělit na dvě funkce
-        if name is None:
-            self.active_tab = self._package.gui_tree.first_tab()
-            return self.active_tab.sections
-        self.active_tab = self._package.gui_tree.get_tab(name)
-        self.view.reload_tab(self.active_tab.sections)
-        return True
+    def tab(self, name):
+        tab = self._package.gui_tree.get_tab(name)
+        if tab is not None:
+            self.log("change tab from {} to {}".format(self.active_tab.name, name))
+            self.active_tab = tab
+            self.view.reload_tab(self.active_tab.sections)
+        return False
 
     def save_config(self):
         output = XMLOutput(self._config, self._package)

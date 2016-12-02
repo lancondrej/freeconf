@@ -1,6 +1,8 @@
 import urllib.parse
+
 import lxml.etree as etree
-from src.IO.exception_logging.log import log
+
+from src.IO.log import logger
 
 __author__ = 'Ondřej Lanč'
 
@@ -28,4 +30,4 @@ class NativeFileWriter (object):
         newdom = transform(self._dom)
         f = open(self._group.native_output, 'w')
         f.write(str(newdom))
-        log.info("Writing output to {}".format(self._group.native_output))
+        logger.info("Writing output to {}".format(self._group.native_output))

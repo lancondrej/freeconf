@@ -1,5 +1,5 @@
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
+from src.IO.log import logger
 
 
 __author__ = 'Ondřej Lanč'
@@ -10,7 +10,7 @@ class HelpFileReader(FileReader):
         self._config = config
         self._package = package
         help_file = self._config.help_file(language)
-        log.info("Loading Help file {}".format(help_file))
+        logger.info("Loading Help file {}".format(help_file))
         super().__init__(help_file)
 
     def parse(self):
@@ -20,7 +20,7 @@ class HelpFileReader(FileReader):
             try:
                 assert name == self._package.tree.name
             except AssertionError:
-                log.error('invalid name of root element')
+                logger.error('invalid name of root element')
             for container in root_container.iterfind('container'):
                 self._parse_container(container, self._package.tree)
             for entry in root_container.iterfind('entry'):

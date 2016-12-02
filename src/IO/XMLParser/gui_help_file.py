@@ -1,5 +1,5 @@
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
+from src.IO.log import logger
 
 
 __author__ = 'Ondřej Lanč'
@@ -10,7 +10,7 @@ class GUIHelpFileReader(FileReader):
         self._config = config
         self._package = package
         gui_help_file = self._config.gui_help_file(language)
-        log.info("Loading GUI help file {}".format(gui_help_file))
+        logger.info("Loading GUI help file {}".format(gui_help_file))
         super().__init__(gui_help_file)
 
     def parse(self):

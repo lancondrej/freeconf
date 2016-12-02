@@ -1,6 +1,5 @@
-import os
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
+from src.IO.log import logger
 from src.Model.Package.lists.fuzzy_list import FuzzyList
 from src.Model.Package.lists.string_list import StringList
 
@@ -12,7 +11,7 @@ class ListFileReader(FileReader):
         self._config = config
         self._package = package
         list_file = self._config.list_file
-        log.info("Loading List file {}".format(list_file))
+        logger.info("Loading List file {}".format(list_file))
         super().__init__(list_file)
 
     def parse(self):
@@ -29,7 +28,7 @@ class ListFileReader(FileReader):
     def _parse_list(self, element, ListClass, value_func):
         lists={}
         for list_element in self._root.iterfind(element):
-            log.info("List file: parsing <{}> element".format(element))
+            logger.info("List file: parsing <{}> element".format(element))
             name = list_element.get('name')
             if name:
                 list = ListClass(name)
@@ -37,7 +36,7 @@ class ListFileReader(FileReader):
                     list.append(value)
                 lists[name]=list
             else:
-                log.error("List file: in element <{}> missing attribute name".format(element))
+                logger.error("List file: in element <{}> missing attribute name".format(element))
         return lists
 
     @staticmethod
@@ -56,6 +55,6 @@ class ListFileReader(FileReader):
             try:
                 return FuzzyList.Entry(float(grade), element.text)
             except AssertionError:
-                log.error("Attribute grade={} is out of range for fuzzy value!".format(grade))
+                logger.error("Attribute grade={} is out of range for fuzzy value!".format(grade))
         else:
-            log.error("Attribute grade missing")
+            logger.error("Attribute grade missing")

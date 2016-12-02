@@ -1,5 +1,5 @@
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
+from src.IO.log import logger
 
 
 __author__ = 'Ondřej Lanč'
@@ -10,7 +10,7 @@ class DefaultValuesFileReader(FileReader):
         self._config = config
         self._package = package
         default_values_file = self._config.default_values_file
-        log.info("Loading default values file {}".format(default_values_file))
+        logger.info("Loading default values file {}".format(default_values_file))
         super().__init__(default_values_file)
 
     def parse(self):
@@ -18,7 +18,7 @@ class DefaultValuesFileReader(FileReader):
         try:
             assert name == self._package.tree.name
         except AssertionError:
-            log.error('invalid name of root element')
+            logger.error('invalid name of root element')
         for container in self._root.iterfind('container'):
             self._parse_container(container, self._package.tree)
         for entry in self._root.iterfind('entry'):

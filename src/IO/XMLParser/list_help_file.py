@@ -1,5 +1,5 @@
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
+from src.IO.log import logger
 
 
 __author__ = 'Ondřej Lanč'
@@ -10,7 +10,7 @@ class ListHelpFileReader(FileReader):
         self._config = config
         self._package = package
         list_help_file = self._config.list_help_file(language)
-        log.info("Loading List help file {}".format(list_help_file))
+        logger.info("Loading List help file {}".format(list_help_file))
         super().__init__(list_help_file)
 
     def parse(self):
@@ -25,16 +25,16 @@ class ListHelpFileReader(FileReader):
 
     def _parse_list(self, element):
         for list_element in self._root.iterfind(element):
-            log.info("List file: parsing <{}> element".format(element))
+            logger.info("List file: parsing <{}> element".format(element))
             name = list_element.get('name')
             if name:
                 try:
                     list=self._package.lists[name]
                     self._parse_entry(list, list_element)
                 except KeyError:
-                    log.error("No list {} in package".format(name))
+                    logger.error("No list {} in package".format(name))
             else:
-                log.error("List file: in element <{}> missing attribute name".format(element))
+                logger.error("List file: in element <{}> missing attribute name".format(element))
 
     def _parse_entry(self, list, list_element):
         for entry in list_element.iterfind('entry'):
@@ -45,4 +45,4 @@ class ListHelpFileReader(FileReader):
                     list_entry.label = entry.findtext('label')
                     list_entry.help = entry.findtext('help')
             else:
-                log.error("list entry name not defined")
+                logger.error("list entry name not defined")

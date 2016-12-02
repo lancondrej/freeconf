@@ -1,6 +1,7 @@
-from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
 from lxml.etree import Element, ElementTree
+
+from src.IO.XMLParser.file_reader import FileReader
+from src.IO.log import logger
 
 __author__ = 'Ondřej Lanč'
 
@@ -10,7 +11,7 @@ class ConfigFileReader(FileReader):
         self._config = config
         self._package = package
         config_file = self._config.config_file
-        log.info("Loading List file {}".format(config_file))
+        logger.info("Loading List file {}".format(config_file))
         super().__init__(config_file)
 
     def parse(self):
@@ -18,7 +19,7 @@ class ConfigFileReader(FileReader):
         try:
             assert name == self._package.tree.name
         except AssertionError:
-            log.error('invalid name of root element')
+            logger.error('invalid name of root element')
         containers = self._root.iterfind('container')
         for container in containers:
             self._parse_container(container, self._package.tree)
@@ -96,7 +97,7 @@ class ConfigFileWriter(object):
         element.set('name', entry.name)
         value = entry.value
         if value is None:
-            log.info("Value for entry {} missing".format(entry.full_name))
+            logger.info("Value for entry {} missing".format(entry.full_name))
             return
         val_el = Element('value')
         val_el.text = str(value)

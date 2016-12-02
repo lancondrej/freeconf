@@ -1,7 +1,6 @@
-import os
 from src.IO.XMLParser.file_reader import FileReader
-from src.IO.exception_logging.log import log
-from src.IO.exception_logging.exception import ParseError
+from src.IO.exception import MissingMandatoryElementError
+from src.IO.log import logger
 from src.Model.Package.entries.bool import Bool
 from src.Model.Package.entries.container import Container
 from src.Model.Package.entries.fuzzy import Fuzzy
@@ -29,7 +28,7 @@ class TemplateFileReader(FileReader):
         self._config = config
         self._package = package
         template_file = self._config.template_file
-        log.info("Loading template file {}".format(template_file))
+        logger.info("Loading template file {}".format(template_file))
         super().__init__(template_file)
 
     def parse(self):
@@ -38,7 +37,7 @@ class TemplateFileReader(FileReader):
             if isinstance(self._package, Plugin):
                 container = self._package.package.tree
                 if container.name != name:
-                    raise ParseError("Plugin root container is different from Package root Container")
+                    raise MissingMandatoryElementError("Plugin root container is different from Package root Container")
             else:
                 container = Container(name, self._package)
                 container.group = self._config.group()
@@ -50,7 +49,7 @@ class TemplateFileReader(FileReader):
                 # add default group
             self._package.tree = container
         else:
-            raise ParseError('root container name missing')
+            raise MissingMandatoryElementError('root container name missing')
 
     def _parse_entry(self, container_element):
         for element_type in self.types:
@@ -91,7 +90,7 @@ class TemplateFileReader(FileReader):
                     element_type.inside_func(self, entry, element)
                 yield entry
             else:
-                raise ParseError('{} name misssing'.format(element_type.name))
+                raise MissingMandatoryElementError('{} name misssing'.format(element_type.name))
 
 
 
@@ -136,7 +135,7 @@ class TemplateFileReader(FileReader):
                 if list is not None:
                     entry.list = list
                 else:
-                    log.error("list not set")
+                    logger.error("list not set")
 
     def _inside_fuzzy(self, entry, element):
         properties = element.find('properties')

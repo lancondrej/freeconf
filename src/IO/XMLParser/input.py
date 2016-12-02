@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 #
-import os
 
 from src.IO.XMLParser.config_file import ConfigFileReader
 from src.IO.XMLParser.default_values_file import DefaultValuesFileReader
 from src.IO.XMLParser.gui_help_file import GUIHelpFileReader
 from src.IO.XMLParser.gui_template_file import GUITemplateFileReader
-from src.IO.XMLParser.help_file import HelpFileReader
-from src.IO.XMLParser.list_help_file import ListHelpFileReader
-from src.Model.Package.package import Package, Plugin
 from src.IO.XMLParser.header_file import HeaderFileReader
+from src.IO.XMLParser.help_file import HelpFileReader
 from src.IO.XMLParser.list_file import ListFileReader
+from src.IO.XMLParser.list_help_file import ListHelpFileReader
 from src.IO.XMLParser.template_file import TemplateFileReader
 from src.IO.input import Input
-from src.IO.exception_logging.log import log
+from src.IO.log import logger
+from src.Model.Package.package import Plugin
 
 __author__ = 'Ondřej Lanč'
 
@@ -30,32 +29,32 @@ class XMLParser(Input):
         try:
             self._load_lists()
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         self._load_template()
         try:
             self._load_GUI_template()
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         try:
             self._load_help('en')
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         try:
             self._load_list_help('en')
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         try:
             self._load_GUI_help('en')
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         try:
             self._load_default_value()
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         try:
             self._load_config()
         except FileExistsError:
-            log.info("list file missing")
+            logger.info("list file missing")
         return self._package
 
     def _load_header(self):
@@ -108,9 +107,4 @@ class XMLParser(Input):
         self._package.plugins.append(plugin)
 
     def load_config(self, source):
-        """Virtual function. Need to be reimplemented in subclass"""
-        raise NotImplementedError
-
-
-    def load_packages_config(self):
-        pass
+        self._load_config()
