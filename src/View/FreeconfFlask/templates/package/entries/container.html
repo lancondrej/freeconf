@@ -15,7 +15,7 @@
             <form class="form-horizontal" role="form">
 
                 {% for entry in entries %}
-                    {{ entry }}
+                    {{ entry|safe }}
                 {% endfor %}
 
             </form>

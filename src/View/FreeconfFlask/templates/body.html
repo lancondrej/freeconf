@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="row content">
             <nav class="col-sm-2">
-                {{ left }}
+                {{ left|safe }}
             </nav>
             <main class="col-sm-8">
-                {{ main }}
+                {{ main|safe }}
             </main>
             <aside class="col-sm-2">
-                {{ right }}
+                {{ right|safe }}
             </aside>
         </div>
     </div>

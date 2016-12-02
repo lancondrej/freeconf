@@ -14,8 +14,6 @@ class FreeconfFlask(object):
     """
     _flask = Flask(__name__)
     _socketio = SocketIO(_flask)
-    _flask.jinja_env.autoescape = False
-
     def __init__(self, debug=False):
         self._presenter = MainPresenter()
         self._flask.debug = debug

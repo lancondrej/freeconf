@@ -1,4 +1,4 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect, url_for
 from flask_socketio import emit
 from src.Presenter.main_presenter import MainPresenter
 from src.View.FreeconfFlask.base_view import BaseView
@@ -49,13 +49,13 @@ class PackageView(BaseView):
         """package presenter setter"""
         self._presenter = presenter
 
-    def package(self, package_name):
+    def package(self, package_name=None):
         """method for load new package"""
         self.presenter = MainPresenter.load_package(package_name)
         if self.presenter is not None:
             self.presenter.view = self
             session['package_name'] = package_name
-            sections = self.presenter.tab()
+            sections = self.presenter.active_tab.sections
             rendered_sections = []
             for section in sections:
                 rendered_sections.append(self._renderer.entry_render(section))
@@ -69,7 +69,7 @@ class PackageView(BaseView):
                                        main=main,
                                        right=buttons)
         else:
-            return self.render_default(main="error")
+            return redirect(url_for('index'))
 
     def tab(self, data=None):
         """socketIO event for select tab"""

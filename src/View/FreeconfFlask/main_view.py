@@ -38,7 +38,7 @@ class MainView(BaseView):
     @staticmethod
     def setting():
         """setting page redirect to package view for self Freeconf package"""
-        return redirect(url_for('package', package='freeconf'))
+        return redirect(url_for('package', package_name='freeconf'))
 
     def about(self):
         """page about"""

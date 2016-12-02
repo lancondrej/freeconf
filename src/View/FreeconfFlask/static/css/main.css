@@ -69,3 +69,7 @@ nav.package_menu {
     z-index: 1;
     position: absolute;
 }
+
+.btn{
+    white-space: normal;
+}
