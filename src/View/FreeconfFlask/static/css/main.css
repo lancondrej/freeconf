@@ -73,3 +73,8 @@ nav.package_menu {
 .btn{
     white-space: normal;
 }
+
+input[type=checkbox]{
+    width: 26px;
+    height: 26px;
+}
