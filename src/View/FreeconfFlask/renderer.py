@@ -62,7 +62,7 @@ class Renderer(object):
                                label=entry.label,
                                help=entry.help,
                                inconsistent=entry.inconsistent,
-                               checked=entry.grade,
+                               value=entry.value,
                                )
 
     @staticmethod

@@ -6,11 +6,48 @@ function submit_form_input(input) {
     return false;
 }
 
+// function submit_form_checkbox(input) {
+//     socket.emit('submit', {
+//         full_name: input.attr("id"),
+//         value: input.is(":checked") ? "yes" : "no"
+//     });
+//     return false;
+// }
+
+function set_checkbox_state(input){
+        switch(input.val()) {
+        case 'no':
+            input.prop('indeterminate',false);
+            input.prop('checked', false);
+            break;
+        case 'yes':
+            input.prop('indeterminate', false);
+            input.prop('checked', true);
+            break;
+        default:
+            input.prop('indeterminate',true);
+            input.prop('checked',false);
+    }
+}
+
+function change_checkbox_state(input){
+        switch(input.val()) {
+        case 'no':
+            input.val('');
+            break;
+        case 'yes':
+            input.val('no');
+            break;
+        default:
+            input.val('yes');
+    }
+}
+
+
 function submit_form_checkbox(input) {
-    socket.emit('submit', {
-        full_name: input.attr("id"),
-        value: input.is(":checked") ? "yes" : "no"
-    });
+    change_checkbox_state(input);
+    set_checkbox_state(input);
+    submit_form_input(input);
     return false;
 }
 
@@ -80,11 +117,19 @@ function load_form() {
     $('input').off().on('change', function () {
         submit_form_input($(this))
     });
-    
-    $('input[type="checkbox"]').off().on('switchChange.bootstrapSwitch', function () {
-        submit_form_checkbox($(this))
+
+    $('input[type="checkbox"]').each(function(  ){
+        set_checkbox_state($(this));
     });
-    $('input[type="checkbox"]').bootstrapSwitch();
+    $('input[type="checkbox"]').off().on('change', function () {
+          submit_form_checkbox($(this));
+    });
+    
+    // $('input[type="checkbox"]').off().on('switchChange.bootstrapSwitch', function () {
+    //     submit_form_checkbox($(this))
+    // });
+    // $('input[type="checkbox"]').bootstrapSwitch();
+
 
 
     $('select').off().on('change', function () {

@@ -1,8 +1,7 @@
 {% extends "package/entries/key_word.html" %}
 
 {% block key_word %}
-    <input type="checkbox" name="{{name}}" id="{{full_name}}" {{'checked' if checked}}
-           data-off-text="No" data-on-text="Yes" data-label-width="0">
+    <input type="checkbox" name="{{name}}" id="{{full_name}}" value="{{ value if value is not none}}">
 {% endblock %}
 
 
