@@ -61,9 +61,9 @@ class PackagePresenter(Presenter):
         # input_parser.package = self.package
         input_parser.load_package()
         input_parser.load_plugin()
+        self.active_tab = self._package.gui_tree.first_tab()
         self.package.tree.init_inconsistency()
         self.inc_signal.connect(self.test_inc, sender=self.package)
-        self.active_tab = self._package.gui_tree.first_tab()
         return True
 
     @property
