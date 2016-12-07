@@ -105,6 +105,7 @@ class Renderer(object):
                                inconsistent=entry.inconsistent,
                                value=entry.value,
                                list=entry.list,
+                               regexp=entry.reg_exp,
                                )
 
     @staticmethod

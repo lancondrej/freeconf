@@ -92,8 +92,9 @@ class Fuzzy(KeyWord):
 
     def check_value(self):
         """Check if entry's value is within permitted range. If not, return nearest value that is in the range."""
-        if self.list.get_entry(self.value) is not None:
-            return True
+        if self.value is not None:
+            if self.list.get_entry(self.value) is not None:
+                return True
         return False
 
     @property

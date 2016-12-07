@@ -3,7 +3,7 @@
 
 {% block entry %}
 
-    <div class="form-group row {{'has-error' if inconsistent }}">
+    <div class="form-group row {{ 'has-error' if inconsistent }}">
         <label class="col-sm-4 control-label" for="{{ full_name }}">
             {{ label }}
             {% if help %}

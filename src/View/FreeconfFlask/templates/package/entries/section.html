@@ -1,15 +1,10 @@
-<div id="section_{{ full_name }}" class="panel {{'panel-danger' if inconsistent else 'panel-default'}}">
-      <div class="panel-heading"><h2>{{label}}</h2></div>
-
-  <div class="panel-body">
-
-    <form class="form-horizontal" role="form">
-
+<div id="section_{{ full_name }}" class="panel {{ 'panel-danger' if inconsistent else 'panel-default' }}">
+    <div class="panel-heading"><h2>{{ label }}</h2></div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
             {% for entry in entries %}
-            {{entry|safe}}
+                {{ entry|safe }}
             {% endfor %}
-
-    </form>
-
+        </form>
     </div>
 </div>

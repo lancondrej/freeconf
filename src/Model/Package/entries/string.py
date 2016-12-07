@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #
+import re
 
 __author__ = 'Ondřej Lanč'
 
@@ -12,7 +13,7 @@ class String(KeyWord):
 
     def __init__(self, name, package):
         KeyWord.__init__(self, name, package)
-        self.reg_exp = ""
+        self.reg_exp = None
 
     @property
     def type(self):
@@ -24,4 +25,7 @@ class String(KeyWord):
 
     def check_value(self):
         """Check if entry's value is within permitted range."""
+        if self.value is not None:
+            if self.reg_exp is not None:
+                return re.match(self.reg_exp, self.value) is not None
         return True

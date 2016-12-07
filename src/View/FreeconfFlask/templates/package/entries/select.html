@@ -1,11 +1,15 @@
 {% extends "package/entries/key_word.html" %}
 
 {% block key_word %}
-    <select class="form-control" id="{{full_name}}" name="{{name}}">
-        <option selected value title> ----------- </option>
-
+    <select class="form-control" id="{{ full_name }}" name="{{ name }}">
+        <option selected value title> -----------</option>
         {% for item in list.entries %}
-      <option value="{{item.value}}" title="{{ item.help if item.help is not none}}" {{ 'selected' if value==item.value }}>{{item.label}}</option>
+            <option
+                    value="{{ item.value }}"
+                    title="{{ item.help if item.help is not none }}"
+                    {{ 'selected' if value==item.value }}>
+                {{ item.label }}
+            </option>
         {% endfor %}
     </select>
 {% endblock %}

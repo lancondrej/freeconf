@@ -54,14 +54,9 @@ class KeyWord(Entry, Inconsistency):
     def value(self, value):
         if value is None:
             self._value = None
-            if self.mandatory and self.active:
-                self.change_inconsistency(True)
         else:
             self._value = self.convert_value(value)
-            if self.check_value():
-                self.change_inconsistency(False)
-            else:
-                self.change_inconsistency(True)
+        self.check_inconsistency()
 
     @property
     def type(self):
@@ -110,6 +105,13 @@ class KeyWord(Entry, Inconsistency):
         """Check if given value is correct for this entry"""
         raise NotImplementedError("This is abstract method!")
 
-    def init_inconsistency(self):
-        if self.mandatory and self.active and (self._default_value is None) and (self._value is None):
+    def check_inconsistency(self):
+        if self.mandatory and self.active and self._value is None:
             self.change_inconsistency(True)
+        elif self.check_value():
+            self.change_inconsistency(False)
+        else:
+            self.change_inconsistency(True)
+
+    def init_inconsistency(self):
+        self.check_inconsistency()

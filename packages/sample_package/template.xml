@@ -28,6 +28,11 @@
             <bool name="bool1">
                 <mandatory>yes</mandatory>
             </bool>
+            <string name="string12">
+                <properties>
+                    <regexp>(\w+@\w+(?:\.\w+)+)</regexp>
+                </properties>
+            </string>
         </container>
         <container name="container2">
             <group>default</group>
@@ -51,23 +56,24 @@
                     <data>fuzzy-list</data>
                 </properties>
             </fuzzy>
-        </container>
-        <container name="container3">
-            <group>default</group>
-            <multiple>
-                <min>0</min>
-                <max>2</max>
-            </multiple>
-            <number name="number3">
-                <properties>
-                    <min>0.0</min>
-                    <max>111.0</max>
-                    <step>1.0</step>
-                </properties>
-            </number>
-            <string name="string3">
-                <mandatory>yes</mandatory>
-            </string>
+            <container name="container3">
+                <group>default</group>
+                <multiple>
+                    <min>0</min>
+                    <max>2</max>
+                </multiple>
+                <number name="number3">
+                    <properties>
+                        <min>0.0</min>
+                        <max>111.0</max>
+                        <step>1.0</step>
+                    </properties>
+                </number>
+                <string name="string3">
+                    <mandatory>yes</mandatory>
+                </string>
+            </container>
         </container>
     </container>
+
 </freeconf_template>

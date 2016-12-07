@@ -126,8 +126,9 @@ class Number(KeyWord):
 
     def check_value(self):
         """Check if entry's value is within permitted range."""
-        if self.max_set and self.value > self.max:
-            return False
-        if self.min_set and self.value < self.min:
-            return False
+        if self.value is not None:
+            if self.max_set and self.value > self.max:
+                return False
+            if self.min_set and self.value < self.min:
+                return False
         return True
