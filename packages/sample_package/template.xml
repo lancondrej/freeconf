@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_template>
+    <container name="container0">
+        <container name="container1">
+            <group>default</group>
+            <number name="number1">
+                <properties>
+                    <min>0.0</min>
+                    <max>111.0</max>
+                    <step>1.0</step>
+                </properties>
+            </number>
+
+            <string name="string1">
+                <mandatory>yes</mandatory>
+                <multiple>
+                    <min>1</min>
+                    <max>3</max>
+                </multiple>
+            </string>
+            <bool name="bool1">
+                <mandatory>yes</mandatory>
+            </bool>
+        </container>
+        <container name="container2">
+            <group>default</group>
+            <number name="number2">
+                <properties>
+                    <min>0.0</min>
+                    <max>111.0</max>
+                    <step>1.0</step>
+                </properties>
+            </number>
+            <string name="string2">
+                <mandatory>yes</mandatory>
+                <group>extras</group>
+                <properties>
+                    <data>string-list</data>
+                </properties>
+            </string>
+            <fuzzy name="fuzzy1">
+                <group>extras</group>
+                <properties>
+                    <data>fuzzy-list</data>
+                </properties>
+            </fuzzy>
+        </container>
+        <container name="container3">
+            <group>default</group>
+            <multiple>
+                <min>0</min>
+                <max>2</max>
+            </multiple>
+            <number name="number3">
+                <properties>
+                    <min>0.0</min>
+                    <max>111.0</max>
+                    <step>1.0</step>
+                </properties>
+            </number>
+            <string name="string3">
+                <mandatory>yes</mandatory>
+            </string>
+        </container>
+    </container>
+</freeconf_template>

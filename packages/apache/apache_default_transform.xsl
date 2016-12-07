@@ -207,7 +207,7 @@
 
 
 <!-- ############################################################ -->
-<xsl:template match="section">
+<xsl:template match="container">
 
   <xsl:choose>
 

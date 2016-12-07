@@ -1,0 +1,12 @@
+<freeconf_header>
+	<content>
+		<template>ssl_template.xml</template>
+		<default_values>ssl_default.xml</default_values>
+		<help>ssl_help.xml</help>
+		<output>ssl_conf.xml</output>
+		<gui_template>ssl_gui_template.xml</gui_template>
+	</content>
+	<change_group name="default">
+		<add_transform>ssl_default_transform.xsl</add_transform>
+	</change_group>
+</freeconf_header>

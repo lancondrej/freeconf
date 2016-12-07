@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<freeconf_dafault>
+<freeconf_default>
     <container name="apache-config">
     <entry name="ServerRoot"><value>/etc/apache2</value></entry>
     <entry name="LockFile"><value>/var/lock/apache2/accept.lock</value></entry>
@@ -45,4 +45,4 @@
         </container>
     </container>
 </container>
-</freeconf_dafault>
+</freeconf_default>

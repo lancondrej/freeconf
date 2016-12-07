@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<freeconf-header>
+	<content>
+		<lists>kernel_lists.xml</lists>
+		<template>kernel_template.xml</template>
+		<default-values>kernel_default.xml</default-values>
+		<help>kernel_help.xml</help>
+		<output>kernel.xml</output>
+	</content>
+	<entry-group name="default">
+		<transform>kernel_transform.xsl</transform>
+		<native-output>config</native-output>
+	</entry-group>
+</freeconf-header>

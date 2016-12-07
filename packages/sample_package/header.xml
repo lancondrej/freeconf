@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_header>
+    <author>Ondřej Lanč</author>
+    <default_language>en</default_language>
+    <content>
+        <template>template.xml</template>
+        <output>sample_package_conf.xml</output>
+        <lists>lists.xml</lists>
+    </content>
+    <entry_group name="default">
+        <transform>default.xsl</transform>
+        <native_output>default.conf</native_output>
+        <output_defalts>yes</output_defalts>
+    </entry_group>
+    <entry_group name="extras">
+        <transform>extras.xsl</transform>
+        <native_output>extras.conf</native_output>
+        <output_defaults>yes</output_defaults>
+    </entry_group>
+</freeconf_header>

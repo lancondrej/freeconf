@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_help>
+<container name="apache-config">
+	<entry name="SSLCACertificateFile">
+		<label>CA Certificate File</label>
+		<help>This directive sets the all-in-one file where you can assemble the Certificates of Certification Authorities (CA) whose clients you deal with. These are used for Client Authentication. Such a file is simply the concatenation of the various PEM-encoded Certificate files, in order of preference. This can be used alternatively and/or additionally to SSLCACertificatePath.</help>
+	</entry>
+	<entry name="SSLCACertificatePath">
+		<label>CA Certificate Path</label>
+		<help>This directive sets the directory where you keep the Certificates of Certification Authorities (CAs) whose clients you deal with. These are used to verify the client certificate on Client Authentication.
+
+The files in this directory have to be PEM-encoded and are accessed through hash filenames. So usually you can't just place the Certificate files there: you also have to create symbolic links named hash-value.N. And you should always make sure this directory contains the appropriate symbolic links.</help>
+	</entry>
+	<entry name="SSLCARevocationFile">
+		<label>CA Revocation File</label>
+		<help>This directive sets the all-in-one file where you can assemble the Certificate Revocation Lists (CRL) of Certification Authorities (CA) whose clients you deal with. These are used for Client Authentication. Such a file is simply the concatenation of the various PEM-encoded CRL files, in order of preference. This can be used alternatively and/or additionally to SSLCARevocationPath.</help>
+	</entry>
+	<entry name="SSLCARevocationPath">
+		<label>CA Revocation Path</label>
+		<help>This directive sets the directory where you keep the Certificate Revocation Lists (CRL) of Certification Authorities (CAs) whose clients you deal with. These are used to revoke the client certificate on Client Authentication.
+
+The files in this directory have to be PEM-encoded and are accessed through hash filenames. So usually you have not only to place the CRL files there. Additionally you have to create symbolic links named hash-value.rN. And you should always make sure this directory contains the appropriate symbolic links.</help>
+	</entry>
+	<entry name="SSLCertificateChainFile">
+		<label>Certificate Chain File</label>
+		<help>This directive sets the optional all-in-one file where you can assemble the certificates of Certification Authorities (CA) which form the certificate chain of the server certificate. This starts with the issuing CA certificate of of the server certificate and can range up to the root CA certificate. Such a file is simply the concatenation of the various PEM-encoded CA Certificate files, usually in certificate chain order.
+
+This should be used alternatively and/or additionally to SSLCACertificatePath for explicitly constructing the server certificate chain which is sent to the browser in addition to the server certificate. It is especially useful to avoid conflicts with CA certificates when using client authentication. Because although placing a CA certificate of the server certificate chain into SSLCACertificatePath has the same effect for the certificate chain construction, it has the side-effect that client certificates issued by this same CA certificate are also accepted on client authentication. That's usually not one expect.
+
+But be careful: Providing the certificate chain works only if you are using a single (either RSA or DSA) based server certificate. If you are using a coupled RSA+DSA certificate pair, this will work only if actually both certificates use the same certificate chain. Else the browsers will be confused in this situation.</help>
+	</entry>
+	<entry name="SSLCertificateFile">
+		<label>Certificate File</label>
+		<help>This directive points to the PEM-encoded Certificate file for the server and optionally also to the corresponding RSA or DSA Private Key file for it (contained in the same file). If the contained Private Key is encrypted the Pass Phrase dialog is forced at startup time. This directive can be used up to two times (referencing different filenames) when both a RSA and a DSA based server certificate is used in parallel.</help>
+	</entry>
+	<entry name="SSLCertificateKeyFile">
+		<label>Certificate Key File</label>
+		<help>This directive points to the PEM-encoded Private Key file for the server. If the Private Key is not combined with the Certificate in the SSLCertificateFile, use this additional directive to point to the file with the stand-alone Private Key. When SSLCertificateFile is used and the file contains both the Certificate and the Private Key this directive need not be used. But we strongly discourage this practice. Instead we recommend you to separate the Certificate and the Private Key. If the contained Private Key is encrypted, the Pass Phrase dialog is forced at startup time. This directive can be used up to two times (referencing different filenames) when both a RSA and a DSA based private key is used in parallel.</help>
+	</entry>
+	<entry name="SSLInsecureRenegotiation">
+		<label>Insecure Renegotiation</label>
+		<help>As originally specified, all versions of the SSL and TLS protocols (up to and including TLS/1.2) were vulnerable to a Man-in-the-Middle attack (CVE-2009-3555) during a renegotiation. This vulnerability allowed an attacker to "prefix" a chosen plaintext to the HTTP request as seen by the web server. A protocol extension was developed which fixed this vulnerability if supported by both client and server.
+
+If mod_ssl is linked against OpenSSL version 0.9.8m or later, by default renegotiation is only supported with clients supporting the new protocol extension. If this directive is enabled, renegotiation will be allowed with old (unpatched) clients, albeit insecurely.</help>
+	</entry>
+	<entry name="SSLMutex">
+		<label>Mutex</label>
+		<help>This configures the SSL engine's semaphore (aka. lock) which is used for mutual exclusion of operations which have to be done in a synchronized way between the pre-forked Apache server processes. This directive can only be used in the global server context because it's only useful to have one global mutex. This directive is designed to closely match the AcceptMutex directive
+
+The following Mutex types are available:
+
+none | no
+This is the default where no Mutex is used at all. Use it at your own risk. But because currently the Mutex is mainly used for synchronizing write access to the SSL Session Cache you can live without it as long as you accept a sometimes garbled Session Cache. So it's not recommended to leave this the default. Instead configure a real Mutex.
+
+posixsem
+This is an elegant Mutex variant where a Posix Semaphore is used when possible. It is only available when the underlying platform and APR supports it.
+
+sysvsem
+This is a somewhat elegant Mutex variant where a SystemV IPC Semaphore is used when possible. It is possible to "leak" SysV semaphores if processes crash before the semaphore is removed. It is only available when the underlying platform and APR supports it.
+
+sem
+This directive tells the SSL Module to pick the "best" semaphore implementation available to it, choosing between Posix and SystemV IPC, in that order. It is only available when the underlying platform and APR supports at least one of the 2.
+
+pthread
+This directive tells the SSL Module to use Posix thread mutexes. It is only available if the underlying platform and APR supports it.
+
+fcntl:/path/to/mutex
+This is a portable Mutex variant where a physical (lock-)file and the fcntl() fucntion are used as the Mutex. Always use a local disk filesystem for /path/to/mutex and never a file residing on a NFS- or AFS-filesystem. It is only available when the underlying platform and APR supports it. Note: Internally, the Process ID (PID) of the Apache parent process is automatically appended to /path/to/mutex to make it unique, so you don't have to worry about conflicts yourself. Notice that this type of mutex is not available under the Win32 environment. There you have to use the semaphore mutex.
+
+flock:/path/to/mutex
+This is similar to the fcntl:/path/to/mutex method with the exception that the flock() function is used to provide file locking. It is only available when the underlying platform and APR supports it.
+
+file:/path/to/mutex
+This directive tells the SSL Module to pick the "best" file locking implementation available to it, choosing between fcntl and flock, in that order. It is only available when the underlying platform and APR supports at least one of the 2.
+
+default | yes
+This directive tells the SSL Module to pick the default locking implementation as determined by the platform and APR.
+
+</help>
+	</entry>
+	<entry name="SSLRequireSSL">
+		<label>Require SSL</label>
+		<help>This directive forbids access unless HTTP over SSL (i.e. HTTPS) is enabled for the current connection. This is very handy inside the SSL-enabled virtual host or directories for defending against configuration errors that expose stuff that should be protected. When this directive is present all requests are denied which are not using SSL.</help>
+	</entry>
+</container>
+</freeconf_help>
