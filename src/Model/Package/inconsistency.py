@@ -39,7 +39,7 @@ class Inconsistency(object):
 
 
 class ContainerInconsistency(Inconsistency):
-    """This class is used for handling inconsistent states in section entries. The entry is inconsistent if it contains
+    """This class is used for handling inconsistent states in container entries. The entry is inconsistent if it contains
     at least one inconsistent child. Otherwise it is consistent"""
 
     def __init__(self):
@@ -61,6 +61,48 @@ class ContainerInconsistency(Inconsistency):
         else:
             self._inconsistent_count -= 1
         self._evaluate_inconsistency()
+
+    def _evaluate_inconsistency(self):
+        """Check if the entry is still inconsistent and notify parent."""
+        if self._inconsistent != self.inconsistent:
+            self._inconsistent = self.inconsistent
+            self._notify_parent(self._inconsistent)
+
+    @property
+    def inc_parents(self):
+        """get parents entry. Must be reimplemented in sub-class"""
+        raise NotImplementedError
+
+
+class MultipleInconsistency(ContainerInconsistency):
+    """This class is used for handling inconsistent states in multiple entries. The entry is inconsistent if it contains
+    at least one inconsistent child. Otherwise it is consistent"""
+
+    def __init__(self):
+        ContainerInconsistency.__init__(self)
+        # number of inconsistent children
+        self._self_inconsistent = True
+
+    @property
+    def inconsistent(self):
+        """inconsistent getter"""
+        return bool(self._inconsistent_count) or self._self_inconsistent
+
+    def change_inconsistency(self, value):
+        """This method is called whenever the inconsistency must be changed"""
+        assert self._inconsistent_count >= 0
+
+        if value:
+            self._inconsistent_count += 1
+        else:
+            self._inconsistent_count -= 1
+        self._evaluate_inconsistency()
+
+    def change_self_inconsistency(self, value):
+        """This method is called whenever the inconsistency must be changed"""
+        if self._self_inconsistent != value:
+            self._self_inconsistent = value
+            self._evaluate_inconsistency()
 
     def _evaluate_inconsistency(self):
         """Check if the entry is still inconsistent and notify parent."""

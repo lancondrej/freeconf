@@ -2,18 +2,18 @@
 #
 from copy import deepcopy
 
-from src.Model.Package.inconsistency import ContainerInconsistency
+from src.Model.Package.inconsistency import MultipleInconsistency
 
 __author__ = 'Ondřej Lanč'
 
 from src.Model.Package.entries.entry import Entry
  # TODO: nekonzistentní pokud mám záznamů mimom rozsah
 
-class MultipleEntry(Entry, ContainerInconsistency):
+class MultipleEntry(Entry, MultipleInconsistency):
     """Container for multiple config entries."""
 
     def __init__(self, entry=None):
-        ContainerInconsistency.__init__(self)
+        MultipleInconsistency.__init__(self)
         if entry is not None:
             self._template = entry
             self._template.multiple = True
@@ -149,6 +149,7 @@ class MultipleEntry(Entry, ContainerInconsistency):
         if self.multiple_min is None or length > self.multiple_min:
             entry = self._entries.pop(int(index))
             self._rename_all()
+            self.check_inconsistency()
             if entry.inconsistent:
                 self.change_inconsistency(False)
             return entry
@@ -173,6 +174,7 @@ class MultipleEntry(Entry, ContainerInconsistency):
     def insert(self, position, entry):
         self._entries.insert(int(position), entry)
         entry.inc_parents.add(self)
+        self.check_inconsistency()
         if entry.inconsistent:
             self.change_inconsistency(True)
         self._rename_all()
@@ -181,6 +183,7 @@ class MultipleEntry(Entry, ContainerInconsistency):
         entry = entry or self.create_new(self.size())
         if entry:
             self._entries.append(entry)
+            self.check_inconsistency()
             entry.inc_parents.add(self)
             if entry.inconsistent:
                 self.change_inconsistency(True)
@@ -244,7 +247,15 @@ class MultipleEntry(Entry, ContainerInconsistency):
             return self._entries[int(relative_name)]
         return None
 
+    def check_inconsistency(self):
+        length = self.size()
+        if self.multiple_min is not None and length < self.multiple_min or self.multiple_max is not None and length > self.multiple_max:
+            self.change_self_inconsistency(True)
+        else:
+            self.change_self_inconsistency(False)
+
     def init_inconsistency(self):
+        self.check_inconsistency()
         for entry in self._entries:
             entry.init_inconsistency()
         self.template.inc_parents.clear()
