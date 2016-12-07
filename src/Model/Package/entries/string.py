@@ -20,5 +20,8 @@ class String(KeyWord):
 
     def convert_value(self, value):
         """Check if the given value can be converted to a value for this entry, and if so, return converted value."""
-        assert type(value) is str
-        return value
+        return str(value)
+
+    def check_value(self):
+        """Check if entry's value is within permitted range."""
+        return True

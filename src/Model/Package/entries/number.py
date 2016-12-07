@@ -120,14 +120,14 @@ class Number(KeyWord):
         self._leading_zeros_set = True
         self._leading_zeros = leading_zeros
 
-    def convert_value(self, v):
+    def convert_value(self, value):
         """Check if given value can be converted to value for this entry, and if so, return converted value."""
-        return self.convert_precision(self.check_value(float(v)))
+        return self.convert_precision(float(value))
 
-    def check_value(self, value=None):
-        """Check if entry's value is within permitted range. If not, return nearest value that is in the range."""
-        if self.max_set and value > self.max:
-            return self.max
-        elif self.min_set and value < self.min:
-            return self.min
-        return value
+    def check_value(self):
+        """Check if entry's value is within permitted range."""
+        if self.max_set and self.value > self.max:
+            return False
+        if self.min_set and self.value < self.min:
+            return False
+        return True

@@ -58,7 +58,10 @@ class KeyWord(Entry, Inconsistency):
                 self.change_inconsistency(True)
         else:
             self._value = self.convert_value(value)
-            self.change_inconsistency(False)
+            if self.check_value():
+                self.change_inconsistency(False)
+            else:
+                self.change_inconsistency(True)
 
     @property
     def type(self):
@@ -100,7 +103,11 @@ class KeyWord(Entry, Inconsistency):
         self._dynamic_mandatory = mandatory
 
     def convert_value(self, value):
-        """Check if given value can be converted to value for this entry, and if so, return converted value."""
+        """convert value."""
+        raise NotImplementedError("This is abstract method!")
+
+    def check_value(self):
+        """Check if given value is correct for this entry"""
         raise NotImplementedError("This is abstract method!")
 
     def init_inconsistency(self):
