@@ -4,7 +4,11 @@
     <default_language>cs</default_language>
     <content>
         <template>template.xml</template>
+        <default_values>default.xml</default_values>
+        <help>help.xml</help>
         <output>sample_package_conf.xml</output>
+        <gui_template>gui_template.xml</gui_template>
+        <gui_label>gui_help.xml</gui_label>
         <lists>lists.xml</lists>
     </content>
     <entry_group name="default">

@@ -73,26 +73,29 @@ class ConfigFileWriter(object):
 
     def get_config(self, group=None):
         root = Element('freeconf_config')
-        root_container = self.render_container(self._root, group)[0]
-        root.append(root_container)
+        for root_container in self.render_container(self._root, group):
+            root.append(root_container)
         return ElementTree(root)
 
     def render_entry(self, entry, group):
         try:
             return self.render[type(entry).__name__](entry, group)
-        except:
+        except Exception as e:
             pass
+
 
     def render_container(self, container, group):
         element = Element('container')
         element.set('name', container.name)
         for entry in container.entries.values():
-            sub_element = self.render_entry(entry, group)
-            if sub_element:
-                element.extend(sub_element)
+            sub_elements = self.render_entry(entry, group)
+            if sub_elements is not None:
+                for sub_element in sub_elements:
+                    element.append(sub_element)
         if len(element):
-            return [element]
-        return
+            yield element
+        else:
+            return None
 
     def render_key_word(self, entry, group):
         if group:
@@ -117,10 +120,9 @@ class ConfigFileWriter(object):
         #         help_el.text = help_text
         #         element.append(help_el)
 
-        return [element]
+        yield element
 
     def render_multiple(self, mult, group):
-        rendered = [self.render_entry(entry, group) for entry in mult.entries]
-        if rendered:
-            return rendered[0]
-        return
+        for entry in mult.entries:
+            for sub_element in self.render_entry(entry, group):
+                yield sub_element

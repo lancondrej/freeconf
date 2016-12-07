@@ -86,6 +86,7 @@ class Package(object):
         """Return list of available value lists."""
         return self.lists
 
+    @property
     def inconsistent(self):
         """inconsistency getter"""
         return self.tree.inconsistent

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<freeconf_default>
+  <container name="container0">
+    <container name="container2">
+      <entry name="string2">
+        <value>value1</value>
+      </entry>
+      <entry name="fuzzy2">
+        <value>half</value>
+      </entry>
+    </container>
+    <container name="container1">
+      <entry name="string1">
+        <value>a</value>
+      </entry>
+      <entry name="bool1">
+        <value>yes</value>
+      </entry>
+      <entry name="number1">
+        <value>0.0</value>
+      </entry>
+      <entry name="string12">
+        <value>sdsa@c.g</value>
+      </entry>
+      <entry name="string11">
+        <value>s</value>
+      </entry>
+    </container>
+  </container>
+</freeconf_default>

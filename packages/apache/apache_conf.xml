@@ -1,48 +1,69 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
   <container name="apache-config">
-    <entry name="ServerSignature">
-      <value>On</value>
-    </entry>
-    <entry name="User">
-      <value>www-data</value>
-    </entry>
-    <entry name="PidFile">
-      <value>/var/run/apache2.pid</value>
-    </entry>
-    <entry name="TimeOut">
-      <value>300.0</value>
-    </entry>
-    <entry name="DefaultType">
-      <value>text/plain</value>
-    </entry>
-    <entry name="AccessFileName">
-      <value>.htaccess</value>
-    </entry>
-    <entry name="LogLevel">
-      <value>Critical</value>
-    </entry>
-    <entry name="ServerTokens">
-      <value>OS</value>
-    </entry>
-    <entry name="ServerRoot">
-      <value>/etc/apache2</value>
-    </entry>
+    <container name="NameVirtualHost">
+      <entry name="Port">
+        <value>80.0</value>
+      </entry>
+      <entry name="Address">
+        <value>localhost</value>
+      </entry>
+    </container>
     <entry name="HostnameLookups">
       <value>no</value>
     </entry>
     <entry name="LockFile">
       <value>/var/lock/apache2/accept.lock</value>
     </entry>
+    <entry name="KeepAlive">
+      <value>yes</value>
+    </entry>
+    <entry name="AccessFileName">
+      <value>.htaccess</value>
+    </entry>
+    <entry name="ServerRoot">
+      <value>/etc/apache2</value>
+    </entry>
+    <entry name="PidFile">
+      <value>/var/run/apache2.pid</value>
+    </entry>
+    <entry name="User">
+      <value>www-data</value>
+    </entry>
+    <entry name="TimeOut">
+      <value>300.0</value>
+    </entry>
+    <entry name="ServerTokens">
+      <value>OS</value>
+    </entry>
+    <entry name="MaxKeepAliveRequests">
+      <value>98.0</value>
+    </entry>
+    <entry name="LogLevel">
+      <value>Critical</value>
+    </entry>
+    <entry name="TraceEnable">
+      <value>Off</value>
+    </entry>
     <entry name="KeepAliveTimeout">
       <value>5.0</value>
     </entry>
+    <entry name="Group">
+      <value>www-data</value>
+    </entry>
+    <entry name="ErrorLog">
+      <value>/var/log/apache2/error.log</value>
+    </entry>
     <container name="VirtualHost">
-      <container name="ServerAlias">
-        <entry name="Hostname">
-          <value>www.pokus.net</value>
-        </entry>
-      </container>
+      <entry name="Address">
+        <value>localhost</value>
+      </entry>
+      <entry name="ServerAdmin">
+        <value>admin</value>
+      </entry>
+      <entry name="Port">
+        <value>80</value>
+      </entry>
       <container name="Alias">
         <entry name="URLPath">
           <value>temp</value>
@@ -52,11 +73,43 @@
         </entry>
       </container>
       <container name="Directory">
+        <entry name="Allow">
+          <value>all</value>
+        </entry>
+        <entry name="Deny">
+          <value>1.2.3.4</value>
+        </entry>
+        <container name="AllowOverride">
+          <entry name="Limit">
+            <value>no</value>
+          </entry>
+          <entry name="FileInfo">
+            <value>no</value>
+          </entry>
+          <entry name="AuthConfig">
+            <value>no</value>
+          </entry>
+          <entry name="Options">
+            <value>no</value>
+          </entry>
+          <entry name="Indexes">
+            <value>no</value>
+          </entry>
+        </container>
+        <entry name="Order">
+          <value>Allow,Deny</value>
+        </entry>
         <container name="Options">
           <entry name="FollowSymlinks">
             <value>yes</value>
           </entry>
+          <entry name="Indexes">
+            <value>yes</value>
+          </entry>
           <entry name="IncludesNOEXEC">
+            <value>no</value>
+          </entry>
+          <entry name="ExecCGI">
             <value>no</value>
           </entry>
           <entry name="Includes">
@@ -65,84 +118,31 @@
           <entry name="MultiViews">
             <value>yes</value>
           </entry>
-          <entry name="ExecCGI">
-            <value>no</value>
-          </entry>
           <entry name="SymLinksIfOwnerMatch">
             <value>no</value>
           </entry>
-          <entry name="Indexes">
-            <value>yes</value>
-          </entry>
         </container>
-        <entry name="Deny">
-          <value>1.2.3.4</value>
-        </entry>
-        <container name="AllowOverride">
-          <entry name="Options">
-            <value>no</value>
-          </entry>
-          <entry name="FileInfo">
-            <value>no</value>
-          </entry>
-          <entry name="Indexes">
-            <value>no</value>
-          </entry>
-          <entry name="AuthConfig">
-            <value>no</value>
-          </entry>
-          <entry name="Limit">
-            <value>no</value>
-          </entry>
-        </container>
-        <entry name="Allow">
-          <value>all</value>
-        </entry>
         <entry name="Path">
           <value>/var/www</value>
         </entry>
-        <entry name="Order">
-          <value>Allow,Deny</value>
-        </entry>
       </container>
-      <entry name="Address">
-        <value>localhost</value>
-      </entry>
       <entry name="DocumentRoot">
         <value>/var/www</value>
       </entry>
+      <container name="ServerAlias">
+        <entry name="Hostname">
+          <value>www.pokus.net</value>
+        </entry>
+      </container>
       <entry name="ServerName">
         <value>pokus.net</value>
       </entry>
-      <entry name="Port">
-        <value>80</value>
-      </entry>
-      <entry name="ServerAdmin">
-        <value>admin</value>
-      </entry>
     </container>
-    <entry name="TraceEnable">
-      <value>Off</value>
+    <entry name="DefaultType">
+      <value>text/plain</value>
     </entry>
-    <container name="NameVirtualHost">
-      <entry name="Address">
-        <value>localhost</value>
-      </entry>
-      <entry name="Port">
-        <value>80.0</value>
-      </entry>
-    </container>
-    <entry name="ErrorLog">
-      <value>/var/log/apache2/error.log</value>
-    </entry>
-    <entry name="Group">
-      <value>www-data</value>
-    </entry>
-    <entry name="KeepAlive">
-      <value>yes</value>
-    </entry>
-    <entry name="MaxKeepAliveRequests">
-      <value>98.0</value>
+    <entry name="ServerSignature">
+      <value>On</value>
     </entry>
   </container>
 </freeconf_config>

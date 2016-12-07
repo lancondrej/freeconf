@@ -80,19 +80,24 @@ class PackagePresenter(Presenter):
 
     def save_config(self):
         output = XMLOutput(self._config, self._package)
+        if self._package.inconsistent:
+            self.view.flash_message('Package is inconsistent.', 'warning')
         try:
             output.write_output()
-            self.view.flash_message('Configuration save', 'success')
+            self.view.flash_message('Configuration has been saved.', 'success')
         except Exception:
-            self.view.flash_message('Configuration not save', 'danger')
+            self.view.flash_message('Configuration can not be save. An error occurred.', 'danger')
 
     def save_native(self):
         output = XMLOutput(self._config, self._package)
-        try:
-            output.write_native()
-            self.view.flash_message('Native configuration save', 'success')
-        except Exception:
-            self.view.flash_message('Native Configuration not save', 'danger')
+        if self._package.inconsistent:
+            self.view.flash_message('Package is inconsistent. Native configuration can not be saved.', 'danger')
+        else:
+            try:
+                output.write_native()
+                self.view.flash_message('Native configuration has been saved.', 'success')
+            except Exception:
+                self.view.flash_message('Native configuration can not be save. An error occurred.', 'danger')
 
     @property
     def tree(self):
