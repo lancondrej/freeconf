@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<container name="apache-config">
+<freeconf_config>
+    <container name="apache-config">
     <entry name="ServerRoot">
         <value>/etc/apache2</value>
     </entry>
@@ -133,3 +134,4 @@
         </container>
     </container>
 </container>
+</freeconf_config>

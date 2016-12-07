@@ -15,15 +15,17 @@ class ConfigFileReader(FileReader):
         super().__init__(config_file)
 
     def parse(self):
-        name = self._root.get('name')
+
+        root_container=self._root.find('container')
+        name = root_container.get('name')
         try:
             assert name == self._package.tree.name
         except AssertionError:
             logger.error('invalid name of root element')
-        containers = self._root.iterfind('container')
+        containers = root_container.iterfind('container')
         for container in containers:
             self._parse_container(container, self._package.tree)
-        entries = self._root.iterfind('entry')
+        entries = root_container.iterfind('entry')
         for entry in entries:
             self._parse_entry(entry, self._package.tree)
 

@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<freeconf-header>
-    <package>
-        <name>Apache</name>
-        <description></description>
-        <author></author>
-        <default-language>en</default-language>
-    </package>
+<freeconf_header>
+    <author></author>
+    <default-language>en</default-language>
 
     <content>
       <template>apache_template.xml</template>
-      <default-values>apache_default.xml</default-values>
+      <default_values>apache_default.xml</default_values>
       <help>apache_help.xml</help>
       <output>apache_conf.xml</output>
       <dependencies>apache_dependencies.xml</dependencies>
-      <gui-template>apache_gui_template.xml</gui-template>
-      <gui-label>apache_gui_help.xml</gui-label>
+      <gui_template>apache_gui_template.xml</gui_template>
+      <gui_label>apache_gui_help.xml</gui_label>
       <lists>apache_lists.xml</lists>
     </content>
 
-    <entry-group name="default">
+    <entry_group name="default">
       <transform>apache_default_transform.xsl</transform>
-      <native-output>apache2.conf</native-output>
-      <output-defaults>yes</output-defaults>
-    </entry-group>
+      <native_output>apache2.conf</native_output>
+      <output_defaults>yes</output_defaults>
+    </entry_group>
 
-    <entry-group name="ports">
+    <entry_group name="ports">
       <transform>apache_default_transform.xsl</transform>
-      <native-output>ports.conf</native-output>
-      <output-defaults>yes</output-defaults>
-    </entry-group>
+      <native_output>ports.conf</native_output>
+      <output_defaults>yes</output_defaults>
+    </entry_group>
 
-</freeconf-header>
+</freeconf_header>

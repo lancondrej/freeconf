@@ -8,7 +8,7 @@ src/Model/__pycache__/
 src/Model/entries/GUI/__pycache__/
 src/Model/entries/__pycache__/
 src/Model/exception_logging/__pycache__/
-src/View/Flask/__pycache__/
+src/View/FreeconfFlask/__pycache__/
 src/View/__pycache__/
 .directory
 .gitignore
@@ -32,5 +32,5 @@ src/Model/Package/entries/multiple/__pycache__/
 src/Model/Package/exception_logging/__pycache__/exception.cpython-35.pyc
 src/Presenter/__pycache__/config_presenter.cpython-35.pyc
 src/Presenter/__pycache__/package_presenter.cpython-35.pyc
-src/View/Flask/static/img/
+src/View/FreeconfFlask/static/img/
 src/__pycache__/

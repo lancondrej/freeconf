@@ -20,10 +20,10 @@ class ListFileReader(FileReader):
         self._package.lists = {**sl, **fl}
 
     def _parse_string_lists(self):
-        return self._parse_list('string-list', StringList, self._string_value)
+        return self._parse_list('string_list', StringList, self._string_value)
 
     def _parse_fuzzy_list(self):
-        return self._parse_list('fuzzy-list', FuzzyList, self._fuzzy_value)
+        return self._parse_list('fuzzy_list', FuzzyList, self._fuzzy_value)
 
     def _parse_list(self, element, ListClass, value_func):
         lists={}

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<container name="apache-config">
+<freeconf_config>
+    <container name="apache-config">
   <entry name="TimeOut">
     <value>300.0</value>
   </entry>
@@ -150,3 +151,4 @@
     <value>yes</value>
   </entry>
 </container>
+</freeconf_config>

@@ -103,7 +103,7 @@ class PackagePresenter(Presenter):
 
     def save_value(self, path, value):
         entry = self.get_entry(path)
-        old_value=entry.value
+        old_value = entry.value
         if value == "":
             value = None
         entry.value = value

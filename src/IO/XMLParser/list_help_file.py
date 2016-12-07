@@ -18,10 +18,10 @@ class ListHelpFileReader(FileReader):
         self._parse_fuzzy_list()
 
     def _parse_string_lists(self):
-        return self._parse_list('string-list')
+        return self._parse_list('string_list')
 
     def _parse_fuzzy_list(self):
-        return self._parse_list('fuzzy-list')
+        return self._parse_list('fuzzy_list')
 
     def _parse_list(self, element):
         for list_element in self._root.iterfind(element):

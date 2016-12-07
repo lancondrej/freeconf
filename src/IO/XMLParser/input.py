@@ -24,7 +24,7 @@ class XMLParser(Input):
         # package itself
         self._package = package
 
-    def load_package(self):
+    def load_package(self, lang=None):
         self._load_header()
         try:
             self._load_lists()
@@ -34,27 +34,27 @@ class XMLParser(Input):
         try:
             self._load_GUI_template()
         except FileExistsError:
-            logger.info("list file missing")
+            logger.info("gui template file missing")
         try:
-            self._load_help('en')
+            self._load_help(lang)
         except FileExistsError:
-            logger.info("list file missing")
+            logger.info("help file missing")
         try:
-            self._load_list_help('en')
+            self._load_list_help(lang)
         except FileExistsError:
-            logger.info("list file missing")
+            logger.info("list help file missing")
         try:
-            self._load_GUI_help('en')
+            self._load_GUI_help(lang)
         except FileExistsError:
-            logger.info("list file missing")
+            logger.info("gui help file missing")
         try:
             self._load_default_value()
         except FileExistsError:
-            logger.info("list file missing")
+            logger.info("default_value file missing")
         try:
             self._load_config()
         except FileExistsError:
-            logger.info("list file missing")
+            logger.info("config file missing")
         return self._package
 
     def _load_header(self):

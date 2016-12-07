@@ -15,9 +15,8 @@ __author__ = 'Ondřej Lanč'
 
 
 class EntryType(object):
-    def __init__(self, name, name_element, class_name, multiple,function=None):
+    def __init__(self, name, class_name, multiple,function=None):
         self.name = name
-        self.name_element = name_element
         self.class_name = class_name
         self.multiple_class = multiple
         self.inside_func = function
@@ -32,7 +31,8 @@ class TemplateFileReader(FileReader):
         super().__init__(template_file)
 
     def parse(self):
-        name = self._root.findtext('container-name')
+        root_container=self._root.find('container')
+        name = root_container.get('name')
         if name:
             if isinstance(self._package, Plugin):
                 container = self._package.package.tree
@@ -41,7 +41,7 @@ class TemplateFileReader(FileReader):
             else:
                 container = Container(name, self._package)
                 container.group = self._config.group()
-            for entry in self._parse_entry(self._root):
+            for entry in self._parse_entry(root_container):
                 try:
                     container.add_entry(entry)
                 except AlreadyExistsError:
@@ -58,7 +58,7 @@ class TemplateFileReader(FileReader):
 
     def _parse_entry_of_type(self, container_element, element_type):
         for element in container_element.iterfind(element_type.name):
-            name = element.findtext(element_type.name_element)
+            name = element.get('name')
             if name:
                 entry = element_type.class_name(name, self._package)
                 # Multiple manipulation
@@ -154,10 +154,10 @@ class TemplateFileReader(FileReader):
                     raise AttributeError
 
     types = [
-        EntryType('container', 'container-name', Container, MultipleContainer, _inside_container),
-        EntryType('bool', 'entry-name', Bool, MultipleKeyWord, _inside_key_word),
-        EntryType('string', 'entry-name', String, MultipleKeyWord, _inside_string),
-        EntryType('fuzzy', 'entry-name', Fuzzy, MultipleKeyWord, _inside_fuzzy),
-        EntryType('number', 'entry-name', Number, MultipleKeyWord, _inside_number)
+        EntryType('container', Container, MultipleContainer, _inside_container),
+        EntryType('bool', Bool, MultipleKeyWord, _inside_key_word),
+        EntryType('string', String, MultipleKeyWord, _inside_string),
+        EntryType('fuzzy', Fuzzy, MultipleKeyWord, _inside_fuzzy),
+        EntryType('number', Number, MultipleKeyWord, _inside_number)
     ]
 

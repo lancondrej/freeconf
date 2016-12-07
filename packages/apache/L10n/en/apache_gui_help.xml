@@ -1,4 +1,4 @@
-<freeconf-gui-label>
+<freeconf_gui_label>
     <title>Configuration of Apache HTTP Server</title>
   <tab name="server-tab">
     <label>Server</label>
@@ -32,4 +32,4 @@
     </section>
   </tab>
 
-</freeconf-gui-label>
+</freeconf_gui_label>

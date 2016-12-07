@@ -18,6 +18,7 @@ class HeaderFileReader(FileReader):
         super().__init__(header_file)
 
     def parse(self):
+        self.parse_package_info()
         self.parse_content()
         self.parse_group()
 
@@ -38,7 +39,7 @@ class HeaderFileReader(FileReader):
             logger.debug("Header file: output file {}".format(file))
             self._config.file.output = file
 
-            file = content_element.findtext('default-values')
+            file = content_element.findtext('default_values')
             if file is not None:
                 logger.debug("Header file: default value file {}".format(file))
                 self._config.file.default_values = file
@@ -51,12 +52,12 @@ class HeaderFileReader(FileReader):
             # file = content_element.findtext('dependencies')
             # self._config.file.dependencies = file
 
-            file = content_element.findtext('gui-template')
+            file = content_element.findtext('gui_template')
             if file is not None:
                 logger.debug("Header file: gui template file {}".format(file))
                 self._config.file.gui_template = file
 
-            file = content_element.findtext('gui-label')
+            file = content_element.findtext('gui_label')
             if file is not None:
                 logger.debug("Header file: gui label file {}".format(file))
                 self._config.file.gui_label = file
@@ -71,39 +72,36 @@ class HeaderFileReader(FileReader):
     def parse_group(self):
         group_not_set = True
 
-        for group_element in self._root.iterfind('entry-group'):
-            logger.debug("Header file: parsing <entry-group> element")
+        for group_element in self._root.iterfind('entry_group'):
+            logger.debug("Header file: parsing <entry_group> element")
             name = group_element.get('name')
             group = Group(name)
             group.transform_file = group_element.findtext('transform')
-            group._native_output = self._expand_file_name(group_element.findtext('native-output'))
-            group.output_defaults = True if group_element.findtext('output-defaults') == 'yes' else False
+            group._native_output = self._expand_file_name(group_element.findtext('native_output'))
+            group.output_defaults = True if group_element.findtext('output_defaults') == 'yes' else False
             self._config.add_group(group)
             group_not_set = False
 
         if isinstance(self._config, Plugin):
-            for group_element in self._root.iterfind('change-group'):
-                logger.info("Header file: parsing <change-group> element")
+            for group_element in self._root.iterfind('change_group'):
+                logger.info("Header file: parsing <change_group> element")
                 name = group_element.get('name')
                 group=self._config.parent.group(name)
                 if group:
-                    group.include_transform(self._config, group_element.findtext('add-transform'))
+                    group.include_transform(self._config, group_element.findtext('add_transform'))
                 else:
                     logger.error("group name {} is not in Package".format(name))
 
         else:
             if group_not_set:
-                logger.warning("Header file: element <entry-group> missing")
+                logger.warning("Header file: element <entry_group> missing")
                 logger.info("Creating default group")
                 group = Group("default")
                 self._config.add_group(group)
 
-    # def parse_package_info(self):
-    #     package_info_element = self._root.find('package-info')
-    #     if package_info_element:
-    #         logger.info("Header file: parsing <package-info> element")
-    #     else:
-    #         logger.info("Header file: element <package-info> missing")
+    def parse_package_info(self):
+        self._config.author = self._root.findtext('author')
+        self._config.default_language = self._root.findtext('default_language')
 
     def _expand_file_name(self, file):
         # TODO: vyřešit kdy to používat a kdy ne + jestl ito nemá být raději u package/group (problém s list a jazyky)

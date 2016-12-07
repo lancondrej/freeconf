@@ -105,7 +105,7 @@ class Number(KeyWord):
     @precision.setter
     def precision(self, precision):
         self._precision_set = True
-        self._precision = precision
+        self._precision = int(precision)
         self.max = self._max
         self.min = self._min
         self.step = self._step
@@ -122,7 +122,7 @@ class Number(KeyWord):
 
     def convert_value(self, v):
         """Check if given value can be converted to value for this entry, and if so, return converted value."""
-        return self.check_value(float(v))
+        return self.convert_precision(self.check_value(float(v)))
 
     def check_value(self, value=None):
         """Check if entry's value is within permitted range. If not, return nearest value that is in the range."""
@@ -130,4 +130,4 @@ class Number(KeyWord):
             return self.max
         elif self.min_set and value < self.min:
             return self.min
-        return self.convert_precision(value)
+        return value

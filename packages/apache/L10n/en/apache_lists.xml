@@ -1,5 +1,5 @@
-<freeconf-lists-help>
-<string-list name="apache_log_levels">
+<freeconf_lists_help>
+<string_list name="apache_log_levels">
 	<entry value="emerg">
 		<label>Emergencies</label>
 		<help>Emergencies - system is unusable.</help>
@@ -32,8 +32,8 @@
 		<label>Debug</label>
 		<help>Debug-level messages.</help>
 	</entry>
-</string-list>
-<string-list name="apache_server_tokens">
+</string_list>
+<string_list name="apache_server_tokens">
 	<entry value="Full">
 		<label>Full</label>
 		<help>Server sends (e.g.): Server: Apache/2.0.41 (Unix) PHP/4.2.2 MyMod/1.2</help>
@@ -58,8 +58,8 @@
 		<label>Product Only</label>
 		<help>Server sends (e.g.): Server: Apache</help>
 	</entry>
-</string-list>
-<string-list name="apache_server_signature">
+</string_list>
+<string_list name="apache_server_signature">
 	<entry value="On">
 		<label>On</label>
 		<help>Adds a line with the server version number and ServerName of the serving virtual host.</help>
@@ -72,8 +72,8 @@
 		<label>E-Mail</label>
 		<help>Adds a line with "mailto:" reference to the ServerAdmin of the referenced document.</help>
 	</entry>
-</string-list>
-<string-list name="apache_trace_enable">
+</string_list>
+<string_list name="apache_trace_enable">
 	<entry value="On">
 		<label>On</label>
 		<help>Permits TRACE requests.</help>
@@ -86,8 +86,8 @@
 		<label>Extended</label>
 		<help>The core will reflect the full headers and all chunk headers with the response body. This can be used for testing and diagnostic purposes only.</help>
 	</entry>
-</string-list>
-<string-list name="apache_order">
+</string_list>
+<string_list name="apache_order">
 	<entry value="Allow,Deny">
 		<label>Allow,Deny</label>
 		<help>First, all Allow directives are evaluated; at least one must match, or the request is rejected. Next, all Deny directives are evaluated. If any matches, the request is rejected. Last, any requests which do not match an Allow or a Deny directive are denied by default.</help>
@@ -96,5 +96,5 @@
 		<label>Deny,Allow</label>
 		<help>First, all Deny directives are evaluated; if any match, the request is denied unless it also matches an Allow directive. Any requests which do not match any Allow or Deny directives are permitted.</help>
 	</entry>
-</string-list>
-</freeconf-lists-help>
+</string_list>
+</freeconf_lists_help>

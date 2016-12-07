@@ -1,0 +1,20 @@
+<freeconf_lists_help>
+    <string_list name="string-list">
+        <entry value="value1">
+            <label>First value</label>
+            <help>First value in string list</help>
+        </entry>
+        <entry value="value2">
+            <label>Second value</label>
+            <help>Second value in string list</help>
+        </entry>
+        <entry value="value3">
+            <label>Third value</label>
+            <help>Third value in string list</help>
+        </entry>
+        <entry value="value4">
+            <label>Fourth value</label>
+            <help>Fourth value in string list</help>
+        </entry>
+    </string_list>
+</freeconf_lists_help>

@@ -12,6 +12,7 @@
                 <min>0.0</min>
                 <max>111.0</max>
                 <step>1.0</step>
+                <precision>5</precision>
             </properties>
         </number>
         <string>

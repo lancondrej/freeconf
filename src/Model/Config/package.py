@@ -11,6 +11,7 @@ class Package(object):
         self.file = self.Files()
         self._groups = {}
         self.available_language = []
+        self.author = None
         self.default_language = None
         self._plugins = {}
         self.root = self
@@ -27,7 +28,7 @@ class Package(object):
         """list file location
         :return full path of file or None if file not set
         """
-        return os.path.join(self._lists_dir, self.file.list) if self.file.list else None
+        return os.path.join(self.location, self.file.list) if self.file.list else None
 
     @property
     def template_file(self):
@@ -55,8 +56,7 @@ class Package(object):
         :param language: language code ('en', 'cs' ...)
         :return full path of file or None if file not set
         """
-        if language not in self.available_language:
-            language=self.default_language
+        language = self._set_language(language)
         return os.path.join(self.languages_dir, language, self.file.help) if self.file.help else None
 
     def list_help_file(self, language):
@@ -64,17 +64,15 @@ class Package(object):
         :param language: language code ('en', 'cs' ...)
         :return full path of file or None if file not set
         """
-        if language not in self.available_language:
-            language=self.default_language
-        return os.path.join(self._lists_dir, "L10n", language, self.file.list) if (self.file.list and language) else None
+        language = self._set_language(language)
+        return os.path.join(self.languages_dir, language, self.file.list) if (self.file.list and language) else None
 
     def gui_help_file(self, language):
         """gui help file location
         :param language: language code ('en', 'cs' ...)
         :return full path of file or None if file not set
         """
-        if language not in self.available_language:
-            language=self.default_language
+        language = self._set_language(language)
         return os.path.join(self.languages_dir, language, self.file.gui_label) if (self.file.gui_label and language) else None
 
     @property
@@ -90,10 +88,6 @@ class Package(object):
         :return full path of file or None if file not set
         """
         return os.path.join(self.location, self.file.output) if self.file.output else None
-
-    @property
-    def _lists_dir(self):
-        return os.path.join(self.location, 'lists')
 
     @property
     def plugins_dir(self):
@@ -151,6 +145,19 @@ class Package(object):
         :return Plugin: Plugin in Package
         """
         return self._plugins.get(name)
+
+    def _set_language(self, lang):
+        """set lang if lang is not in available retrun default
+        :param lang: code of language
+        :return code of language"""
+
+        if lang not in self.available_language:
+            lang = self.default_language
+        if lang not in self.available_language:
+            lang = None
+        if lang is None:
+            lang = self.available_language[0]
+        return lang
 
     class Files(object):
         """Store names of files in configuration package"""

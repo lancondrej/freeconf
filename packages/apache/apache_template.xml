@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<freeconf-template>
-    <container-name>apache-config</container-name>
-    <string>
-        <entry-name>ServerRoot</entry-name>
+<freeconf_template>
+    <container name="apache-config">
+    <string name="ServerRoot">
         <group>default</group>
         <mandatory>yes</mandatory>
         <properties>
             <regexp>[^/]$</regexp>
         </properties>
     </string>
-    <string>
-        <entry-name>LockFile</entry-name>
+    <string name="LockFile">
         <group>default</group>
         <active>no</active>
     </string>
-    <string>
-        <entry-name>PidFile</entry-name>
+    <string name="PidFile">
         <group>default</group>
     </string>
-    <number>
-        <entry-name>TimeOut</entry-name>
+    <number name="TimeOut">
         <group>default</group>
         <properties>
             <min>0.0</min>
@@ -27,12 +23,10 @@
             <step>1.0</step>
         </properties>
     </number>
-    <bool>
-        <entry-name>KeepAlive</entry-name>
+    <bool name="KeepAlive">
         <group>default</group>
     </bool>
-    <number>
-        <entry-name>MaxKeepAliveRequests</entry-name>
+    <number name="MaxKeepAliveRequests">
         <group>default</group>
         <properties>
             <min>0.0</min>
@@ -40,75 +34,69 @@
             <step>1.0</step>
         </properties>
     </number>
-    <number>
-        <entry-name>KeepAliveTimeout</entry-name>
-        <group>default</group>
+    <number name="KeepAliveTimeout">
+          <group>default</group>
         <properties>
             <min>0.0</min>
             <max>999999999.0</max>
             <step>1.0</step>
         </properties>
     </number>
-    <string>
-        <entry-name>AccessFileName</entry-name>
+    <string name="AccessFileName">
+
         <group>default</group>
     </string>
-    <string>
-        <entry-name>User</entry-name>
+    <string name="User">
         <group>default</group>
     </string>
-    <string>
-        <entry-name>Group</entry-name>
+    <string name="Group">
         <group>default</group>
     </string>
-    <string>
-        <entry-name>DefaultType</entry-name>
+    <string name="DefaultType">
         <group>default</group>
     </string>
-    <bool>
-        <entry-name>HostnameLookups</entry-name>
+    <bool name="HostnameLookups">
         <group>default</group>
     </bool>
-    <string>
-        <entry-name>LogLevel</entry-name>
+    <string name="LogLevel">
         <group>default</group>
         <properties>
             <data>apache_log_levels</data>
         </properties>
     </string>
-    <string>
-        <entry-name>ErrorLog</entry-name>
+    <string name="ErrorLog">
+        
         <group>default</group>
     </string>
-    <string>
-        <entry-name>ServerTokens</entry-name>
+    <string name="ServerTokens">
+        
         <group>default</group>
         <properties>
             <data>apache_server_tokens</data>
         </properties>
     </string>
-    <string>
-        <entry-name>ServerSignature</entry-name>
+    <string name="ServerSignature">
+        
         <group>default</group>
         <properties>
             <data>apache_server_signature</data>
         </properties>
     </string>
-    <string>
-        <entry-name>TraceEnable</entry-name>
+    <string name="TraceEnable">
+        
         <group>default</group>
         <properties>
             <data>apache_trace_enable</data>
         </properties>
     </string>
-    <container>
-        <container-name>Listen</container-name>
+    <container name="Listen">
+        
         <multiple>
             <primary>Address</primary>
         </multiple>
         <group>ports</group>
-        <number>
-            <entry-name>Port</entry-name>
+        <number name="Port">
+            
             <group>ports</group>
             <properties>
                 <min>0.0</min>
@@ -116,20 +104,20 @@
                 <step>1.0</step>
             </properties>
         </number>
-        <string>
-            <entry-name>Address</entry-name>
+        <string name="Address">
+            
             <group>ports</group>
         </string>
     </container>
-    <container>
-        <container-name>NameVirtualHost</container-name>
+    <container name="NameVirtualHost">
+        
         <multiple>yes</multiple>
-        <string>
-            <entry-name>Address</entry-name>
+        <string name="Address">
+            
             <group>default</group>
         </string>
-        <number>
-            <entry-name>Port</entry-name>
+        <number name="Port">
+            
             <group>default</group>
             <properties>
                 <min>0.0</min>
@@ -138,144 +126,144 @@
             </properties>
         </number>
     </container>
-    <container>
-        <container-name>VirtualHost</container-name>
+    <container name="VirtualHost">
+        
         <multiple>
             <primary>ServerName</primary>
         </multiple>
-        <string>
-            <entry-name>Address</entry-name>
+        <string name="Address">
+            
             <group>default</group>
             <mandatory>yes</mandatory>
         </string>
-        <string>
-            <entry-name>Port</entry-name>
+        <string name="Port">
+            
             <group>default</group>
         </string>
-        <string>
-            <entry-name>ServerAdmin</entry-name>
+        <string name="ServerAdmin">
+            
             <group>default</group>
             <mandatory>yes</mandatory>
         </string>
-        <string>
-            <entry-name>ServerName</entry-name>
+        <string name="ServerName">
+            
             <group>default</group>
         </string>
-        <container>
-            <container-name>ServerAlias</container-name>
+        <container name="ServerAlias">
+            
             <multiple>yes</multiple>
-            <string>
-                <entry-name>Hostname</entry-name>
+            <string name="Hostname">
+                
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
         </container>
-        <string>
-            <entry-name>DocumentRoot</entry-name>
+        <string name="DocumentRoot">
+            
             <group>default</group>
         </string>
-        <container>
-            <container-name>Alias</container-name>
+        <container name="Alias">
+            
             <multiple>yes</multiple>
-            <string>
-                <entry-name>URLPath</entry-name>
+            <string name="URLPath">
+                
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
-            <string>
-                <entry-name>TargetPath</entry-name>
+            <string name="TargetPath">
+                
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
         </container>
-        <container>
-            <container-name>Directory</container-name>
+        <container name="Directory">
+            
             <multiple>yes</multiple>
-            <string>
-                <entry-name>Path</entry-name>
+            <string name="Path">
                 <group>default</group>
                 <mandatory>yes</mandatory>
             </string>
-            <container>
-                <container-name>Options</container-name>
-                <bool>
-                    <entry-name>FollowSymlinks</entry-name>
+            <container name="Options">
+                
+                <bool name="FollowSymlinks">
+                    
                     <group>default</group>
                 </bool>
-                <bool>
-                    <entry-name>ExecCGI</entry-name>
+                <bool name="ExecCGI">
+                    
                     <group>default</group>
                 </bool>
-                <bool>
-                    <entry-name>Includes</entry-name>
+                <bool name="Includes">
+                    
                     <group>default</group>
                 </bool>
-                <bool>
-                    <entry-name>IncludesNOEXEC</entry-name>
+                <bool name="IncludesNOEXEC">
+                    
                     <group>default</group>
                 </bool>
-                <bool>
-                    <entry-name>Indexes</entry-name>
+                <bool name="Indexes">
                     <group>default</group>
                 </bool>
-                <bool>
-                    <entry-name>MultiViews</entry-name>
+                <bool name="MultiViews">
+                    
                     <group>default</group>
                 </bool>
-                <bool>
-                    <entry-name>SymLinksIfOwnerMatch</entry-name>
-                    <group>default</group>
-                </bool>
-            </container>
-            <container>
-                <container-name>AllowOverride</container-name>
-                <bool>
-                    <entry-name>AuthConfig</entry-name>
-                    <group>default</group>
-                </bool>
-                <bool>
-                    <entry-name>FileInfo</entry-name>
-                    <group>default</group>
-                </bool>
-                <bool>
-                    <entry-name>Indexes</entry-name>
-                    <group>default</group>
-                </bool>
-                <bool>
-                    <entry-name>Limit</entry-name>
-                    <group>default</group>
-                </bool>
-                <bool>
-                    <entry-name>Options</entry-name>
+                <bool name="SymLinksIfOwnerMatch">
+                    
                     <group>default</group>
                 </bool>
             </container>
-            <string>
-                <entry-name>Order</entry-name>
+            <container name="AllowOverride">
+                
+                <bool name="AuthConfig">
+                    
+                    <group>default</group>
+                </bool>
+                <bool name="FileInfo">
+                    
+                    <group>default</group>
+                </bool>
+                <bool name="Indexes">
+                    
+                    <group>default</group>
+                </bool>
+                <bool name="Limit">
+                    
+                    <group>default</group>
+                </bool>
+                <bool name="Options">
+                    
+                    <group>default</group>
+                </bool>
+            </container>
+            <string name="Order">
+                
                 <group>default</group>
                 <properties>
                     <data>apache_order</data>
                 </properties>
             </string>
-            <string>
-                <entry-name>Allow</entry-name>
+            <string name="Allow">
+                
                 <group>default</group>
             </string>
-            <string>
-                <entry-name>Deny</entry-name>
+            <string name="Deny">
+                
                 <group>default</group>
             </string>
         </container>
-        <string>
-            <entry-name>ErrorLog</entry-name>
+        <string name="ErrorLog">
+            
             <group>default</group>
         </string>
-        <string>
-            <entry-name>LogLevel</entry-name>
+        <string name="LogLevel">
+            
             <group>default</group>
             <properties>
                 <data>apache_log_levels</data>
             </properties>
         </string>
     </container>
-</freeconf-template>
+
+    </container>
+</freeconf_template>

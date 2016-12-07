@@ -1,0 +1,15 @@
+<freeconf_lists>
+    <string_list name="string-list">
+        <value>value1</value>
+        <value>value2</value>
+        <value>value3</value>
+        <value>value4</value>
+    </string_list>
+
+    <fuzzy_list name="fuzzy-list">
+        <value grade="0">no</value>
+        <value grade="0.5">half</value>
+        <value grade="1">yes</value>
+    </fuzzy_list>
+
+</freeconf_lists>
