@@ -18,4 +18,15 @@
             <help>Čtvrtá hodnota v seznamu string-list</help>
         </entry>
     </string_list>
+    <fuzzy_list name="fuzzy-list">
+        <entry value="no">
+            <label>Ne</label>
+        </entry>
+        <entry value="half">
+            <label>Na půl</label>
+        </entry>
+        <entry value="yes">
+            <label>Ano</label>
+        </entry>
+    </fuzzy_list>
 </freeconf_lists_help>

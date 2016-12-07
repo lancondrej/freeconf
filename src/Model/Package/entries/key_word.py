@@ -22,6 +22,7 @@ class KeyWord(Entry, Inconsistency):
         self._list = None
         # If true, user can insert value which is not in the list
         self.user_values = False
+        self._inconsistency_init = False
 
     @property
     def default_value(self):
@@ -106,12 +107,14 @@ class KeyWord(Entry, Inconsistency):
         raise NotImplementedError("This is abstract method!")
 
     def check_inconsistency(self):
-        if self.mandatory and self.active and self._value is None:
-            self.change_inconsistency(True)
-        elif self.check_value():
-            self.change_inconsistency(False)
-        else:
-            self.change_inconsistency(True)
+        if self._inconsistency_init:
+            if self.mandatory and self.active and self._value is None:
+                self.change_inconsistency(True)
+            elif self.check_value():
+                self.change_inconsistency(False)
+            else:
+                self.change_inconsistency(True)
 
     def init_inconsistency(self):
+        self._inconsistency_init=True
         self.check_inconsistency()

@@ -116,12 +116,17 @@ function load_form() {
 
     $('input').off().on('change', function () {
         submit_form_input($(this))
+    }).on('keypress', function (e) {
+         var code = e.keyCode || e.which;
+        if(code == 13) {
+            submit_form_input($(this))
+            return false;
+        }
     });
 
     $('input[type="checkbox"]').each(function(  ){
         set_checkbox_state($(this));
-    });
-    $('input[type="checkbox"]').off().on('change', function () {
+    }).off().on('change', function () {
           submit_form_checkbox($(this));
     });
     

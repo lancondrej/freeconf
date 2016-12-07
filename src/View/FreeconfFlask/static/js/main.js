@@ -71,5 +71,6 @@ $(document).ready(function() {
 
     tabs_on();
     load();
+    
 
 });
