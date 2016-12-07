@@ -1,5 +1,5 @@
 <datalist id="{{list.name}}">
     {% for item in list.entries %}
-  <option value="{{item.value}}">{{item.label}}</option>
+      <option value="{{item.value}}" title="{{ item.help if item.help is not none}}">{{item.label}}</option>
     {% endfor %}
 </datalist>

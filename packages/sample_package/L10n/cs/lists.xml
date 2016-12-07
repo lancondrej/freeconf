@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_lists_help>
+    <string_list name="string-list">
+        <entry value="value1">
+            <label>První hodnota</label>
+            <help>První hodnota v seznamu string-list</help>
+        </entry>
+        <entry value="value2">
+            <label>Druhá hodnota</label>
+            <help>Druhá hodnota v seznamu string-list</help>
+        </entry>
+        <entry value="value3">
+            <label>Třetí hodnota</label>
+            <help>Třetí hodnota v seznamu string-list</help>
+        </entry>
+        <entry value="value4">
+            <label>Čtvrtá hodnota</label>
+            <help>Čtvrtá hodnota v seznamu string-list</help>
+        </entry>
+    </string_list>
+</freeconf_lists_help>

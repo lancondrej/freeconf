@@ -156,5 +156,4 @@ class PackagePresenter(Presenter):
                 self.view.reload_section(entry)
             elif isinstance(entry, Entry):
                 self.view.reload_entry(entry)
-                print(entry.full_name)
 

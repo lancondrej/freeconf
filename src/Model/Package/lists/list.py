@@ -25,8 +25,18 @@ class List:
             return 'Entry(%s, "%s", "%s")' % (self.value, self.label, self.help)
 
     def __init__(self, name):
-        self.name = name
+        self._name = name
         self.values = {}
+
+    @property
+    def name(self):
+        """get name"""
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """set name"""
+        self._name = str(name)
 
     def append(self, entry):
         self.values[entry.value] = entry

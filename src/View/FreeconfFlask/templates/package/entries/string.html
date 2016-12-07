@@ -1,7 +1,7 @@
 {% extends "package/entries/key_word.html" %}
 
 {% block key_word %}
-    <input class="form-control" type="text" name="{{name}}" id="{{full_name}}" value="{{ value if value is not none}}"  {{ 'list="%s"' %list.name if list }}>
+    <input class="form-control" type="text" name="{{name}}" id="{{full_name}}" value="{{ value if value is not none}}"  {{ 'list=%s' %list.name if list }}>
     {% if list %}
         {% include 'package/entries/list.html' %}
     {% endif %}

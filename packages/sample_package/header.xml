@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_header>
     <author>Ondřej Lanč</author>
-    <default_language>en</default_language>
+    <default_language>cs</default_language>
     <content>
         <template>template.xml</template>
         <output>sample_package_conf.xml</output>

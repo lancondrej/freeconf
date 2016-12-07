@@ -1,6 +1,6 @@
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.log import logger
-
+from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
 
@@ -30,7 +30,7 @@ class DefaultValuesFileReader(FileReader):
     def _parse_container(self, container_element, parent):
         name=container_element.get('name')
         this_container=parent.get_entry(name)
-        if this_container.is_multiple_entry_container():
+        if isinstance(this_container, MultipleEntry):
             this_container = this_container.append_default()
         for container in container_element.iterfind('container'):
             self._parse_container(container, this_container)
@@ -41,7 +41,7 @@ class DefaultValuesFileReader(FileReader):
         name = entry_element.get('name')
         entry = parent.get_entry(name)
         value = entry_element.findtext('value')
-        if entry.is_multiple_entry_container():
+        if isinstance(entry, MultipleEntry):
             entry = entry.append_default()
         entry.default_value = value
 

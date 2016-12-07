@@ -18,6 +18,13 @@
                     <max>3</max>
                 </multiple>
             </string>
+            <string name="string11">
+                <mandatory>yes</mandatory>
+                <group>extras</group>
+                <properties>
+                    <data strict="yes">string-list</data>
+                </properties>
+            </string>
             <bool name="bool1">
                 <mandatory>yes</mandatory>
             </bool>
@@ -38,7 +45,7 @@
                     <data>string-list</data>
                 </properties>
             </string>
-            <fuzzy name="fuzzy1">
+            <fuzzy name="fuzzy2">
                 <group>extras</group>
                 <properties>
                     <data>fuzzy-list</data>

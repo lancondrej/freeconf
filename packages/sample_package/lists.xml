@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <freeconf_lists>
     <string_list name="string-list">
         <value>value1</value>

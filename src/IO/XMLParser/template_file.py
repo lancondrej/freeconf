@@ -45,8 +45,9 @@ class TemplateFileReader(FileReader):
                 try:
                     container.add_entry(entry)
                 except AlreadyExistsError:
-                    print('no jo no')
-                # add default group
+                    pass
+                    # TODO: něco s tím udělat
+                    #  add default group
             self._package.tree = container
         else:
             raise MissingMandatoryElementError('root container name missing')
@@ -95,7 +96,8 @@ class TemplateFileReader(FileReader):
             try:
                 container.add_entry(entry)
             except AlreadyExistsError:
-                print('no jo no')
+                pass
+                # TODO: něco s tím udělat
 
     def _inside_key_word(self, entry, element):
         # mandatory
@@ -133,19 +135,22 @@ class TemplateFileReader(FileReader):
             value=properties.findtext('regexp')
             if value is not None:
                 entry.reg_exp=value
-            value = properties.findtext('data')
-            if value is not None:
-                list=self._package.lists.get(value)
-                if list is not None:
-                    entry.list = list
-                else:
-                    logger.error("list not set")
+            try:
+                self._list(entry, properties)
+            except AttributeError:
+                logger.error("list not set")
 
     def _inside_fuzzy(self, entry, element):
         self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
-            value = properties.findtext('data')
+            self._list(entry, properties)
+
+    def _list(self, entry, properties):
+        data = properties.find('data')
+        if data is not None:
+            entry.user_values = True if data.get('strict') == 'yes'else False
+            value=data.text
             if value is not None:
                 list = self._package.lists.get(value)
                 if list is not None:
