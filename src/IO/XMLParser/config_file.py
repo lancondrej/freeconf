@@ -90,7 +90,9 @@ class ConfigFileWriter(object):
             sub_element = self.render_entry(entry, group)
             if sub_element:
                 element.extend(sub_element)
-        return [element]
+        if len(element):
+            return [element]
+        return
 
     def render_key_word(self, entry, group):
         if group:
@@ -108,14 +110,17 @@ class ConfigFileWriter(object):
         val_el.text = str(value)
         element.append(val_el)
 
-        if group:
-            help_text = entry.help
-            if help_text:
-                help_el = Element('help')
-                help_el.text = help_text
-                element.append(help_el)
+        # if group:
+        #     help_text = entry.help
+        #     if help_text:
+        #         help_el = Element('help')
+        #         help_el.text = help_text
+        #         element.append(help_el)
 
         return [element]
 
     def render_multiple(self, mult, group):
-        return [self.render_entry(entry, group)[0] for entry in mult.entries]
+        rendered = [self.render_entry(entry, group) for entry in mult.entries]
+        if rendered:
+            return rendered[0]
+        return
