@@ -41,6 +41,12 @@
                 <button class="btn btn-primary multiple_new" type="button" full_name="{{ full_name }}">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
+                    {% if min%}
+                        <p>Minimum number of element is {{ min }}</p>
+                    {% endif %}
+                    {% if max%}
+                        <p>Maximum number of element is {{ max }}</p>
+                    {% endif %}
             </div>
         </div>
     </div>

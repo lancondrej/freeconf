@@ -119,7 +119,7 @@ class PackagePresenter(Presenter):
             self.log("delete entry for {}".format(newone.full_name))
             self.view.reload_entry(entry)
         else:
-            self.view.flash_message("Cannot add element. Maximum element reach!", 'error')
+            self.view.flash_message("Cannot add element. Maximum element reach!", 'danger')
 
     def multiple_delete(self, path, index):
         entry = self.get_entry(path)
@@ -129,7 +129,7 @@ class PackagePresenter(Presenter):
             self.log("delete entry for {}".format(removed.full_name))
             self.view.reload_entry(entry)
         else:
-            self.view.flash_message("Cannot remove element. Minimum element reach!", 'error')
+            self.view.flash_message("Cannot remove element. Minimum element reach!", 'danger')
 
     def multiple_up(self, path, index):
         entry = self.get_entry(path)

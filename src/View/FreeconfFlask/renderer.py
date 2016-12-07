@@ -122,6 +122,8 @@ class Renderer(object):
                                label=container.label,
                                help=container.help,
                                entries=entries,
+                               max=container.multiple_max,
+                               min=container.multiple_min,
                                )
 
     @staticmethod
@@ -138,6 +140,8 @@ class Renderer(object):
                                label=container.label,
                                help=container.help,
                                entries=entries,
+                               max=container.multiple_max,
+                               min=container.multiple_min,
                                )
 
     def render_multiple_key_word(self, mult_entry):
@@ -153,6 +157,8 @@ class Renderer(object):
                                label=mult_entry.label,
                                help=mult_entry.help,
                                entries=entries,
+                               max=mult_entry.multiple_max,
+                               min=mult_entry.multiple_min,
                                )
 
     def render_section(self, section):
