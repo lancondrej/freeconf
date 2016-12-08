@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<freeconf-help>
+<freeconf_help>
 <container name="apache-config">
 	<label></label>
 	<entry name="ServerRoot">
@@ -207,4 +207,4 @@
 </container>
 </container>
 </container>
-</freeconf-help>
+</freeconf_help>

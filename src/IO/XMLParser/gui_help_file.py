@@ -14,7 +14,8 @@ class GUIHelpFileReader(FileReader):
         super().__init__(gui_help_file)
 
     def parse(self):
-        self._package.gui_tree.title=self._root.findtext('title')
+        self._package.gui_tree.label=self._root.findtext('label')
+        self._package.gui_tree.description = self._root.findtext('description')
         for tab_element in self._root.iterfind('tab'):
             self._parse_tab(tab_element)
 
@@ -30,5 +31,8 @@ class GUIHelpFileReader(FileReader):
         name = section_element.get('name')
         section = tab.get_section(name)
         section.label = section_element.findtext('label')
+        section.description = section_element.findtext('description')
+
+
 
 

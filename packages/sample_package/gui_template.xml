@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_gui_template>
+  <tab name="tab1">
+    <section name="section1">
+      <import_entry>/container0/container1</import_entry>
+        <import_entry>/container0/container2/fuzzy2</import_entry>
+    </section>
+  </tab>
+  <tab name="tab2">
+    <section name="section2">
+      <import_entry>/container0/container2</import_entry>
+    </section>
+  </tab>
+</freeconf_gui_template>

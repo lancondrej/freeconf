@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_gui_template>
-  <tab>
-    <tab_name>server-tab</tab_name>
-    <tab_icon>categories/preferences-other</tab_icon>
-    <tab_section>
-      <tab_section_name>server-options</tab_section_name>
+  <tab name="server-tab">
+    <section name="server-options">
       <import_entry>/apache-config/ServerRoot</import_entry>
       <import_entry>/apache-config/LockFile</import_entry>
       <import_entry>/apache-config/PidFile</import_entry>
@@ -16,36 +13,27 @@
       <import_entry>/apache-config/User</import_entry>
       <import_entry>/apache-config/Group</import_entry>
       <import_entry>/apache-config/DefaultType</import_entry>
-    </tab_section>
+    </section>
   </tab>
-  <tab>
-    <tab_name>vhosts</tab_name>
-    <tab_icon>categories/applications-internet</tab_icon>
-    <tab_section>
-      <tab_section_name>vhosts-options</tab_section_name>
+  <tab name="vhosts">
+    <section name="vhosts-options">
       <import_entry primary="Port">/apache-config/Listen</import_entry>
       <import_entry primary="Address">/apache-config/NameVirtualHost</import_entry>
       <import_entry primary="Address">/apache-config/VirtualHost</import_entry>
-    </tab_section>
+    </section>
   </tab>
-  <tab>
-    <tab_name>security</tab_name>
-    <tab_icon>status/security-high</tab_icon>
-    <tab_section>
-      <tab_section_name>security-options</tab_section_name>
+  <tab name="security">
+    <section name="security-options">
       <import_entry>/apache-config/ServerTokens</import_entry>
       <import_entry>/apache-config/ServerSignature</import_entry>
       <import_entry>/apache-config/TraceEnable</import_entry>
-    </tab_section>
+    </section>
   </tab>
-  <tab>
-    <tab_name>logging</tab_name>
-    <tab_icon>mimetypes/text-x-log</tab_icon>
-    <tab_section>
-      <tab_section_name>logging-options</tab_section_name>
+  <tab name="logging">
+    <section name="logging-options">
       <import_entry>/apache-config/HostnameLookups</import_entry>
       <import_entry>/apache-config/LogLevel</import_entry>
       <import_entry>/apache-config/ErrorLog</import_entry>
-    </tab_section>
+    </section>
   </tab>
 </freeconf_gui_template>

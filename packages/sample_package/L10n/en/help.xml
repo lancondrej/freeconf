@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_help>
+    <container name="container0">
+        <label></label>
+        <help></help>
+        <container name="container1">
+            <label></label>
+            <help></help>
+            <entry name="number1">
+                <label></label>
+                <help></help>
+            </entry>
+            <entry name="string1">
+                <label></label>
+                <help></help>
+            </entry>
+            <entry name="string11">
+                <label></label>
+                <help></help>
+            </entry>
+            <entry name="bool1">
+                <label></label>
+                <help></help>
+            </entry>
+            <entry name="string12">
+                <label></label>
+                <help></help>
+            </entry>
+        </container>
+        <container name="container2">
+            <label></label>
+            <help></help>
+            <entry name="number2">
+                <label></label>
+                <help></help>
+
+            </entry>
+            <entry name="string2">
+                <label></label>
+                <help></help>
+
+            </entry>
+            <entry name="fuzzy2">
+                <label></label>
+                <help></help>
+
+            </entry>
+            <container name="container3">
+                <label></label>
+                <help></help>
+                <entry name="number3">
+                    <label></label>
+                    <help></help>
+                </entry>
+                <entry name="string3">
+                    <label></label>
+                    <help></help>
+                </entry>
+            </container>
+        </container>
+    </container>
+</freeconf_help>

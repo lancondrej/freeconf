@@ -1,5 +1,7 @@
 {% macro help(title='', help_text='', placement='left') -%}
 <button type="button" class="btn btn-link" data-toggle="popover" data-trigger="focus" title="{{ title }}"
-        data-content="{{ help_text }}" data-placement="{{ placement }}">?
+        data-content="{{ help_text }}" data-placement="{{ placement }}">
+    <span class="glyphicon glyphicon-question-sign"></span>
+
 </button>
 {%- endmacro %}

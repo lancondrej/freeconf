@@ -8,8 +8,7 @@ class GTab(GSection):
 
     def __init__(self, name, package):
         GSection.__init__(self, name, package)
-        self.description = None
-        self.icon = "mimetypes/unknown"
+        # self.icon = "mimetypes/unknown"
 
     @property
     def sections(self):

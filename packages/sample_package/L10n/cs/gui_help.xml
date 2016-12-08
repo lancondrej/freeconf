@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_gui_label>
+    <label>Sample configuration package for Freeconf</label>
+    <description>Sample configuration package for Freeconf.</description>
+  <tab name="tab1">
+      <label>First tab</label>
+    <description>This is first tab of sample configuration package.</description>
+    <section name="section1">
+      <label>First section</label>
+      <description>First section in first tab</description>
+    </section>
+  </tab>
+  <tab name="tab2">
+      <label>Second tab</label>
+    <description>This is second tab of sample configuration package.</description>
+    <section name="section2">
+      <label>First section</label>
+      <description>First section in second tab</description>
+    </section>
+  </tab>
+</freeconf_gui_label>

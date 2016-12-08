@@ -28,17 +28,17 @@ class GUITemplateFileReader(FileReader):
         self._package.gui_tree = window
 
     def _parse_tab(self, tab_element):
-        name = tab_element.findtext('tab_name')
+        name = tab_element.get('name')
         tab = GTab(name, self._package)
-        tab.icon = tab_element.findtext('tab_icon')
-        for section_element in tab_element.iterfind('tab_section'):
+        # tab.icon = tab_element.findtext('tab_icon')
+        for section_element in tab_element.iterfind('section'):
             section = self._parse_tab_section(section_element)
             section.parent=tab
             tab.append(section)
         return tab
 
     def _parse_tab_section(self, section_element):
-        name = section_element.findtext('tab_section_name')
+        name = section_element.get('name')
         section = GSection(name, self._package)
         for entry_element in section_element.iterfind('import_entry'):
             name = entry_element.text

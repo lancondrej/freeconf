@@ -4,10 +4,12 @@
 {% block entry %}
     <div class="panel {{'panel-danger' if inconsistent else 'panel-default'}}">
         <div class="panel-heading">
-            <h2>{{ label }}</h2>
-            {% if help %}
+            <h3>
+                {% if help %}
                 {{ help_button(label, help) }}
-            {% endif %}
+                {% endif %}
+                {{ label }}
+            </h3>
         </div>
 
         <div class="panel-body">

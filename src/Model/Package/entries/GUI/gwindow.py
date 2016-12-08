@@ -7,7 +7,7 @@ class GWindow(GSection):
     """Class that represents the top-level dialogue window"""
     def __init__(self, name, package):
         GSection.__init__(self, name, package)
-        self.title = "Freeconf generated config dialog"
+        self.label = "Freeconf generated config dialog"
 
     # def show_all (self, value):
     #     for tab in self.entries:

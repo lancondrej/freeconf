@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_help>
+    <container name="container0">
+        <label></label>
+        <help></help>
+        <container name="container1">
+            <label>První kontejner</label>
+            <help>První kontejner vzorového balíčku</help>
+            <entry name="number1">
+                <label>Číslo</label>
+                <help>Číslo v rozshau 0 až 111 s nastaveným krokem na 1.</help>
+            </entry>
+            <entry name="string1">
+                <label>Text</label>
+                <help>Vícenásobný text. Je nutné zadat alespoň 1 a maximálně 3. Pokud je zadán, nemůže být prázdný.
+                </help>
+            </entry>
+            <entry name="string11">
+                <label>Text</label>
+                <help>Vstupní pole se seznamem hodnot.
+                    Seznam není povinný, pouze ukozaje možné hodnoty. Lze zadat i jiný vstup než je na seznamu.</help>
+            </entry>
+            <entry name="bool1">
+                <label>Přepínač</label>
+                <help>
+                    Přepínač značící logickou hodnotu. Kromě ano/ne je zde ještě třetí stav vyjadřující nenastaveno.
+                    Tento přepínač má ovšem povinně nastavenou hodnotu. Hodnota nenastaveno se vyhodnotí jako chybná.
+                </help>
+            </entry>
+            <entry name="string12">
+                <label>Email</label>
+                <help>Toto pole slouží pro zadání emailu.
+                    Není povinné, nicméně pokud je zadáno musí odpovídat předepsanému vzoru.</help>
+            </entry>
+        </container>
+        <container name="container2">
+            <label></label>
+            <help></help>
+            <entry name="number2">
+                <label></label>
+                <help></help>
+
+            </entry>
+            <entry name="string2">
+                <label></label>
+                <help></help>
+
+            </entry>
+            <entry name="fuzzy2">
+                <label></label>
+                <help></help>
+
+            </entry>
+            <container name="container3">
+                <label></label>
+                <help></help>
+                <entry name="number3">
+                    <label></label>
+                    <help></help>
+                </entry>
+                <entry name="string3">
+                    <label></label>
+                    <help></help>
+                </entry>
+            </container>
+        </container>
+    </container>
+</freeconf_help>

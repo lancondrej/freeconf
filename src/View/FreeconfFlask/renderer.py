@@ -171,6 +171,7 @@ class Renderer(object):
         return render_template('package/entries/section.html',
                                full_name=section.full_name,
                                label=section.label,
+                               description=section.description,
                                inconsistent=section.inconsistent,
                                entries=entries,
                                )

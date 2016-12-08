@@ -9,8 +9,8 @@ class GSection(BaseEntry, ContainerInconsistency):
     def __init__(self, name, package):
         BaseEntry.__init__(self, name, package)
         self._inc_parents = set()
-        self._label = None
         self.parent = None
+        self.description = None
 
         ContainerInconsistency.__init__(self)
         # self._active_shown = 0

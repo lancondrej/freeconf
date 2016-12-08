@@ -68,7 +68,7 @@ class PackagePresenter(Presenter):
 
     @property
     def tabs(self):
-        return [(tab.name, tab.label, tab.inconsistent) for tab in self._package.gui_tree.tabs]
+        return [(tab.name, tab.label, tab.description, tab.inconsistent) for tab in self._package.gui_tree.tabs]
 
     def tab(self, name):
         tab = self._package.gui_tree.get_tab(name)
