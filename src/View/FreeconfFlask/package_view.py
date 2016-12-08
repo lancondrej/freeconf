@@ -65,7 +65,8 @@ class PackageView(BaseView):
                                    tabs=self.presenter.tabs,
                                    package_name=session.get('package_name'))
             buttons = render_template("package/buttons.html")
-            return self.render_default(left=tabs,
+            return self.render_default(title=self.presenter.label,
+                                       left=tabs,
                                        main=main,
                                        right=buttons)
         else:

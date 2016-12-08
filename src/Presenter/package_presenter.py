@@ -55,6 +55,10 @@ class PackagePresenter(Presenter):
             return self.package.name
         return ""
 
+    @property
+    def label(self):
+        return self.package.gui_tree.label
+
     def load_package(self, language=None):
         input_parser=XMLParser(self._config, self._package)
         assert isinstance(input_parser, Input)

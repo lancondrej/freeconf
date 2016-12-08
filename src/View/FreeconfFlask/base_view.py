@@ -16,9 +16,9 @@ class BaseView(object):
         self._socketio = socketio
 
     @staticmethod
-    def render_default(left="", main="", right=""):
+    def render_default(title="", left="", main="", right=""):
         """default render function"""
-        return render_template('index.html', left=left, main=main, right=right)
+        return render_template('index.html', title=title, left=left, main=main, right=right)
 
     @staticmethod
     def flash_message(message, category):
