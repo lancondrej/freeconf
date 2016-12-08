@@ -19,3 +19,11 @@ class MultipleKeyWord(MultipleEntry):
     @list.setter
     def list(self, l):
         self.template.list=l
+
+    @property
+    def static_mandatory(self):
+        return self.template.static_mandatory
+
+    @static_mandatory.setter
+    def static_mandatory(self, mandatory):
+        self.template.static_mandatory = mandatory

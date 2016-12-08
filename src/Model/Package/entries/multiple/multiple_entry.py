@@ -130,6 +130,14 @@ class MultipleEntry(Entry, MultipleInconsistency):
         self.template.active=active
 
     @property
+    def static_active(self):
+        return self.template.static_active
+
+    @static_active.setter
+    def static_active(self, active):
+        self.template.static_active = active
+
+    @property
     def mandatory(self):
         return self.template.mandatory
 
