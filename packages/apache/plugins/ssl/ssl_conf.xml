@@ -4,17 +4,8 @@
     <entry name="SSLMutex">
       <value>i</value>
     </entry>
-    <entry name="SSLCertificateFile">
-      <value>f</value>
-    </entry>
-    <entry name="SSLRequireSSL">
-      <value>yes</value>
-    </entry>
-    <entry name="SSLCARevocationPath">
-      <value>dd</value>
-    </entry>
-    <entry name="SSLCertificateKeyFile">
-      <value>g</value>
+    <entry name="SSLCACertificatePath">
+      <value>b</value>
     </entry>
     <entry name="SSLCACertificateFile">
       <value>a</value>
@@ -22,11 +13,20 @@
     <entry name="SSLCARevocationFile">
       <value>c</value>
     </entry>
+    <entry name="SSLCARevocationPath">
+      <value>dd</value>
+    </entry>
+    <entry name="SSLCertificateKeyFile">
+      <value>g</value>
+    </entry>
     <entry name="SSLCertificateChainFile">
       <value>e</value>
     </entry>
-    <entry name="SSLCACertificatePath">
-      <value>b</value>
+    <entry name="SSLCertificateFile">
+      <value>f</value>
+    </entry>
+    <entry name="SSLRequireSSL">
+      <value>yes</value>
     </entry>
     <entry name="SSLInsecureRenegotiation">
       <value>yes</value>

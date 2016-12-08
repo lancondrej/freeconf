@@ -149,7 +149,7 @@ class TemplateFileReader(FileReader):
     def _list(self, entry, properties):
         data = properties.find('data')
         if data is not None:
-            entry.user_values = True if data.get('strict') == 'yes'else False
+            entry.user_values = True if data.get('strict') == 'no' else False
             value=data.text
             if value is not None:
                 list = self._package.lists.get(value)

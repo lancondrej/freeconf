@@ -21,7 +21,7 @@
                 <mandatory>yes</mandatory>
                 <group>extras</group>
                 <properties>
-                    <data strict="yes">string-list</data>
+                    <data strict="no">string-list</data>
                 </properties>
             </string>
             <bool name="bool1">
