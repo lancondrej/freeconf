@@ -1,148 +1,62 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
   <container name="apache-config">
-    <entry name="AccessFileName">
-      <value>.htaccess</value>
-    </entry>
-    <entry name="MaxKeepAliveRequests">
-      <value>98.0</value>
-    </entry>
+    <entry name="AccessFileName">.htaccess</entry>
+    <entry name="MaxKeepAliveRequests">98.0</entry>
     <container name="VirtualHost">
-      <container name="ServerAlias">
-        <entry name="Hostname">
-          <value>www.pokus.net</value>
-        </entry>
+        <container name="ServerAlias">
+        <entry name="Hostname">www.pokus.net</entry>
       </container>
       <container name="Alias">
-        <entry name="TargetPath">
-          <value>/tmp</value>
-        </entry>
-        <entry name="URLPath">
-          <value>temp</value>
-        </entry>
+        <entry name="TargetPath">/tmp</entry>
+        <entry name="URLPath">temp</entry>
       </container>
-      <entry name="ServerName">
-        <value>pokus.net</value>
-      </entry>
-      <entry name="ServerAdmin">
-        <value>admin</value>
-      </entry>
-      <entry name="Port">
-        <value>80</value>
-      </entry>
-      <entry name="DocumentRoot">
-        <value>/var/www</value>
-      </entry>
-      <entry name="Address">
-        <value>localhost</value>
-      </entry>
+      <entry name="ServerName">pokus.net</entry>
+      <entry name="ServerAdmin">admin</entry>
+      <entry name="Port">80</entry>
+      <entry name="DocumentRoot">/var/www</entry>
+      <entry name="Address">localhost</entry>
       <container name="Directory">
         <container name="AllowOverride">
-          <entry name="AuthConfig">
-            <value>no</value>
-          </entry>
-          <entry name="Indexes">
-            <value>no</value>
-          </entry>
-          <entry name="Limit">
-            <value>no</value>
-          </entry>
-          <entry name="Options">
-            <value>no</value>
-          </entry>
-          <entry name="FileInfo">
-            <value>no</value>
-          </entry>
+          <entry name="AuthConfig">no</entry>
+          <entry name="Indexes">no</entry>
+          <entry name="Limit">no</entry>
+          <entry name="Options">no</entry>
+          <entry name="FileInfo">no</entry>
         </container>
-        <entry name="Path">
-          <value>/var/www</value>
-        </entry>
+        <entry name="Path">/var/www</entry>
         <container name="Options">
-          <entry name="SymLinksIfOwnerMatch">
-            <value>no</value>
-          </entry>
-          <entry name="Includes">
-            <value>no</value>
-          </entry>
-          <entry name="IncludesNOEXEC">
-            <value>no</value>
-          </entry>
-          <entry name="FollowSymlinks">
-            <value>yes</value>
-          </entry>
-          <entry name="MultiViews">
-            <value>yes</value>
-          </entry>
-          <entry name="Indexes">
-            <value>yes</value>
-          </entry>
-          <entry name="ExecCGI">
-            <value>no</value>
-          </entry>
+          <entry name="SymLinksIfOwnerMatch">no</entry>
+          <entry name="Includes">no</entry>
+          <entry name="IncludesNOEXEC">no</entry>
+          <entry name="FollowSymlinks">yes</entry>
+          <entry name="MultiViews">yes</entry>
+          <entry name="Indexes">yes</entry>
+          <entry name="ExecCGI">no</entry>
         </container>
-        <entry name="Order">
-          <value>Allow,Deny</value>
-        </entry>
-        <entry name="Deny">
-          <value>1.2.3.4</value>
-        </entry>
-        <entry name="Allow">
-          <value>all</value>
-        </entry>
+        <entry name="Order">Allow,Deny</entry>
+        <entry name="Deny">1.2.3.4</entry>
+        <entry name="Allow">all</entry>
       </container>
     </container>
-    <entry name="ServerRoot">
-      <value>/etc/apache2</value>
-    </entry>
-    <entry name="PidFile">
-      <value>/var/run/apache2.pid</value>
-    </entry>
-    <entry name="Group">
-      <value>www-data</value>
-    </entry>
-    <entry name="ServerTokens">
-      <value>OS</value>
-    </entry>
-    <entry name="KeepAliveTimeout">
-      <value>5.0</value>
-    </entry>
-    <entry name="HostnameLookups">
-      <value>no</value>
-    </entry>
-    <entry name="User">
-      <value>www-data</value>
-    </entry>
-    <entry name="ServerSignature">
-      <value>On</value>
-    </entry>
-    <entry name="TraceEnable">
-      <value>Off</value>
-    </entry>
-    <entry name="LockFile">
-      <value>/var/lock/apache2/accept.lock</value>
-    </entry>
-    <entry name="ErrorLog">
-      <value>/var/log/apache2/error.log</value>
-    </entry>
-    <entry name="LogLevel">
-      <value>Critical</value>
-    </entry>
-    <entry name="TimeOut">
-      <value>300.0</value>
-    </entry>
-    <entry name="DefaultType">
-      <value>text/plain</value>
-    </entry>
-    <entry name="KeepAlive">
-      <value>yes</value>
-    </entry>
+    <entry name="ServerRoot">/etc/apache2</entry>
+    <entry name="PidFile">/var/run/apache2.pid</entry>
+    <entry name="Group">www-data</entry>
+    <entry name="ServerTokens">OS</entry>
+    <entry name="KeepAliveTimeout">5.0</entry>
+    <entry name="HostnameLookups">no</entry>
+    <entry name="User">www-data</entry>
+    <entry name="ServerSignature">On</entry>
+    <entry name="TraceEnable">Off</entry>
+    <entry name="LockFile">/var/lock/apache2/accept.lock</entry>
+    <entry name="ErrorLog">/var/log/apache2/error.log</entry>
+    <entry name="LogLevel">Critical</entry>
+    <entry name="TimeOut">300.0</entry>
+    <entry name="DefaultType">text/plain</entry>
+    <entry name="KeepAlive">yes</entry>
     <container name="NameVirtualHost">
-      <entry name="Address">
-        <value>localhost</value>
-      </entry>
-      <entry name="Port">
-        <value>80.0</value>
-      </entry>
+      <entry name="Address">localhost</entry>
+      <entry name="Port">80.0</entry>
     </container>
   </container>
 </freeconf_config>

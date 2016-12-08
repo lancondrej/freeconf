@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_help>
+        <container name="container0">
+        <container name="container1">
+            <entry name="pbool1">
+                <label></label>
+                <help></help>
+            </entry>
+        </container>
+        <entry name="pnumber2">
+            <label></label>
+            <help></help>
+        </entry>
+    </container>
+</freeconf_help>

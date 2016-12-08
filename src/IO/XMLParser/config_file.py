@@ -46,7 +46,7 @@ class ConfigFileReader(FileReader):
     def _parse_entry(entry_element, parent):
         name = entry_element.get('name')
         entry = parent.get_entry(name)
-        value = entry_element.findtext('value')
+        value = entry_element.text
         if isinstance(entry, MultipleEntry):
             entry = entry.append()
         entry.value = value
@@ -109,9 +109,8 @@ class ConfigFileWriter(object):
         if value is None:
             logger.info("Value for entry {} missing".format(entry.full_name))
             return
-        val_el = Element('value')
-        val_el.text = str(value)
-        element.append(val_el)
+        element.text = value
+        # TODO: naformátovat
 
         # if group:
         #     help_text = entry.help

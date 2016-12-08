@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_template>
+    <container name="container0">
+        <container name="container1">
+            <bool name="pbool1">
+                <mandatory>no</mandatory>
+            </bool>
+        </container>
+        <number name="pnumber2">
+            <properties>
+                <max>0.8</max>
+                <step>0.00002</step>
+            </properties>
+        </number>
+    </container>
+</freeconf_template>

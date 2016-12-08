@@ -1,35 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
   <container name="apache-config">
-    <entry name="SSLMutex">
-      <value>i</value>
-    </entry>
-    <entry name="SSLCACertificatePath">
-      <value>b</value>
-    </entry>
-    <entry name="SSLCACertificateFile">
-      <value>a</value>
-    </entry>
-    <entry name="SSLCARevocationFile">
-      <value>c</value>
-    </entry>
-    <entry name="SSLCARevocationPath">
-      <value>dd</value>
-    </entry>
-    <entry name="SSLCertificateKeyFile">
-      <value>g</value>
-    </entry>
-    <entry name="SSLCertificateChainFile">
-      <value>e</value>
-    </entry>
-    <entry name="SSLCertificateFile">
-      <value>f</value>
-    </entry>
-    <entry name="SSLRequireSSL">
-      <value>yes</value>
-    </entry>
-    <entry name="SSLInsecureRenegotiation">
-      <value>yes</value>
-    </entry>
+    <entry name="SSLMutex">i</entry>
+    <entry name="SSLCACertificatePath">b</entry>
+    <entry name="SSLCACertificateFile">a</entry>
+    <entry name="SSLCARevocationFile">c</entry>
+    <entry name="SSLCARevocationPath">dd</entry>
+    <entry name="SSLCertificateKeyFile">g</entry>
+    <entry name="SSLCertificateChainFile">e</entry>
+    <entry name="SSLCertificateFile">f</entry>
+    <entry name="SSLRequireSSL">yes</entry>
+    <entry name="SSLInsecureRenegotiation">yes</entry>
   </container>
 </freeconf_config>

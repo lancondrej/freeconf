@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_gui_label>
+  <tab name="tab3">
+      <label>Third tab</label>
+    <description>This is third tab of sample plugin of sample configuration package.</description>
+    <section name="section3">
+      <label>First section</label>
+      <description>First section in Third tab</description>
+    </section>
+  </tab>
+</freeconf_gui_label>

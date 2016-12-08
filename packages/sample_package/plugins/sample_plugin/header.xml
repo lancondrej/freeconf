@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeconf_header>
+    <author>Ondřej Lanč</author>
+    <default_language>cs</default_language>
+    <content>
+        <template>template.xml</template>
+        <default_values>default.xml</default_values>
+        <help>help.xml</help>
+        <output>plugin_conf.xml</output>
+        <gui_template>gui_template.xml</gui_template>
+        <gui_label>gui_help.xml</gui_label>
+    </content>
+
+
+</freeconf_header>

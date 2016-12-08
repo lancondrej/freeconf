@@ -40,10 +40,11 @@ class DefaultValuesFileReader(FileReader):
     def _parse_entry(self, entry_element, parent):
         name = entry_element.get('name')
         entry = parent.get_entry(name)
-        value = entry_element.findtext('value')
-        if isinstance(entry, MultipleEntry):
-            entry = entry.append_default()
-        entry.default_value = value
+        if entry is not None:
+            value = entry_element.text
+            if isinstance(entry, MultipleEntry):
+                entry = entry.append_default()
+            entry.default_value = value
 
 
 

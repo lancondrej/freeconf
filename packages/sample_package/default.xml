@@ -3,27 +3,27 @@
   <container name="container0">
     <container name="container2">
       <entry name="string2">
-        <value>value1</value>
+        value1
       </entry>
       <entry name="fuzzy2">
-        <value>half</value>
+        half
       </entry>
     </container>
     <container name="container1">
       <entry name="string1">
-        <value>a</value>
+        a
       </entry>
       <entry name="bool1">
-        <value>yes</value>
+        yes
       </entry>
       <entry name="number1">
-        <value>0.0</value>
+        0.0
       </entry>
       <entry name="string12">
-        <value>sdsa@c.g</value>
+        sdsa@c.g
       </entry>
       <entry name="string11">
-        <value>s</value>
+        s
       </entry>
     </container>
   </container>

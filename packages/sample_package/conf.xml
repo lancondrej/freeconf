@@ -3,43 +3,43 @@
   <container name="container0">
     <container name="container2">
       <entry name="string2">
-        <value>value2</value>
+        value2
       </entry>
       <entry name="fuzzy2">
-        <value>yes</value>
+        yes
       </entry>
       <entry name="number2">
-        <value>0.00058</value>
+        0.00058
       </entry>
       <container name="container3">
         <entry name="number3">
-          <value>68.0</value>
+          68.0
         </entry>
         <entry name="string3">
-          <value>f</value>
+          f
         </entry>
       </container>
       <container name="container3">
         <entry name="string3">
-          <value>h</value>
+          h
         </entry>
       </container>
     </container>
     <container name="container1">
       <entry name="string12">
-        <value>d@s.c</value>
+        d@s.c
       </entry>
       <entry name="string11">
-        <value>s</value>
+        s
       </entry>
       <entry name="bool1">
-        <value>yes</value>
+        yes
       </entry>
       <entry name="string1">
-        <value>bb</value>
+        bb
       </entry>
       <entry name="number1">
-        <value>0.0</value>
+        0.0
       </entry>
     </container>
   </container>
