@@ -13,7 +13,6 @@ class Renderer(object):
             'Number': self.render_number,
             'String': self.render_string,
             'MultipleContainer': self.render_multiple_container,
-            # 'MultipleContainer': self.render_multiple_container_collapse,
             'MultipleKeyWord': self.render_multiple_key_word,
             'GSection': self.render_section,
         }
@@ -116,24 +115,6 @@ class Renderer(object):
         entries = [(i, container.primary_value(i), entry.full_name, entry.inconsistent)
                    for i, entry in enumerate(container.entries)]
         return render_template('package/entries/multiple_cont.html',
-                               name=container.name,
-                               full_name=container.full_name,
-                               inconsistent=container.inconsistent,
-                               label=container.label,
-                               help=container.help,
-                               entries=entries,
-                               max=container.multiple_max,
-                               min=container.multiple_min,
-                               )
-
-    @staticmethod
-    def render_multiple_container_collapse(container):
-        """render entry
-        :param container
-        :return string with renderer entry"""
-        entries = [(i, container.primary_value(i), entry.full_name, entry.inconsistent)
-                   for i, entry in enumerate(container.entries)]
-        return render_template('package/entries/multiple_cont_collapse.html',
                                name=container.name,
                                full_name=container.full_name,
                                inconsistent=container.inconsistent,

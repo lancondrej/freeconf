@@ -24,7 +24,7 @@ function open_collapse(input) {
         $.get($SCRIPT_ROOT + '/_multiple_collapse', {
             full_name: input.attr("full_name")
         }, function (data) {
-            input.after(data);
+            input.parent().after(data);
             $(input.attr("data-target")).collapse('show');
             load();
         });
