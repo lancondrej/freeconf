@@ -14,7 +14,7 @@
     <entry_group name="default">
         <transform>default.xsl</transform>
         <native_output>default.conf</native_output>
-        <output_defalts>yes</output_defalts>
+        <output_defaults>yes</output_defaults>
     </entry_group>
     <entry_group name="extras">
         <transform>extras.xsl</transform>

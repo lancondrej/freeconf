@@ -132,13 +132,13 @@ class TemplateFileReader(FileReader):
                 entry.step = float(value)
             value=properties.findtext('precision')
             if value is not None:
-                entry.precision = float(value)
-            value=properties.findtext('print-sign')
+                entry.precision = int(value)
+            value=properties.findtext('print_sign')
             if value is not None:
                 entry.print_sign = True if value == 'yes' else False
-            value=properties.findtext('leading-zeros')
+            value=properties.findtext('leading_zeros')
             if value is not None:
-                entry.leading_zeros = True if value == 'yes' else False
+                entry.leading_zeros = int(value)
 
     def _inside_string(self, entry, element):
         self._inside_key_word(entry, element)

@@ -105,11 +105,11 @@ class ConfigFileWriter(object):
             return
         element = Element('entry')
         element.set('name', entry.name)
-        value = entry.value
+        value = entry.output_value
         if value is None:
             logger.info("Value for entry {} missing".format(entry.full_name))
             return
-        element.text = value
+        element.text = str(value)
         # TODO: naformátovat
 
         # if group:

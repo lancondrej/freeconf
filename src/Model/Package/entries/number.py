@@ -26,11 +26,30 @@ class Number(KeyWord):
         self._precision_set = False
         self._precision = 0
         # number format
-        self._print_sign_set = False
         self._print_sign = False
 
         self._leading_zeros_set = False
         self._leading_zeros = False
+
+
+
+    @property
+    def output_value(self):
+        """convert value to output string format"""
+        if self.value is not None:
+            format_string = "{:0="
+            if self.print_sign:
+                format_string += "+"
+            if self._leading_zeros_set:
+                format_string += "{:d}".format(self.leading_zeros)
+            else:
+                format_string += "0"
+            if self._precision_set:
+                format_string += ".{:d}".format(int(self.precision))
+            format_string += "f}"
+            str=format_string.format(self.value)
+            return format_string.format(self.value)
+
 
     @property
     def type(self):
@@ -112,7 +131,6 @@ class Number(KeyWord):
 
     @print_sign.setter
     def print_sign(self, print_sign):
-        self._precision_set = True
         self._print_sign = print_sign
 
     @leading_zeros.setter

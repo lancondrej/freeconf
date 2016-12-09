@@ -29,3 +29,9 @@ class String(KeyWord):
             if self.reg_exp is not None:
                 return re.match(self.reg_exp, self.value) is not None
         return True
+
+    @property
+    def output_value(self):
+        """convert value to output string format"""
+        if self.value is not None:
+            return str(self.value)

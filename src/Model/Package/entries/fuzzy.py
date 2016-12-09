@@ -104,3 +104,9 @@ class Fuzzy(KeyWord):
     @grade.setter
     def grade(self, grade):
         self.value = self.grade_to_value(grade)
+
+    @property
+    def output_value(self):
+        """convert value to output string format"""
+        if self.value is not None:
+            return str(self.value)

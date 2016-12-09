@@ -185,18 +185,18 @@
       <!-- Keywords Allow and Deny must be followed by word 'from' -->
       <xsl:text>from</xsl:text>
       <xsl:value-of select="$key-value-separator" />
-      <xsl:value-of select="value" />
+      <xsl:value-of select="." />
     </xsl:when>
     <!-- Translate boolean values -->
-    <xsl:when test="type = 'bool' and string(value) = 'yes'">
+    <xsl:when test="type = 'bool' and string(.) = 'yes'">
       <xsl:value-of select="$boolean-yes" />
     </xsl:when>
-    <xsl:when test="type = 'bool' and string(value) = 'no'">
+    <xsl:when test="type = 'bool' and string(.) = 'no'">
       <xsl:value-of select="$boolean-no" />
     </xsl:when>
     <!-- Other entries -->
     <xsl:otherwise>
-      <xsl:value-of select="value" />
+      <xsl:value-of select="." />
     </xsl:otherwise>
   </xsl:choose>
   <!-- output line breaks -->
@@ -215,8 +215,8 @@
       <!-- #### Process section NameVirtual Host #### -->
       <xsl:value-of select="@name" />
       <xsl:value-of select="$key-value-separator" />
-      <xsl:value-of select="entry[@name = 'Address']/value" />
-      <xsl:variable name="port" select="entry[@name = 'Port']/value" />
+      <xsl:value-of select="entry[@name = 'Address']" />
+      <xsl:variable name="port" select="entry[@name = 'Port']" />
       <xsl:if test="string-length($port) &gt; 0 and $port != '0'">
         <xsl:text>:</xsl:text>
         <xsl:value-of select="$port"/>
@@ -230,8 +230,8 @@
       <xsl:text>&lt;</xsl:text>
       <xsl:value-of select="@name" />
       <xsl:text> </xsl:text>
-      <xsl:value-of select="entry[@name = 'Address']/value" />
-      <xsl:variable name="port" select="entry[@name = 'Port']/value" />
+      <xsl:value-of select="entry[@name = 'Address']" />
+      <xsl:variable name="port" select="entry[@name = 'Port']" />
       <xsl:if test="string-length($port) &gt; 0">
         <xsl:text>:</xsl:text>
         <xsl:value-of select="$port"/>
@@ -254,9 +254,9 @@
       <xsl:call-template name="output-help" />
       <xsl:value-of select="@name" />
       <xsl:value-of select="$key-value-separator" />
-      <xsl:value-of select="entry[@name = 'URLPath']/value" />
+      <xsl:value-of select="entry[@name = 'URLPath']" />
       <xsl:value-of select="$key-value-separator" />
-      <xsl:value-of select="entry[@name = 'TargetPath']/value" />
+      <xsl:value-of select="entry[@name = 'TargetPath']" />
       <xsl:call-template name="new-lines"/>
     </xsl:when>
 
@@ -267,7 +267,7 @@
       <xsl:text>&lt;</xsl:text>
       <xsl:value-of select="@name" />
       <xsl:text> "</xsl:text>
-      <xsl:value-of select="entry[@name = 'Path']/value" />
+      <xsl:value-of select="entry[@name = 'Path']" />
       <xsl:text>"&gt;</xsl:text>
       <xsl:call-template name="new-lines"/>
 
@@ -287,10 +287,10 @@
       <xsl:for-each select="entry">
         <xsl:value-of select="$key-value-separator" />
         <xsl:choose>
-          <xsl:when test="value = 'yes'">
+          <xsl:when test=". = 'yes'">
             <xsl:value-of select="concat('+', @name)" />
           </xsl:when>
-          <xsl:when test="value = 'no'">
+          <xsl:when test=". = 'no'">
             <xsl:value-of select="concat('-', @name)" />
           </xsl:when>
         </xsl:choose>
@@ -303,18 +303,18 @@
       <xsl:value-of select="@name" />
       <!-- Print list of options -->
       <xsl:choose>
-        <xsl:when test="count(entry[value = 'yes']) = 0">
+        <xsl:when test="count(entry[. = 'yes']) = 0">
             <xsl:value-of select="$key-value-separator" />
           <xsl:text>None</xsl:text>
         </xsl:when>
-        <xsl:when test="count(entry[value = 'no']) = 0">
+        <xsl:when test="count(entry[. = 'no']) = 0">
             <xsl:value-of select="$key-value-separator" />
           <xsl:text>All</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <xsl:for-each select="entry">
             <xsl:value-of select="$key-value-separator" />
-            <xsl:if test="value = 'yes'">
+            <xsl:if test=". = 'yes'">
               <xsl:value-of select="@name" />
             </xsl:if>
           </xsl:for-each>
@@ -328,7 +328,7 @@
       <!-- #### Process section ServerAlias #### -->
       <xsl:value-of select="@name" />
       <xsl:value-of select="$key-value-separator" />
-      <xsl:value-of select="entry[@name = 'Hostname']/value" />
+      <xsl:value-of select="entry[@name = 'Hostname']" />
       <xsl:call-template name="new-lines"/>
     </xsl:when>
 
@@ -337,12 +337,12 @@
       <xsl:value-of select="@name" />
       <xsl:value-of select="$key-value-separator" />
 
-      <xsl:variable name="addr" select="entry[@name = 'Address']/value" />
+      <xsl:variable name="addr" select="entry[@name = 'Address']" />
       <xsl:if test="string-length($addr) &gt; 0">
         <xsl:value-of select="$addr"/>
         <xsl:text>:</xsl:text>
       </xsl:if>
-      <xsl:value-of select="entry[@name = 'Port']/value" />
+      <xsl:value-of select="entry[@name = 'Port']" />
       <xsl:call-template name="new-lines"/>
     </xsl:when>
 
@@ -350,7 +350,7 @@
     <xsl:otherwise>
 
       <xsl:value-of select="$comment-sequence" />
-      <xsl:text> Section </xsl:text>
+      <xsl:text> Container </xsl:text>
       <xsl:value-of select="@name" />
       <xsl:call-template name="new-lines"/>
 

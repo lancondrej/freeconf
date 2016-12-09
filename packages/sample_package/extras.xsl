@@ -4,10 +4,12 @@
 
 
 <!-- ############################################################ -->
-<!-- <xsl:template match="container">
-  <xsl:value-of select="$comment-sequence" />
-  <xsl:text> Gello  </xsl:text>
+<xsl:template match="container">
+  <xsl:apply-templates/>
 </xsl:template>
--->
+
+<xsl:template match="entry">
+  <xsl:value-of select="."/>
+</xsl:template>
 
 </xsl:stylesheet>

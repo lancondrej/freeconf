@@ -3,13 +3,13 @@
   <container name="apache-config">
     <entry name="SSLMutex">i</entry>
     <entry name="SSLCACertificatePath">b</entry>
-    <entry name="SSLCACertificateFile">a</entry>
-    <entry name="SSLCARevocationFile">c</entry>
     <entry name="SSLCARevocationPath">dd</entry>
-    <entry name="SSLCertificateKeyFile">g</entry>
-    <entry name="SSLCertificateChainFile">e</entry>
     <entry name="SSLCertificateFile">f</entry>
-    <entry name="SSLRequireSSL">yes</entry>
     <entry name="SSLInsecureRenegotiation">yes</entry>
+    <entry name="SSLCACertificateFile">a</entry>
+    <entry name="SSLCertificateKeyFile">g</entry>
+    <entry name="SSLRequireSSL">yes</entry>
+    <entry name="SSLCARevocationFile">c</entry>
+    <entry name="SSLCertificateChainFile">e</entry>
   </container>
 </freeconf_config>

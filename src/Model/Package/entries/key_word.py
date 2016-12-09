@@ -48,6 +48,11 @@ class KeyWord(Entry, Inconsistency):
         return False
 
     @property
+    def output_value(self):
+        """convert value to output string format"""
+        raise NotImplementedError("This is abstract method!")
+
+    @property
     def value(self):
         return self._value
 

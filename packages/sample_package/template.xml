@@ -5,9 +5,12 @@
             <group>default</group>
             <number name="number1">
                 <properties>
-                    <min>0.0</min>
-                    <max>111.0</max>
-                    <step>1.0</step>
+                    <min>0</min>
+                    <max>111</max>
+                    <step>1</step>
+                    <precision>0</precision>
+                    <print_sign>yes</print_sign>
+                    <leading_zeros>10</leading_zeros>
                 </properties>
             </number>
             <string name="string1">
@@ -38,7 +41,7 @@
             <number name="number2">
                 <properties>
                     <max>0.8</max>
-                    <step>0.00002</step>
+                    <step>0.002</step>
                 </properties>
             </number>
             <string name="string2">
@@ -61,11 +64,6 @@
                     <max>2</max>
                 </multiple>
                 <number name="number3">
-                    <properties>
-                        <min>0.0</min>
-                        <max>111.0</max>
-                        <step>1.0</step>
-                    </properties>
                 </number>
                 <string name="string3">
                     <mandatory>yes</mandatory>
