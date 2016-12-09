@@ -1,22 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
-    <container name="container1">
-      <entry name="string1">bb</entry>
-      <entry name="string11">s</entry>
-      <entry name="number1">+000000014</entry>
-      <entry name="string12">d@s.c</entry>
-      <entry name="bool1">yes</entry>
+  <container name="container1">
+    <entry name="number1">+000000014</entry>
+    <entry name="bool1">yes</entry>
+    <entry name="string11">s</entry>
+    <entry name="string12">d@s.c</entry>
+  </container>
+  <container name="container2">
+    <entry name="number2">0.000580</entry>
+    <container name="container3">
+      <entry name="number3">555.000000</entry>
+      <entry name="string3">text</entry>
     </container>
-    <container name="container2">
-      <entry name="number2">0.000580</entry>
-      <container name="container3">
-        <entry name="number3">68.000000</entry>
-        <entry name="string3">f</entry>
-      </container>
-      <container name="container3">
-        <entry name="string3">h</entry>
-      </container>
-      <entry name="fuzzy2">yes</entry>
-      <entry name="string2">value2</entry>
+    <container name="container3">
+      <entry name="number3">20.000000</entry>
+      <entry name="string3">pokus</entry>
     </container>
+    <entry name="string2">value2</entry>
+    <entry name="fuzzy2">yes</entry>
+  </container>
+  <container name="container-string">
+    <entry name="string1">aaaaa</entry>
+    <entry name="string1">bbbbbb</entry>
+  </container>
 </freeconf_config>

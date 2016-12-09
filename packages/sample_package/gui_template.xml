@@ -4,6 +4,7 @@
     <section name="section1">
       <import_entry>/container1</import_entry>
         <import_entry>/container2/fuzzy2</import_entry>
+        <import_entry>/container-string/string1</import_entry>
     </section>
   </tab>
   <tab name="tab2">

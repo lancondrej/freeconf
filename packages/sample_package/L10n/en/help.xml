@@ -7,10 +7,6 @@
                 <label></label>
                 <help></help>
             </entry>
-            <entry name="string1">
-                <label></label>
-                <help></help>
-            </entry>
             <entry name="string11">
                 <label></label>
                 <help></help>
@@ -55,4 +51,10 @@
                 </entry>
             </container>
         </container>
+        <container name="container-string">
+            <entry name="string1">
+                <label></label>
+                <help></help>
+            </entry>
+    </container>
 </freeconf_help>

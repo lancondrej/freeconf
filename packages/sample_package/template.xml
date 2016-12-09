@@ -12,13 +12,6 @@
                     <leading_zeros>10</leading_zeros>
                 </properties>
             </number>
-            <string name="string1">
-                <mandatory>yes</mandatory>
-                <multiple>
-                    <min>1</min>
-                    <max>3</max>
-                </multiple>
-            </string>
             <string name="string11">
                 <mandatory>yes</mandatory>
                 <group>extras</group>
@@ -45,7 +38,6 @@
             </number>
             <string name="string2">
                 <mandatory>yes</mandatory>
-                <group>extras</group>
                 <properties>
                     <data>string-list</data>
                 </properties>
@@ -69,4 +61,13 @@
                 </string>
             </container>
         </container>
+    <container name="container-string">
+            <string name="string1">
+                <mandatory>yes</mandatory>
+                <multiple>
+                    <min>1</min>
+                    <max>3</max>
+                </multiple>
+            </string>
+    </container>
 </freeconf_template>

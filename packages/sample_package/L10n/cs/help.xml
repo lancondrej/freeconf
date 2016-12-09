@@ -7,10 +7,6 @@
                 <label>Číslo</label>
                 <help>Číslo v rozshau 0 až 111 s nastaveným krokem na 1.</help>
             </entry>
-            <entry name="string1">
-                <label>Text</label>
-                <help>Vícenásobný text. Je nutné zadat alespoň 1 a maximálně 3. Pokud je zadán, nemůže být prázdný.</help>
-            </entry>
             <entry name="string11">
                 <label>Text</label>
                 <help>Vstupní pole se seznamem hodnot.
@@ -60,4 +56,10 @@
                 </entry>
             </container>
         </container>
+    <container name="container-string">
+                    <entry name="string1">
+                <label>Text</label>
+                <help>Vícenásobný text. Je nutné zadat alespoň 1 a maximálně 3. Pokud je zadán, nemůže být prázdný.</help>
+            </entry>
+    </container>
 </freeconf_help>

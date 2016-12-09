@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_default>
     <container name="container1">
-        <entry name="string1">a</entry>
       <entry name="bool1">yes</entry>
       <entry name="number1">0.0</entry>
       <entry name="string12">sdsa@c.g</entry>
@@ -10,5 +9,8 @@
     <container name="container2">
       <entry name="string2">value1</entry>
       <entry name="fuzzy2">half</entry>
+    </container>
+    <container name="container-string">
+                <entry name="string1">a</entry>
     </container>
 </freeconf_default>
