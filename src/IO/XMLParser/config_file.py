@@ -64,8 +64,11 @@ class ConfigFileWriter(object):
 
     def get_config(self, group=None):
         root = Element('freeconf_config')
-        for root_container in self.render_container(self._root, group):
-            root.append(root_container)
+        for entry in self._root.entries.values():
+            sub_elements = self.render_entry(entry, group)
+            if sub_elements is not None:
+                for sub_element in sub_elements:
+                    root.append(sub_element)
         return ElementTree(root)
 
     def render_entry(self, entry, group):

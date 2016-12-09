@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
-    <entry name="SSLMutex">i</entry>
-    <entry name="SSLCACertificatePath">b</entry>
-    <entry name="SSLCARevocationPath">dd</entry>
-    <entry name="SSLCertificateFile">f</entry>
-    <entry name="SSLInsecureRenegotiation">yes</entry>
-    <entry name="SSLCACertificateFile">a</entry>
-    <entry name="SSLCertificateKeyFile">g</entry>
-    <entry name="SSLRequireSSL">yes</entry>
-    <entry name="SSLCARevocationFile">c</entry>
-    <entry name="SSLCertificateChainFile">e</entry>
+  <entry name="SSLMutex">i</entry>
+  <entry name="SSLCARevocationFile">c</entry>
+  <entry name="SSLCertificateChainFile">e</entry>
+  <entry name="SSLCertificateFile">f</entry>
+  <entry name="SSLCARevocationPath">dd</entry>
+  <entry name="SSLCACertificateFile">a</entry>
+  <entry name="SSLCertificateKeyFile">g</entry>
+  <entry name="SSLRequireSSL">yes</entry>
+  <entry name="SSLInsecureRenegotiation">yes</entry>
+  <entry name="SSLCACertificatePath">b</entry>
 </freeconf_config>
