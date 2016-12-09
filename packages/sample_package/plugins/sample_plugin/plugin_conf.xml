@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
-  <container name="container0">
-    <container name="container1">
-      <entry name="pbool1">yes</entry>
-    </container>
-    <entry name="pnumber2">0.100000</entry>
+  <entry name="pnumber2">0.100220</entry>
+  <entry name="pbool1">yes</entry>
+  <container name="container1">
+    <entry name="pbool1">yes</entry>
   </container>
 </freeconf_config>

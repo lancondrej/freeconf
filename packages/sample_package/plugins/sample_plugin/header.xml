@@ -11,5 +11,8 @@
         <gui_label>gui_help.xml</gui_label>
     </content>
 
+	<change_group name="default">
+		<add_transform>transform.xsl</add_transform>
+	</change_group>
 
 </freeconf_header>

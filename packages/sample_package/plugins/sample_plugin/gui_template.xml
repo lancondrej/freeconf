@@ -2,7 +2,7 @@
 <freeconf_gui_template>
   <tab name="tab3">
     <section name="section3">
-      <import_entry>/container0/pnumber2</import_entry>
+      <import_entry>/pnumber2</import_entry>
     </section>
   </tab>
 </freeconf_gui_template>
