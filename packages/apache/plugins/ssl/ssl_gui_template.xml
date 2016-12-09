@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_gui_template>
-  <tab>
-    <tab_name>ssl-tab</tab_name>
-    <tab_section>
-      <tab_section_name>ssl-options</tab_section_name>
-      <import_entry>/apache-config/SSLCACertificateFile</import_entry>
-      <import_entry>/apache-config/SSLCACertificatePath</import_entry>
-      <import_entry>/apache-config/SSLCARevocationFile</import_entry>
-      <import_entry>/apache-config/SSLCARevocationPath</import_entry>
-      <import_entry>/apache-config/SSLCertificateChainFile</import_entry>
-      <import_entry>/apache-config/SSLCertificateFile</import_entry>
-      <import_entry>/apache-config/SSLCertificateKeyFile</import_entry>
-      <import_entry>/apache-config/SSLInsecureRenegotiation</import_entry>
-      <import_entry>/apache-config/SSLMutex</import_entry>
-      <import_entry>/apache-config/SSLRequireSSL</import_entry>
-    </tab_section>
+  <tab name="ssl-tab">
+    <section name="ssl-options">
+      <import_entry>/SSLCACertificateFile</import_entry>
+      <import_entry>/SSLCACertificatePath</import_entry>
+      <import_entry>/SSLCARevocationFile</import_entry>
+      <import_entry>/SSLCARevocationPath</import_entry>
+      <import_entry>/SSLCertificateChainFile</import_entry>
+      <import_entry>/SSLCertificateFile</import_entry>
+      <import_entry>/SSLCertificateKeyFile</import_entry>
+      <import_entry>/SSLInsecureRenegotiation</import_entry>
+      <import_entry>/SSLMutex</import_entry>
+      <import_entry>/SSLRequireSSL</import_entry>
+    </section>
   </tab>
 </freeconf_gui_template>

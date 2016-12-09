@@ -14,17 +14,10 @@ class HelpFileReader(FileReader):
         super().__init__(help_file)
 
     def parse(self):
-        root_container=self._root.find('container')
-        if root_container:
-            name=root_container.get('name')
-            try:
-                assert name == self._package.tree.name
-            except AssertionError:
-                logger.error('invalid name of root element')
-            for container in root_container.iterfind('container'):
-                self._parse_container(container, self._package.tree)
-            for entry in root_container.iterfind('entry'):
-                self._parse_entry(entry, self._package.tree)
+        for container in self._root.iterfind('container'):
+            self._parse_container(container, self._package.tree)
+        for entry in self._root.iterfind('entry'):
+            self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
         name=container_element.get('name')

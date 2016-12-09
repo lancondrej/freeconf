@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #
+from src.Model.Package.exception_logging.log import log
 from src.Model.Package.inconsistency import ContainerInconsistency
 
 __author__ = 'Ondřej Lanč'
@@ -52,11 +53,19 @@ class Container(Entry, ContainerInconsistency):
         """insert entry"""
         # assert isinstance(entry, BaseEntry)
         if entry.name in self._entries:
-            raise AlreadyExistsError(u"Can't add child! There is already entry with name ({})"
+            if isinstance(entry, Container):
+                self._merge_container(entry)
+            else:
+                raise AlreadyExistsError(u"Can't add child! There is already key word with name ({})"
                                      u" in the container ({}).".format(entry.name, self.name))
         entry.parent = self
         self._entries[entry.name] = entry
         return True
+
+    def _merge_container(self, container):
+        log.info("merge container {}".format(self.name))
+        for entry in container.entries.values():
+            self.add_entry(entry)
 
     @property
     def entries(self):
@@ -69,10 +78,10 @@ class Container(Entry, ContainerInconsistency):
         """Find entry in tree. Name is given in format: a/b/c../entry"""
         try:
             (name, rest) = relative_name.split('/', 1)
+            if relative_name == '/':
+                return self.root
             if relative_name.startswith('/'):
-                (name, rest) = rest.split('/', 1)
-                if self.root.name == name:
-                    return self.root.find_entry(rest)
+                return self.root.find_entry(rest)
             if self.is_in_container(name):
                 return self.get_entry(name).find_entry(rest)
         except ValueError:

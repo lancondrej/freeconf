@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_help>
-<container name="apache-config">
-	<label></label>
 	<entry name="ServerRoot">
 	<label>Server Root</label>
 	<help>The top of the directory tree under which the server&apos;sconfiguration, error, and log files are kept.NOTE!  If you intend to place this on an NFS (or otherwise network)mounted filesystem then please read the LockFile documentation (availableat &lt;URL:http://httpd.apache.org/docs/2.2/mod/mpm_common.html#lockfile&gt;);you will save yourself a lot of trouble.Do NOT add a slash at the end of the directory path.</help>
@@ -204,7 +202,6 @@
 	<label>Deny</label>
 	<help>Controls which hosts are denied access to the server.List of hosts, IP addresses or IP address ranges delimited with whitespace.If set to &quot;all&quot; then all hosts are denied access.</help>
 </entry>
-</container>
 </container>
 </container>
 </freeconf_help>

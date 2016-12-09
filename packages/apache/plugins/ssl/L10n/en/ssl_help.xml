@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_help>
-<container name="apache-config">
 	<entry name="SSLCACertificateFile">
 		<label>CA Certificate File</label>
 		<help>This directive sets the all-in-one file where you can assemble the Certificates of Certification Authorities (CA) whose clients you deal with. These are used for Client Authentication. Such a file is simply the concatenation of the various PEM-encoded Certificate files, in order of preference. This can be used alternatively and/or additionally to SSLCACertificatePath.</help>
@@ -82,5 +81,4 @@ This directive tells the SSL Module to pick the default locking implementation a
 		<label>Require SSL</label>
 		<help>This directive forbids access unless HTTP over SSL (i.e. HTTPS) is enabled for the current connection. This is very handy inside the SSL-enabled virtual host or directories for defending against configuration errors that expose stuff that should be protected. When this directive is present all requests are denied which are not using SSL.</help>
 	</entry>
-</container>
 </freeconf_help>

@@ -2,38 +2,38 @@
 <freeconf_gui_template>
   <tab name="server-tab">
     <section name="server-options">
-      <import_entry>/apache-config/ServerRoot</import_entry>
-      <import_entry>/apache-config/LockFile</import_entry>
-      <import_entry>/apache-config/PidFile</import_entry>
-      <import_entry>/apache-config/TimeOut</import_entry>
-      <import_entry>/apache-config/KeepAlive</import_entry>
-      <import_entry>/apache-config/MaxKeepAliveRequests</import_entry>
-      <import_entry>/apache-config/KeepAliveTimeout</import_entry>
-      <import_entry>/apache-config/AccessFileName</import_entry>
-      <import_entry>/apache-config/User</import_entry>
-      <import_entry>/apache-config/Group</import_entry>
-      <import_entry>/apache-config/DefaultType</import_entry>
+      <import_entry>/ServerRoot</import_entry>
+      <import_entry>/LockFile</import_entry>
+      <import_entry>/PidFile</import_entry>
+      <import_entry>/TimeOut</import_entry>
+      <import_entry>/KeepAlive</import_entry>
+      <import_entry>/MaxKeepAliveRequests</import_entry>
+      <import_entry>/KeepAliveTimeout</import_entry>
+      <import_entry>/AccessFileName</import_entry>
+      <import_entry>/User</import_entry>
+      <import_entry>/Group</import_entry>
+      <import_entry>/DefaultType</import_entry>
     </section>
   </tab>
   <tab name="vhosts">
     <section name="vhosts-options">
-      <import_entry primary="Port">/apache-config/Listen</import_entry>
-      <import_entry primary="Address">/apache-config/NameVirtualHost</import_entry>
-      <import_entry primary="Address">/apache-config/VirtualHost</import_entry>
+      <import_entry primary="Port">/Listen</import_entry>
+      <import_entry primary="Address">/NameVirtualHost</import_entry>
+      <import_entry primary="Address">/VirtualHost</import_entry>
     </section>
   </tab>
   <tab name="security">
     <section name="security-options">
-      <import_entry>/apache-config/ServerTokens</import_entry>
-      <import_entry>/apache-config/ServerSignature</import_entry>
-      <import_entry>/apache-config/TraceEnable</import_entry>
+      <import_entry>/ServerTokens</import_entry>
+      <import_entry>/ServerSignature</import_entry>
+      <import_entry>/TraceEnable</import_entry>
     </section>
   </tab>
   <tab name="logging">
     <section name="logging-options">
-      <import_entry>/apache-config/HostnameLookups</import_entry>
-      <import_entry>/apache-config/LogLevel</import_entry>
-      <import_entry>/apache-config/ErrorLog</import_entry>
+      <import_entry>/HostnameLookups</import_entry>
+      <import_entry>/LogLevel</import_entry>
+      <import_entry>/ErrorLog</import_entry>
     </section>
   </tab>
 </freeconf_gui_template>

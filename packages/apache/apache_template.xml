@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_template>
-    <container name="apache-config">
     <string name="ServerRoot">
         <group>default</group>
         <mandatory>yes</mandatory>
@@ -263,7 +262,5 @@
                 <data>apache_log_levels</data>
             </properties>
         </string>
-    </container>
-
     </container>
 </freeconf_template>

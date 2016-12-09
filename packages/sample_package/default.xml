@@ -1,10 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_default>
-  <container name="container0">
-    <container name="container2">
-      <entry name="string2">value1</entry>
-      <entry name="fuzzy2">half</entry>
-    </container>
     <container name="container1">
         <entry name="string1">a</entry>
       <entry name="bool1">yes</entry>
@@ -12,5 +7,8 @@
       <entry name="string12">sdsa@c.g</entry>
       <entry name="string11">s</entry>
     </container>
-  </container>
+    <container name="container2">
+      <entry name="string2">value1</entry>
+      <entry name="fuzzy2">half</entry>
+    </container>
 </freeconf_default>

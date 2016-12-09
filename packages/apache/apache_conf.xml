@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
-  <container name="apache-config">
     <entry name="LockFile">/var/lock/apache2/accept.lock</entry>
     <entry name="HostnameLookups">no</entry>
     <container name="VirtualHost">
@@ -58,5 +57,4 @@
       <entry name="Port">80.000000</entry>
     </container>
     <entry name="DefaultType">text/plain</entry>
-  </container>
 </freeconf_config>

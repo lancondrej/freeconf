@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_template>
-    <container name="container0">
-        <container name="container1">
+    <container name="container1">
             <group>default</group>
             <number name="number1">
                 <properties>
@@ -36,7 +35,7 @@
                 </properties>
             </string>
         </container>
-        <container name="container2">
+    <container name="container2">
             <group>default</group>
             <number name="number2">
                 <properties>
@@ -70,5 +69,4 @@
                 </string>
             </container>
         </container>
-    </container>
 </freeconf_template>

@@ -64,6 +64,8 @@ class Entry(BaseEntry):
             path = path + "/" + str(self.index)
         if self.parent:
             path = self.parent.full_name + path
+        else:
+            path = ""
         return path
 
     @property

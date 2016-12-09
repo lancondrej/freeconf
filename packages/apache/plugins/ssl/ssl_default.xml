@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <freeconf_default>
-    <container name="apache-config">
         <entry name="SSLCACertificateFile">a</entry>
         <entry name="SSLCACertificatePath">b</entry>
         <entry name="SSLCARevocationFile">c</entry>
@@ -11,7 +10,6 @@
         <entry name="SSLInsecureRenegotiation">yes</entry>
         <entry name="SSLMutex">i</entry>
         <entry name="SSLRequireSSL">yes</entry>
-    </container>
 </freeconf_default>
 
 

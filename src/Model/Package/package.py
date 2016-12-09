@@ -3,6 +3,8 @@ from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.GUI.gwindow import GWindow
 from blinker import signal
 
+from src.Model.Package.entries.container import Container
+
 __author__ = 'Ondřej Lanč'
 
 
@@ -12,7 +14,7 @@ class Package(object):
     """
 
     def __init__(self, name):
-        self.tree = None
+        self.tree = Container('root', None)
         self.plugins = []
         self._language = None
         self._default_language = 'en'

@@ -30,40 +30,8 @@ class TemplateFileReader(FileReader):
         logger.info("Loading template file {}".format(template_file))
         super().__init__(template_file)
 
-    def _merge_container(self, first, second):
-        logger.info("merge container {}".format(first.name))
-        for entry in second.entries.values():
-            try:
-                first.add_entry(entry)
-            except AlreadyExistsError:
-                if isinstance(entry, Container):
-                    self._merge_container(first.get_entry(entry.name), entry)
-                else:
-                    logger.warning("entry {} already exists in container {}".format(first.name, entry.name))
-
     def parse(self):
-        root_container=self._root.find('container')
-        name = root_container.get('name')
-        if name:
-            if isinstance(self._package, Plugin):
-                container = self._package.package.tree
-                if container.name != name:
-                    raise MissingMandatoryElementError("Plugin root container is different from Package root Container")
-            else:
-                container = Container(name, self._package)
-                container.group = self._config.group()
-            for entry in self._parse_entry(root_container):
-                try:
-                    container.add_entry(entry)
-                except AlreadyExistsError:
-                    if isinstance(entry, Container):
-                        self._merge_container(container.get_entry(entry.name), entry)
-                    else:
-                        logger.warning("entry {} already exists in container {}".format(container.name, entry.name))
-
-            self._package.tree = container
-        else:
-            raise MissingMandatoryElementError('root container name missing')
+        self._inside_container(self._package.tree, self._root)
 
     def _parse_entry(self, container_element):
         for element_type in self.types:
@@ -109,7 +77,7 @@ class TemplateFileReader(FileReader):
             try:
                 container.add_entry(entry)
             except AlreadyExistsError:
-                logger.warning("entry {} already exists in container {}".format(container.name, entry.name))
+                pass
 
     def _inside_key_word(self, entry, element):
         # mandatory
