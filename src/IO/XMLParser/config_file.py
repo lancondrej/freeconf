@@ -57,32 +57,36 @@ class ConfigFileWriter(object):
             'MultipleKeyWord': self.render_multiple,
         }
         self._root = package.tree
+        self.output_package = None
+        self.output_group = None
 
     def write_config(self, file=None):
-        config_tree = self.get_config()
+        config_tree = self.get_config(package=self._package)
         config_tree.write(file or self._config.config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
 
-    def get_config(self, group=None):
+    def get_config(self, group=None, package=None):
+        self.output_group = group
+        self.output_package = package
         root = Element('freeconf_config')
         for entry in self._root.entries.values():
-            sub_elements = self.render_entry(entry, group)
+            sub_elements = self.render_entry(entry)
             if sub_elements is not None:
                 for sub_element in sub_elements:
                     root.append(sub_element)
         return ElementTree(root)
 
-    def render_entry(self, entry, group):
+    def render_entry(self, entry):
         try:
-            return self.render[type(entry).__name__](entry, group)
+            return self.render[type(entry).__name__](entry)
         except Exception as e:
             pass
 
 
-    def render_container(self, container, group):
+    def render_container(self, container):
         element = Element('container')
         element.set('name', container.name)
         for entry in container.entries.values():
-            sub_elements = self.render_entry(entry, group)
+            sub_elements = self.render_entry(entry)
             if sub_elements is not None:
                 for sub_element in sub_elements:
                     element.append(sub_element)
@@ -91,12 +95,13 @@ class ConfigFileWriter(object):
         else:
             return None
 
-    def render_key_word(self, entry, group):
-        if group:
-            if entry.group != group:
+    def render_key_word(self, entry):
+        if self.output_group:
+            if entry.group != self.output_group:
                 return
-        if entry.package != self._package:
-            return
+        if self.output_package:
+            if entry.package != self.output_package:
+                return
         element = Element('entry')
         element.set('name', entry.name)
         value = entry.output_value
@@ -115,7 +120,7 @@ class ConfigFileWriter(object):
 
         yield element
 
-    def render_multiple(self, mult, group):
+    def render_multiple(self, mult):
         for entry in mult.entries:
-            for sub_element in self.render_entry(entry, group):
+            for sub_element in self.render_entry(entry):
                 yield sub_element

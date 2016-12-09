@@ -4,7 +4,7 @@ import re
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception import *
 from src.IO.log import logger
-from src.Model.Config.group import Group
+from src.Model.Config.group import Group, default
 from src.Model.Config.package import Plugin
 
 __author__ = 'Ondřej Lanč'
@@ -75,7 +75,11 @@ class HeaderFileReader(FileReader):
         for group_element in self._root.iterfind('entry_group'):
             logger.debug("Header file: parsing <entry_group> element")
             name = group_element.get('name')
-            group = Group(name)
+            if name is not None and name != 'default':
+                group = Group(name)
+            else:
+                group = default
+                # TODO: omezit na jedno použití abych nepřepisoval
             group.transform_file = group_element.findtext('transform')
             group._native_output = self._expand_file_name(group_element.findtext('native_output'))
             group.output_defaults = True if group_element.findtext('output_defaults') == 'yes' else False
@@ -91,13 +95,6 @@ class HeaderFileReader(FileReader):
                     group.include_transform(self._config, group_element.findtext('add_transform'))
                 else:
                     logger.error("group name {} is not in Package".format(name))
-
-        else:
-            if group_not_set:
-                logger.warning("Header file: element <entry_group> missing")
-                logger.info("Creating default group")
-                group = Group("default")
-                self._config.add_group(group)
 
     def parse_package_info(self):
         self._config.author = self._root.findtext('author')

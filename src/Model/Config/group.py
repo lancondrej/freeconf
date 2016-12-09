@@ -59,3 +59,5 @@ class Group:
         :param file_location: location of trasform file in plugin
         """
         self.included_transforms.append(os.path.abspath(os.path.join(plugin.location, file_location)))
+
+default = Group('default')
