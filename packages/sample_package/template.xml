@@ -51,6 +51,7 @@
             <container name="container3">
                 <group>default</group>
                 <multiple>
+                    <primary>string3</primary>
                     <min>0</min>
                     <max>2</max>
                 </multiple>
