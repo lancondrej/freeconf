@@ -5,7 +5,6 @@
 <div class="btn-group">
     <button type="button"
             class="collapse_button btn {{'btn-danger' if entry[3] else 'btn-primary'}}"
-            data-target="#Collapse_{{ name }}_{{ entry[0] }}"
             full_name="{{ entry[2] }}">
         <span class="glyphicon glyphicon-menu-down"></span>
         {{ entry[1] }}
@@ -13,7 +12,6 @@
     </button>
     <button type="button"
             class="modal_button btn {{'btn-danger' if entry[3] else 'btn-primary'}}"
-            data-target="#Modal_{{ name }}_{{ entry[0] }}"
             full_name="{{ entry[2] }}">
         <span class="glyphicon glyphicon-new-window"></span>
     </button>

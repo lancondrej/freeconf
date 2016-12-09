@@ -1,31 +1,33 @@
 function open_modal(input) {
-    if ($(input.attr("data-target")).length) {
-        $(input.attr("data-target")).modal('show');
-        // load_form()
+    var modal="[id='Modal_" + input.attr('full_name') + "']";
+    var collapse="[id='Collapse_" + input.attr('full_name') + "']";
+    $(modal).remove();
+    if ($(collapse).length) {
+        open_collapse(input.prev())
     }
-    else {
-
-        $.get($SCRIPT_ROOT + '/_multiple_modal', {
-            full_name: input.attr("full_name")
-        }, function (data) {
-            $('#Modals').append(data);
-            $(input.attr("data-target")).modal('show');
-            load();
-        });
-    }
+    $.get($SCRIPT_ROOT + '/_multiple_modal', {
+        full_name: input.attr("full_name")
+    }, function (data) {
+        $('#Modals').append(data);
+        $(modal).modal('show');
+        load();
+    });
 
 }
 
 function open_collapse(input) {
-    if ($(input.attr("data-target")).length) {
-        $(input.attr("data-target")).collapse('toggle');
+    var collapse="[id='Collapse_" + input.attr('full_name') + "']";
+    if ($(collapse).length) {
+        $(collapse).collapse('hide').on('hidden.bs.collapse', function () {
+            $(collapse).remove();
+        });
     }
     else {
         $.get($SCRIPT_ROOT + '/_multiple_collapse', {
             full_name: input.attr("full_name")
         }, function (data) {
             input.parent().after(data);
-            $(input.attr("data-target")).collapse('show');
+            $(collapse).collapse('show');
             load();
         });
     }
@@ -85,14 +87,9 @@ function load_modal(input) {
         if ($('.modal-backdrop').length) {
             $('body').addClass('modal-open');
         }
-        else {
-            //location.reload()
-        }
-    });
-    $(document).off().on('hidden.bs.collapse', '.collapse', function () {
-        reload($(this));
-
-    });
+     });
+    // $(document).off().on('hidden.bs.collapse', '.collapse', function () {
+    // });
 
     // $(document).on('hidden.bs.collapse', '.collapse', function () {
     //         // location.reload()
