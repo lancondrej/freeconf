@@ -95,10 +95,10 @@ function multiple_down(input) {
 
 function load_form() {
     $('.modal_button').off().on('click', function () {
-        open_modal($(this))
+        toogle_modal($(this))
     });
     $('.collapse_button').off().on('click', function () {
-        open_collapse($(this))
+        toogle_collapse($(this))
     });
 
     $('.multiple_new').off().on('click', function () {
