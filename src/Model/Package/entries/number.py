@@ -15,10 +15,10 @@ class Number(KeyWord):
         # Maximum possible value
         self._max_set = False
         # self.__max = sys.float_info.max
-        self._max = 999999999.0
+        self._max = float('Inf')
         # Minimum possible value
         self._min_set = False
-        self._min = -999999999.0
+        self._min = -float('Inf')
         # Increment / decrement step
         self._step_set = False
         self._step = 1
