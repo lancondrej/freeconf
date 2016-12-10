@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<freeconf-lists>
-	<string-list name="tristate">
-		<value>yes</value>
-		<value>module</value>
-		<value>no</value>
-	</string-list>
-</freeconf-lists>
