@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<freeconf-help>
-    <container name="freeconf-configuration">
-        <label>Freeconf Configuration</label>
-        <help>d</help>
-        <container name="general">
-            <label>General</label>
+<freeconf_help>
+    <container name="general">
+                <label>General</label>
             <help>Generals Setting</help>
-            <entry name="lang">
+        <entry name="lang">
                 <label>Language</label>
                 <help>Set preferred language</help>
-            </entry>
-        </container>
+        </entry>
+    </container>
 
-        <container name="package">
-            <label>Packages</label>
+    <container name="package">
+                <label>Packages</label>
             <help>Keys describing packages.</help>
-            <entry name="name">
-                <label>Name</label>
-                <help>Name of package.</help>
-            </entry>
-            <entry name="location">
+        <string name="location">
                 <label>Location</label>
                 <help>Locations of package folder.</help>
-            </entry>
-        </container>
+        </string>
+
     </container>
-</freeconf-help>
+</freeconf_help>
+
+

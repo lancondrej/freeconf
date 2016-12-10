@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<freeconf-template>
-    <container-name>freeconf-configuration</container-name>
-
-    <container>
-        <container-name>general</container-name>
-        <group>default</group>
-        <string>
-            <entry-name>lang</entry-name>
+<freeconf_template>
+    <container name="general">
+        <string name="lang">
             <multiple>
                 <min>1</min>
             </multiple>
@@ -16,30 +11,13 @@
         </string>
     </container>
 
-    <container>
-        <container-name>package</container-name>
-        <group>default</group>
+    <container name="package">
+        <string name="location">
+            <mandatory>yes</mandatory>
         <multiple>
-            <primary>name</primary>
-            <min>0</min>
+            <min>1</min>
         </multiple>
-        <string>
-            <entry-name>name</entry-name>
-            <mandatory>yes</mandatory>
         </string>
-        <string>
-            <entry-name>location</entry-name>
-            <mandatory>yes</mandatory>
-        </string>
-        <string>
-            <entry-name>output</entry-name>
-            <mandatory>yes</mandatory>
-        </string>
-        <string>
-            <entry-name>native</entry-name>
-        </string>
-        <string>
-            <entry-name>xslt</entry-name>
-        </string>
+
     </container>
-</freeconf-template>
+</freeconf_template>

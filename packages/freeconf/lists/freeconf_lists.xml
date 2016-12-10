@@ -1,6 +1,0 @@
-<freeconf-lists>
-    <string-list name="lang_list">
-        <value>en</value>
-        <value>cs</value>
-    </string-list>
-</freeconf-lists>

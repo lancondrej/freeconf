@@ -1,0 +1,6 @@
+<freeconf_lists>
+    <string_list name="lang_list">
+        <value>en</value>
+        <value>cs</value>
+    </string_list>
+</freeconf_lists>

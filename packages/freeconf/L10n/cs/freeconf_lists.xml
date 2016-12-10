@@ -1,6 +1,6 @@
-<freeconf-lists-help>
+<freeconf_lists_help>
 
-    <string-list name="lang_list">
+    <string_list name="lang_list">
         <entry>
             <value>en</value>
             <label>Angličtina</label>
@@ -10,6 +10,6 @@
             <value>cs</value>
             <label>Čeština</label>
         </entry>
-    </string-list>
+    </string_list>
 
-</freeconf-lists-help>
+</freeconf_lists_help>

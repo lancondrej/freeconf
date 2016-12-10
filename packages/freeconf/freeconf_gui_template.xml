@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<freeconf-gui-template>
-    <window>
-        <min-width>640</min-width>
-        <min-height>480</min-height>
-        <max-width>800</max-width>
-        <max-height>600</max-height>
-    </window>
-    <tab>
-        <tab-name>general</tab-name>
-        <tab-icon>categories/preferences-other</tab-icon>
-        <tab-section>
-            <tab-section-name>lang</tab-section-name>
-            <import-entry>/freeconf-configuration/general/lang</import-entry>
-        </tab-section>
+<freeconf_gui_template>
+    <tab name="general">
+        <section name="lang">
+            <import_entry>/general/lang</import_entry>
+        </section>
     </tab>
-    <tab>
-        <tab-name>packages</tab-name>
-        <tab-icon>categories/preferences-other</tab-icon>
-        <tab-section>
-            <tab-section-name>packages</tab-section-name>
-            <import-entry>/freeconf-configuration/package</import-entry>
-        </tab-section>
+    <tab name="packages">
+        <section name="packages">
+            <import_entry>package/location</import_entry>
+        </section>
     </tab>
 
-</freeconf-gui-template>
+</freeconf_gui_template>
