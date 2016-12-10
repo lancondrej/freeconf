@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_lists_help>
-    <string_list name="string-list">
+    <list name="string-list">
         <entry value="value1">
             <label>First value</label>
             <help>First value in string list</help>
@@ -17,8 +17,8 @@
             <label>Fourth value</label>
             <help>Fourth value in string list</help>
         </entry>
-    </string_list>
-    <fuzzy_list name="fuzzy-list">
+    </list>
+    <list name="fuzzy-list">
         <entry value="no">
             <label>No</label>
         </entry>
@@ -28,5 +28,5 @@
         <entry value="yes">
             <label>Yes</label>
         </entry>
-    </fuzzy_list>
+    </list>
 </freeconf_lists_help>

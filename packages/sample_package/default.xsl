@@ -40,7 +40,7 @@
     <xsl:call-template name="indent-step">
       <xsl:with-param name="repeat" select="$repeat - 1"/>
     </xsl:call-template>
-    <xsl:value-of select="$fill-char" />
+    <xsl:value-of select="$fill-char"/>
   </xsl:if>
 </xsl:template>
 
@@ -52,25 +52,25 @@
 <!-- calling template on all remaining elements -->
     <xsl:template match="entry">
       <!-- print keyword -->
-      <xsl:value-of select="@name" />
-      <xsl:value-of select="$key-value-separator" />
+      <xsl:value-of select="@name"/>
+      <xsl:value-of select="$key-value-separator"/>
       <!-- print value -->
       <xsl:choose>
         <!-- Translate boolean values -->
         <xsl:when test="string(.) = 'yes'">
-          <xsl:value-of select="$boolean-yes" />
+          <xsl:value-of select="$boolean-yes"/>
         </xsl:when>
         <xsl:when test="string(.) = 'no'">
-          <xsl:value-of select="$boolean-no" />
+          <xsl:value-of select="$boolean-no"/>
         </xsl:when>
         <!-- Other entries -->
         <xsl:otherwise>
-          <xsl:value-of select="." />
+          <xsl:value-of select="."/>
         </xsl:otherwise>
       </xsl:choose>
       <!-- output line breaks -->
       <xsl:call-template name="new-lines">
-        <xsl:with-param name="repeat" select="$num-new-lines" />
+        <xsl:with-param name="repeat" select="$num-new-lines"/>
       </xsl:call-template>
     </xsl:template>
 
@@ -80,15 +80,15 @@
 
     <xsl:when test="@name = 'container3'">
       <!-- #### Process section ServerAlias #### -->
-      <xsl:value-of select="@name" />
+      <xsl:value-of select="@name"/>
       <xsl:value-of select="$key-value-separator" />
 
-      <xsl:variable name="name" select="entry[@name = 'string3']" />
+      <xsl:variable name="name" select="entry[@name = 'string3']"/>
               <xsl:text>&lt;</xsl:text>
         <xsl:value-of select="$name"/>
       <xsl:text>&gt;</xsl:text>
                       <xsl:text>[</xsl:text>
-      <xsl:value-of select="entry[@name = 'number3']" />
+      <xsl:value-of select="entry[@name = 'number3']"/>
       <xsl:text>]</xsl:text>
       <xsl:call-template name="new-lines"/>
     </xsl:when>
@@ -96,18 +96,18 @@
 
     <xsl:otherwise>
 
-      <xsl:value-of select="$comment-sequence" />
+      <xsl:value-of select="$comment-sequence"/>
       <xsl:text> Container </xsl:text>
-      <xsl:value-of select="@name" />
+      <xsl:value-of select="@name"/>
       <xsl:call-template name="new-lines"/>
 
-      <xsl:apply-templates />
+      <xsl:apply-templates/>
 
-      <xsl:value-of select="$comment-sequence" />
+      <xsl:value-of select="$comment-sequence"/>
       <xsl:text> End of </xsl:text>
-      <xsl:value-of select="@name" />
+      <xsl:value-of select="@name"/>
       <xsl:call-template name="new-lines">
-        <xsl:with-param name="repeat" select="2" />
+        <xsl:with-param name="repeat" select="2"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -116,15 +116,15 @@
 
     <xsl:template match="container[@name='container-string']">
         <xsl:text>string1</xsl:text>
-      <xsl:value-of select="$key-value-separator" />
+      <xsl:value-of select="$key-value-separator"/>
         <xsl:for-each select="entry[@name='string1']">
-                    <xsl:value-of select="." />
+                    <xsl:value-of select="."/>
                     <xsl:if test="position() != last()">
                             <xsl:text>, </xsl:text>
                     </xsl:if>
         </xsl:for-each>
         <xsl:call-template name="new-lines">
-             <xsl:with-param name="repeat" select="$num-new-lines" />
+             <xsl:with-param name="repeat" select="$num-new-lines"/>
       </xsl:call-template>
     </xsl:template>
 

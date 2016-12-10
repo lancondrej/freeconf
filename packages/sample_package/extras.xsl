@@ -10,24 +10,22 @@
 <!-- calling template on all remaining elements -->
     <xsl:template match="/">
         <extras>
-            <xsl:apply-templates />
+            <xsl:apply-templates/>
         </extras>
     </xsl:template>
 
     <xsl:template match="entry">
       <!-- print keyword -->
         <xsl:element name="{@name}">
-            <xsl:value-of select="." />
+            <xsl:value-of select="."/>
         </xsl:element>
     </xsl:template>
 
     <!-- ############################################################ -->
     <xsl:template match="container">
         <xsl:element name="{@name}">
-            <xsl:apply-templates />
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-
-
 
 </xsl:stylesheet>

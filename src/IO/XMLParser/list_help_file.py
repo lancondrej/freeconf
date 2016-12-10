@@ -14,18 +14,8 @@ class ListHelpFileReader(FileReader):
         super().__init__(list_help_file)
 
     def parse(self):
-        self._parse_string_lists()
-        self._parse_fuzzy_list()
-
-    def _parse_string_lists(self):
-        return self._parse_list('string_list')
-
-    def _parse_fuzzy_list(self):
-        return self._parse_list('fuzzy_list')
-
-    def _parse_list(self, element):
-        for list_element in self._root.iterfind(element):
-            logger.info("List file: parsing <{}> element".format(element))
+        for list_element in self._root.iterfind('list'):
+            logger.info("List file: parsing <list> element")
             name = list_element.get('name')
             if name:
                 try:
@@ -34,7 +24,7 @@ class ListHelpFileReader(FileReader):
                 except KeyError:
                     logger.error("No list {} in package".format(name))
             else:
-                logger.error("List file: in element <{}> missing attribute name".format(element))
+                logger.error("List file: in element <list> missing attribute name")
 
     def _parse_entry(self, list, list_element):
         for entry in list_element.iterfind('entry'):
