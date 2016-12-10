@@ -19,7 +19,14 @@ function tabs_on() {
 
 $(document).ready(function() {
 
-    
+    $(".dropdown-toggle").off().on('click', function () {
+        //úlpně hloupé řešení, ale funguje problém je s hádáním jquery-ui a bootstrap
+       $(this).dropdown("toggle");
+            $(".dropdown-toggle").off().on('click', function () {
+                $(this).dropdown("toggle");
+            });
+    });
+
     socket.on('log', function(data) {
         $('#log').prepend('<li>'+data.log_time +': ' + data.log_record + '</li>');
     });
