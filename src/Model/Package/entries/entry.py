@@ -116,3 +116,5 @@ class Entry(BaseEntry):
     def multiple(self, multiple):
         self._multiple=multiple
 
+    def set_default(self):
+        raise NotImplementedError

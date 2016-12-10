@@ -199,7 +199,8 @@ class MultipleEntry(Entry, MultipleInconsistency):
 
     def append_default(self, entry=None):
         entry = entry or self.create_new(self.default_size())
-        self._default.append(entry)
+        if entry:
+            self._default.append(entry)
         return entry
 
     @property
@@ -270,3 +271,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
         self.template.init_inconsistency()
         self.template.inc_parents.add(self)
 
+    def set_default(self):
+        self._entries = deepcopy(self._default)
+        for entry in self._entries:
+            entry.set_default()

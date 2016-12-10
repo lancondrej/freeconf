@@ -92,3 +92,7 @@ class Container(Entry, ContainerInconsistency):
     def init_inconsistency(self):
         for entry in self._entries.values():
             entry.init_inconsistency()
+
+    def set_default(self):
+        for entry in self.entries.values():
+            entry.set_default()

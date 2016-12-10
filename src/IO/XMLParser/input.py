@@ -55,7 +55,12 @@ class XMLParser(Input):
             self._load_config()
         except FileExistsError:
             logger.info("config file missing")
+            self._set_default_value()
+
         return self._package
+
+    def _set_default_value(self):
+        self._package.tree.set_default()
 
     def _load_header(self):
         """Load header file. Support function for load_package."""

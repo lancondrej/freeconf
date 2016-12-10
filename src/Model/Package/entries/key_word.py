@@ -34,8 +34,8 @@ class KeyWord(Entry, Inconsistency):
         if value is not None:
             value = self.convert_value(value)
         self._default_value = value
-        if self._value is None:
-            self._value = value
+        # if self._value is None:
+        #     self._value = value
         log.debug("setting default def %s on %s" % (str(self._default_value), str(self.name)))
 
     def is_container(self):
@@ -123,3 +123,6 @@ class KeyWord(Entry, Inconsistency):
     def init_inconsistency(self):
         self._inconsistency_init=True
         self.check_inconsistency()
+
+    def set_default(self):
+        self.value = self.default_value
