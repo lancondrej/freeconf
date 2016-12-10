@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
-  <entry name="pnumber2">0.100220</entry>
   <container name="container1">
-    <entry name="pbool1">yes</entry>
+    <entry name="pbool1">no</entry>
   </container>
+  <entry name="pnumber2">0.100220</entry>
 </freeconf_config>

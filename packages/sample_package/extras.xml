@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <extras>
+  <container1>
+    <string11>value2</string11>
+  </container1>
   <container2>
     <fuzzy2>yes</fuzzy2>
   </container2>
