@@ -2,8 +2,8 @@
 <freeconf_template>
     <string name="ServerRoot">
         <group>default</group>
-        <mandatory>yes</mandatory>
         <properties>
+            <mandatory>yes</mandatory>
             <regexp>[^/]$</regexp>
         </properties>
     </string>
@@ -133,8 +133,9 @@
         <string name="Address">
             
             <group>default</group>
-            <mandatory>yes</mandatory>
-        </string>
+            <properties>
+                <mandatory>yes</mandatory>
+            </properties>        </string>
         <string name="Port">
             
             <group>default</group>
@@ -142,8 +143,9 @@
         <string name="ServerAdmin">
             
             <group>default</group>
-            <mandatory>yes</mandatory>
-        </string>
+            <properties>
+                <mandatory>yes</mandatory>
+            </properties>        </string>
         <string name="ServerName">
             
             <group>default</group>
@@ -154,8 +156,9 @@
             <string name="Hostname">
                 
                 <group>default</group>
+            <properties>
                 <mandatory>yes</mandatory>
-            </string>
+            </properties>            </string>
         </container>
         <string name="DocumentRoot">
             
@@ -167,21 +170,24 @@
             <string name="URLPath">
                 
                 <group>default</group>
+            <properties>
                 <mandatory>yes</mandatory>
-            </string>
+            </properties>            </string>
             <string name="TargetPath">
                 
                 <group>default</group>
+            <properties>
                 <mandatory>yes</mandatory>
-            </string>
+            </properties>            </string>
         </container>
         <container name="Directory">
             
             <multiple>yes</multiple>
             <string name="Path">
                 <group>default</group>
+            <properties>
                 <mandatory>yes</mandatory>
-            </string>
+            </properties>            </string>
             <container name="Options">
                 
                 <bool name="FollowSymlinks">

@@ -79,16 +79,16 @@ class TemplateFileReader(FileReader):
             except AlreadyExistsError:
                 pass
 
-    def _inside_key_word(self, entry, element):
+    def _inside_key_word(self, entry, properties):
         # mandatory
-        value = element.findtext('mandatory')
+        value = properties.findtext('mandatory')
         if value is not None:
             entry.static_mandatory = True if value == 'yes' else False
 
     def _inside_number(self, entry, element):
-        self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
+            self._inside_key_word(entry, properties)
             value=properties.findtext('max')
             if value is not None:
                 entry.max = float(value)
@@ -109,9 +109,9 @@ class TemplateFileReader(FileReader):
                 entry.leading_zeros = int(value)
 
     def _inside_string(self, entry, element):
-        self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
+            self._inside_key_word(entry, properties)
             value=properties.findtext('regexp')
             if value is not None:
                 entry.reg_exp=value
@@ -121,10 +121,15 @@ class TemplateFileReader(FileReader):
                 logger.error("list not set")
 
     def _inside_fuzzy(self, entry, element):
-        self._inside_key_word(entry, element)
         properties = element.find('properties')
         if properties is not None:
+            self._inside_key_word(entry, element)
             self._list(entry, properties)
+
+    def _inside_bool(self, entry, element):
+        properties = element.find('properties')
+        if properties is not None:
+            self._inside_key_word(entry, element)
 
     def _list(self, entry, properties):
         data = properties.find('data')
@@ -140,7 +145,7 @@ class TemplateFileReader(FileReader):
 
     types = [
         EntryType('container', Container, MultipleContainer, _inside_container),
-        EntryType('bool', Bool, MultipleKeyWord, _inside_key_word),
+        EntryType('bool', Bool, MultipleKeyWord, _inside_bool),
         EntryType('string', String, MultipleKeyWord, _inside_string),
         EntryType('fuzzy', Fuzzy, MultipleKeyWord, _inside_fuzzy),
         EntryType('number', Number, MultipleKeyWord, _inside_number)

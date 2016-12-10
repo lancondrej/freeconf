@@ -13,15 +13,16 @@
                 </properties>
             </number>
             <string name="string11">
-                <mandatory>yes</mandatory>
                 <group>extras</group>
                 <properties>
+                    <mandatory>yes</mandatory>
                     <data strict="no">string-list</data>
                 </properties>
             </string>
             <bool name="bool1">
-                <mandatory>yes</mandatory>
-            </bool>
+                 <properties>
+                    <mandatory>yes</mandatory>
+                </properties>            </bool>
             <string name="string12">
                 <properties>
                     <regexp>(\w+@\w+(?:\.\w+)+)</regexp>
@@ -37,8 +38,8 @@
                 </properties>
             </number>
             <string name="string2">
-                <mandatory>yes</mandatory>
                 <properties>
+                    <mandatory>yes</mandatory>
                     <data>string-list</data>
                 </properties>
             </string>
@@ -58,17 +59,21 @@
                 <number name="number3">
                 </number>
                 <string name="string3">
-                    <mandatory>yes</mandatory>
+                    <properties>
+                        <mandatory>yes</mandatory>
+                    </properties>
                 </string>
             </container>
         </container>
     <container name="container-string">
             <string name="string1">
-                <mandatory>yes</mandatory>
                 <multiple>
                     <min>1</min>
                     <max>3</max>
                 </multiple>
+                 <properties>
+                    <mandatory>yes</mandatory>
+                </properties>
             </string>
     </container>
 </freeconf_template>

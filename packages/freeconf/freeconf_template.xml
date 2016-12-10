@@ -2,8 +2,8 @@
 <freeconf_template>
     <container name="general">
         <string name="lang">
-            <mandatory>yes</mandatory>
             <properties>
+                <mandatory>yes</mandatory>
                 <data>lang_list</data>
             </properties>
         </string>
@@ -11,10 +11,12 @@
 
     <container name="packages_dir">
         <string name="location">
-            <mandatory>yes</mandatory>
-        <multiple>
-            <min>1</min>
-        </multiple>
+            <properties>
+                <mandatory>yes</mandatory>
+            </properties>
+            <multiple>
+                <min>1</min>
+            </multiple>
         </string>
 
     </container>
