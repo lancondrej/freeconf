@@ -5,7 +5,7 @@ __author__ = 'Ondřej Lanč'
 
 class Input(object):
 
-    def load_package(self):
+    def load_package(self, lang=None):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
@@ -13,6 +13,6 @@ class Input(object):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError
 
-    def load_plugin(self, plugins=None):
+    def load_plugin(self, lang=None, plugins=None):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError

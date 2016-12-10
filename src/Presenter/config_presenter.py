@@ -19,13 +19,16 @@ class ConfigPresenter(object):
     def package(self, name):
         return self._config.package(name)
 
+    def reload_config(self):
+        self._config = Config()
+        self._load_config()
+
     def _load_config(self):
         tree = ET.parse(self._config.config_file)
         root = tree.getroot()
         for package in root.findall('packages_dir'):
             self._load_packages(package.find('location').text)
-        for lang in root.findall('.general/lang'):
-                self._config.lang.append(lang.text)
+        self._config.lang = root.findtext('.general/lang')
 
     def _load_packages(self, dir):
         for package in scandir(dir):
@@ -55,3 +58,7 @@ class ConfigPresenter(object):
         except FileNotFoundError:
             pass
         # TODO: zpráva do logu
+
+    @property
+    def language(self):
+        return self._config.lang

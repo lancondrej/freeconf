@@ -2,9 +2,7 @@
 <freeconf_template>
     <container name="general">
         <string name="lang">
-            <multiple>
-                <min>1</min>
-            </multiple>
+            <mandatory>yes</mandatory>
             <properties>
                 <data>lang_list</data>
             </properties>

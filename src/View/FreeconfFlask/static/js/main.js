@@ -69,6 +69,10 @@ $(document).ready(function() {
     socket.emit('save_native');
     });
 
+    $('#Logo').on('click', function () {
+    socket.emit('reload_config');
+    });
+
     tabs_on();
     load();
     

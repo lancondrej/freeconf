@@ -8,7 +8,7 @@ class Config(object):
     def __init__(self):
         self._config_file = "freeconf.xml"
         self._packages = {}
-        self._lang = []
+        self._lang = None
 
     @property
     def packages(self):
@@ -34,6 +34,12 @@ class Config(object):
     @property
     def lang(self):
         """ lang getter
-        :return list of lang
+        :return lang code
         """
         return self._lang
+
+    @lang.setter
+    def lang(self, lang):
+        """lang setter
+        :param lang - lang code"""
+        self._lang=lang

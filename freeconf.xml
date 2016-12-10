@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <freeconf_configuration>
+  <packages_dir>
+    <location>packages</location>
+  </packages_dir>
   <general>
     <lang>cs</lang>
   </general>
-  <packages_dir>
-    <location>packages</location>
-    <location>šěšěč</location>
-  </packages_dir>
 </freeconf_configuration>

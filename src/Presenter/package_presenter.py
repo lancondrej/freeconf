@@ -5,27 +5,24 @@ from src.IO.XMLParser.output import XMLOutput
 from src.Model.Package.entries.GUI.gsection import GSection
 from src.Model.Package.entries.GUI.gtab import GTab
 from src.Model.Package.entries.entry import Entry
-from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 from src.Model.Package.package import Package
 from src.IO.XMLParser.input import XMLParser
 from src.IO.input import Input
-from src.Presenter.log import logger
 from src.Presenter.presenter import Presenter
 from src.Presenter.undo_presenter import UndoPresenter
-import time
 
 __author__ = 'Ondřej Lanč'
 
 
 class PackagePresenter(Presenter):
-    def __init__(self, config):
+    def __init__(self, config, language):
         self._config=config
         self._undo = UndoPresenter()
         self._package = Package(self._config.name)
         self.view = None
         self.active_tab = None
         self.inc_signal = signal('inconsistency_change')
-        self.load_package()
+        self.load_package(language)
 
     @property
     def package(self):
@@ -44,11 +41,6 @@ class PackagePresenter(Presenter):
             self.log("redo entry {}".format(change.entry.name))
             self.view.reload_entry(change.entry)
 
-    def log(self, message):
-        localtime = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-        logger.debug(message)
-        self.view.log(localtime, message)
-
     @property
     def package_name(self):
         if self.package is not None:
@@ -63,8 +55,8 @@ class PackagePresenter(Presenter):
         input_parser=XMLParser(self._config, self._package)
         assert isinstance(input_parser, Input)
         # input_parser.package = self.package
-        input_parser.load_package()
-        input_parser.load_plugin()
+        input_parser.load_package(language)
+        input_parser.load_plugin(language)
         self.active_tab = self._package.gui_tree.first_tab()
         self.package.tree.init_inconsistency()
         self.inc_signal.connect(self.test_inc, sender=self.package)

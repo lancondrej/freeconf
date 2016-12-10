@@ -14,10 +14,13 @@ class MainView(BaseView):
     def __init__(self, flask, socketio):
         BaseView.__init__(self, flask, socketio)
         self._presenter = MainPresenter()
+        self._presenter.view = self
         self._flask.add_url_rule('/', 'index', self.index)
         self._flask.add_url_rule('/about', 'about', self.about)
         self._flask.add_url_rule('/configure', 'configure', self.configure)
         self._flask.add_url_rule('/setting', 'setting', self.setting)
+
+        self._socketio.on_event('reload_config', self.reload_config, namespace='/freeconf')
 
     def index(self):
         """dafault page at /"""
@@ -49,3 +52,7 @@ class MainView(BaseView):
         """page with list of available packages"""
         packages = self.presenter.config.packages_list
         return self.render_default(main=render_template("configure.html", packages=packages))
+
+    def reload_config(self):
+        """socketIO event for redo"""
+        self.presenter.reload_config()

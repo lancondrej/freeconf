@@ -96,19 +96,19 @@ class XMLParser(Input):
     def _load_GUI_help(self, language=None):
         GUIHelpFileReader(self._config, self._package, language).parse()
 
-    def load_plugin(self, plugins=None):
+    def load_plugin(self, lang=None, plugins=None):
         if plugins:
             for plugin in plugins:
                 if plugin in self._config.plugins:
-                    self._load_plugin(plugin)
+                    self._load_plugin(plugin, lang)
         else:
             for plugin in self._config.plugins:
-                self._load_plugin(plugin)
+                self._load_plugin(plugin, lang)
 
-    def _load_plugin(self, plugin_name):
+    def _load_plugin(self, plugin_name, lang):
         plugin = Plugin(plugin_name, self._package)
         input_parser=XMLParser(self._config.plugin(plugin_name), plugin)
-        input_parser.load_package()
+        input_parser.load_package(lang)
         self._package.plugins.append(plugin)
 
     def load_config(self, source):

@@ -18,4 +18,9 @@ class MainPresenter(Presenter):
     def load_package(cls, name):
         if name not in cls._config.packages_list:
             return None
-        return PackagePresenter(cls._config.package(name))
+        return PackagePresenter(cls._config.package(name), cls._config.language)
+
+    def reload_config(self):
+        self._config.reload_config()
+        self.log("Config reloaded")
+
