@@ -55,6 +55,7 @@ class Container(Entry, ContainerInconsistency):
         if entry.name in self._entries:
             if isinstance(entry, Container):
                 self._entries[entry.name]._merge_container(entry)
+                return True
             else:
                 raise AlreadyExistsError(u"Can't add child! There is already key word with name ({})"
                                      u" in the container ({}).".format(entry.name, self.name))
