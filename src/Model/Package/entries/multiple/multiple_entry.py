@@ -12,15 +12,15 @@ from src.Model.Package.entries.entry import Entry
 class MultipleEntry(Entry, MultipleInconsistency):
     """Container for multiple config entries."""
 
-    def __init__(self, entry=None):
+    def __init__(self, entry):
+        Entry.__init__(self, entry.name, entry.package)
         MultipleInconsistency.__init__(self)
-        if entry is not None:
-            self._template = entry
-            self._template.multiple = True
-            self._template.multiple_entry = self
-            self._template.index=-1
-            self._template.inc_parents.add(self)
-            self.template.init_inconsistency()
+        self._template = entry
+        self._template.multiple = True
+        self._template.multiple_entry = self
+        self._template.index=-1
+        self._template.inc_parents.add(self)
+        self.template.init_inconsistency()
         self._entries = []
         self._default = []
         # Multiple properties
