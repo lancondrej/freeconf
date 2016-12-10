@@ -7,7 +7,7 @@
     </tab>
     <tab name="packages">
         <section name="packages">
-            <import_entry>package/location</import_entry>
+            <import_entry>/packages_dir/location</import_entry>
         </section>
     </tab>
 

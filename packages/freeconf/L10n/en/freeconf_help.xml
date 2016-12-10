@@ -9,7 +9,7 @@
         </entry>
     </container>
 
-    <container name="package">
+    <container name="packages_dir">
                 <label>Packages</label>
             <help>Keys describing packages.</help>
         <string name="location">

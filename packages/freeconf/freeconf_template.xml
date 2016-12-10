@@ -11,7 +11,7 @@
         </string>
     </container>
 
-    <container name="package">
+    <container name="packages_dir">
         <string name="location">
             <mandatory>yes</mandatory>
         <multiple>

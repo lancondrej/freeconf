@@ -13,7 +13,7 @@
 </content>
 <entry_group name="default">
   <transform>freeconf.xsl</transform>
-  <native_output>../freeconf.xml</native_output>
+  <native_output>../../freeconf.xml</native_output>
   <output_defaults>yes</output_defaults>
 </entry_group>
 </freeconf_header>

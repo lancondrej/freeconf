@@ -9,7 +9,7 @@
         </entry>
     </container>
 
-    <container name="package">
+    <container name="packages_dir">
             <label>Balíčky</label>
             <help>Definice jednotlivých balíčků.</help>
         <string name="location">

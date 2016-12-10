@@ -5,7 +5,7 @@
         <entry name="lang">cs</entry>
     </container>
 
-    <container name="package">
+    <container name="packages_dir">
         <entry name="location">packages</entry>
     </container>
 </freeconf_default>
