@@ -130,10 +130,10 @@ class HeaderFileReader(FileReader):
             return self._config.location
 
         variables={
-            "HOME": _home_dir(),
-            "PACKAGE": _package_dir(),
-            "PLUGIN": _plugin_dir(),
-            "PARENT": _parent_dir(),
+            "HOME": _home_dir,
+            "PACKAGE": _package_dir,
+            "PLUGIN": _plugin_dir,
+            "PARENT": _parent_dir,
         }
 
         # TODO: vyřešit strukturu sub pluginů samozřejmě i v config a package
@@ -143,7 +143,7 @@ class HeaderFileReader(FileReader):
             var = match.group('env')
             file = match.group('file')
             if var in variables:
-                val = variables[var]
+                val = variables[var]()
             else:
                 val = None
                 logger.warning("Variable {} not found in allowed list".format(var))
