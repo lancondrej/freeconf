@@ -5,7 +5,6 @@ __author__ = 'Ondřej Lanč'
 from src.Model.Package.entries.key_word import KeyWord
 from src.Model.Package.lists.constants import Types
 
-
 class Number(KeyWord):
     """This is a class for keyword entries of type number."""
 
@@ -13,23 +12,17 @@ class Number(KeyWord):
         KeyWord.__init__(self, name, package)
         # # Initialize Properties
         # Maximum possible value
-        self._max_set = False
-        # self.__max = sys.float_info.max
-        self._max = float('Inf')
+        self._max = float("inf")
         # Minimum possible value
-        self._min_set = False
-        self._min = -float('Inf')
+        self._min = -float("inf")
         # Increment / decrement step
-        self._step_set = False
-        self._step = 1
+        self._step = None
         # number precision
-        self._precision_set = False
-        self._precision = 0
+        self._precision = None
         # number format
         self._print_sign = False
 
-        self._leading_zeros_set = False
-        self._leading_zeros = False
+        self._leading_zeros = None
 
 
 
@@ -40,11 +33,11 @@ class Number(KeyWord):
             format_string = "{:0="
             if self.print_sign:
                 format_string += "+"
-            if self._leading_zeros_set:
+            if self.leading_zeros is not None:
                 format_string += "{:d}".format(self.leading_zeros)
             else:
                 format_string += "0"
-            if self._precision_set:
+            if self.precision is not None:
                 format_string += ".{:d}".format(int(self.precision))
             format_string += "f}"
             str=format_string.format(self.value)
@@ -54,22 +47,6 @@ class Number(KeyWord):
     @property
     def type(self):
         return Types.NUMBER
-
-    @property
-    def max_set(self):
-        return self._max_set
-
-    @property
-    def min_set(self):
-        return self._min_set
-
-    @property
-    def step_set(self):
-        return self._step_set
-
-    @property
-    def precision_set(self):
-        return self._precision_set
 
     @property
     def max(self):
@@ -88,7 +65,7 @@ class Number(KeyWord):
         return self._precision
 
     def convert_precision(self, value):
-        if self._precision_set:
+        if self.precision is not None:
             if self._precision == 0:
                 return int(value)
             else:
@@ -106,24 +83,20 @@ class Number(KeyWord):
     @max.setter
     def max(self, value):
         assert type(value) in [float, int]
-        self._max_set = True
         self._max = self.convert_precision(value)
 
     @min.setter
     def min(self, value):
         assert type(value) in [float, int]
-        self._min_set = True
         self._min = self.convert_precision(value)
 
     @step.setter
     def step(self, step):
         assert type(step) in [float, int]
-        self._step_set = True
         self._step = self.convert_precision(step)
 
     @precision.setter
     def precision(self, precision):
-        self._precision_set = True
         self._precision = int(precision)
         self.max = self._max
         self.min = self._min
@@ -135,7 +108,6 @@ class Number(KeyWord):
 
     @leading_zeros.setter
     def leading_zeros(self, leading_zeros):
-        self._leading_zeros_set = True
         self._leading_zeros = leading_zeros
 
     def convert_value(self, value):
@@ -145,8 +117,8 @@ class Number(KeyWord):
     def check_value(self):
         """Check if entry's value is within permitted range."""
         if self.value is not None:
-            if self.max_set and self.value > self.max:
+            if self.value > self.max:
                 return False
-            if self.min_set and self.value < self.min:
+            if self.value < self.min:
                 return False
         return True
