@@ -13,10 +13,9 @@ class MainView(BaseView):
         :param flask: Flask object
         :param socketio: SocketIO object
     """
-    def __init__(self, flask, socketio):
-        BaseView.__init__(self, flask, socketio)
-        self._presenter = MainPresenter()
-        self._presenter.view = self
+    def __init__(self, freeconf, ):
+        BaseView.__init__(self, freeconf)
+        self._main_presenter.view = self
         self._flask.add_url_rule('/', 'index', self.index)
         self._flask.add_url_rule('/about', 'about', self.about)
         self._flask.add_url_rule('/configure', 'configure', self.configure)
@@ -31,14 +30,14 @@ class MainView(BaseView):
     @property
     def presenter(self):
         """main presenter getter"""
-        return self._presenter
+        return self._main_presenter
 
     @presenter.setter
     def presenter(self, presenter):
         """main presenter setter
             :param presenter: Main presenter
         """
-        self._presenter = presenter
+        self._main_presenter = presenter
 
     @staticmethod
     def setting():

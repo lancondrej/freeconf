@@ -15,17 +15,17 @@ class FreeconfFlask(object):
         :param debug: bool
     """
     def __init__(self, debug=False):
-        self._flask = Flask(__name__)
-        self._socketio = SocketIO(self._flask)
-        self._presenter = MainPresenter()
-        self._flask.debug = debug
-        self._flask.config['SECRET_KEY'] = '56asdasss545'
-        self._flask.config['TEMPLATES_AUTO_RELOAD'] = True
+        self.flask = Flask(__name__)
+        self.socketio = SocketIO(self.flask)
+        self.presenter = MainPresenter()
+        self.flask.debug = debug
+        self.flask.config['SECRET_KEY'] = '56asdasss545'
+        self.flask.config['TEMPLATES_AUTO_RELOAD'] = True
         # main view
-        self._mainView = MainView(self._flask, self._socketio)
+        self._mainView = MainView(self)
         # view for package
-        self._packageView = PackageView(self._flask, self._socketio)
+        self._packageView = PackageView(self)
 
     def run(self):
         """main method for run server from Flask and SocketIO"""
-        self._socketio.run(self._flask)
+        self.socketio.run(self.flask)

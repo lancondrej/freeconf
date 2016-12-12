@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <freeconf_configuration>
   <general>
-    <lang>en</lang>
+    <lang>cs</lang>
   </general>
   <packages_dir>
     <location>packages</location>

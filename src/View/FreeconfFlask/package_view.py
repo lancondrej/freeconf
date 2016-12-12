@@ -17,8 +17,8 @@ class PackageView(BaseView):
         :param socketio: SocketIO object
     """
 
-    def __init__(self, flask, socketio):
-        BaseView.__init__(self, flask, socketio)
+    def __init__(self, freeconf):
+        BaseView.__init__(self, freeconf)
         self._renderer = Renderer()
         self._presenter = None
 
@@ -52,7 +52,7 @@ class PackageView(BaseView):
 
     def package(self, package_name=None):
         """method for load new package"""
-        self.presenter = MainPresenter.load_package(package_name)
+        self.presenter = self.main_presenter.load_package(package_name)
         if self.presenter is not None:
             self.presenter.view = self
             session['package_name'] = package_name
