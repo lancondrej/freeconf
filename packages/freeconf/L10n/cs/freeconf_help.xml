@@ -18,6 +18,10 @@
         </string>
 
     </container>
+        <container name="logging">
+            <label>Úroveň logu</label>
+            <help>Nastav úroveň logu v jednotlivých částích.</help>
+    </container>
 </freeconf_help>
 
 

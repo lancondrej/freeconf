@@ -2,18 +2,23 @@
 <freeconf_header>
     <author>Ondřej Lanč</author>
     <default_language>en</default_language>
-<content>
-  <template>freeconf_template.xml</template>
-  <default_values>freeconf_default.xml</default_values>
-  <help>freeconf_help.xml</help>
-  <output>freeconf.xml</output>
-  <gui_template>freeconf_gui_template.xml</gui_template>
-  <gui_label>freeconf_gui_help.xml</gui_label>
-  <lists>freeconf_lists.xml</lists>
-</content>
-<entry_group name="default">
-  <transform>freeconf.xsl</transform>
-  <native_output>../../freeconf.xml</native_output>
-  <output_defaults>yes</output_defaults>
-</entry_group>
+    <content>
+      <template>freeconf_template.xml</template>
+      <default_values>freeconf_default.xml</default_values>
+      <help>freeconf_help.xml</help>
+      <output>freeconf.xml</output>
+      <gui_template>freeconf_gui_template.xml</gui_template>
+      <gui_label>freeconf_gui_help.xml</gui_label>
+      <lists>freeconf_lists.xml</lists>
+    </content>
+    <entry_group name="default">
+      <transform>freeconf.xsl</transform>
+      <native_output>../../freeconf.xml</native_output>
+      <output_defaults>yes</output_defaults>
+    </entry_group>
+    <entry_group name="logging">
+      <transform>logging.xsl</transform>
+      <native_output>../../logging.conf</native_output>
+      <output_defaults>yes</output_defaults>
+    </entry_group>
 </freeconf_header>

@@ -18,6 +18,39 @@
                 <min>1</min>
             </multiple>
         </string>
+    </container>
 
+    <container name="logging">
+        <group>logging</group>
+        <string name="Freeconf">
+            <properties>
+                <mandatory>yes</mandatory>
+                <data>log_level</data>
+            </properties>
+        </string>
+        <string name="Model">
+            <properties>
+                <mandatory>yes</mandatory>
+                <data>log_level</data>
+            </properties>
+        </string>
+        <string name="Presenter">
+            <properties>
+                <mandatory>yes</mandatory>
+                <data>log_level</data>
+            </properties>
+        </string>
+        <string name="View">
+            <properties>
+                <mandatory>yes</mandatory>
+                <data>log_level</data>
+            </properties>
+        </string>
+        <string name="IO">
+            <properties>
+                <mandatory>yes</mandatory>
+                <data>log_level</data>
+            </properties>
+        </string>
     </container>
 </freeconf_template>

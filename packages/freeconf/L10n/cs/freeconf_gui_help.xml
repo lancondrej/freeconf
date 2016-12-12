@@ -14,5 +14,12 @@
                 <label>Adresář s konfiguračními balíčky</label>
         </section>
     </tab>
+    <tab name="logging">
+    <label>Log</label>
+
+        <section name="logging">
+                <label>Nastavení logu</label>
+        </section>
+    </tab>
 </freeconf_gui_label>
 

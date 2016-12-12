@@ -18,6 +18,11 @@
         </string>
 
     </container>
+
+    <container name="logging">
+            <label>Log level</label>
+            <help>Set log level in parts.</help>
+    </container>
 </freeconf_help>
 
 

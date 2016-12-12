@@ -10,5 +10,10 @@
             <import_entry>/packages_dir/location</import_entry>
         </section>
     </tab>
+    <tab name="logging">
+        <section name="logging">
+            <import_entry>/logging</import_entry>
+        </section>
+    </tab>
 
 </freeconf_gui_template>

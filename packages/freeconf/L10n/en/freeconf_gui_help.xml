@@ -14,6 +14,13 @@
                 <label>Directory with available packages</label>
         </section>
     </tab>
+    <tab name="logging">
+    <label>Logging</label>
+
+        <section name="logging">
+                <label>Logging setting</label>
+        </section>
+    </tab>
 
 </freeconf_gui_label>
 

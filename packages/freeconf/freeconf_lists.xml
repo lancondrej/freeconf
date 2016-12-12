@@ -3,4 +3,12 @@
         <value>en</value>
         <value>cs</value>
     </string_list>
+    <string_list name="log_level">
+        <value>CRITICAL</value>
+        <value>ERROR</value>
+        <value>WARNING</value>
+        <value>INFO</value>
+        <value>DEBUG</value>
+        <value>NOTSET</value>
+    </string_list>
 </freeconf_lists>
