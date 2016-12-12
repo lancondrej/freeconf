@@ -15,23 +15,13 @@ class Fuzzy(KeyWord):
         KeyWord.__init__(self, name, package)
         # # Initialize Properties
         # Maximum possible value
-        self._max_set = False
         self._max = 1.0
         # Minimum possible value
-        self._min_set = False
         self._min = 0.0
 
     @property
     def type(self):
         return Types.FUZZY
-
-    @property
-    def max_set(self):
-        return self._max_set
-
-    @property
-    def min_set(self):
-        return self._min_set
 
     @property
     def max(self):
@@ -44,13 +34,11 @@ class Fuzzy(KeyWord):
     @max.setter
     def max(self, m):
         assert type(m) == float and 0.0 <= m <= 1.0
-        self._max_set = True
         self._max = m
 
     @min.setter
     def min(self, m):
         assert type(m) == float and 0.0 <= m <= 1.0
-        self._min_set = True
         self._min = m
 
     def value_to_grade(self, value):
@@ -91,9 +79,13 @@ class Fuzzy(KeyWord):
         return value
 
     def check_value(self):
-        """Check if entry's value is within permitted range. If not, return nearest value that is in the range."""
+        """Check if entry's value is within permitted range."""
         if self.value is not None:
             if self.list.get_entry(self.value) is not None:
+                if self.value > self.max:
+                    return False
+                if self.value < self.min:
+                    return False
                 return True
         return False
 
