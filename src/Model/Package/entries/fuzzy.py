@@ -81,10 +81,11 @@ class Fuzzy(KeyWord):
     def check_value(self):
         """Check if entry's value is within permitted range."""
         if self.value is not None:
-            if self.list.get_entry(self.value) is not None:
-                if self.value > self.max:
+            entry = self.list.get_entry(self.value)
+            if entry is not None:
+                if entry.grade > self.max:
                     return False
-                if self.value < self.min:
+                if entry.grade  < self.min:
                     return False
                 return True
         return False

@@ -7,7 +7,7 @@ __author__ = 'Ondřej Lanč'
 class Inconsistency(object):
     """This class is used for handling inconsistent states in non-container entries.
     The entry is inconsistent if it is active, mandatory and its value
-     has not been set. Inconsistent entries can not be disabled"""
+    has not been set. Inconsistent entries can not be disabled"""
 
     def __init__(self):
         self._inconsistent = False
@@ -42,7 +42,8 @@ class Inconsistency(object):
 
 
 class ContainerInconsistency(Inconsistency):
-    """This class is used for handling inconsistent states in container entries. The entry is inconsistent if it contains
+    """This class is used for handling inconsistent states in container entries.
+    The entry is inconsistent if it contains
     at least one inconsistent child. Otherwise it is consistent"""
 
     def __init__(self):

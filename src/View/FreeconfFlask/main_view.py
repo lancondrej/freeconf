@@ -10,7 +10,6 @@ __author__ = 'Ondřej Lanč'
 
 class MainView(BaseView):
     """Main view for Freeconf.
-    Attend to main pages of Freeconf.
         :param flask: Flask object
         :param socketio: SocketIO object
     """
@@ -26,7 +25,7 @@ class MainView(BaseView):
         self._socketio.on_event('reload_config', self.reload_config, namespace='/freeconf')
 
     def index(self):
-        """dafault page at /"""
+        """function for default page at url /"""
         return self.render_default()
 
     @property
@@ -37,7 +36,7 @@ class MainView(BaseView):
     @presenter.setter
     def presenter(self, presenter):
         """main presenter setter
-            :param presenter
+            :param presenter: Main presenter
         """
         self._presenter = presenter
 
@@ -48,8 +47,7 @@ class MainView(BaseView):
 
     def about(self):
         """page about"""
-        self._flask.update_template_context({'body': render_template("about.html")})
-        return render_template('index.html')
+        return self.render_default(main=render_template("/doc/index.html"))
 
     def configure(self):
         """page with list of available packages"""
