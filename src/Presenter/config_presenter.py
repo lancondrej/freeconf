@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 
 from src.Model.Config.freeconf_config import Config
 import xml.etree.ElementTree as ET

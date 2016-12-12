@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 __author__ = 'Ondřej Lanč'
 
 from src.Model.Package.entries.key_word import KeyWord

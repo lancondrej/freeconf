@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.exception import MissingMandatoryElementError

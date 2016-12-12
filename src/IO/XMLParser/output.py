@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 
 from src.IO.XMLParser.config_file import ConfigFileWriter
 from src.IO.XMLParser.native_file import NativeFileWriter

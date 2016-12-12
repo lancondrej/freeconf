@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 
 from src.IO.XMLParser.config_file import ConfigFileReader
 from src.IO.XMLParser.default_values_file import DefaultValuesFileReader

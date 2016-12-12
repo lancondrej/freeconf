@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 from src.Model.Package.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'

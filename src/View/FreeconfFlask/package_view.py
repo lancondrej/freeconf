@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 
 from flask import render_template, request, session, redirect, url_for
 from flask_socketio import emit

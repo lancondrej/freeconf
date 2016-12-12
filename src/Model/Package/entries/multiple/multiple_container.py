@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-#
+# -*- coding: utf-8 -*-
 from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
