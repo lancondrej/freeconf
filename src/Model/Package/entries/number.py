@@ -5,6 +5,7 @@ __author__ = 'Ondřej Lanč'
 from src.Model.Package.entries.key_word import KeyWord
 from src.Model.Package.lists.constants import Types
 
+
 class Number(KeyWord):
     """This is a class for keyword entries of type number."""
 
@@ -24,8 +25,6 @@ class Number(KeyWord):
 
         self._leading_zeros = None
 
-
-
     @property
     def output_value(self):
         """convert value to output string format"""
@@ -40,9 +39,8 @@ class Number(KeyWord):
             if self.precision is not None:
                 format_string += ".{:d}".format(int(self.precision))
             format_string += "f}"
-            str=format_string.format(self.value)
+            str = format_string.format(self.value)
             return format_string.format(self.value)
-
 
     @property
     def type(self):

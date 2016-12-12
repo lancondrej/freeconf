@@ -1,6 +1,6 @@
 function toogle_modal(input) {
 
-    if(!close_modal(input)) {
+    if (!close_modal(input)) {
         close_collapse(input.prev());
         var modal = "[id='Modal_" + input.attr('full_name') + "']";
 
@@ -16,7 +16,7 @@ function toogle_modal(input) {
 }
 
 function close_modal(input) {
-    var modal="[id='Modal_" + input.attr('full_name') + "']";
+    var modal = "[id='Modal_" + input.attr('full_name') + "']";
     if ($(modal).length) {
         $(modal).modal('hide');
         return true
@@ -26,11 +26,11 @@ function close_modal(input) {
 
 function close_collapse(input) {
 
-    var collapse="[id='Collapse_" + input.attr('full_name') + "']";
+    var collapse = "[id='Collapse_" + input.attr('full_name') + "']";
     if ($(collapse).length) {
         $(collapse).collapse('hide').on('hidden.bs.collapse', function () {
             $(collapse).remove();
-    });
+        });
         input.toggleClass("btn-primary btn-info");
         input.find("span.glyphicon").toggleClass("glyphicon-menu-down glyphicon-menu-up");
         return true
@@ -40,10 +40,9 @@ function close_collapse(input) {
 
 function toogle_collapse(input) {
 
-    if(!close_collapse(input))
-    {
+    if (!close_collapse(input)) {
         close_modal(input);
-        var collapse="[id='Collapse_" + input.attr('full_name') + "']";
+        var collapse = "[id='Collapse_" + input.attr('full_name') + "']";
         $.get($SCRIPT_ROOT + '/_multiple_collapse', {
             full_name: input.attr("full_name")
         }, function (data) {
@@ -95,7 +94,7 @@ function load_modal(input) {
 
     // TODO: tady si ještě trochu pohrát s okny
 
-        //     $(document).on('show.bs.modal', '.modal', function () {
+    //     $(document).on('show.bs.modal', '.modal', function () {
     //     var zIndex = 1050 + (10 * $('.modal:visible').length);
     //     $(this).css('z-index', zIndex);
     //     setTimeout(function() {
@@ -107,12 +106,12 @@ function load_modal(input) {
         if ($('.modal-backdrop').length) {
             $('body').addClass('modal-open');
         }
-     });
+    });
 
 
     //
     $('.modal').on('hidden.bs.modal', function () {
-            $(this).remove();
+        $(this).remove();
     });
 
     // $(document).off().on('hidden.bs.collapse', '.collapse', function () {

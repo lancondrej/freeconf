@@ -4,84 +4,85 @@ function load() {
 }
 
 
-
 function tabs_on() {
     $('#tabs').find('button').on('click', function () {
         socket.emit('tab', {
             name: $(this).attr('value')
         });
         $('#tabs').find('button').removeClass('active');
-        $(this).addClass( 'active' );
+        $(this).addClass('active');
         $(".tab_shader").css("display", "block");
         $("#loader").css("display", "block");
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     $(".dropdown-toggle").off().on('click', function () {
         //úlpně hloupé řešení, ale funguje problém je s hádáním jquery-ui a bootstrap
-       $(this).dropdown("toggle");
-            $(".dropdown-toggle").off().on('click', function () {
-                $(this).dropdown("toggle");
-            });
+        $(this).dropdown("toggle");
+        $(".dropdown-toggle").off().on('click', function () {
+            $(this).dropdown("toggle");
+        });
     });
 
-    socket.on('log', function(data) {
-        $('#log').prepend('<li>'+data.log_time +': ' + data.log_record + '</li>');
+    socket.on('log', function (data) {
+        $('#log').prepend('<li>' + data.log_time + ': ' + data.log_record + '</li>');
     });
 
-    socket.on('flash', function(data) {
+    socket.on('flash', function (data) {
         $('#flash').prepend(data.flash);
-        setTimeout(function() {$('#flash').find('div:first-child' ).remove()}, 5000);
+        setTimeout(function () {
+            $('#flash').find('div:first-child').remove()
+        }, 5000);
     });
 
-    socket.on('reload_entry', function(data) {
-        $("[id='entry_"+data.full_name+"']").replaceWith(data.rendered_entry);
+    socket.on('reload_entry', function (data) {
+        $("[id='entry_" + data.full_name + "']").replaceWith(data.rendered_entry);
         load()
 
     });
 
-    socket.on('reload_tabs', function(data) {
+    socket.on('reload_tabs', function (data) {
         $("#tabs").replaceWith(data.rendered_tabs);
         tabs_on();
     });
 
-    socket.on('reload_tab', function(data) {
+    socket.on('reload_tab', function (data) {
         $(".tab_shader").css("display", "none");
         $("#tab").replaceWith(data.rendered_tab);
         load();
         $("#loader").css("display", "none");
     });
 
-    socket.on('reload_section', function(data) {
-        $("[id='section_"+data.full_name+"']").replaceWith(data.rendered_section);
+    socket.on('reload_section', function (data) {
+        $("[id='section_" + data.full_name + "']").replaceWith(data.rendered_section);
         load()
     });
 
 
     $('#undo').on('click', function () {
-    socket.emit('undo');
+        socket.emit('undo');
     });
 
     $('#redo').on('click', function () {
-    socket.emit('redo');
+        socket.emit('redo');
     });
 
     $('#save_config').on('click', function () {
-    socket.emit('save_config');
+        socket.emit('save_config');
     });
-    
+
     $('#save_native').on('click', function () {
-    socket.emit('save_native');
+        socket.emit('save_native');
     });
 
     $('#Logo').on('click', function () {
-    socket.emit('reload_config');
+        socket.emit('reload_config');
     });
 
     tabs_on();
     load();
-    
+
 
 });

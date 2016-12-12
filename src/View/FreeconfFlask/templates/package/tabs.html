@@ -1,14 +1,18 @@
 {% block tabs %}
-<nav id="tabs">
-    {% if tabs %}
-        <h1>{{package_name}}</h1>
-        <ul class="nav nav-pills nav-stacked">
-            {% for tab in tabs %}
-                <li><button type="button" class="btn btn-block btn-lg {{'btn-danger' if tab[3] else 'btn-default'}}"
-                            name="tab" value="{{ tab[0] }}" title="{{ tab[2] }}">{{ tab[1] }}</button></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</nav>
+    <nav id="tabs">
+        {% if tabs %}
+            <h1>{{ package_name }}</h1>
+            <ul class="nav nav-pills nav-stacked">
+                {% for tab in tabs %}
+                    <li>
+                        <button type="button"
+                                class="btn btn-block btn-lg {{ 'btn-danger' if tab[3] else 'btn-default' }}"
+                                name="tab" value="{{ tab[0] }}"
+                                title="{{ tab[2] }}">{{ tab[1] }}</button>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </nav>
 
 {% endblock %}

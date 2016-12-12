@@ -5,7 +5,6 @@ __author__ = 'Ondřej Lanč'
 
 
 class Output(object):
-
     def write_output(self):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError

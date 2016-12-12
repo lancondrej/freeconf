@@ -2,11 +2,11 @@
 {% from 'elements/macros.html'  import help as help_button %}
 
 {% block entry %}
-    <div class="panel {{'panel-danger' if inconsistent else 'panel-default'}}">
+    <div class="panel {{ 'panel-danger' if inconsistent else 'panel-default' }}">
         <div class="panel-heading">
             <h3>
                 {% if help %}
-                {{ help_button(label, help) }}
+                    {{ help_button(label, help) }}
                 {% endif %}
                 {{ label }}
             </h3>

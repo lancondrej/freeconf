@@ -9,7 +9,6 @@ __author__ = 'Ondřej Lanč'
 
 
 class XMLOutput(Output):
-
     def __init__(self, config, package):
         self._config = config
         self._package = package
@@ -17,7 +16,8 @@ class XMLOutput(Output):
     def write_output(self):
         ConfigFileWriter(self._config, self._package).write_config()
         for plugin in self._package.plugins:
-            ConfigFileWriter(self._config.plugin(plugin.name), plugin).write_config()
+            ConfigFileWriter(self._config.plugin(plugin.name),
+                             plugin).write_config()
 
     def write_native(self, groups=None):
         if groups:
@@ -31,4 +31,5 @@ class XMLOutput(Output):
 
     def _write_group(self, group):
         config_file_writer = ConfigFileWriter(self._config, self._package)
-        NativeFileWriter(group, config_file_writer.get_config(group)).write_native()
+        NativeFileWriter(group,
+                         config_file_writer.get_config(group)).write_native()

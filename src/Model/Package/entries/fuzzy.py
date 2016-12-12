@@ -59,7 +59,8 @@ class Fuzzy(KeyWord):
             entry = self.list.get_exact_grade(grade)
             if entry is None:
                 raise ModelGeneralException(
-                    "Value with grade %d was not found in fuzzy list %s!" % (grade, self.list.name))
+                    "Value with grade %d was not found in fuzzy list %s!" % (
+                    grade, self.list.name))
             return entry.value
 
     @property
@@ -84,7 +85,7 @@ class Fuzzy(KeyWord):
             if entry is not None:
                 if entry.grade > self.max:
                     return False
-                if entry.grade  < self.min:
+                if entry.grade < self.min:
                     return False
                 return True
         return False

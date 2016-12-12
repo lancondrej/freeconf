@@ -9,6 +9,7 @@ __author__ = 'Ondřej Lanč'
 
 class GSection(BaseEntry, ContainerInconsistency):
     """GUI container class"""
+
     def __init__(self, name, package):
         BaseEntry.__init__(self, name, package)
         self._inc_parents = set()
@@ -22,7 +23,6 @@ class GSection(BaseEntry, ContainerInconsistency):
         # self.empty = None
         # self._show_all_children = False
         self._entries = []
-
 
     @property
     def inc_parents(self):

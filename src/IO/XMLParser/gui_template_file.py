@@ -16,12 +16,12 @@ class GUITemplateFileReader(FileReader):
         self._package = package
         gui_template_file = self._config.gui_template_file
         super().__init__(gui_template_file)
-        self.logger.info("Loading GUI template file {}".format(gui_template_file))
-
+        self.logger.info("Loading GUI template file {}".format(
+            gui_template_file))
 
     def parse(self):
         if isinstance(self._package, Plugin):
-            window=self._package.package.gui_tree
+            window = self._package.package.gui_tree
         else:
             window = GWindow(self._package.name, self._package)
         for tab_element in self._root.iterfind('tab'):
@@ -36,7 +36,7 @@ class GUITemplateFileReader(FileReader):
         # tab.icon = tab_element.findtext('tab_icon')
         for section_element in tab_element.iterfind('section'):
             section = self._parse_tab_section(section_element)
-            section.parent=tab
+            section.parent = tab
             tab.append(section)
         return tab
 
@@ -49,5 +49,3 @@ class GUITemplateFileReader(FileReader):
                 entry = self._package.tree.find_entry(name)
                 section.append(entry)
         return section
-
-

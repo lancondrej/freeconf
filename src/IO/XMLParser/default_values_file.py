@@ -13,7 +13,8 @@ class DefaultValuesFileReader(FileReader):
         self._package = package
         default_values_file = self._config.default_values_file
         super().__init__(default_values_file)
-        self.logger.info("Loading default values file {}".format(default_values_file))
+        self.logger.info("Loading default values file {}".format(
+            default_values_file))
 
     def parse(self):
         for container in self._root.iterfind('container'):
@@ -22,8 +23,8 @@ class DefaultValuesFileReader(FileReader):
             self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
-        name=container_element.get('name')
-        this_container=parent.get_entry(name)
+        name = container_element.get('name')
+        this_container = parent.get_entry(name)
         if isinstance(this_container, MultipleEntry):
             this_container = this_container.append_default()
         for container in container_element.iterfind('container'):
@@ -39,7 +40,3 @@ class DefaultValuesFileReader(FileReader):
             if isinstance(entry, MultipleEntry):
                 entry = entry.append_default()
             entry.default_value = value
-
-
-
-

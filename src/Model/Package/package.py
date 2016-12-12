@@ -14,7 +14,8 @@ __author__ = 'Ondřej Lanč'
 
 class Package(object):
     """Base class for package and plugin classes.
-        :param name: name of package
+
+    :param name: name of package
     """
 
     def __init__(self, name):
@@ -34,13 +35,17 @@ class Package(object):
     @property
     def tree(self):
         """tree getter if no one available create default.
-            :return Container"""
+
+        :return Container
+        """
         return self._tree or self._build_tree()
 
     @tree.setter
     def tree(self, tree):
         """tree setter
-            :param gui_tree: Container object"""
+
+        :param gui_tree: Container object
+        """
         self._tree = tree
 
     def _build_tree(self):
@@ -52,13 +57,17 @@ class Package(object):
     @property
     def gui_tree(self):
         """gui tree getter if no one available create default.
-            :return GWindow"""
+
+        :return GWindow
+        """
         return self._gui_tree or self._build_gui_tree()
 
     @gui_tree.setter
     def gui_tree(self, gui_tree):
         """gui tree setter
-            :param gui_tree: GWindow object"""
+
+        :param gui_tree: GWindow object
+        """
         self._gui_tree = gui_tree
 
     def _build_gui_tree(self):
@@ -71,7 +80,6 @@ class Package(object):
         all.description = "Generated gui Tree"
         all_section = GSection("all", self)
         all_section.parent = all
-
 
         from src.Model.Package.entries.container import Container
         for entry in self.tree.entries.values():
@@ -91,13 +99,14 @@ class Package(object):
         all.append(all_section)
         self._gui_tree.append(all)
 
-
         return self._gui_tree
 
     @property
     def language(self):
         """language getter get current language or default language
-            :return language code"""
+
+        :return language code
+        """
         return self._language or self._default_language
 
     @language.setter

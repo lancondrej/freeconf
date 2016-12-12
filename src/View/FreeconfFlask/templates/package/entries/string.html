@@ -3,9 +3,9 @@
 {% block key_word %}
     <input class="form-control"
            type="text"
-           name="{{name}}"
-           id="{{full_name}}"
-           value="{{ value if value is not none}}"
+           name="{{ name }}"
+           id="{{ full_name }}"
+           value="{{ value if value is not none }}"
             {{ 'list=%s' %list.name if list }}>
     {% if regexp %}
         <p class="help-block">Value must match with regexp {{ regexp }}</p>

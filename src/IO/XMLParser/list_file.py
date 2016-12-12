@@ -29,7 +29,7 @@ class ListFileReader(FileReader):
         return self._parse_list('fuzzy_list', FuzzyList, self._fuzzy_value)
 
     def _parse_list(self, element, ListClass, value_func):
-        lists={}
+        lists = {}
         for list_element in self._root.iterfind(element):
             self.logger.info("List file: parsing <{}> element".format(element))
             name = list_element.get('name')
@@ -37,9 +37,11 @@ class ListFileReader(FileReader):
                 list = ListClass(name)
                 for value in self._get_values(list_element, value_func):
                     list.append(value)
-                lists[name]=list
+                lists[name] = list
             else:
-                self.logger.error("List file: in element <{}> missing attribute name".format(element))
+                self.logger.error(
+                    "List file: in element <{}> missing attribute "
+                    "name".format(element))
         return lists
 
     def _get_values(self, element, value_func):
@@ -55,6 +57,8 @@ class ListFileReader(FileReader):
             try:
                 return FuzzyList.Entry(float(grade), element.text)
             except AssertionError:
-                self.logger.error("Attribute grade={} is out of range for fuzzy value!".format(grade))
+                self.logger.error(
+                    "Attribute grade={} is out of range for fuzzy "
+                    "value!".format(grade))
         else:
             self.logger.error("Attribute grade missing")

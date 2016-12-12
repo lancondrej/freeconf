@@ -3,11 +3,11 @@
 {% block key_word %}
     <input class="form-control"
            type="number"
-           name="{{name}}"
-           id="{{full_name}}"
-           value="{{ value if value is not none}}"
-           step="{{step}}"
-           min="{{min}}"
-           max="{{max}}">
+           name="{{ name }}"
+           id="{{ full_name }}"
+           value="{{ value if value is not none }}"
+           step="{{ step }}"
+           min="{{ min }}"
+           max="{{ max }}">
     <p class="help-block">Number must been between {{ min }} - {{ max }}</p>
 {% endblock %}

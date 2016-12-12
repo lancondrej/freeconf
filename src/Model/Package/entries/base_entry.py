@@ -71,4 +71,3 @@ class BaseEntry(object):
         if self.parent:
             path = self.parent.full_name + path
         return path
-

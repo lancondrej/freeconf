@@ -7,7 +7,9 @@ from src.Model.Package.inconsistency import MultipleInconsistency
 __author__ = 'Ondřej Lanč'
 
 from src.Model.Package.entries.entry import Entry
- # TODO: nekonzistentní pokud mám záznamů mimom rozsah
+
+
+# TODO: nekonzistentní pokud mám záznamů mimom rozsah
 
 class MultipleEntry(Entry, MultipleInconsistency):
     """Container for multiple config entries."""
@@ -18,7 +20,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
         self._template = entry
         self._template.multiple = True
         self._template.multiple_entry = self
-        self._template.index=-1
+        self._template.index = -1
         self._template.inc_parents.add(self)
         self.template.init_inconsistency()
         self._entries = []
@@ -29,7 +31,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
         self._inc_parents = set()
 
     def __deepcopy__(self, memo):
-        template=deepcopy(self.template)
+        template = deepcopy(self.template)
         newone = type(self)(template)
         # TODO: není potřeba kopíravat template, ale je v tom případě potřeba vyřešit správně směrování na parent
         newone.__dict__.update(self.__dict__)
@@ -111,7 +113,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
 
     @label.setter
     def label(self, label):
-        self.template.label=label
+        self.template.label = label
 
     @property
     def help(self):
@@ -119,7 +121,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
 
     @help.setter
     def help(self, help):
-        self.template.help=help
+        self.template.help = help
 
     @property
     def active(self):
@@ -127,7 +129,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
 
     @active.setter
     def active(self, active):
-        self.template.active=active
+        self.template.active = active
 
     @property
     def static_active(self):
@@ -143,7 +145,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
 
     @mandatory.setter
     def mandatory(self, mandatory):
-        self.template.mandatory =mandatory
+        self.template.mandatory = mandatory
 
     def create_new(self, length):
         if self.multiple_max is None or length < self.multiple_max:
@@ -227,7 +229,8 @@ class MultipleEntry(Entry, MultipleInconsistency):
         i = min(self.size() - 1, max(0, i))
         j = min(self.size() - 1, max(0, j))
         if i != j:
-            (self._entries[i], self._entries[j]) = (self._entries[j], self._entries[i])
+            (self._entries[i], self._entries[j]) = (
+            self._entries[j], self._entries[i])
             self._rename_all()
             return True
         return False

@@ -41,8 +41,8 @@ class ConfigPresenter(Presenter):
 
     def _load_package_info(self, dir, class_name=Package):
         package = class_name()
-        package.location=dir.path
-        package.name=dir.name
+        package.location = dir.path
+        package.name = dir.name
         self._load_avaiable_plugins(package)
         self._load_avaiable_languages(package)
         return package
@@ -53,7 +53,7 @@ class ConfigPresenter(Presenter):
                 package.add_plugin(self._load_package_info(plugin_dir, Plugin))
         except FileNotFoundError:
             pass
-        # TODO: zpráva do logu
+            # TODO: zpráva do logu
 
     def _load_avaiable_languages(self, package):
         try:
@@ -61,7 +61,7 @@ class ConfigPresenter(Presenter):
                 package.available_language.append(lang.name)
         except FileNotFoundError:
             pass
-        # TODO: zpráva do logu
+            # TODO: zpráva do logu
 
     @property
     def language(self):

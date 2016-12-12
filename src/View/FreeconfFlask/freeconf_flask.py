@@ -12,8 +12,10 @@ __author__ = 'Ondřej Lanč'
 
 class FreeconfFlask(object):
     """View class for Freeconf. Have as property Flask and SocketiIO object.
-        :param debug: bool
+
+    :param debug: bool
     """
+
     def __init__(self, debug=False):
         self.flask = Flask(__name__)
         self.socketio = SocketIO(self.flask)

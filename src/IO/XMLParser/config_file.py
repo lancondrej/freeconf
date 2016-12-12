@@ -16,7 +16,6 @@ class ConfigFileReader(FileReader):
         super().__init__(config_file)
         self.logger.info("Loading List file {}".format(config_file))
 
-
     def parse(self):
         for container in self._root.iterfind('container'):
             self._parse_container(container, self._package.tree)
@@ -65,7 +64,9 @@ class ConfigFileWriter(FileWriter):
 
     def write_config(self, file=None):
         config_tree = self.get_config(package=self._package)
-        config_tree.write(file or self._config.config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+        config_tree.write(file or self._config.config_file,
+                          encoding="UTF-8", xml_declaration=True,
+                          pretty_print=True)
 
     def get_config(self, group=None, package=None):
         self.output_group = group
@@ -83,7 +84,6 @@ class ConfigFileWriter(FileWriter):
             return self.render[type(entry).__name__](entry)
         except Exception as e:
             pass
-
 
     def render_container(self, container):
         element = Element('container')
@@ -109,7 +109,8 @@ class ConfigFileWriter(FileWriter):
         element.set('name', entry.name)
         value = entry.output_value
         if value is None:
-            self.logger.info("Value for entry {} missing".format(entry.full_name))
+            self.logger.info("Value for entry {} missing".format(
+                entry.full_name))
             return
         element.text = str(value)
         # TODO: naformátovat

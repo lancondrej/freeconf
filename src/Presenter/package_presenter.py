@@ -19,7 +19,7 @@ __author__ = 'Ondřej Lanč'
 class PackagePresenter(Presenter):
     def __init__(self, config, language):
         super().__init__()
-        self._config=config
+        self._config = config
         self._undo = UndoPresenter()
         self._package = Package(self._config.name)
         self.view = None
@@ -31,7 +31,7 @@ class PackagePresenter(Presenter):
     def package(self):
         return self._package
 
-# TODO: lépe výpuis logu
+    # TODO: lépe výpuis logu
     def undo(self):
         change = self._undo.undo()
         if change is not None:
@@ -55,7 +55,7 @@ class PackagePresenter(Presenter):
         return self.package.gui_tree.label
 
     def load_package(self, language=None):
-        input_parser=XMLParser(self._config, self._package)
+        input_parser = XMLParser(self._config, self._package)
         assert isinstance(input_parser, Input)
         # input_parser.package = self.package
         input_parser.load_package(language)
@@ -67,12 +67,14 @@ class PackagePresenter(Presenter):
 
     @property
     def tabs(self):
-        return [(tab.name, tab.label, tab.description, tab.inconsistent) for tab in self._package.gui_tree.tabs]
+        return [(tab.name, tab.label, tab.description, tab.inconsistent) for
+                tab in self._package.gui_tree.tabs]
 
     def tab(self, name):
         tab = self._package.gui_tree.get_tab(name)
         if tab is not None:
-            self.log("change tab from {} to {}".format(self.active_tab.name, name))
+            self.log(
+                "change tab from {} to {}".format(self.active_tab.name, name))
             self.active_tab = tab
             self.view.reload_tab(self.active_tab.sections)
         return False
@@ -85,18 +87,24 @@ class PackagePresenter(Presenter):
             output.write_output()
             self.view.flash_message('Configuration has been saved.', 'success')
         except Exception:
-            self.view.flash_message('Configuration can not be save. An error occurred.', 'danger')
+            self.view.flash_message(
+                'Configuration can not be save. An error occurred.', 'danger')
 
     def save_native(self):
         output = XMLOutput(self._config, self._package)
         if self._package.inconsistent:
-            self.view.flash_message('Package is inconsistent. Native configuration can not be saved.', 'danger')
+            self.view.flash_message(
+                'Package is inconsistent. Native configuration can not be saved.',
+                'danger')
         else:
             try:
                 output.write_native()
-                self.view.flash_message('Native configuration has been saved.', 'success')
+                self.view.flash_message('Native configuration has been saved.',
+                                        'success')
             except Exception:
-                self.view.flash_message('Native configuration can not be save. An error occurred.', 'danger')
+                self.view.flash_message(
+                    'Native configuration can not be save. An error occurred.',
+                    'danger')
 
     @property
     def tree(self):
@@ -111,9 +119,11 @@ class PackagePresenter(Presenter):
         if value == "":
             value = None
         entry.value = value
-        new_value=entry.value
+        new_value = entry.value
         self._undo.value_change(entry, old_value, new_value)
-        self.log("{} key word change value from {} to {}".format(entry.name, old_value, new_value))
+        self.log("{} key word change value from {} to {}".format(entry.name,
+                                                                 old_value,
+                                                                 new_value))
 
     def multiple_new(self, path):
         entry = self.get_entry(path)
@@ -123,7 +133,8 @@ class PackagePresenter(Presenter):
             self.log("delete entry for {}".format(newone.full_name))
             self.view.reload_entry(entry)
         else:
-            self.view.flash_message("Cannot add element. Maximum element reach!", 'danger')
+            self.view.flash_message(
+                "Cannot add element. Maximum element reach!", 'danger')
 
     def multiple_delete(self, path, index):
         entry = self.get_entry(path)
@@ -133,7 +144,8 @@ class PackagePresenter(Presenter):
             self.log("delete entry for {}".format(removed.full_name))
             self.view.reload_entry(entry)
         else:
-            self.view.flash_message("Cannot remove element. Minimum element reach!", 'danger')
+            self.view.flash_message(
+                "Cannot remove element. Minimum element reach!", 'danger')
 
     def multiple_up(self, path, index):
         entry = self.get_entry(path)
@@ -160,4 +172,3 @@ class PackagePresenter(Presenter):
                 self.view.reload_section(entry)
             elif isinstance(entry, Entry):
                 self.view.reload_entry(entry)
-

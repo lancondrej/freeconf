@@ -11,10 +11,9 @@ __author__ = 'Ondřej Lanč'
 
 
 class PackageView(BaseView):
-    """Main view for Freeconf.
-    Attend to main pages of Freeconf.
-        :param flask: Flask object
-        :param socketio: SocketIO object
+    """Main view for Freeconf. Attend to main pages of Freeconf.
+
+    :param freeconf: FreeconfFlask object
     """
 
     def __init__(self, freeconf):
@@ -22,9 +21,12 @@ class PackageView(BaseView):
         self._renderer = Renderer()
         self._presenter = None
 
-        self._flask.add_url_rule('/package/<package_name>', 'package', self.package)
-        self._flask.add_url_rule('/_multiple_modal', 'multiple_modal', self.multiple_modal)
-        self._flask.add_url_rule('/_multiple_collapse', 'multiple_collapse', self.multiple_collapse)
+        self._flask.add_url_rule('/package/<package_name>', 'package',
+                                 self.package)
+        self._flask.add_url_rule('/_multiple_modal', 'multiple_modal',
+                                 self.multiple_modal)
+        self._flask.add_url_rule('/_multiple_collapse', 'multiple_collapse',
+                                 self.multiple_collapse)
 
         self._socketio.on_event('undo', self.undo, namespace='/freeconf')
         self._socketio.on_event('redo', self.redo, namespace='/freeconf')
@@ -32,12 +34,18 @@ class PackageView(BaseView):
         self._socketio.on_event('tab', self.tab, namespace='/freeconf')
 
         self._socketio.on_event('submit', self.submit, namespace='/freeconf')
-        self._socketio.on_event('multiple_new', self.multiple_new, namespace='/freeconf')
-        self._socketio.on_event('multiple_delete', self.multiple_delete, namespace='/freeconf')
-        self._socketio.on_event('multiple_up', self.multiple_up, namespace='/freeconf')
-        self._socketio.on_event('multiple_down', self.multiple_down, namespace='/freeconf')
-        self._socketio.on_event('save_config', self.save_config, namespace='/freeconf')
-        self._socketio.on_event('save_native', self.save_native, namespace='/freeconf')
+        self._socketio.on_event('multiple_new', self.multiple_new,
+                                namespace='/freeconf')
+        self._socketio.on_event('multiple_delete', self.multiple_delete,
+                                namespace='/freeconf')
+        self._socketio.on_event('multiple_up', self.multiple_up,
+                                namespace='/freeconf')
+        self._socketio.on_event('multiple_down', self.multiple_down,
+                                namespace='/freeconf')
+        self._socketio.on_event('save_config', self.save_config,
+                                namespace='/freeconf')
+        self._socketio.on_event('save_native', self.save_native,
+                                namespace='/freeconf')
 
     @property
     def presenter(self):
@@ -101,7 +109,8 @@ class PackageView(BaseView):
         """socketIO emit function for reload tabs, usually call from presenter"""
         rendered_tabs = render_template("package/tabs.html",
                                         tabs=tabs,
-                                        package_name=session.get('package_name'))
+                                        package_name=session.get(
+                                            'package_name'))
         emit('reload_tabs',
              {'rendered_tabs': rendered_tabs},
              namespace='/freeconf')

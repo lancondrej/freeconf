@@ -5,7 +5,6 @@ __author__ = 'Ondřej Lanč'
 
 
 class Input(object):
-
     def load_package(self, lang=None):
         """Virtual function. Need to be reimplemented in subclass"""
         raise NotImplementedError

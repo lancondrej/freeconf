@@ -60,7 +60,6 @@ nav.package_menu {
     }
 }
 
-
 .tab_shader {
     background: rgba(128, 128, 128, 0.28);
     width: 100%;
@@ -70,11 +69,11 @@ nav.package_menu {
     position: absolute;
 }
 
-.btn{
+.btn {
     white-space: normal;
 }
 
-input[type=checkbox]{
+input[type=checkbox] {
     width: 26px;
     height: 26px;
 }

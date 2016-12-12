@@ -108,7 +108,7 @@ class XMLParser(Input):
 
     def _load_plugin(self, plugin_name, lang):
         plugin = Plugin(plugin_name, self._package)
-        input_parser=XMLParser(self._config.plugin(plugin_name), plugin)
+        input_parser = XMLParser(self._config.plugin(plugin_name), plugin)
         input_parser.load_package(lang)
         self._package.plugins.append(plugin)
 

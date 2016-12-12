@@ -2,11 +2,12 @@
 {% from 'elements/macros.html'  import help as help_button %}
 
 {% block entry %}
-    <div class="panel {{'panel-danger' if inconsistent else 'panel-default'}}" id="full_name">
+    <div class="panel {{ 'panel-danger' if inconsistent else 'panel-default' }}"
+         id="full_name">
         <div class="panel-heading"><h3>
             {% if help %}
-            {{ help_button(label, help) }}
-        {% endif %}
+                {{ help_button(label, help) }}
+            {% endif %}
             {{ label }}
         </h3>
         </div>
@@ -21,15 +22,21 @@
                         <td class="active multiple_buttons">
                             <div class="btn-group">
 
-                                <button class="btn btn-success multiple_up" type="button" full_name="{{ full_name }}"
+                                <button class="btn btn-success multiple_up"
+                                        type="button"
+                                        full_name="{{ full_name }}"
                                         value="{{ entry[0] }}">
                                     <span class="glyphicon glyphicon-arrow-up"></span>
                                 </button>
-                                <button class="btn btn-success multiple_down" type="button" full_name="{{ full_name }}"
+                                <button class="btn btn-success multiple_down"
+                                        type="button"
+                                        full_name="{{ full_name }}"
                                         value="{{ entry[0] }}">
                                     <span class="glyphicon glyphicon-arrow-down"></span>
                                 </button>
-                                <button class="btn btn-danger multiple_delete" type="button" full_name="{{ full_name }}"
+                                <button class="btn btn-danger multiple_delete"
+                                        type="button"
+                                        full_name="{{ full_name }}"
                                         value="{{ entry[0] }}">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
@@ -40,15 +47,16 @@
                 </tbody>
             </table>
             <div class="panel-footer">
-                <button class="btn btn-primary multiple_new" type="button" full_name="{{ full_name }}">
+                <button class="btn btn-primary multiple_new" type="button"
+                        full_name="{{ full_name }}">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
-                    {% if min%}
-                        <p>Minimum number of element is {{ min }}</p>
-                    {% endif %}
-                    {% if max%}
-                        <p>Maximum number of element is {{ max }}</p>
-                    {% endif %}
+                {% if min %}
+                    <p>Minimum number of element is {{ min }}</p>
+                {% endif %}
+                {% if max %}
+                    <p>Maximum number of element is {{ max }}</p>
+                {% endif %}
             </div>
         </div>
     </div>

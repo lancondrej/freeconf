@@ -24,10 +24,10 @@ class MultipleContainer(MultipleEntry):
 
     @primary.setter
     def primary(self, primary):
-        self._primary=primary
+        self._primary = primary
 
     def primary_value(self, index):
-        entry=self.entries[index]
+        entry = self.entries[index]
         primary = entry.get_entry(self.primary)
         if primary is not None:
             primary = primary.value

@@ -2,30 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Freeconf  {% if title %} - {{title}} {%endif%}</title>
+    <title>Freeconf  {% if title %} - {{ title }} {% endif %}</title>
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel=stylesheet type=text/css
+          href="{{ url_for('static', filename='css/main.css') }}">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script> -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
 
 
     <script type="text/javascript">
-      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/socket.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/modal_collapse.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
-
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='js/socket.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='js/modal_collapse.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 
 </head>
@@ -33,15 +43,15 @@
 
 {% include "nav.html" %}
 
-  <div class="container-fluid" id="flash">
+<div class="container-fluid" id="flash">
 
-  </div>
+</div>
 
 {% include "body.html" %}
 
 
 <div class="log">
-   <h2>Log:</h2>
+    <h2>Log:</h2>
     <ul id="log">
 
     </ul>

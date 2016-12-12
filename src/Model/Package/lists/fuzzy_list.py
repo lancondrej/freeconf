@@ -20,7 +20,8 @@ class FuzzyList(List):
             List.Entry.__init__(self, value, label, help)
 
         def __repr__(self):
-            return 'FuzzyEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)
+            return 'FuzzyEntry(%s, "%s", "%s")' % (
+            self.value, self.label, self.help)
 
     def __init__(self, name):
         List.__init__(self, name)
@@ -41,7 +42,8 @@ class FuzzyList(List):
         """Return entry with maximum grade that is lower or equal than maxGrade."""
         max_entry = None
         for e in self.values.values():
-            if e.grade <= max_grade and (max_entry is None or max_entry.grade < e.grade):
+            if e.grade <= max_grade and (
+                    max_entry is None or max_entry.grade < e.grade):
                 max_entry = e
         return max_entry
 
@@ -49,7 +51,8 @@ class FuzzyList(List):
         """Return entry with minimum grade that is higher or equal than minGrade."""
         min_entry = None
         for e in self.values.values():
-            if e.grade >= min_grade and (min_entry is None or min_entry.grade > e.grade):
+            if e.grade >= min_grade and (
+                    min_entry is None or min_entry.grade > e.grade):
                 min_entry = e
         return min_entry
 
@@ -62,10 +65,8 @@ class FuzzyList(List):
                 # Key is already in the list. Check if it has same grade
                 if new_list.values[key].grade != self.values[key].grade:
                     from src.Model.exception import AlreadyExistsException
-                    raise AlreadyExistsException("Joining {} with {}. Value '{}' is "
-                                                 "already in the list but with different"
-                                                 " grade!".format((self.name, new_list.name, key)))
+                    raise AlreadyExistsException(
+                        "Joining {} with {}. Value '{}' is "
+                        "already in the list but with different"
+                        " grade!".format((self.name, new_list.name, key)))
         return self
-
-
-

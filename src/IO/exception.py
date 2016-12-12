@@ -6,7 +6,7 @@ from src.exception import FreeconfGeneralException
 __author__ = 'Ondřej Lanč'
 
 
-class IOGeneralException (FreeconfGeneralException):
+class IOGeneralException(FreeconfGeneralException):
     def __init__(self, message):
         super.__init__(message, logging.getLogger("IO"))
 
@@ -14,12 +14,9 @@ class IOGeneralException (FreeconfGeneralException):
         return "General error in IO: "
 
 
-class MissingMandatoryElementException (IOGeneralException):
+class MissingMandatoryElementException(IOGeneralException):
     def __init__(self, message):
         IOGeneralException.__init__(self, message)
 
     def _get_exception_header(self):
         return "Mandatory element missing or is empty: "
-
-
-

@@ -14,10 +14,10 @@ function submit_form_input(input) {
 //     return false;
 // }
 
-function set_checkbox_state(input){
-        switch(input.val()) {
+function set_checkbox_state(input) {
+    switch (input.val()) {
         case 'no':
-            input.prop('indeterminate',false);
+            input.prop('indeterminate', false);
             input.prop('checked', false);
             break;
         case 'yes':
@@ -25,13 +25,13 @@ function set_checkbox_state(input){
             input.prop('checked', true);
             break;
         default:
-            input.prop('indeterminate',true);
-            input.prop('checked',false);
+            input.prop('indeterminate', true);
+            input.prop('checked', false);
     }
 }
 
-function change_checkbox_state(input){
-        switch(input.val()) {
+function change_checkbox_state(input) {
+    switch (input.val()) {
         case 'no':
             input.val('');
             break;
@@ -92,7 +92,6 @@ function multiple_down(input) {
 }
 
 
-
 function load_form() {
     $('.modal_button').off().on('click', function () {
         toogle_modal($(this))
@@ -117,24 +116,23 @@ function load_form() {
     $('input').off().on('change', function () {
         submit_form_input($(this))
     }).on('keypress', function (e) {
-         var code = e.keyCode || e.which;
-        if(code == 13) {
+        var code = e.keyCode || e.which;
+        if (code == 13) {
             submit_form_input($(this))
             return false;
         }
     });
 
-    $('input[type="checkbox"]').each(function(  ){
+    $('input[type="checkbox"]').each(function () {
         set_checkbox_state($(this));
     }).off().on('change', function () {
-          submit_form_checkbox($(this));
+        submit_form_checkbox($(this));
     });
-    
+
     // $('input[type="checkbox"]').off().on('switchChange.bootstrapSwitch', function () {
     //     submit_form_checkbox($(this))
     // });
     // $('input[type="checkbox"]').bootstrapSwitch();
-
 
 
     $('select').off().on('change', function () {

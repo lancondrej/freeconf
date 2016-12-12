@@ -6,8 +6,10 @@ from src.IO.exception import MissingMandatoryElementException
 from src.Model.Package.entries.bool import Bool
 from src.Model.Package.entries.container import Container
 from src.Model.Package.entries.fuzzy import Fuzzy
-from src.Model.Package.entries.multiple.multiple_container import MultipleContainer
-from src.Model.Package.entries.multiple.multiple_key_word import MultipleKeyWord
+from src.Model.Package.entries.multiple.multiple_container import \
+    MultipleContainer
+from src.Model.Package.entries.multiple.multiple_key_word import \
+    MultipleKeyWord
 from src.Model.Package.entries.number import Number
 from src.Model.Package.entries.string import String
 from src.Model.exception import AlreadyExistsException
@@ -16,7 +18,7 @@ __author__ = 'Ondřej Lanč'
 
 
 class EntryType(object):
-    def __init__(self, name, class_name, multiple,function=None):
+    def __init__(self, name, class_name, multiple, function=None):
         self.name = name
         self.class_name = class_name
         self.multiple_class = multiple
@@ -36,7 +38,8 @@ class TemplateFileReader(FileReader):
 
     def _parse_entry(self, container_element):
         for element_type in self.types:
-            for entry in self._parse_entry_of_type(container_element, element_type):
+            for entry in self._parse_entry_of_type(container_element,
+                                                   element_type):
                 yield entry
 
     def _parse_entry_of_type(self, container_element, element_type):
@@ -63,13 +66,14 @@ class TemplateFileReader(FileReader):
                 # group
                 value = element.findtext('group')
                 if value is not None:
-                    entry.group=self._config.group(value)
+                    entry.group = self._config.group(value)
                 # other properties for specific type, and container recursion
                 if element_type.inside_func:
                     element_type.inside_func(self, entry, element)
                 yield entry
             else:
-                raise MissingMandatoryElementException('{} name misssing'.format(element_type.name))
+                raise MissingMandatoryElementException(
+                    '{} name misssing'.format(element_type.name))
 
     def _inside_container(self, container, element):
         for entry in self._parse_entry(element):
@@ -88,22 +92,22 @@ class TemplateFileReader(FileReader):
         properties = element.find('properties')
         if properties is not None:
             self._inside_key_word(entry, properties)
-            value=properties.findtext('max')
+            value = properties.findtext('max')
             if value is not None:
                 entry.max = float(value)
-            value=properties.findtext('min')
+            value = properties.findtext('min')
             if value is not None:
                 entry.min = float(value)
-            value=properties.findtext('step')
+            value = properties.findtext('step')
             if value is not None:
                 entry.step = float(value)
-            value=properties.findtext('precision')
+            value = properties.findtext('precision')
             if value is not None:
                 entry.precision = int(value)
-            value=properties.findtext('print_sign')
+            value = properties.findtext('print_sign')
             if value is not None:
                 entry.print_sign = True if value == 'yes' else False
-            value=properties.findtext('leading_zeros')
+            value = properties.findtext('leading_zeros')
             if value is not None:
                 entry.leading_zeros = int(value)
 
@@ -111,9 +115,9 @@ class TemplateFileReader(FileReader):
         properties = element.find('properties')
         if properties is not None:
             self._inside_key_word(entry, properties)
-            value=properties.findtext('regexp')
+            value = properties.findtext('regexp')
             if value is not None:
-                entry.reg_exp=value
+                entry.reg_exp = value
             try:
                 self._list(entry, properties)
             except AttributeError:
@@ -134,7 +138,7 @@ class TemplateFileReader(FileReader):
         data = properties.find('data')
         if data is not None:
             entry.user_values = True if data.get('strict') == 'no' else False
-            value=data.text
+            value = data.text
             if value is not None:
                 list = self._package.lists.get(value)
                 if list is not None:
@@ -143,10 +147,10 @@ class TemplateFileReader(FileReader):
                     raise AttributeError
 
     types = [
-        EntryType('container', Container, MultipleContainer, _inside_container),
+        EntryType('container', Container, MultipleContainer,
+                  _inside_container),
         EntryType('bool', Bool, MultipleKeyWord, _inside_bool),
         EntryType('string', String, MultipleKeyWord, _inside_string),
         EntryType('fuzzy', Fuzzy, MultipleKeyWord, _inside_fuzzy),
         EntryType('number', Number, MultipleKeyWord, _inside_number)
     ]
-

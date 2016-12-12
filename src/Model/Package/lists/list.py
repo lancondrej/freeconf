@@ -10,7 +10,6 @@ class List:
     """Base Class for key_word lists."""
 
     class Entry:
-
         def __init__(self, value, label=None, help=None):
             self.value = value
             self.help = help
@@ -25,7 +24,8 @@ class List:
             self._label = label
 
         def __repr__(self):
-            return 'Entry(%s, "%s", "%s")' % (self.value, self.label, self.help)
+            return 'Entry(%s, "%s", "%s")' % (
+            self.value, self.label, self.help)
 
     def __init__(self, name):
         self._name = name

@@ -10,9 +10,10 @@ __author__ = 'Ondřej Lanč'
 
 class MainView(BaseView):
     """Main view for Freeconf.
-        :param flask: Flask object
-        :param socketio: SocketIO object
+
+    :param freeconf: FreeconfFlask object
     """
+
     def __init__(self, freeconf, ):
         BaseView.__init__(self, freeconf)
         self._main_presenter.view = self
@@ -21,7 +22,8 @@ class MainView(BaseView):
         self._flask.add_url_rule('/configure', 'configure', self.configure)
         self._flask.add_url_rule('/setting', 'setting', self.setting)
 
-        self._socketio.on_event('reload_config', self.reload_config, namespace='/freeconf')
+        self._socketio.on_event('reload_config', self.reload_config,
+                                namespace='/freeconf')
 
     def index(self):
         """function for default page at url /"""
@@ -35,7 +37,8 @@ class MainView(BaseView):
     @presenter.setter
     def presenter(self, presenter):
         """main presenter setter
-            :param presenter: Main presenter
+
+        :param presenter: Main presenter
         """
         self._main_presenter = presenter
 
@@ -51,7 +54,8 @@ class MainView(BaseView):
     def configure(self):
         """page with list of available packages"""
         packages = self.presenter.config.packages_list
-        return self.render_default(main=render_template("configure.html", packages=packages))
+        return self.render_default(main=render_template("configure.html",
+                                                        packages=packages))
 
     def reload_config(self):
         """socketIO event for redo"""

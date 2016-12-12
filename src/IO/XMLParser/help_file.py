@@ -4,7 +4,6 @@ import logging
 
 from src.IO.XMLParser.file import FileReader
 
-
 __author__ = 'Ondřej Lanč'
 
 
@@ -16,7 +15,6 @@ class HelpFileReader(FileReader):
         super().__init__(help_file)
         self.logger.info("Loading Help file {}".format(help_file))
 
-
     def parse(self):
         for container in self._root.iterfind('container'):
             self._parse_container(container, self._package.tree)
@@ -24,8 +22,8 @@ class HelpFileReader(FileReader):
             self._parse_entry(entry, self._package.tree)
 
     def _parse_container(self, container_element, parent):
-        name=container_element.get('name')
-        this_container=parent.get_entry(name)
+        name = container_element.get('name')
+        this_container = parent.get_entry(name)
         if this_container:
             self._set_help_label(this_container, container_element)
             for container in container_element.iterfind('container'):

@@ -37,7 +37,8 @@ class KeyWord(Entry, Inconsistency):
         self._default_value = value
         # if self._value is None:
         #     self._value = value
-        self.logger.debug("setting default def %s on %s" % (str(self._default_value), str(self.name)))
+        self.logger.debug("setting default def %s on %s" % (
+        str(self._default_value), str(self.name)))
 
     def is_container(self):
         return False
@@ -79,7 +80,8 @@ class KeyWord(Entry, Inconsistency):
             self._list = l
         else:
             from src.Model.exception import IncompatibleListTypeException
-            raise IncompatibleListTypeException("%s:  Can't set list to '%s'.", str(self), l.name)
+            raise IncompatibleListTypeException("%s:  Can't set list to '%s'.",
+                                                str(self), l.name)
 
     @property
     def static_mandatory(self):
@@ -101,8 +103,9 @@ class KeyWord(Entry, Inconsistency):
     def mandatory(self, mandatory):
         if self._static_mandatory and not mandatory:
             from src.Model.exception import PropertyException
-            raise PropertyException("Key {} cannot be set non-mandatory by a dependency,"
-                                    " because it is static mandatory.".format(self.name))
+            raise PropertyException(
+                "Key {} cannot be set non-mandatory by a dependency,"
+                " because it is static mandatory.".format(self.name))
         self._dynamic_mandatory = mandatory
 
     def convert_value(self, value):
@@ -123,7 +126,7 @@ class KeyWord(Entry, Inconsistency):
                 self.change_inconsistency(True)
 
     def init_inconsistency(self):
-        self._inconsistency_init=True
+        self._inconsistency_init = True
         self.check_inconsistency()
 
     def set_default(self):

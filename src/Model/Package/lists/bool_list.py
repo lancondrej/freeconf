@@ -21,6 +21,6 @@ class BoolList(FuzzyList):
         """Return type of this list entries."""
         return Types.BOOL
 
+
 # Create constant list of boolean values
 boolList = BoolList()
-

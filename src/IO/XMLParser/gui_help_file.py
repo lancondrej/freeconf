@@ -3,7 +3,6 @@
 
 from src.IO.XMLParser.file import FileReader
 
-
 __author__ = 'Ondřej Lanč'
 
 
@@ -15,9 +14,8 @@ class GUIHelpFileReader(FileReader):
         super().__init__(gui_help_file)
         self.logger.info("Loading GUI help file {}".format(gui_help_file))
 
-
     def parse(self):
-        self._package.gui_tree.label=self._root.findtext('label')
+        self._package.gui_tree.label = self._root.findtext('label')
         self._package.gui_tree.description = self._root.findtext('description')
         for tab_element in self._root.iterfind('tab'):
             self._parse_tab(tab_element)
@@ -35,7 +33,3 @@ class GUIHelpFileReader(FileReader):
         section = tab.get_section(name)
         section.label = section_element.findtext('label')
         section.description = section_element.findtext('description')
-
-
-
-

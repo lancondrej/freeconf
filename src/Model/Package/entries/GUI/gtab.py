@@ -20,4 +20,3 @@ class GTab(GSection):
     def get_section(self, name):
         """Find entry with given name."""
         return self.get_entry(name)
-

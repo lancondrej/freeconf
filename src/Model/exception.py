@@ -21,12 +21,14 @@ class IncompatibleListTypeException(ModelGeneralException):
     def _get_exception_header(self):
         return "Incompatible list type!: "
 
+
 class PropertyException(ModelGeneralException):
     def __init__(self, message):
         ModelGeneralException.__init__(self, message)
 
     def _get_exception_header(self):
         return "Property setting problem: "
+
 
 class AlreadyExistsException(ModelGeneralException):
     def __init__(self, message):

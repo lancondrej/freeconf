@@ -3,7 +3,6 @@
 
 from src.IO.XMLParser.file import FileReader
 
-
 __author__ = 'Ondřej Lanč'
 
 
@@ -21,12 +20,13 @@ class ListHelpFileReader(FileReader):
             name = list_element.get('name')
             if name:
                 try:
-                    list=self._package.lists[name]
+                    list = self._package.lists[name]
                     self._parse_entry(list, list_element)
                 except KeyError:
                     self.logger.error("No list {} in package".format(name))
             else:
-                self.logger.error("List file: in element <list> missing attribute name")
+                self.logger.error(
+                    "List file: in element <list> missing attribute name")
 
     def _parse_entry(self, list, list_element):
         for entry in list_element.iterfind('entry'):

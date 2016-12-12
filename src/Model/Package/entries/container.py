@@ -10,8 +10,6 @@ from src.Model.exception import AlreadyExistsException
 __author__ = 'Ondřej Lanč'
 
 
-
-
 class Container(Entry, ContainerInconsistency):
     """This is a class for keyword entries from Template File"""
 
@@ -30,7 +28,7 @@ class Container(Entry, ContainerInconsistency):
         newone._inc_parents = set()
 
         for entry in newone._entries.values():
-            entry.parent=newone
+            entry.parent = newone
         return newone
 
     # Override of functions:
@@ -58,8 +56,9 @@ class Container(Entry, ContainerInconsistency):
                 self._entries[entry.name]._merge_container(entry)
                 return True
             else:
-                raise AlreadyExistsException(u"Can't add child! There is already key word with name ({})"
-                                     u" in the container ({}).".format(entry.name, self.name))
+                raise AlreadyExistsException(
+                    u"Can't add child! There is already key word with name ({})"
+                    u" in the container ({}).".format(entry.name, self.name))
         entry.parent = self
         self._entries[entry.name] = entry
         return True

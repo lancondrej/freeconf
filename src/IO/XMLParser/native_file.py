@@ -15,7 +15,9 @@ class NativeFileWriter(FileWriter):
 
     def write_native(self):
         def _xsl_include(file):
-            return '<xsl:include href="file://{}" />'.format(urllib.parse.quote(file))
+            return '<xsl:include href="file://{}" />'.format(
+                urllib.parse.quote(file))
+
         # Create XSL transformation
         xsl_string = '<?xml version="1.0" ?>' \
                      '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">'
@@ -31,4 +33,5 @@ class NativeFileWriter(FileWriter):
         newdom = transform(self._dom)
         f = open(self._group.native_output, 'w')
         f.write(str(newdom))
-        self.logger.info("Writing output to {}".format(self._group.native_output))
+        self.logger.info(
+            "Writing output to {}".format(self._group.native_output))

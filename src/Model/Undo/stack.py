@@ -6,8 +6,10 @@ __author__ = 'Ondřej Lanč'
 
 class Stack(object):
     """Simple implementation of stack. Stack must have set limit count of items.
-        :param max_length: maximum count of item in stack
+
+    :param max_length: maximum count of item in stack
     """
+
     def __init__(self, max_length):
         self._max_length = max_length
         self._len = 0
@@ -15,7 +17,8 @@ class Stack(object):
 
     def push(self, item):
         """Push item to stack if stack is full pop first item else increase length by 1.
-            :param item: item
+
+        :param item: item
         """
         self._items.append(item)
         if self._len < self._max_length:
@@ -25,7 +28,8 @@ class Stack(object):
 
     def pop(self):
         """Pop last item and decrease length by 1.
-            :return item or None
+
+        :return item or None
         """
         if self._len:
             self._len -= 1

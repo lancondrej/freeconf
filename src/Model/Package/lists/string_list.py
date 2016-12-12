@@ -16,7 +16,8 @@ class StringList(List):
         meaning of given string value."""
 
         def __repr__(self):
-            return 'StringEntry(%s, "%s", "%s")' % (self.value, self.label, self.help)
+            return 'StringEntry(%s, "%s", "%s")' % (
+            self.value, self.label, self.help)
 
     def __init__(self, name):
         List.__init__(self, name)
@@ -25,5 +26,3 @@ class StringList(List):
     def type(self):
         """Return type of this list entries."""
         return Types.STRING
-
-

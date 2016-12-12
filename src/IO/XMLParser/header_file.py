@@ -31,19 +31,22 @@ class HeaderFileReader(FileReader):
 
             file = content_element.findtext('template')
             if file is None:
-                raise MissingMandatoryElementException("<template> in  header file")
+                raise MissingMandatoryElementException(
+                    "<template> in  header file")
             self.logger.debug("Header file: template file {}".format(file))
             self._config.file.template = file
 
             file = content_element.findtext('output')
             if file is None:
-                raise MissingMandatoryElementException("<output> in  header file")
+                raise MissingMandatoryElementException(
+                    "<output> in  header file")
             self.logger.debug("Header file: output file {}".format(file))
             self._config.file.output = file
 
             file = content_element.findtext('default_values')
             if file is not None:
-                self.logger.debug("Header file: default value file {}".format(file))
+                self.logger.debug(
+                    "Header file: default value file {}".format(file))
                 self._config.file.default_values = file
 
             file = content_element.findtext('help')
@@ -56,12 +59,14 @@ class HeaderFileReader(FileReader):
 
             file = content_element.findtext('gui_template')
             if file is not None:
-                self.logger.debug("Header file: gui template file {}".format(file))
+                self.logger.debug(
+                    "Header file: gui template file {}".format(file))
                 self._config.file.gui_template = file
 
             file = content_element.findtext('gui_label')
             if file is not None:
-                self.logger.debug("Header file: gui label file {}".format(file))
+                self.logger.debug(
+                    "Header file: gui label file {}".format(file))
                 self._config.file.gui_label = file
 
             file = content_element.findtext('lists')
@@ -83,8 +88,10 @@ class HeaderFileReader(FileReader):
                 group = default
                 # TODO: omezit na jedno použití abych nepřepisoval
             group.transform_file = group_element.findtext('transform')
-            group._native_output = self._expand_file_name(group_element.findtext('native_output'))
-            group.output_defaults = True if group_element.findtext('output_defaults') == 'yes' else False
+            group._native_output = self._expand_file_name(
+                group_element.findtext('native_output'))
+            group.output_defaults = True if group_element.findtext(
+                'output_defaults') == 'yes' else False
             self._config.add_group(group)
             group_not_set = False
 
@@ -92,11 +99,14 @@ class HeaderFileReader(FileReader):
             for group_element in self._root.iterfind('change_group'):
                 self.logger.info("Header file: parsing <change_group> element")
                 name = group_element.get('name')
-                group=self._config.parent.group(name)
+                group = self._config.parent.group(name)
                 if group:
-                    group.include_transform(self._config, group_element.findtext('add_transform'))
+                    group.include_transform(self._config,
+                                            group_element.findtext(
+                                                'add_transform'))
                 else:
-                    self.logger.error("group name {} is not in Package".format(name))
+                    self.logger.error(
+                        "group name {} is not in Package".format(name))
 
     def parse_package_info(self):
         self._config.author = self._root.findtext('author')
@@ -109,7 +119,8 @@ class HeaderFileReader(FileReader):
             try:
                 return os.environ['HOME']
             except KeyError:
-                self.logger.warning('Unable to get the location of HOME directory!')
+                self.logger.warning(
+                    'Unable to get the location of HOME directory!')
                 return None
 
         def _package_dir():
@@ -119,19 +130,21 @@ class HeaderFileReader(FileReader):
             if isinstance(self._config, Plugin):
                 return self._config.parent.location
             else:
-                self.logger.warning('Using of $PARENT variable in base Package. Ignoring variable.')
+                self.logger.warning(
+                    'Using of $PARENT variable in base Package. Ignoring variable.')
                 return None
 
         def _plugin_dir():
             if isinstance(self._config, Plugin):
                 return self._config.location
             else:
-                self.logger.warning('Using of $PLUGIN variable in base Package. Ignoring variable.')
+                self.logger.warning(
+                    'Using of $PLUGIN variable in base Package. Ignoring variable.')
 
         def _this_dir():
             return self._config.location
 
-        variables={
+        variables = {
             "HOME": _home_dir,
             "PACKAGE": _package_dir,
             "PLUGIN": _plugin_dir,
@@ -148,7 +161,8 @@ class HeaderFileReader(FileReader):
                 val = variables[var]()
             else:
                 val = None
-                self.logger.warning("Variable {} not found in allowed list".format(var))
+                self.logger.warning(
+                    "Variable {} not found in allowed list".format(var))
         if val is None:
             # If variable is not found, replace it's occurence with empty string
             val = _this_dir()
@@ -157,6 +171,3 @@ class HeaderFileReader(FileReader):
                 val = ""
         file = os.path.normpath(os.path.join(val, file))
         return file
-
-
-

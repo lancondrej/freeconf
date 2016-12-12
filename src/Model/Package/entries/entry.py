@@ -78,7 +78,8 @@ class Entry(BaseEntry):
     @property
     def group(self):
         # Propagate group from entry's parent
-        return self._group or (self.parent.group if self.parent is not None else None)
+        return self._group or (
+        self.parent.group if self.parent is not None else None)
 
     @group.setter
     def group(self, group):
@@ -104,8 +105,9 @@ class Entry(BaseEntry):
     def active(self, active):
         if not self._static_active and active:
             from src.Model.exception import PropertyException
-            raise PropertyException("Key {} cannot be set active by a dependency,"
-                                    " because it is non inactive by template.".format(self.name))
+            raise PropertyException(
+                "Key {} cannot be set active by a dependency,"
+                " because it is non inactive by template.".format(self.name))
         self._dynamic_active = active
 
     @property
@@ -114,7 +116,7 @@ class Entry(BaseEntry):
 
     @multiple.setter
     def multiple(self, multiple):
-        self._multiple=multiple
+        self._multiple = multiple
 
     def set_default(self):
         raise NotImplementedError
