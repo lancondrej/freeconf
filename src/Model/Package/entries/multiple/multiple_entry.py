@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#
+# -*- coding: utf-8 -*-#
 from copy import deepcopy
 
 from src.Model.Package.inconsistency import MultipleInconsistency

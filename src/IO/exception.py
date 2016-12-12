@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.IO.log import logger
 
 __author__ = 'Ondřej Lanč'

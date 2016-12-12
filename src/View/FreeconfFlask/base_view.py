@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from flask import render_template
 from flask_socketio import emit
 

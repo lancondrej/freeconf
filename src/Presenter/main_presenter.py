@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.Presenter.config_presenter import ConfigPresenter
 from src.Presenter.package_presenter import PackagePresenter
 from src.Presenter.presenter import Presenter

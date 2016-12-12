@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.log import logger
 from src.Model.Package.entries.GUI.gsection import GSection

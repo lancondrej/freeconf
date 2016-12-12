@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.Model.Undo.stack import Stack
 
 __author__ = 'Ondřej Lanč'

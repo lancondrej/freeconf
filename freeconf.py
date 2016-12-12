@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.View.FreeconfFlask.freeconf_flask import FreeconfFlask
 _author__ = 'Ondřej Lanč'
 

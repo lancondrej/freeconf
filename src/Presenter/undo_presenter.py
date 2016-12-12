@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.Model.Undo.change import ValueChange, NewMultipleChange, RemoveMultipleChange, MoveDownMultipleChange, MoveUpMultipleChange
 from src.Model.Undo.undo import Undo
 from src.Presenter.presenter import Presenter

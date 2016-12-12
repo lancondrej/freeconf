@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.Model.Package.lists.constants import Types
 
 __author__ = 'Ondřej Lanč'

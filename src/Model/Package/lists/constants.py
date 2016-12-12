@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from enum import Enum
 
 __author__ = 'Ondřej Lanč'

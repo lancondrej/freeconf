@@ -1,7 +1,8 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 import logging
 
-#!/usr/bin/python3
-#
 __author__ = 'Ondřej Lanč'
 
 

@@ -1,5 +1,7 @@
-from lxml.etree import Element, ElementTree
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
 
+from lxml.etree import Element, ElementTree
 from src.IO.XMLParser.file_reader import FileReader
 from src.IO.log import logger
 from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry

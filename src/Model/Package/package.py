@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.Model.Config.group import default
 from src.Model.Package.entries.GUI.gsection import GSection
 from src.Model.Package.entries.GUI.gtab import GTab

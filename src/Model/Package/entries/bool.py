@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#
+# -*- coding: utf-8 -*-#
 from src.Model.Package.entries.fuzzy import Fuzzy
 from src.Model.Package.lists.bool_list import boolList
 from src.Model.Package.lists.constants import Types

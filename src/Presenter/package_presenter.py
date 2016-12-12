@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from blinker import signal
 
 from src.IO.XMLParser.output import XMLOutput

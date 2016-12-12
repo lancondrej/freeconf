@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from src.Model.Package.entries.base_entry import BaseEntry
 from src.Model.Package.inconsistency import ContainerInconsistency
 

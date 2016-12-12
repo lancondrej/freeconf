@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#
+# -*- coding: utf-8 -*-#
 from src.Model.Package.entries.key_word import KeyWord
 from src.Model.Package.exception_logging.exception import ModelGeneralError
 from src.Model.Package.exception_logging.log import log

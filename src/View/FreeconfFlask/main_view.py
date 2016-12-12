@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from flask import render_template, redirect, url_for
 from src.Presenter.main_presenter import MainPresenter
 from src.View.FreeconfFlask.base_view import BaseView

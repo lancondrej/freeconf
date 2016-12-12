@@ -1,4 +1,2 @@
 #!/usr/bin/python3
-#
-
-# from . import events
+# -*- coding: utf-8 -*-#

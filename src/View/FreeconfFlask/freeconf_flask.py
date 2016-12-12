@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-#
+
 from flask import Flask
 from flask_socketio import SocketIO
 from src.Presenter.main_presenter import MainPresenter
