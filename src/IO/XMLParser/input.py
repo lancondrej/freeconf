@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import logging
 
 from src.IO.XMLParser.config_file import ConfigFileReader
 from src.IO.XMLParser.default_values_file import DefaultValuesFileReader
@@ -11,7 +12,6 @@ from src.IO.XMLParser.list_file import ListFileReader
 from src.IO.XMLParser.list_help_file import ListHelpFileReader
 from src.IO.XMLParser.template_file import TemplateFileReader
 from src.IO.input import Input
-from src.IO.log import logger
 from src.Model.Package.package import Plugin
 
 __author__ = 'Ondřej Lanč'
@@ -23,38 +23,39 @@ class XMLParser(Input):
         self._config = config
         # package itself
         self._package = package
+        self.logger = logging.getLogger('IO')
 
     def load_package(self, lang=None):
         self._load_header()
         try:
             self._load_lists()
         except FileExistsError:
-            logger.info("list file missing")
+            self.logger.debug("list file missing")
         self._load_template()
         try:
             self._load_GUI_template()
         except FileExistsError:
-            logger.info("gui template file missing")
+            self.logger.debug("gui template file missing")
         try:
             self._load_help(lang)
         except FileExistsError:
-            logger.info("help file missing")
+            self.logger.debug("help file missing")
         try:
             self._load_list_help(lang)
         except FileExistsError:
-            logger.info("list help file missing")
+            self.logger.debug("list help file missing")
         try:
             self._load_GUI_help(lang)
         except FileExistsError:
-            logger.info("gui help file missing")
+            self.logger.debug("gui help file missing")
         try:
             self._load_default_value()
         except FileExistsError:
-            logger.info("default_value file missing")
+            self.logger.debug("default_value file missing")
         try:
             self._load_config()
         except FileExistsError:
-            logger.info("config file missing")
+            self.logger.debug("config file missing")
             self._set_default_value()
 
         return self._package

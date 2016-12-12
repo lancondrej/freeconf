@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from src.Model.Package.exception_logging.log import log
+import logging
+
 from src.Model.Package.inconsistency import ContainerInconsistency
+from copy import deepcopy
+from src.Model.Package.entries.entry import Entry
+from src.Model.exception import AlreadyExistsError
 
 __author__ = 'Ondřej Lanč'
 
-from copy import deepcopy
 
-from src.Model.Package.entries.entry import Entry
-from src.Model.Package.exception_logging.exception import AlreadyExistsError
 
 
 class Container(Entry, ContainerInconsistency):
@@ -64,7 +65,7 @@ class Container(Entry, ContainerInconsistency):
         return True
 
     def _merge_container(self, container):
-        log.info("merge container {}".format(self.name))
+        self.logger.info("merge container {}".format(self.name))
         for entry in container.entries.values():
             self.add_entry(entry)
 

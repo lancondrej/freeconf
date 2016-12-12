@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import logging
 
-from src.IO.XMLParser.file_reader import FileReader
-from src.IO.log import logger
+from src.IO.XMLParser.file import FileReader
 
 
 __author__ = 'Ondřej Lanč'
@@ -13,8 +13,9 @@ class HelpFileReader(FileReader):
         self._config = config
         self._package = package
         help_file = self._config.help_file(language)
-        logger.info("Loading Help file {}".format(help_file))
         super().__init__(help_file)
+        self.logger.info("Loading Help file {}".format(help_file))
+
 
     def parse(self):
         for container in self._root.iterfind('container'):

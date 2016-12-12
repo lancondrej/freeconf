@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import logging
+
 from src.Model.Package.entries.entry import Entry
-from src.Model.Package.exception_logging.log import log
 from src.Model.Package.inconsistency import Inconsistency
 from src.Model.Package.lists.constants import Types
 
@@ -36,7 +37,7 @@ class KeyWord(Entry, Inconsistency):
         self._default_value = value
         # if self._value is None:
         #     self._value = value
-        log.debug("setting default def %s on %s" % (str(self._default_value), str(self.name)))
+        self.logger.debug("setting default def %s on %s" % (str(self._default_value), str(self.name)))
 
     def is_container(self):
         return False
@@ -77,7 +78,7 @@ class KeyWord(Entry, Inconsistency):
         if l.type == self.type:
             self._list = l
         else:
-            log.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
+            self.logger.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
             pass
 
     @property
@@ -99,7 +100,7 @@ class KeyWord(Entry, Inconsistency):
     @mandatory.setter
     def mandatory(self, mandatory):
         if self._static_mandatory and not mandatory:
-            log.error("Key " + self.name +
+            self.logger.error("Key " + self.name +
                       " cannot be set non-mandatory by a dependency because it is set mandatory in the template.")
         self._dynamic_mandatory = mandatory
 

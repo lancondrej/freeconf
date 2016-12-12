@@ -10,6 +10,7 @@ __author__ = 'Ondřej Lanč'
 
 class UndoPresenter(Presenter):
     def __init__(self):
+        super().__init__()
         self._undo = Undo()
 
     def value_change(self, entry, old_value, new_value):

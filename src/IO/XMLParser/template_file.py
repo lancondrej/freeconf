@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from src.IO.XMLParser.file_reader import FileReader
+from src.IO.XMLParser.file import FileReader
 from src.IO.exception import MissingMandatoryElementError
-from src.IO.log import logger
 from src.Model.Package.entries.bool import Bool
 from src.Model.Package.entries.container import Container
 from src.Model.Package.entries.fuzzy import Fuzzy
@@ -11,8 +10,7 @@ from src.Model.Package.entries.multiple.multiple_container import MultipleContai
 from src.Model.Package.entries.multiple.multiple_key_word import MultipleKeyWord
 from src.Model.Package.entries.number import Number
 from src.Model.Package.entries.string import String
-from src.Model.Package.exception_logging.exception import AlreadyExistsError
-from src.Model.Package.package import Plugin
+from src.Model.exception import AlreadyExistsError
 
 __author__ = 'Ondřej Lanč'
 
@@ -30,8 +28,8 @@ class TemplateFileReader(FileReader):
         self._config = config
         self._package = package
         template_file = self._config.template_file
-        logger.info("Loading template file {}".format(template_file))
         super().__init__(template_file)
+        self.logger.info("Loading template file {}".format(template_file))
 
     def parse(self):
         self._inside_container(self._package.tree, self._root)
@@ -72,8 +70,6 @@ class TemplateFileReader(FileReader):
                 yield entry
             else:
                 raise MissingMandatoryElementError('{} name misssing'.format(element_type.name))
-
-
 
     def _inside_container(self, container, element):
         for entry in self._parse_entry(element):
@@ -121,7 +117,7 @@ class TemplateFileReader(FileReader):
             try:
                 self._list(entry, properties)
             except AttributeError:
-                logger.error("list not set")
+                self.logger.error("list not set")
 
     def _inside_fuzzy(self, entry, element):
         properties = element.find('properties')

@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from src.IO.XMLParser.file_reader import FileReader
-from src.IO.log import logger
+from src.IO.XMLParser.file import FileReader
 from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
@@ -13,8 +12,8 @@ class DefaultValuesFileReader(FileReader):
         self._config = config
         self._package = package
         default_values_file = self._config.default_values_file
-        logger.info("Loading default values file {}".format(default_values_file))
         super().__init__(default_values_file)
+        self.logger.info("Loading default values file {}".format(default_values_file))
 
     def parse(self):
         for container in self._root.iterfind('container'):

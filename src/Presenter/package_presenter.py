@@ -18,6 +18,7 @@ __author__ = 'Ondřej Lanč'
 
 class PackagePresenter(Presenter):
     def __init__(self, config, language):
+        super().__init__()
         self._config=config
         self._undo = UndoPresenter()
         self._package = Package(self._config.name)

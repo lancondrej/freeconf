@@ -4,10 +4,7 @@
 __author__ = 'Ondřej Lanč'
 
 
-class Output():
-
-    def __init__(self):
-        self._package = None
+class Output(object):
 
     def write_output(self):
         """Virtual function. Need to be reimplemented in subclass"""

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import logging
 
-from src.Model.Package.exception_logging.log import log
 from src.Model.Package.lists.constants import Types
 from src.Model.Package.lists.list import List
 
@@ -61,9 +61,10 @@ class FuzzyList(List):
             else:
                 # Key is already in the list. Check if it has same grade
                 if new_list.values[key].grade != self.values[key].grade:
-                    log.error("FcFuzzyList: joinList: Joining %s with %s. "
-                              "Value '%s' is already in the list but with"
-                              " different grade!"% (self.name, new_list.name, key))
+                    raise Exception
+                    # self.logger.error("FcFuzzyList: joinList: Joining %s with %s. "
+                    #           "Value '%s' is already in the list but with"
+                    #           " different grade!" % (self.name, new_list.name, key))
         return self
 
 

@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 from src.Model.Config.freeconf_config import Config
 import xml.etree.ElementTree as ET
 from os import scandir
 
 from src.Model.Config.package import Package, Plugin
+from src.Presenter.presenter import Presenter
 
 __author__ = 'Ondřej Lanč'
 
 
-class ConfigPresenter(object):
+class ConfigPresenter(Presenter):
     def __init__(self):
+        super().__init__()
         self._config = Config()
         self._load_config()
 

@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
-from src.Presenter.log import logger
+import logging
 
 __author__ = 'Ondřej Lanč'
 
 
 class PresenterGeneralError (Exception):
-    def __init__(self, message):
+    def __init__(self, message, logger):
         self._message = message
         self._print_to_lo_log()
+        self.logger = logger or logging.getLogger("Presenter")
 
     def _print_to_lo_log(self):
         if self._message is not None:
-            logger.error(self._get_exception_header() + self._message)
+            self.logger.error(self._get_exception_header() + self._message)
 
     def _get_exception_header(self):
         return "General error in parser: "

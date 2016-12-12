@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from src.IO.XMLParser.file_reader import FileReader
-from src.IO.log import logger
+from src.IO.XMLParser.file import FileReader
 
 
 __author__ = 'Ondřej Lanč'
@@ -13,8 +12,9 @@ class GUIHelpFileReader(FileReader):
         self._config = config
         self._package = package
         gui_help_file = self._config.gui_help_file(language)
-        logger.info("Loading GUI help file {}".format(gui_help_file))
         super().__init__(gui_help_file)
+        self.logger.info("Loading GUI help file {}".format(gui_help_file))
+
 
     def parse(self):
         self._package.gui_tree.label=self._root.findtext('label')

@@ -11,6 +11,7 @@ class MainPresenter(Presenter):
     _config = ConfigPresenter()
 
     def __init__(self):
+        super().__init__()
         self._view=None
 
     @property

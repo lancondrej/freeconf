@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from src.Model.Package.exception_logging.log import log
+import logging
 
 __author__ = 'Ondřej Lanč'
 
@@ -13,6 +13,7 @@ class BaseEntry(object):
         self._label = None
         self._parent = None
         self._package = package  # Plugin or package, from which this entry originates.
+        self.logger = logging.getLogger('Model')
 
     def __repr__(self):
         return self.__class__.__name__ + '(' + self.name + ')'

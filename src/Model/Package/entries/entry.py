@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from src.Model.Package.entries.base_entry import BaseEntry
-from src.Model.Package.exception_logging.log import log
 
 __author__ = 'Ondřej Lanč'
 
@@ -104,7 +103,7 @@ class Entry(BaseEntry):
     @active.setter
     def active(self, active):
         if not self._static_active and active:
-            log.error("Key " + self.name +
+            self.logger.error("Key " + self.name +
                       " cannot be set active by a dependency because it is switched off in the template.")
         self._dynamic_active = active
 

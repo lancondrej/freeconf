@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from src.Model.Package.entries.key_word import KeyWord
-from src.Model.Package.exception_logging.exception import ModelGeneralError
-from src.Model.Package.exception_logging.log import log
 from src.Model.Package.lists.constants import Types
+from src.Model.exception import ModelGeneralError
 
 __author__ = 'Ondřej Lanč'
 

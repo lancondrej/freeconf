@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from src.IO.XMLParser.file_reader import FileReader
-from src.IO.log import logger
+from src.IO.XMLParser.file import FileReader
 from src.Model.Package.lists.fuzzy_list import FuzzyList
 from src.Model.Package.lists.string_list import StringList
+import logging
 
 __author__ = 'Ondřej Lanč'
 
@@ -14,8 +14,8 @@ class ListFileReader(FileReader):
         self._config = config
         self._package = package
         list_file = self._config.list_file
-        logger.info("Loading List file {}".format(list_file))
         super().__init__(list_file)
+        self.logger.info("Loading List file {}".format(list_file))
 
     def parse(self):
         sl = self._parse_string_lists()
@@ -31,7 +31,7 @@ class ListFileReader(FileReader):
     def _parse_list(self, element, ListClass, value_func):
         lists={}
         for list_element in self._root.iterfind(element):
-            logger.info("List file: parsing <{}> element".format(element))
+            self.logger.info("List file: parsing <{}> element".format(element))
             name = list_element.get('name')
             if name:
                 list = ListClass(name)
@@ -39,25 +39,22 @@ class ListFileReader(FileReader):
                     list.append(value)
                 lists[name]=list
             else:
-                logger.error("List file: in element <{}> missing attribute name".format(element))
+                self.logger.error("List file: in element <{}> missing attribute name".format(element))
         return lists
 
-    @staticmethod
-    def _get_values(element, value_func):
+    def _get_values(self, element, value_func):
         for value_element in element.iterfind('value'):
             yield value_func(value_element)
 
-    @staticmethod
-    def _string_value(element):
+    def _string_value(self, element):
         return StringList.Entry(element.text)
 
-    @staticmethod
-    def _fuzzy_value(element):
+    def _fuzzy_value(self, element):
         grade = element.get('grade')
         if grade is not None:
             try:
                 return FuzzyList.Entry(float(grade), element.text)
             except AssertionError:
-                logger.error("Attribute grade={} is out of range for fuzzy value!".format(grade))
+                self.logger.error("Attribute grade={} is out of range for fuzzy value!".format(grade))
         else:
-            logger.error("Attribute grade missing")
+            self.logger.error("Attribute grade missing")

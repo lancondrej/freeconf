@@ -1,17 +1,15 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 import urllib.parse
-
 import lxml.etree as etree
-
-from src.IO.log import logger
+from src.IO.XMLParser.file import FileWriter
 
 __author__ = 'Ondřej Lanč'
 
 
-class NativeFileWriter (object):
+class NativeFileWriter(FileWriter):
     def __init__(self, group, dom):
+        super().__init__()
         self._group = group
         self._dom = dom
 
@@ -33,4 +31,4 @@ class NativeFileWriter (object):
         newdom = transform(self._dom)
         f = open(self._group.native_output, 'w')
         f.write(str(newdom))
-        logger.info("Writing output to {}".format(self._group.native_output))
+        self.logger.info("Writing output to {}".format(self._group.native_output))

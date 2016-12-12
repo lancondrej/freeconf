@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from lxml.etree import Element, ElementTree
-from src.IO.XMLParser.file_reader import FileReader
-from src.IO.log import logger
+from src.IO.XMLParser.file import FileReader, FileWriter
 from src.Model.Package.entries.multiple.multiple_entry import MultipleEntry
 
 __author__ = 'Ondřej Lanč'
@@ -14,8 +13,9 @@ class ConfigFileReader(FileReader):
         self._config = config
         self._package = package
         config_file = self._config.config_file
-        logger.info("Loading List file {}".format(config_file))
         super().__init__(config_file)
+        self.logger.info("Loading List file {}".format(config_file))
+
 
     def parse(self):
         for container in self._root.iterfind('container'):
@@ -45,8 +45,9 @@ class ConfigFileReader(FileReader):
         entry.value = value
 
 
-class ConfigFileWriter(object):
+class ConfigFileWriter(FileWriter):
     def __init__(self, config, package):
+        super().__init__()
         self._config = config
         self._package = package
         self.render = {
@@ -108,7 +109,7 @@ class ConfigFileWriter(object):
         element.set('name', entry.name)
         value = entry.output_value
         if value is None:
-            logger.info("Value for entry {} missing".format(entry.full_name))
+            self.logger.info("Value for entry {} missing".format(entry.full_name))
             return
         element.text = str(value)
         # TODO: naformátovat
