@@ -103,8 +103,9 @@ class Entry(BaseEntry):
     @active.setter
     def active(self, active):
         if not self._static_active and active:
-            self.logger.error("Key " + self.name +
-                      " cannot be set active by a dependency because it is switched off in the template.")
+            from src.Model.exception import PropertyException
+            raise PropertyException("Key {} cannot be set active by a dependency,"
+                                    " because it is non inactive by template.".format(self.name))
         self._dynamic_active = active
 
     @property

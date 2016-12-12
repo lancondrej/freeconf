@@ -5,7 +5,7 @@ import logging
 from src.Model.Package.inconsistency import ContainerInconsistency
 from copy import deepcopy
 from src.Model.Package.entries.entry import Entry
-from src.Model.exception import AlreadyExistsError
+from src.Model.exception import AlreadyExistsException
 
 __author__ = 'Ondřej Lanč'
 
@@ -58,7 +58,7 @@ class Container(Entry, ContainerInconsistency):
                 self._entries[entry.name]._merge_container(entry)
                 return True
             else:
-                raise AlreadyExistsError(u"Can't add child! There is already key word with name ({})"
+                raise AlreadyExistsException(u"Can't add child! There is already key word with name ({})"
                                      u" in the container ({}).".format(entry.name, self.name))
         entry.parent = self
         self._entries[entry.name] = entry

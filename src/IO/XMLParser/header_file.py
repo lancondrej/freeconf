@@ -31,13 +31,13 @@ class HeaderFileReader(FileReader):
 
             file = content_element.findtext('template')
             if file is None:
-                raise MissingMandatoryElementError("<template> in  header file")
+                raise MissingMandatoryElementException("<template> in  header file")
             self.logger.debug("Header file: template file {}".format(file))
             self._config.file.template = file
 
             file = content_element.findtext('output')
             if file is None:
-                raise MissingMandatoryElementError("<output> in  header file")
+                raise MissingMandatoryElementException("<output> in  header file")
             self.logger.debug("Header file: output file {}".format(file))
             self._config.file.output = file
 
@@ -69,7 +69,7 @@ class HeaderFileReader(FileReader):
                 self.logger.debug("Header file: list file {}".format(file))
                 self._config.file.list = file
         else:
-            raise MissingMandatoryElementError("<content> in  header file")
+            raise MissingMandatoryElementException("<content> in  header file")
 
     def parse_group(self):
         group_not_set = True

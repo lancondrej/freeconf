@@ -61,10 +61,10 @@ class FuzzyList(List):
             else:
                 # Key is already in the list. Check if it has same grade
                 if new_list.values[key].grade != self.values[key].grade:
-                    raise Exception
-                    # self.logger.error("FcFuzzyList: joinList: Joining %s with %s. "
-                    #           "Value '%s' is already in the list but with"
-                    #           " different grade!" % (self.name, new_list.name, key))
+                    from src.Model.exception import AlreadyExistsException
+                    raise AlreadyExistsException("Joining {} with {}. Value '{}' is "
+                                                 "already in the list but with different"
+                                                 " grade!".format((self.name, new_list.name, key)))
         return self
 
 

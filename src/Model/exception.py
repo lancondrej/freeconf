@@ -1,61 +1,36 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import logging
+from src.exception import FreeconfGeneralException
 
 __author__ = 'Ondřej Lanč'
 
-class ModelGeneralError(Exception):
-    def __init__(self, message, logger=None):
-        self.message = message
-        self._print_to_log()
-        self.logger = logger or logging.getLogger("Model")
 
-    def _print_to_log(self):
-        if self.message is not None:
-            self.logger.error(self._get_exception_header() + self.message)
+class ModelGeneralException(FreeconfGeneralException):
+    def __init__(self, message):
+        super.__init__(message, logging.getLogger("Model"))
 
     def _get_exception_header(self):
         return "General error in Model: "
 
-    def __str__(self):
-        return repr(self.message)
 
-
-class PackageLoadError(ModelGeneralError):
+class IncompatibleListTypeException(ModelGeneralException):
     def __init__(self, message):
-        ModelGeneralError.__init__(self, message)
+        ModelGeneralException.__init__(self, message)
 
     def _get_exception_header(self):
-        return "Package load error: "
+        return "Incompatible list type!: "
 
-
-class MultipleError(ModelGeneralError):
+class PropertyException(ModelGeneralException):
     def __init__(self, message):
-        ModelGeneralError.__init__(self, message)
+        ModelGeneralException.__init__(self, message)
 
     def _get_exception_header(self):
-        return "Not exists: "
+        return "Property setting problem: "
 
-
-class AlreadyExistsError(ModelGeneralError):
+class AlreadyExistsException(ModelGeneralException):
     def __init__(self, message):
-        ModelGeneralError.__init__(self, message)
+        ModelGeneralException.__init__(self, message)
 
     def _get_exception_header(self):
         return "Already exist: "
-
-
-class NotExistsError(ModelGeneralError):
-    def __init__(self, message):
-        ModelGeneralError.__init__(self, message)
-
-    def _get_exception_header(self):
-        return "Not exist: "
-
-
-class InconsistencyError (ModelGeneralError):
-    def __init__ (self, message):
-        ModelGeneralError.__init__(self, message)
-
-    def _get_exception_header (self):
-        return "Inconsistency error: "

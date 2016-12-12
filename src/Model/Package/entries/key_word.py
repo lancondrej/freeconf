@@ -78,8 +78,8 @@ class KeyWord(Entry, Inconsistency):
         if l.type == self.type:
             self._list = l
         else:
-            self.logger.error("%s: Incompatible list type! Can't set list to '%s'.", str(self), l.name)
-            pass
+            from src.Model.exception import IncompatibleListTypeException
+            raise IncompatibleListTypeException("%s:  Can't set list to '%s'.", str(self), l.name)
 
     @property
     def static_mandatory(self):
@@ -100,8 +100,9 @@ class KeyWord(Entry, Inconsistency):
     @mandatory.setter
     def mandatory(self, mandatory):
         if self._static_mandatory and not mandatory:
-            self.logger.error("Key " + self.name +
-                      " cannot be set non-mandatory by a dependency because it is set mandatory in the template.")
+            from src.Model.exception import PropertyException
+            raise PropertyException("Key {} cannot be set non-mandatory by a dependency,"
+                                    " because it is static mandatory.".format(self.name))
         self._dynamic_mandatory = mandatory
 
     def convert_value(self, value):

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from src.Model.Package.entries.key_word import KeyWord
 from src.Model.Package.lists.constants import Types
-from src.Model.exception import ModelGeneralError
+from src.Model.exception import ModelGeneralException
 
 __author__ = 'Ondřej Lanč'
 
@@ -58,7 +58,7 @@ class Fuzzy(KeyWord):
             # Find value with given grade
             entry = self.list.get_exact_grade(grade)
             if entry is None:
-                raise ModelGeneralError(
+                raise ModelGeneralException(
                     "Value with grade %d was not found in fuzzy list %s!" % (grade, self.list.name))
             return entry.value
 

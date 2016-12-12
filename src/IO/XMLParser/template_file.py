@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from src.IO.XMLParser.file import FileReader
-from src.IO.exception import MissingMandatoryElementError
+from src.IO.exception import MissingMandatoryElementException
 from src.Model.Package.entries.bool import Bool
 from src.Model.Package.entries.container import Container
 from src.Model.Package.entries.fuzzy import Fuzzy
@@ -10,7 +10,7 @@ from src.Model.Package.entries.multiple.multiple_container import MultipleContai
 from src.Model.Package.entries.multiple.multiple_key_word import MultipleKeyWord
 from src.Model.Package.entries.number import Number
 from src.Model.Package.entries.string import String
-from src.Model.exception import AlreadyExistsError
+from src.Model.exception import AlreadyExistsException
 
 __author__ = 'Ondřej Lanč'
 
@@ -69,13 +69,13 @@ class TemplateFileReader(FileReader):
                     element_type.inside_func(self, entry, element)
                 yield entry
             else:
-                raise MissingMandatoryElementError('{} name misssing'.format(element_type.name))
+                raise MissingMandatoryElementException('{} name misssing'.format(element_type.name))
 
     def _inside_container(self, container, element):
         for entry in self._parse_entry(element):
             try:
                 container.add_entry(entry)
-            except AlreadyExistsError:
+            except AlreadyExistsException:
                 pass
 
     def _inside_key_word(self, entry, properties):
