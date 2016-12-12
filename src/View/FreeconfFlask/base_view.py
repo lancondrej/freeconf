@@ -10,8 +10,8 @@ __author__ = 'Ondřej Lanč'
 
 class BaseView(object):
     """Base view class for Flask view in Freeconf.
-    :param flask: Flask
-    :param socketio Flask SocketIO
+        :param flask: Flask
+        :param socketio Flask SocketIO
     """
 
     def __init__(self, flask, socketio):

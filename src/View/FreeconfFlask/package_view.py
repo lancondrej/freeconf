@@ -13,15 +13,13 @@ __author__ = 'Ondřej Lanč'
 class PackageView(BaseView):
     """Main view for Freeconf.
     Attend to main pages of Freeconf.
-    :param flask: Flask object
-    :param socketio: SocketIO object
+        :param flask: Flask object
+        :param socketio: SocketIO object
     """
-
-    #: _render: class variable with renderer object
-    _renderer = Renderer()
 
     def __init__(self, flask, socketio):
         BaseView.__init__(self, flask, socketio)
+        self._renderer = Renderer()
         self._presenter = None
 
         self._flask.add_url_rule('/package/<package_name>', 'package', self.package)

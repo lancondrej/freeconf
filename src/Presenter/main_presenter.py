@@ -8,9 +8,9 @@ __author__ = 'Ondřej Lanč'
 
 
 class MainPresenter(Presenter):
-    _config = ConfigPresenter()
 
     def __init__(self):
+        self._config = ConfigPresenter()
         self._view=None
 
     @property

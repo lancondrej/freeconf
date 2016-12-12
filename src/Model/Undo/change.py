@@ -6,14 +6,14 @@ __author__ = 'Ondřej Lanč'
 
 class Change(object):
     """Base Change class. Just abstraction.
-    :param entry: entry which has been change
+        :param entry: entry which has been change
     """
     def __init__(self, entry):
         self.entry = entry
 
     def transform(self):
         """method returning opposite Change object. Need to be implemented in subclass.
-        :return Change: opposite Change object
+            :return Change: opposite Change object
         """
         raise NotImplementedError
 
@@ -24,8 +24,8 @@ class Change(object):
 
 class ValueChange(Change):
     """Class for value changes
-    :param entry: entry which has been change
-    :param old_value: old value of entry
+        :param entry: entry which has been change
+        :param old_value: old value of entry
     """
     def __init__(self, entry, old_value):
         Change.__init__(self, entry)
@@ -33,7 +33,7 @@ class ValueChange(Change):
 
     def transform(self):
         """set actual value as new old value
-        :return ValueChange
+            :return ValueChange
         """
         return ValueChange(self.entry, self.entry.value)
 
@@ -44,8 +44,8 @@ class ValueChange(Change):
 
 class NewMultipleChange(Change):
     """Class for multiple entry new creation
-    :param entry: multiple entry
-    :param newone: new entry of multiple
+        :param entry: multiple entry
+        :param newone: new entry of multiple
     """
     def __init__(self, entry, newone):
         Change.__init__(self, entry)
@@ -53,7 +53,7 @@ class NewMultipleChange(Change):
 
     def transform(self):
         """return RemoveMultipleChange with newone as removed
-        :return RemoveMultipleChange
+            :return RemoveMultipleChange
         """
         return RemoveMultipleChange(self.entry, self.newone)
 
@@ -64,8 +64,8 @@ class NewMultipleChange(Change):
 
 class RemoveMultipleChange(Change):
     """Class for multiple entry remove change
-    :param entry: multiple entry
-    :param removed: entry which has been remove
+        :param entry: multiple entry
+        :param removed: entry which has been remove
     """
     def __init__(self, entry, removed):
         Change.__init__(self, entry)
@@ -73,7 +73,7 @@ class RemoveMultipleChange(Change):
 
     def transform(self):
         """return NewMultipleChange with removed as newone
-        :return NewMultipleChange
+            :return NewMultipleChange
         """
         return NewMultipleChange(self.entry, self.removed)
 
@@ -84,8 +84,8 @@ class RemoveMultipleChange(Change):
 
 class MoveUpMultipleChange(Change):
     """Class for multiple entry move up change
-    :param entry: multiple entry
-    :param index: index of entry which is move in multiple entry
+        :param entry: multiple entry
+        :param index: index of entry which is move in multiple entry
     """
     def __init__(self, entry, index):
         Change.__init__(self, entry)
@@ -93,7 +93,7 @@ class MoveUpMultipleChange(Change):
 
     def transform(self):
         """return MoveDownMultipleChange with increased index
-        :return MoveDownMultipleChange
+            :return MoveDownMultipleChange
         """
         return MoveDownMultipleChange(self.entry, self.index + 1)
 
@@ -104,8 +104,8 @@ class MoveUpMultipleChange(Change):
 
 class MoveDownMultipleChange(Change):
     """Class for multiple entry move down change
-    :param entry: multiple entry
-    :param index: index of entry which is move in multiple entry
+        :param entry: multiple entry
+        :param index: index of entry which is move in multiple entry
     """
     def __init__(self, entry, index):
         Change.__init__(self, entry)
@@ -113,7 +113,7 @@ class MoveDownMultipleChange(Change):
 
     def transform(self):
         """return MoveUpMultipleChange with decreased index
-        :return MoveUpMultipleChange
+            :return MoveUpMultipleChange
         """
         return MoveUpMultipleChange(self.entry, self.index - 1)
 

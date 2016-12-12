@@ -25,14 +25,14 @@ class Group:
     @name.setter
     def name(self, name):
         """name setter
-        :param name
+            :param name
         """
         self._name = name
 
     @property
     def transform_file(self):
         """transform file location
-        :return full path of file or None if file not set
+            :return full path of file or None if file not set
         """
         return os.path.abspath(os.path.join(self.package.location, self._transform_file))\
             if self._transform_file else None
@@ -40,7 +40,7 @@ class Group:
     @transform_file.setter
     def transform_file(self, transform_file):
         """transform file setter
-        :param transform_file
+            :param transform_file
         """
         self._transform_file = transform_file
 
@@ -52,14 +52,14 @@ class Group:
     @native_output.setter
     def native_output(self, native_output):
         """native output file setter
-        :param native_output
+            :param native_output
         """
         self._native_output = native_output
 
     def include_transform(self, plugin, file_location):
         """Add transform file to list of included transform files.
-        :param plugin: plugin from which is transform included
-        :param file_location: location of trasform file in plugin
+            :param plugin: plugin from which is transform included
+            :param file_location: location of trasform file in plugin
         """
         self.included_transforms.append(os.path.abspath(os.path.join(plugin.location, file_location)))
 

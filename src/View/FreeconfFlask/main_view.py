@@ -11,8 +11,8 @@ __author__ = 'Ondřej Lanč'
 class MainView(BaseView):
     """Main view for Freeconf.
     Attend to main pages of Freeconf.
-    :param flask: Flask object
-    :param socketio: SocketIO object
+        :param flask: Flask object
+        :param socketio: SocketIO object
     """
     def __init__(self, flask, socketio):
         BaseView.__init__(self, flask, socketio)
@@ -37,7 +37,7 @@ class MainView(BaseView):
     @presenter.setter
     def presenter(self, presenter):
         """main presenter setter
-        :param presenter
+            :param presenter
         """
         self._presenter = presenter
 
