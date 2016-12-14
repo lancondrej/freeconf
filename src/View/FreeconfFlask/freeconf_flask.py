@@ -28,6 +28,11 @@ class FreeconfFlask(object):
         # view for package
         self._packageView = PackageView(self)
 
-    def run(self):
-        """main method for run server from Flask and SocketIO"""
-        self.socketio.run(self.flask)
+    def run(self, host=None, port=None):
+        """main method for run server from Flask and SocketIO
+        :param host: The hostname or IP address for the server to listen on.
+                    Defaults to 127.0.0.1.
+        :param port: The port number for the server to listen on. Defaults
+                    to 5000.
+        """
+        self.socketio.run(self.flask, host=host, port=port)
