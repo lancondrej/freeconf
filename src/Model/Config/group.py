@@ -26,7 +26,7 @@ class Group:
     def name(self, name):
         """name setter
 
-        :param name
+        :param name: name of group
         """
         self._name = name
 
@@ -34,7 +34,7 @@ class Group:
     def transform_file(self):
         """transform file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.abspath(
             os.path.join(self.package.location, self._transform_file)) \
@@ -44,7 +44,7 @@ class Group:
     def transform_file(self, transform_file):
         """transform file setter
 
-        :param transform_file
+        :param transform_file: name of file
         """
         self._transform_file = transform_file
 
@@ -57,7 +57,7 @@ class Group:
     def native_output(self, native_output):
         """native output file setter
 
-        :param native_output
+        :param native_output: name of file
         """
         self._native_output = native_output
 

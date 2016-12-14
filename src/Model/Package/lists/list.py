@@ -7,9 +7,18 @@ __author__ = 'Ondřej Lanč'
 
 
 class List:
-    """Base Class for key_word lists."""
+    """Base Class for key_word lists.
+
+    :param name: name of list
+    """
 
     class Entry:
+        """Base entry for lists
+
+        :param value: entry value
+        :param label: entry label
+        :param help: entry help
+        """
         def __init__(self, value, label=None, help=None):
             self.value = value
             self.help = help
@@ -17,10 +26,18 @@ class List:
 
         @property
         def label(self):
+            """label getter
+
+            :return: label or value
+            """
             return self._label or self.value
 
         @label.setter
         def label(self, label):
+            """lable setter
+
+            :param label:
+            """
             self._label = label
 
         def __repr__(self):
@@ -33,37 +50,63 @@ class List:
 
     @property
     def name(self):
-        """get name"""
+        """name getter
+
+        :return: name
+        """
         return self._name
 
     @name.setter
     def name(self, name):
-        """set name"""
+        """name setter
+
+        :param name: name of list
+        """
         self._name = str(name)
 
     def append(self, entry):
+        """append entry to list
+
+        :param entry:
+        """
         self.values[entry.value] = entry
 
     def contains(self, value):
-        """Return True/False if this list contains given value or not."""
+        """Return True/False if this list contains given value or not.
+
+        return: bool
+        """
         return value in self.values
 
     @property
     def type(self):
-        """Return type of this list entries."""
+        """Return type of this list entries.
+
+        :return: type of list
+        """
         return Types.KEY_WORD
 
     @property
     def entries(self):
-        """Return list of entries."""
+        """Return list of entries.
+
+        :return: list of list entries
+        """
         return self.values.values()
 
     def get_entry(self, value):
-        """Return entry by value."""
+        """Return entry by value.
+
+        :param value: valeu of entry
+        :return: entry or None
+        """
         return self.values.get(value)
 
     def get_first_entry(self):
-        """Return first entry in the list. If there is no entry, return None"""
+        """Return first entry in the list. If there is no entry, return None
+
+        :return: entry or None
+        """
         if len(self.values) == 0:
             return None
         return self.values[min(self.values.keys())]

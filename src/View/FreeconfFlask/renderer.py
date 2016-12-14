@@ -23,6 +23,11 @@ class Renderer(object):
         }
 
     def entry_render(self, entry):
+        """base render method render all type of entries
+
+        :param entry: entry for rendering
+
+        """
         try:
             return self.render[type(entry).__name__](entry)
         except:
@@ -33,7 +38,7 @@ class Renderer(object):
         """render container
 
         :param container: container for render
-        :return string: with renderer container
+        :return: renderer container
         """
         entries = []
         for entry in container.entries.values():
@@ -61,9 +66,8 @@ class Renderer(object):
     def render_bool(entry):
         """render entry
 
-        :param entry
-
-        :return string with renderer entry
+        :param entry: bool keyword
+        :return: renderer entry
         """
         return render_template('package/entries/bool.html',
                                name=entry.name,
@@ -78,9 +82,8 @@ class Renderer(object):
     def render_number(entry):
         """render entry
 
-        :param entry
-
-        :return string with renderer entry
+        :param entry: number keyword
+        :return: renderer entry
         """
         return render_template('package/entries/number.html',
                                name=entry.name,
@@ -98,9 +101,8 @@ class Renderer(object):
     def render_string(entry):
         """render entry
 
-        :param entry
-
-        :return string with renderer entry
+        :param entry: string keyword
+        :return: renderer entry
         """
         if entry.list and not entry.user_values:
             return render_template('package/entries/select.html',
@@ -127,9 +129,8 @@ class Renderer(object):
     def render_multiple_container(container):
         """render entry
 
-        :param container
-
-        :return string with renderer entry
+        :param container: container entry
+        :return: renderer container
         """
         entries = [(i, container.primary_value(i), entry.full_name,
                     entry.inconsistent)
@@ -148,9 +149,8 @@ class Renderer(object):
     def render_multiple_key_word(self, mult_entry):
         """render entry
 
-        :param mult_entry
-
-        :return string with renderer entry
+        :param mult_entry: Multiple keyword
+        :return: renderer entry
         """
         entries = [
             (i, entry.name, self.entry_render(entry), entry.inconsistent)
@@ -169,9 +169,8 @@ class Renderer(object):
     def render_section(self, section):
         """render section
 
-        :param section
-
-        :return string with renderer section
+        :param section: Section entry
+        :return: renderer section
         """
         entries = []
         for entry in section.entries:
@@ -187,9 +186,8 @@ class Renderer(object):
     def render_modal(self, entry):
         """render section
 
-        :param entry
-
-        :return string with renderer entry
+        :param entry: container entry for modal
+        :return: renderer entry
         """
         content = self.entry_render(entry)
         return render_template('elements/modal.html',
@@ -203,9 +201,8 @@ class Renderer(object):
     def render_collapse(self, entry):
         """render section
 
-        :param entry
-
-        :return string with renderer entry
+        :param entry: container entry for collapse
+        :return: renderer entry
         """
         content = self.entry_render(entry)
         return render_template('elements/collapse.html',
@@ -219,9 +216,8 @@ class Renderer(object):
     def reload_element(self, entry):
         """render entry
 
-        :param entry
-
-        :return string with renderer entry
+        :param entry: entry for rerendering
+        :return: renderer entry
         """
         content = self.entry_render(entry)
         return content

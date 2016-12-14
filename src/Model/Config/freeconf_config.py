@@ -18,7 +18,7 @@ class Config(object):
     def packages(self):
         """ packages getter
 
-        :return dict: packages dictionary
+        :return: packages dictionary
         """
         return self._packages
 
@@ -26,8 +26,8 @@ class Config(object):
         """ package getter
 
         :param name: name of package
-
-        :return Package or None
+        :return: configuration of package with given name or None if package
+                    with given name not found
         """
         return self._packages[name]
 
@@ -35,7 +35,7 @@ class Config(object):
     def config_file(self):
         """ config_file getter
 
-        :return path of config file
+        :return: path of config file
         """
         return self._config_file
 
@@ -43,7 +43,7 @@ class Config(object):
     def lang(self):
         """ lang getter
 
-        :return lang code
+        :return: lang code
         """
         return self._lang
 
@@ -51,6 +51,6 @@ class Config(object):
     def lang(self, lang):
         """lang setter
 
-        :param lang - lang code
+        :param lang: lang code
         """
         self._lang = lang

@@ -18,7 +18,10 @@ class BoolList(FuzzyList):
 
     @property
     def type(self):
-        """Return type of this list entries."""
+        """Return type of this list entries.
+
+        :return: type of list
+        """
         return Types.BOOL
 
 

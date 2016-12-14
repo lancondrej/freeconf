@@ -24,7 +24,7 @@ class Package(object):
     def header_file(self):
         """header file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.header) if self.file.header else None
@@ -33,7 +33,7 @@ class Package(object):
     def list_file(self):
         """list file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.list) if self.file.list else None
@@ -42,7 +42,7 @@ class Package(object):
     def template_file(self):
         """template file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.template) if self.file.template else None
@@ -51,7 +51,7 @@ class Package(object):
     def dependencies_file(self):
         """dependencies file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.dependencies) if self.file.dependencies else None
@@ -60,7 +60,7 @@ class Package(object):
     def gui_template_file(self):
         """gui template file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.gui_template) if self.file.gui_template else None
@@ -69,8 +69,7 @@ class Package(object):
         """help file location
 
         :param language: language code ('en', 'cs' ...)
-
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         language = self._set_language(language)
         return os.path.join(self.languages_dir, language,
@@ -80,8 +79,7 @@ class Package(object):
         """list help file location
 
         :param language: language code ('en', 'cs' ...)
-
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         language = self._set_language(language)
         return os.path.join(self.languages_dir, language, self.file.list) if (
@@ -91,8 +89,7 @@ class Package(object):
         """gui help file location
 
         :param language: language code ('en', 'cs' ...)
-
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         language = self._set_language(language)
         return os.path.join(self.languages_dir, language,
@@ -103,7 +100,7 @@ class Package(object):
     def default_values_file(self):
         """default values file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.default_values) if self.file.default_values else None
@@ -112,7 +109,7 @@ class Package(object):
     def config_file(self):
         """output config file location
 
-        :return full path of file or None if file not set
+        :return: full path of file or None if file not set
         """
         return os.path.join(self.location,
                             self.file.output) if self.file.output else None
@@ -121,7 +118,7 @@ class Package(object):
     def plugins_dir(self):
         """plugins dir location
 
-        :return full path of dir
+        :return: full path of dir
         """
         return os.path.join(self.location, 'plugins')
 
@@ -129,7 +126,7 @@ class Package(object):
     def languages_dir(self):
         """language dir location
 
-        :return full path of dir
+        :return: full path of dir
         """
         return os.path.join(self.location, 'L10n')
 
@@ -137,7 +134,7 @@ class Package(object):
     def groups(self):
         """ groups getter
 
-        :return dict: groups dictionary
+        :return: groups dictionary
         """
         return self._groups
 
@@ -145,7 +142,6 @@ class Package(object):
         """ group getter
 
         :param name: name of group
-
         :return Group: Group used in Package
         """
         return self._groups.get(name)
@@ -153,7 +149,7 @@ class Package(object):
     def add_group(self, group):
         """ add group to package. Set self as group package.
 
-        :param group
+        :param group: Group object for adding
         """
         group.package = self
         self._groups[group.name] = group
@@ -161,7 +157,7 @@ class Package(object):
     def add_plugin(self, plugin):
         """ add plugin config to package config. Set self as plugin parent.
 
-        :param plugin
+        :param plugin: Plugin object for adding
         """
         plugin.parent = self
         plugin.root = self.root
@@ -179,7 +175,6 @@ class Package(object):
         """ plugin getter
 
         :param name: name of plugin
-
         :return Plugin: Plugin in Package
         """
         return self._plugins.get(name)
@@ -188,8 +183,7 @@ class Package(object):
         """set lang if lang is not in available retrun default
 
         :param lang: code of language
-
-        :return code of language
+        :return: code of language
         """
 
         if lang not in self.available_language:

@@ -8,7 +8,11 @@ __author__ = 'Ondřej Lanč'
 
 
 class GSection(BaseEntry, ContainerInconsistency):
-    """GUI container class"""
+    """GUI section class
+
+    :param name: name of section
+    :param package: package which is section for
+    """
 
     def __init__(self, name, package):
         BaseEntry.__init__(self, name, package)
@@ -17,41 +21,37 @@ class GSection(BaseEntry, ContainerInconsistency):
         self.description = None
 
         ContainerInconsistency.__init__(self)
-        # self._active_shown = 0
-        # self._mandatory_shown = 0
-        # self._section_shown = 0
-        # self.empty = None
-        # self._show_all_children = False
         self._entries = []
 
     @property
     def inc_parents(self):
+        """return parents for inconsistency
+
+        :return: set of parents
+        """
         return self._inc_parents
 
     @property
     def entries(self):
+        """entries getter
+
+        :return:  entries
+        """
         return self._entries
 
-    #
-    # @property
-    # def show_all_children(self):
-    #     return self._show_all_children
-
-    # @property
-    # def primaryChildName(self):
-    #     raise AttributeError("Property primaryChildName is write only!")
-    #
-    # @primaryChildName.setter
-    # def primaryChildName(self, name):
-    #     self._primaryChildName = name
-    #     self._primaryChild = None
-
     def append(self, entry):
+        """append entry into section
+
+        :param entry:
+        """
         entry.inc_parents.add(self)
         self._entries.append(entry)
 
     def get_entry(self, name):
-        """Find entry with given name."""
+        """Find entry with given name.
+
+        :return: entry or None
+        """
         indices = [i for i, x in enumerate(self._entries) if x.name == name]
         if len(indices) == 0:
             return None

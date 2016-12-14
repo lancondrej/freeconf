@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import re
-
-__author__ = 'Ondřej Lanč'
-
 from src.Model.Package.entries.key_word import KeyWord
 from src.Model.Package.lists.constants import Types
+
+__author__ = 'Ondřej Lanč'
 
 
 class String(KeyWord):

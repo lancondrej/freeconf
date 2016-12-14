@@ -29,7 +29,7 @@ class Stack(object):
     def pop(self):
         """Pop last item and decrease length by 1.
 
-        :return item or None
+        :return: last Change object or None if stack is empty
         """
         if self._len:
             self._len -= 1

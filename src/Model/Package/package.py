@@ -36,7 +36,7 @@ class Package(object):
     def tree(self):
         """tree getter if no one available create default.
 
-        :return Container
+        :return Container: root of tree
         """
         return self._tree or self._build_tree()
 
@@ -58,7 +58,7 @@ class Package(object):
     def gui_tree(self):
         """gui tree getter if no one available create default.
 
-        :return GWindow
+        :return GWindow: root of gui_tree
         """
         return self._gui_tree or self._build_gui_tree()
 
@@ -71,7 +71,10 @@ class Package(object):
         self._gui_tree = gui_tree
 
     def _build_gui_tree(self):
-        """"build default gui_tree"""
+        """"build default gui_tree
+
+        :return: GWindow
+        """
         self._gui_tree = GWindow(self.name, self)
 
         all = GTab("all", self)
@@ -105,13 +108,16 @@ class Package(object):
     def language(self):
         """language getter get current language or default language
 
-        :return language code
+        :return: language code
         """
         return self._language or self._default_language
 
     @language.setter
     def language(self, lang):
-        """Current language setter."""
+        """Current language setter.
+
+        :param lang: lang code
+        """
         self._language = lang
 
     @property
@@ -125,7 +131,10 @@ class Package(object):
         return self.tree.inconsistent
 
     def inconsistency_signal(self, entry):
-        """send inconsistency signal sending is from Inconsistency class"""
+        """send inconsistency signal sending is from Inconsistency class
+
+        :param entry: inconsistent entry
+        """
         signal('inconsistency_change').send(self, entry=entry)
 
 

@@ -39,7 +39,7 @@ class ValueChange(Change):
     def transform(self):
         """set actual value as new old value
 
-        :return ValueChange
+        :return ValueChange: opposite change
         """
         return ValueChange(self.entry, self.entry.value)
 
@@ -62,7 +62,7 @@ class NewMultipleChange(Change):
     def transform(self):
         """return RemoveMultipleChange with newone as removed
 
-        :return RemoveMultipleChange
+        :return RemoveMultipleChange: opposite change
         """
         return RemoveMultipleChange(self.entry, self.newone)
 
@@ -85,7 +85,7 @@ class RemoveMultipleChange(Change):
     def transform(self):
         """return NewMultipleChange with removed as newone
 
-        :return NewMultipleChange
+        :return NewMultipleChange: opposite change
         """
         return NewMultipleChange(self.entry, self.removed)
 
@@ -108,7 +108,7 @@ class MoveUpMultipleChange(Change):
     def transform(self):
         """return MoveDownMultipleChange with increased index
 
-        :return MoveDownMultipleChange
+        :return MoveDownMultipleChange: opposite change
         """
         return MoveDownMultipleChange(self.entry, self.index + 1)
 
@@ -131,7 +131,7 @@ class MoveDownMultipleChange(Change):
     def transform(self):
         """return MoveUpMultipleChange with decreased index
 
-        :return MoveUpMultipleChange
+        :return MoveUpMultipleChange: opposite change
         """
         return MoveUpMultipleChange(self.entry, self.index - 1)
 

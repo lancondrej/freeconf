@@ -19,7 +19,7 @@ class Undo(object):
     def undo(self):
         """Retrieve change if is available and push it to redo stack.
 
-        :return Change object or None
+        :return: last Change object or None if stack is empty
         """
         item = self._undo_stack.pop()
         if item:
@@ -30,7 +30,7 @@ class Undo(object):
     def redo(self):
         """Retrieve change if is available and push it back to undo stack.
 
-        :return Change object or None
+        :return: last Change object or None if stack is empty
         """
         item = self._redo_stack.pop()
         if item:
@@ -41,7 +41,7 @@ class Undo(object):
     def save(self, item):
         """Save new change to undo stack.
 
-        :param item object
+        :param item: Change object
         """
         self._undo_stack.push(item)
         self._redo_stack.flush()

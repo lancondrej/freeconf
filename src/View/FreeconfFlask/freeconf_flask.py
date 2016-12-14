@@ -30,6 +30,7 @@ class FreeconfFlask(object):
 
     def run(self, host=None, port=None):
         """main method for run server from Flask and SocketIO
+        
         :param host: The hostname or IP address for the server to listen on.
                     Defaults to 127.0.0.1.
         :param port: The port number for the server to listen on. Defaults

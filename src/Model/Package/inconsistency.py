@@ -18,7 +18,10 @@ class Inconsistency(object):
         return self._inconsistent
 
     def change_inconsistency(self, value):
-        """This method is called whenever the inconsistency must be changed"""
+        """This method is called whenever the inconsistency must be changed
+
+        :param value: bool value of new inconsistency
+        """
         if self._inconsistent != value:
             self._inconsistent = value
             self._evaluate_inconsistency()
@@ -28,7 +31,10 @@ class Inconsistency(object):
         self._notify_parent(self._inconsistent)
 
     def _notify_parent(self, inconsistent):
-        """Notifies parent about change of inconsistency"""
+        """Notifies parent about change of inconsistency
+
+        :param  inconsistent: bool value of new inconsistency
+        """
         if self.package is not None:
             self.package.inconsistency_signal(self)
         for parent in self.inc_parents:
@@ -57,7 +63,10 @@ class ContainerInconsistency(Inconsistency):
         return bool(self._inconsistent_count)
 
     def change_inconsistency(self, value):
-        """This method is called whenever the inconsistency must be changed"""
+        """This method is called whenever the inconsistency must be changed
+
+        :param value: bool value of new inconsistency
+        """
         assert self._inconsistent_count >= 0
 
         if value:
@@ -94,7 +103,10 @@ class MultipleInconsistency(ContainerInconsistency):
         return bool(self._inconsistent_count) or self._self_inconsistent
 
     def change_inconsistency(self, value):
-        """This method is called whenever the inconsistency must be changed"""
+        """This method is called whenever the inconsistency must be changed
+
+        :param value: bool value of new inconsistency
+        """
         assert self._inconsistent_count >= 0
 
         if value:
@@ -104,7 +116,11 @@ class MultipleInconsistency(ContainerInconsistency):
         self._evaluate_inconsistency()
 
     def change_self_inconsistency(self, value):
-        """This method is called whenever the inconsistency must be changed"""
+        """This method is called whenever the self inconsistency must be
+        changed
+
+        :param value: bool value of new inconsistency
+        """
         if self._self_inconsistent != value:
             self._self_inconsistent = value
             self._evaluate_inconsistency()

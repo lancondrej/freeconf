@@ -8,7 +8,10 @@ __author__ = 'Ondřej Lanč'
 
 
 class StringList(List):
-    """Class for string lists."""
+    """Class for string lists.
+
+    :param name: name of list
+    """
 
     class Entry(List.Entry):
         """This class describes particular string for string config keyword.
@@ -17,12 +20,15 @@ class StringList(List):
 
         def __repr__(self):
             return 'StringEntry(%s, "%s", "%s")' % (
-            self.value, self.label, self.help)
+                self.value, self.label, self.help)
 
     def __init__(self, name):
         List.__init__(self, name)
 
     @property
     def type(self):
-        """Return type of this list entries."""
+        """Return type of this list entries.
+
+        :return: type of list
+        """
         return Types.STRING
