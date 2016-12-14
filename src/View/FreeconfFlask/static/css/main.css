@@ -77,3 +77,7 @@ input[type=checkbox] {
     width: 26px;
     height: 26px;
 }
+
+#shutdown{
+    margin-top: 8px;
+}
