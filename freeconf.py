@@ -27,9 +27,16 @@ if __name__ == '__main__':
     args = parser.parse_args()
     port = args.port
     host = args.host
+
+    freeconf = FreeconfFlask(debug=False)
     import webbrowser
     url = "http://{}:{}".format(host, port)
     webbrowser.open_new(url)
+    freeconf.run(host=host, port=port)
 
-    FreeconfFlask(debug=False).run(host=host, port=port)
+    print("Freeconf exit!")
+
+
+
+
 

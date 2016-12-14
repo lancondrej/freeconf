@@ -81,6 +81,12 @@ $(document).ready(function () {
         socket.emit('reload_config');
     });
 
+
+    $('#shutdown').on('click', function () {
+        $.get($SCRIPT_ROOT + '/_shutdown');
+    });
+
+
     tabs_on();
     load();
 

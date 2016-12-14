@@ -14,6 +14,7 @@ class BaseView(object):
     """
 
     def __init__(self, freeconf):
+        self._freeconf = freeconf
         self._flask = freeconf.flask
         self._socketio = freeconf.socketio
         self._main_presenter = freeconf.presenter

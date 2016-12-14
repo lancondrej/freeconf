@@ -21,6 +21,7 @@ class MainView(BaseView):
         self._flask.add_url_rule('/about', 'about', self.about)
         self._flask.add_url_rule('/configure', 'configure', self.configure)
         self._flask.add_url_rule('/setting', 'setting', self.setting)
+        self._flask.add_url_rule('/_shutdown', 'shutdown', self.shutdown)
 
         self._socketio.on_event('reload_config', self.reload_config,
                                 namespace='/freeconf')
@@ -60,3 +61,8 @@ class MainView(BaseView):
     def reload_config(self):
         """socketIO event for redo"""
         self.presenter.reload_config()
+
+    def shutdown(self):
+        """shutdown socketio server"""
+        self._freeconf.shutdown_server()
+
