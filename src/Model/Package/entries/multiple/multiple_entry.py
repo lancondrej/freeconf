@@ -139,14 +139,6 @@ class MultipleEntry(Entry, MultipleInconsistency):
     def static_active(self, active):
         self.template.static_active = active
 
-    @property
-    def mandatory(self):
-        return self.template.mandatory
-
-    @mandatory.setter
-    def mandatory(self, mandatory):
-        self.template.mandatory = mandatory
-
     def create_new(self, length):
         if self.multiple_max is None or length < self.multiple_max:
             newone = deepcopy(self._template)

@@ -60,7 +60,7 @@ class PackageView(BaseView):
 
     def package(self, package_name=None):
         """method for load new package"""
-        self.presenter = self.main_presenter._load_package(package_name)
+        self.presenter = self.main_presenter.load_package(package_name)
         if self.presenter is not None:
             self.presenter.view = self
             session['package_name'] = package_name

@@ -26,7 +26,7 @@ class Package(object):
         self.name = name
         # self.freeconfDirs = []
         self.lists = {}
-        self.dependencies = []
+        # self.dependencies = []
         self._gui_tree = None
 
     def __repr__(self):

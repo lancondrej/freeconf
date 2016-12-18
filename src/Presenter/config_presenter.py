@@ -93,7 +93,7 @@ class ConfigPresenter(Presenter):
         """
         try:
             for lang in scandir(package.languages_dir):
-                package.available_language.append(lang.name)
+                package.available_languages.append(lang.name)
         except FileNotFoundError:
             pass
             # TODO: zpráva do logu

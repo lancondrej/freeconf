@@ -14,7 +14,7 @@ class Package(object):
         self.location = ""
         self.file = self.Files()
         self._groups = {}
-        self.available_language = []
+        self.available_languages = []
         self.author = None
         self.default_language = None
         self._plugins = {}
@@ -186,12 +186,12 @@ class Package(object):
         :return: code of language
         """
 
-        if lang not in self.available_language:
+        if lang not in self.available_languages:
             lang = self.default_language
-        if lang not in self.available_language:
+        if lang not in self.available_languages:
             lang = None
         if lang is None:
-            lang = self.available_language[0]
+            lang = self.available_languages[0]
         return lang
 
     class Files(object):
