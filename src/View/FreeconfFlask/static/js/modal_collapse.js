@@ -50,9 +50,10 @@ function toogle_collapse(input) {
             $(collapse).collapse('show');
             load();
         });
+        input.toggleClass("btn-primary btn-info");
+        input.find("span.glyphicon").toggleClass("glyphicon-menu-down glyphicon-menu-up");
     }
-    input.toggleClass("btn-primary btn-info");
-    input.find("span.glyphicon").toggleClass("glyphicon-menu-down glyphicon-menu-up");
+
 }
 
 function load_modal(input) {
