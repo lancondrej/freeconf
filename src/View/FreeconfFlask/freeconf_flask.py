@@ -24,9 +24,9 @@ class FreeconfFlask(object):
         self.flask.config['SECRET_KEY'] = '56asdasss545'
         self.flask.config['TEMPLATES_AUTO_RELOAD'] = True
         # main view
-        self._mainView = MainView(self)
+        self._main_view = MainView(self)
         # view for package
-        self._packageView = PackageView(self)
+        self._package_view = PackageView(self)
 
     def run(self, host=None, port=None):
         """main method for run server from Flask and SocketIO

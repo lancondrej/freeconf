@@ -29,25 +29,26 @@ class XMLParser(Input):
         self._load_header()
         try:
             self._load_lists()
+            try:
+                self._load_list_help(lang)
+            except FileExistsError:
+                self.logger.debug("list help file missing")
         except FileExistsError:
             self.logger.debug("list file missing")
         self._load_template()
-        try:
-            self._load_GUI_template()
-        except FileExistsError:
-            self.logger.debug("gui template file missing")
         try:
             self._load_help(lang)
         except FileExistsError:
             self.logger.debug("help file missing")
         try:
-            self._load_list_help(lang)
+            self._load_GUI_template()
+            try:
+                self._load_GUI_help(lang)
+            except FileExistsError:
+                self.logger.debug("gui help file missing")
         except FileExistsError:
-            self.logger.debug("list help file missing")
-        try:
-            self._load_GUI_help(lang)
-        except FileExistsError:
-            self.logger.debug("gui help file missing")
+            self.logger.debug("gui template file missing")
+
         try:
             self._load_default_value()
         except FileExistsError:

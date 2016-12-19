@@ -13,7 +13,7 @@ class MainPresenter(Presenter):
     def __init__(self):
         super().__init__()
         self._config = ConfigPresenter()
-        self._view = None
+        self.view = None
 
     @property
     def config(self):
