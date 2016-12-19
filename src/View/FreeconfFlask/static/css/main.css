@@ -81,3 +81,8 @@ input[type=checkbox] {
 #shutdown{
     margin-top: 8px;
 }
+
+iframe{
+    height: 70vh;
+    width: 100%;
+    }

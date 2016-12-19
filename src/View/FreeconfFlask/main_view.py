@@ -18,7 +18,7 @@ class MainView(BaseView):
         BaseView.__init__(self, freeconf)
         self._main_presenter.view = self
         self._flask.add_url_rule('/', 'index', self.index)
-        self._flask.add_url_rule('/about', 'about', self.about)
+        self._flask.add_url_rule('/docu', 'docu', self.documentation)
         self._flask.add_url_rule('/configure', 'configure', self.configure)
         self._flask.add_url_rule('/setting', 'setting', self.setting)
         self._flask.add_url_rule('/_shutdown', 'shutdown', self.shutdown)
@@ -48,9 +48,9 @@ class MainView(BaseView):
         """setting page redirect to package view for self Freeconf package"""
         return redirect(url_for('package', package_name='freeconf'))
 
-    def about(self):
+    def documentation(self):
         """page about"""
-        return self.render_default(main=render_template("/doc/index.html"))
+        return self.render_default(main=render_template("doc.html"))
 
     def configure(self):
         """page with list of available packages"""
