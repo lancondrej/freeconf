@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from src.Model.Package.entries.base_entry import BaseEntry
+from src.Model.Package.inconsistency import Inconsistency
 
 __author__ = 'Ondřej Lanč'
 
 
-class Entry(BaseEntry):
+class Entry(BaseEntry, Inconsistency):
     """This is basis class for all entries."""
 
     def __init__(self, name, package):
@@ -14,8 +15,6 @@ class Entry(BaseEntry):
         self._parent = None
         self._static_active = True
         self._dynamic_active = True
-        self._enabled = True
-        self._inc_parents = set()
 
         self._multiple = False
         self._group = None  # Group of entry
@@ -38,10 +37,6 @@ class Entry(BaseEntry):
         """set name"""
         self.inc_parents.add(parent)
         self._parent = parent
-
-    @property
-    def inc_parents(self):
-        return self._inc_parents
 
     def is_container(self):
         """Return true if it is a container."""

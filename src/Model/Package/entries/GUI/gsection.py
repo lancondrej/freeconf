@@ -16,20 +16,11 @@ class GSection(BaseEntry, ContainerInconsistency):
 
     def __init__(self, name, package):
         BaseEntry.__init__(self, name, package)
-        self._inc_parents = set()
         self.parent = None
         self.description = None
 
         ContainerInconsistency.__init__(self)
         self._entries = []
-
-    @property
-    def inc_parents(self):
-        """return parents for inconsistency
-
-        :return: set of parents
-        """
-        return self._inc_parents
 
     @property
     def entries(self):

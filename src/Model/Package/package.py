@@ -22,9 +22,7 @@ class Package(object):
         self._tree = None
         self.plugins = []
         self._language = None
-        self._default_language = 'en'
         self.name = name
-        # self.freeconfDirs = []
         self.lists = {}
         # self.dependencies = []
         self._gui_tree = None
@@ -106,11 +104,11 @@ class Package(object):
 
     @property
     def language(self):
-        """language getter get current language or default language
+        """language getter get current language
 
         :return: language code
         """
-        return self._language or self._default_language
+        return self._language
 
     @language.setter
     def language(self, lang):

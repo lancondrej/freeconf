@@ -24,7 +24,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
         self._template.inc_parents.add(self)
         self.template.init_inconsistency()
         self._entries = []
-        self._default = []
+        self._defaults = []
         # Multiple properties
         self._multiple_min = None
         self._multiple_max = None
@@ -36,7 +36,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
         # TODO: není potřeba kopíravat template, ale je v tom případě potřeba vyřešit správně směrování na parent
         newone.__dict__.update(self.__dict__)
         newone._entries = deepcopy(self.entries)
-        newone._default = deepcopy(self._default)
+        newone._defaults = deepcopy(self._defaults)
         newone._inc_parents = set()
         return newone
 
@@ -194,7 +194,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
     def append_default(self, entry=None):
         entry = entry or self.create_new(self.default_size())
         if entry:
-            self._default.append(entry)
+            self._defaults.append(entry)
         return entry
 
     @property
@@ -213,7 +213,7 @@ class MultipleEntry(Entry, MultipleInconsistency):
         return len(self._entries)
 
     def default_size(self):
-        return len(self._default)
+        return len(self._defaults)
 
     def _swap(self, i, j):
         """Swap entries at given positions."""
@@ -267,6 +267,6 @@ class MultipleEntry(Entry, MultipleInconsistency):
         self.template.inc_parents.add(self)
 
     def set_default(self):
-        self._entries = deepcopy(self._default)
+        self._entries = deepcopy(self._defaults)
         for entry in self._entries:
             entry.set_default()

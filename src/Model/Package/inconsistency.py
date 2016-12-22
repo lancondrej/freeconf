@@ -11,6 +11,7 @@ class Inconsistency(object):
 
     def __init__(self):
         self._inconsistent = False
+        self._inc_parents = set()
 
     @property
     def inconsistent(self):
@@ -43,9 +44,11 @@ class Inconsistency(object):
 
     @property
     def inc_parents(self):
-        """get parents entry. Must be reimplemented in sub-class"""
-        raise NotImplementedError
+        """return parents for inconsistency
 
+        :return: set of parents
+        """
+        return self._inc_parents
 
 class ContainerInconsistency(Inconsistency):
     """This class is used for handling inconsistent states in container
@@ -80,11 +83,6 @@ class ContainerInconsistency(Inconsistency):
         if self._inconsistent != self.inconsistent:
             self._inconsistent = self.inconsistent
             self._notify_parent(self._inconsistent)
-
-    @property
-    def inc_parents(self):
-        """get parents entry. Must be reimplemented in sub-class"""
-        raise NotImplementedError
 
 
 class MultipleInconsistency(ContainerInconsistency):
@@ -130,8 +128,3 @@ class MultipleInconsistency(ContainerInconsistency):
         if self._inconsistent != self.inconsistent:
             self._inconsistent = self.inconsistent
             self._notify_parent(self._inconsistent)
-
-    @property
-    def inc_parents(self):
-        """get parents entry. Must be reimplemented in sub-class"""
-        raise NotImplementedError

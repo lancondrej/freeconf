@@ -26,13 +26,13 @@ class Renderer(object):
         """base render method render all type of entries
 
         :param entry: entry for rendering
-
+        :return: rendered entry
         """
         try:
             return self.render[type(entry).__name__](entry)
         except:
-            # TODO: tady něco zařvat
-            pass
+            return None
+
 
     def render_container(self, container):
         """render container

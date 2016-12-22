@@ -26,8 +26,8 @@ class FuzzyList(List):
         def __init__(self, grade, value, label=None, help=None):
 
             assert 0 <= grade <= 1
-            self.grade = grade
             List.Entry.__init__(self, value, label, help)
+            self.grade = grade
 
         def __repr__(self):
             return 'FuzzyEntry(%s, "%s", "%s")' % (
@@ -50,7 +50,7 @@ class FuzzyList(List):
         :param new_list: list to merge
         """
         for key in new_list.values:
-            if not key in self.values:
+            if key not in self.values:
                 self.values[key] = new_list.values[key]
             else:
                 # Key is already in the list. Check if it has same grade

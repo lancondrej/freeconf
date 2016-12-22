@@ -110,3 +110,13 @@ class List:
         if len(self.values) == 0:
             return None
         return self.values[min(self.values.keys())]
+
+    def join_list(self, new_list):
+        """Add new value list to this list.
+
+        :param new_list: list to merge
+        """
+        for key in new_list.values:
+            if key not in self.values:
+                self.values[key] = new_list.values[key]
+        return self

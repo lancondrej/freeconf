@@ -3,7 +3,6 @@
 
 from flask import render_template, request, session, redirect, url_for
 from flask_socketio import emit
-from src.Presenter.main_presenter import MainPresenter
 from src.View.FreeconfFlask.base_view import BaseView
 from src.View.FreeconfFlask.renderer import Renderer
 
@@ -86,7 +85,8 @@ class PackageView(BaseView):
         self.presenter.tab(data['name'])
 
     def reload_tab(self, sections):
-        """socketIO emit function for reload full tab, usually call from presenter"""
+        """socketIO emit function for reload full tab, usually call from
+        presenter"""
         rendered_sections = []
         for section in sections:
             rendered_sections.append(self._renderer.entry_render(section))
@@ -97,7 +97,8 @@ class PackageView(BaseView):
              namespace='/freeconf')
 
     def reload_section(self, section):
-        """socketIO emit function for reload section, usually call from presenter"""
+        """socketIO emit function for reload section, usually call from
+        presenter"""
         rendered_section = self._renderer.entry_render(section)
         emit('reload_section',
              {'full_name': section.full_name,
@@ -106,7 +107,8 @@ class PackageView(BaseView):
 
     @staticmethod
     def reload_tabs(tabs):
-        """socketIO emit function for reload tabs, usually call from presenter"""
+        """socketIO emit function for reload tabs, usually call from
+        presenter"""
         rendered_tabs = render_template("package/tabs.html",
                                         tabs=tabs,
                                         package_name=session.get(
@@ -128,7 +130,8 @@ class PackageView(BaseView):
         return self._renderer.render_collapse(entry)
 
     def reload_entry(self, entry):
-        """socketIO emit function for reload entry, usually call from presenter"""
+        """socketIO emit function for reload entry, usually call from
+        presenter"""
         emit('reload_entry',
              {'full_name': entry.full_name,
               'rendered_entry': self._renderer.reload_element(entry)},

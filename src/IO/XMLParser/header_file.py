@@ -77,8 +77,6 @@ class HeaderFileReader(FileReader):
             raise MissingMandatoryElementException("<content> in  header file")
 
     def parse_group(self):
-        group_not_set = True
-
         for group_element in self._root.iterfind('entry_group'):
             self.logger.debug("Header file: parsing <entry_group> element")
             name = group_element.get('name')
@@ -93,7 +91,6 @@ class HeaderFileReader(FileReader):
             group.output_defaults = True if group_element.findtext(
                 'output_defaults') == 'yes' else False
             self._config.add_group(group)
-            group_not_set = False
 
         if isinstance(self._config, Plugin):
             for group_element in self._root.iterfind('change_group'):

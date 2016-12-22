@@ -113,15 +113,6 @@ class ConfigFileWriter(FileWriter):
                 entry.full_name))
             return
         element.text = str(value)
-        # TODO: naformátovat
-
-        # if group:
-        #     help_text = entry.help
-        #     if help_text:
-        #         help_el = Element('help')
-        #         help_el.text = help_text
-        #         element.append(help_el)
-
         yield element
 
     def render_multiple(self, mult):
