@@ -9,8 +9,8 @@
         <number name="pnumber2">
             <group>extras</group>
             <properties>
-                <max>0.8</max>
-                <step>0.00002</step>
+                <max>-8</max>
+                <step>2</step>
             </properties>
         </number>
 </freeconf_template>

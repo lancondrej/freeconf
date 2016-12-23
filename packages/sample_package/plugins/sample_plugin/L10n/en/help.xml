@@ -2,12 +2,12 @@
 <freeconf_help>
         <container name="container1">
             <entry name="pbool1">
-                <label></label>
-                <help></help>
+                <label>Bool</label>
+                <help>Non mandatory boolean value form plugin.</help>
             </entry>
         </container>
         <entry name="pnumber2">
-            <label></label>
-            <help></help>
+            <label>Number</label>
+            <help>Number from plugin.</help>
         </entry>
 </freeconf_help>

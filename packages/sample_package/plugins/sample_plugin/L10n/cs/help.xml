@@ -2,12 +2,12 @@
 <freeconf_help>
         <container name="container1">
             <entry name="pbool1">
-                <label></label>
-                <help></help>
+                <label>Bool</label>
+                <help>Logická hodnota z pluginu. Není povinná.</help>
             </entry>
         </container>
         <entry name="pnumber2">
-            <label></label>
-            <help></help>
+            <label>Číslo</label>
+            <help>Číslo z pluginu.</help>
         </entry>
 </freeconf_help>

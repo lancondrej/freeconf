@@ -1,14 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <freeconf_config>
+  <container name="container-string">
+    <entry name="string1">bbbbbb</entry>
+    <entry name="string1">aaaaa</entry>
+  </container>
   <container name="container1">
     <entry name="string11">value2</entry>
+    <entry name="string12">name@email.com</entry>
     <entry name="number1">+000000042</entry>
     <entry name="bool1">no</entry>
-    <entry name="string12">name@email.com</entry>
   </container>
   <container name="container2">
-    <entry name="string2">value1</entry>
-    <entry name="fuzzy2">yes</entry>
     <container name="container3">
       <entry name="number3">555.000000</entry>
       <entry name="string3">text</entry>
@@ -18,9 +20,7 @@
       <entry name="string3">pokus</entry>
     </container>
     <entry name="number2">0.164580</entry>
-  </container>
-  <container name="container-string">
-    <entry name="string1">bbbbbb</entry>
-    <entry name="string1">aaaaa</entry>
+    <entry name="string2">value1</entry>
+    <entry name="fuzzy2">yes</entry>
   </container>
 </freeconf_config>

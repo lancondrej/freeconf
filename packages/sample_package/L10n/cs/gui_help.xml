@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_gui_label>
     <label>Vzorový balíček</label>
-    <description>Sample configuration package for Freeconf.</description>
+    <description>Vzorový konfigurační balíček pro Freeconf
+        .</description>
   <tab name="tab1">
-      <label>First tab</label>
-    <description>This is first tab of sample configuration package.</description>
+      <label>První záložka</label>
+    <description>Toto je první záložka vzorového balíčku.</description>
     <section name="section1">
-      <label>First section</label>
-      <description>First section in first tab</description>
+      <label>První sekce</label>
+      <description>První sekce první záložky</description>
     </section>
   </tab>
   <tab name="tab2">
-      <label>Second tab</label>
-    <description>This is second tab of sample configuration package.</description>
+      <label>Druhá záložka</label>
+    <description>Toto je druhá záložka vzorového balíčku.</description>
     <section name="section2">
-      <label>First section</label>
-      <description>First section in second tab</description>
+      <label>První sekce</label>
+      <description>První sekce druhé záložky</description>
     </section>
   </tab>
 </freeconf_gui_label>

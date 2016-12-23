@@ -3,5 +3,5 @@
   <container name="container1">
     <entry name="pbool1">yes</entry>
   </container>
-  <entry name="pnumber2">0.101040</entry>
+  <entry name="pnumber2">-18.000000</entry>
 </freeconf_config>

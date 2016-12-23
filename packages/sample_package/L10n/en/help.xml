@@ -1,60 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_help>
         <container name="container1">
-            <label></label>
-            <help></help>
+            <label>First container</label>
+            <help>First container of sample package</help>
             <entry name="number1">
-                <label></label>
-                <help></help>
+                <label>Number</label>
+                <help>Number between 0 and 111 with step 1.</help>
             </entry>
             <entry name="string11">
-                <label></label>
-                <help></help>
+                <label>Text</label>
+                <help>Input with list of values. List is not compulsory,
+                    it's only hint. Output in extras group.</help>
             </entry>
             <entry name="bool1">
-                <label></label>
-                <help></help>
+                <label>Switcher</label>
+                <help>Switcher fo boolean value. There is 3 states
+                    yes/no/not set. This switcher has mandatory value, so
+                    if switch as not set became inconsistent.
+                </help>
             </entry>
             <entry name="string12">
-                <label></label>
-                <help></help>
+                <label>Email</label>
+                <help>This input is for email value. Value si not mandatory
+                    but if is set must match with regexp.</help>
             </entry>
         </container>
         <container name="container2">
-            <label></label>
-            <help></help>
+            <label>Second container</label>
+            <help>Second container of sample package.</help>
             <entry name="number2">
-                <label></label>
-                <help></help>
+                <label>Number</label>
+                <help>Number with maximum at 0.8. Step is 0.002.</help>
 
             </entry>
             <entry name="string2">
-                <label></label>
-                <help></help>
+                <label>Text</label>
+                <help>String with selecto of values. Output in extras group
+                    extras.</help>
 
             </entry>
             <entry name="fuzzy2">
-                <label></label>
-                <help></help>
+                <label>Fuzzy</label>
+                <help>Fuzzy values. Output in extras group.</help>
 
             </entry>
             <container name="container3">
-                <label></label>
-                <help></help>
+                <label>Multiple contianer</label>
+                <help>Entry count: 0-2.</help>
                 <entry name="number3">
-                    <label></label>
-                    <help></help>
+                    <label>Number</label>
+                    <help>No limitation</help>
                 </entry>
                 <entry name="string3">
-                    <label></label>
-                    <help></help>
+                    <label>Text</label>
+                    <help>Mandatory text without other limitation</help>
                 </entry>
             </container>
         </container>
-        <container name="container-string">
-            <entry name="string1">
-                <label></label>
-                <help></help>
+    <container name="container-string">
+                    <entry name="string1">
+                <label>Text</label>
+                <help>Mutliple value text. Entry count 1-3. Value is
+                    mandatory.</help>
             </entry>
     </container>
 </freeconf_help>
