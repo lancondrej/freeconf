@@ -15,7 +15,6 @@ class GWindow(GSection):
 
     def __init__(self, name, package):
         GSection.__init__(self, name, package)
-        self.label = "Freeconf generated config dialog"
 
     @property
     def tabs(self):

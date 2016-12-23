@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <freeconf_gui_label>
-    <label>Sample configuration package for Freeconf</label>
+    <label>Sample package</label>
     <description>Sample configuration package for Freeconf.</description>
   <tab name="tab1">
       <label>First tab</label>

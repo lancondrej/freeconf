@@ -30,7 +30,7 @@ class Renderer(object):
         """
         try:
             return self.render[type(entry).__name__](entry)
-        except:
+        except KeyError:
             return None
 
 

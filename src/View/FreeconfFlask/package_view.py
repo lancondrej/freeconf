@@ -71,7 +71,7 @@ class PackageView(BaseView):
                                    sections=rendered_sections)
             tabs = render_template("package/tabs.html",
                                    tabs=self.presenter.tabs,
-                                   package_name=session.get('package_name'))
+                                   label=self.presenter.label)
             buttons = render_template("package/buttons.html")
             return self.render_default(title=self.presenter.label,
                                        left=tabs,

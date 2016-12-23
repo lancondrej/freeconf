@@ -15,8 +15,12 @@ class GUIHelpFileReader(FileReader):
         self.logger.info("Loading GUI help file {}".format(gui_help_file))
 
     def parse(self):
-        self._package.gui_tree.label = self._root.findtext('label')
-        self._package.gui_tree.description = self._root.findtext('description')
+        label = self._root.findtext('label')
+        if label:
+            self._package.gui_tree.label = label
+        description = self._root.findtext('description')
+        if description:
+            self._package.gui_tree.description = description
         for tab_element in self._root.iterfind('tab'):
             self._parse_tab(tab_element)
 

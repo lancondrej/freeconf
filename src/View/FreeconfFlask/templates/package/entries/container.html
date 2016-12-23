@@ -11,17 +11,12 @@
                 {{ label }}
             </h3>
         </div>
-
         <div class="panel-body">
-
             <form class="form-horizontal" role="form">
-
                 {% for entry in entries %}
                     {{ entry|safe }}
                 {% endfor %}
-
             </form>
-
         </div>
     </div>
 {% endblock %}
