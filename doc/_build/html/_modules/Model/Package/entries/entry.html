@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Package.entries.entry &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for Model.Package.entries.entry</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">src.Model.Package.entries.base_entry</span> <span class="kn">import</span> <span class="n">BaseEntry</span>
+<span class="kn">from</span> <span class="nn">src.Model.Package.inconsistency</span> <span class="kn">import</span> <span class="n">Inconsistency</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Ondřej Lanč&#39;</span>
+
+
+<div class="viewcode-block" id="Entry"><a class="viewcode-back" href="../../../../api/Model.Package.entries.html#Model.Package.entries.entry.Entry">[docs]</a><span class="k">class</span> <span class="nc">Entry</span><span class="p">(</span><span class="n">BaseEntry</span><span class="p">,</span> <span class="n">Inconsistency</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is basis class for all entries.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">package</span><span class="p">):</span>
+        <span class="n">BaseEntry</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">package</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_help</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_static_active</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_active</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multiple</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_group</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c1"># Group of entry</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="n">newone</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">package</span><span class="p">)</span>
+        <span class="n">newone</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+        <span class="n">newone</span><span class="o">.</span><span class="n">_inc_parents</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">newone</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;get name&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span>
+
+    <span class="nd">@parent.setter</span>
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;set name&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inc_parents</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+<div class="viewcode-block" id="Entry.is_container"><a class="viewcode-back" href="../../../../api/Model.Package.entries.html#Model.Package.entries.entry.Entry.is_container">[docs]</a>    <span class="k">def</span> <span class="nf">is_container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if it is a container.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Entry.is_keyword"><a class="viewcode-back" href="../../../../api/Model.Package.entries.html#Model.Package.entries.entry.Entry.is_keyword">[docs]</a>    <span class="k">def</span> <span class="nf">is_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if it is a keyword.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Entry.is_multiple_entry_container"><a class="viewcode-back" href="../../../../api/Model.Package.entries.html#Model.Package.entries.entry.Entry.is_multiple_entry_container">[docs]</a>    <span class="k">def</span> <span class="nf">is_multiple_entry_container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if it is a multiple container.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return full path in current tree in form of: /a/b/c/...&quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">full_name</span> <span class="o">+</span> <span class="n">path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">path</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_help</span>
+
+    <span class="nd">@help.setter</span>
+    <span class="k">def</span> <span class="nf">help</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">help</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_help</span> <span class="o">=</span> <span class="n">help</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Propagate group from entry&#39;s parent</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">group</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="nd">@group.setter</span>
+    <span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_group</span> <span class="o">=</span> <span class="n">group</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">static_active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Static activity indicates that the entry is switched on or off. Entries that are off are not processed in</span>
+<span class="sd">        the client and cannot be turned on by dependencies&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_static_active</span>
+
+    <span class="nd">@static_active.setter</span>
+    <span class="k">def</span> <span class="nf">static_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_static_active</span> <span class="o">=</span> <span class="n">active</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_active</span> <span class="o">=</span> <span class="n">active</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dynamic activity is the activity set by dependencies&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_static_active</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_active</span>
+
+    <span class="nd">@active.setter</span>
+    <span class="k">def</span> <span class="nf">active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_static_active</span> <span class="ow">and</span> <span class="n">active</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">src.Model.exception</span> <span class="kn">import</span> <span class="n">PropertyException</span>
+            <span class="k">raise</span> <span class="n">PropertyException</span><span class="p">(</span>
+                <span class="s2">&quot;Key {} cannot be set active by a dependency,&quot;</span>
+                <span class="s2">&quot; because it is non inactive by template.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_active</span> <span class="o">=</span> <span class="n">active</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">multiple</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multiple</span>
+
+    <span class="nd">@multiple.setter</span>
+    <span class="k">def</span> <span class="nf">multiple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiple</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multiple</span> <span class="o">=</span> <span class="n">multiple</span>
+
+<div class="viewcode-block" id="Entry.set_default"><a class="viewcode-back" href="../../../../api/Model.Package.entries.html#Model.Package.entries.entry.Entry.set_default">[docs]</a>    <span class="k">def</span> <span class="nf">set_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

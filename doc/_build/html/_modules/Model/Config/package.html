@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Config.package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for Model.Config.package</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Ondřej Lanč&#39;</span>
+
+
+<div class="viewcode-block" id="Package"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package">[docs]</a><span class="k">class</span> <span class="nc">Package</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Store information about one single package. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Files</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">available_languages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_language</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugins</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">header_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;header file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">header</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">header</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">list_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;list file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">list</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">template_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;template file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">template</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">template</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dependencies_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;dependencies file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">dependencies</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gui_template_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;gui template file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">gui_template</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">gui_template</span> <span class="k">else</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="Package.help_file"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.help_file">[docs]</a>    <span class="k">def</span> <span class="nf">help_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;help file location</span>
+
+<span class="sd">        :param language: language code (&#39;en&#39;, &#39;cs&#39; ...)</span>
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_language</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">languages_dir</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">help</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">help</span> <span class="k">else</span> <span class="bp">None</span></div>
+
+<div class="viewcode-block" id="Package.list_help_file"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.list_help_file">[docs]</a>    <span class="k">def</span> <span class="nf">list_help_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;list help file location</span>
+
+<span class="sd">        :param language: language code (&#39;en&#39;, &#39;cs&#39; ...)</span>
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_language</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">languages_dir</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">list</span> <span class="ow">and</span> <span class="n">language</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span></div>
+
+<div class="viewcode-block" id="Package.gui_help_file"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.gui_help_file">[docs]</a>    <span class="k">def</span> <span class="nf">gui_help_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;gui help file location</span>
+
+<span class="sd">        :param language: language code (&#39;en&#39;, &#39;cs&#39; ...)</span>
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_language</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">languages_dir</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">gui_label</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">gui_label</span> <span class="ow">and</span> <span class="n">language</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">default_values_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;default values file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">default_values</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">default_values</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;output config file location</span>
+
+<span class="sd">        :return: full path of file or None if file not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">output</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">plugins_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;plugins dir location</span>
+
+<span class="sd">        :return: full path of dir</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="s1">&#39;plugins&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">languages_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;language dir location</span>
+
+<span class="sd">        :return: full path of dir</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="s1">&#39;L10n&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; groups getter</span>
+
+<span class="sd">        :return: groups dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span>
+
+<div class="viewcode-block" id="Package.group"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.group">[docs]</a>    <span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; group getter</span>
+
+<span class="sd">        :param name: name of group</span>
+<span class="sd">        :return Group: Group used in Package</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Package.add_group"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.add_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; add group to package. Set self as group package.</span>
+
+<span class="sd">        :param group: Group object for adding</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">package</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">group</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span></div>
+
+<div class="viewcode-block" id="Package.add_plugin"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.add_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">add_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; add plugin config to package config. Set self as plugin parent.</span>
+
+<span class="sd">        :param plugin: Plugin object for adding</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugins</span><span class="p">[</span><span class="n">plugin</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; plugins getter</span>
+
+<span class="sd">        :return dict: plugin dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugins</span>
+
+<div class="viewcode-block" id="Package.plugin"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.plugin">[docs]</a>    <span class="k">def</span> <span class="nf">plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; plugin getter</span>
+
+<span class="sd">        :param name: name of plugin</span>
+<span class="sd">        :return Plugin: Plugin in Package</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugins</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_set_language</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lang</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;set lang if lang is not in available retrun default</span>
+
+<span class="sd">        :param lang: code of language</span>
+<span class="sd">        :return: code of language</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">lang</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_languages</span><span class="p">:</span>
+            <span class="n">lang</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_language</span>
+        <span class="k">if</span> <span class="n">lang</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_languages</span><span class="p">:</span>
+            <span class="n">lang</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">lang</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">lang</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">lang</span>
+
+<div class="viewcode-block" id="Package.Files"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Package.Files">[docs]</a>    <span class="k">class</span> <span class="nc">Files</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Store names of files in configuration package&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;header.xml&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gui_template</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gui_label</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_values</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="bp">None</span></div></div>
+
+
+<div class="viewcode-block" id="Plugin"><a class="viewcode-back" href="../../../api/Model.Config.html#Model.Config.package.Plugin">[docs]</a><span class="k">class</span> <span class="nc">Plugin</span><span class="p">(</span><span class="n">Package</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Store information about one plugin of package. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Package</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

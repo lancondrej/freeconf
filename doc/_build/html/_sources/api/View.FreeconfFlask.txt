@@ -1,0 +1,54 @@
+View.FreeconfFlask package
+==========================
+
+Submodules
+----------
+
+View.FreeconfFlask.base_view module
+-----------------------------------
+
+.. automodule:: View.FreeconfFlask.base_view
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.FreeconfFlask.freeconf_flask module
+----------------------------------------
+
+.. automodule:: View.FreeconfFlask.freeconf_flask
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.FreeconfFlask.main_view module
+-----------------------------------
+
+.. automodule:: View.FreeconfFlask.main_view
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.FreeconfFlask.package_view module
+--------------------------------------
+
+.. automodule:: View.FreeconfFlask.package_view
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.FreeconfFlask.renderer module
+----------------------------------
+
+.. automodule:: View.FreeconfFlask.renderer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.FreeconfFlask
+    :members:
+    :undoc-members:
+    :show-inheritance:

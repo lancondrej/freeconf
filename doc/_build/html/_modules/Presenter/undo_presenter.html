@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Presenter.undo_presenter &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for Presenter.undo_presenter</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">src.Model.Undo.change</span> <span class="kn">import</span> <span class="n">ValueChange</span><span class="p">,</span> <span class="n">NewMultipleChange</span><span class="p">,</span> \
+    <span class="n">RemoveMultipleChange</span><span class="p">,</span> <span class="n">MoveDownMultipleChange</span><span class="p">,</span> <span class="n">MoveUpMultipleChange</span>
+<span class="kn">from</span> <span class="nn">src.Model.Undo.undo</span> <span class="kn">import</span> <span class="n">Undo</span>
+<span class="kn">from</span> <span class="nn">src.Presenter.presenter</span> <span class="kn">import</span> <span class="n">Presenter</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Ondřej Lanč&#39;</span>
+
+
+<div class="viewcode-block" id="UndoPresenter"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter">[docs]</a><span class="k">class</span> <span class="nc">UndoPresenter</span><span class="p">(</span><span class="n">Presenter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;undo presenter manipulate with undo model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span> <span class="o">=</span> <span class="n">Undo</span><span class="p">()</span>
+
+<div class="viewcode-block" id="UndoPresenter.value_change"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.value_change">[docs]</a>    <span class="k">def</span> <span class="nf">value_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">old_value</span><span class="p">,</span> <span class="n">new_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;save value action to undo</span>
+
+<span class="sd">        :param entry:</span>
+<span class="sd">        :param old_value:</span>
+<span class="sd">        :param new_value:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">new_value</span> <span class="o">!=</span> <span class="n">old_value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ValueChange</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">old_value</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="UndoPresenter.multiple_new"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.multiple_new">[docs]</a>    <span class="k">def</span> <span class="nf">multiple_new</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">newone</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;save multiple new action to undo</span>
+
+<span class="sd">        :param entry:</span>
+<span class="sd">        :param newone: new item in multiple entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">entry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">NewMultipleChange</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">newone</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="UndoPresenter.multiple_delete"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.multiple_delete">[docs]</a>    <span class="k">def</span> <span class="nf">multiple_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">removed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;save multiple delete action to undo</span>
+
+<span class="sd">        :param entry:</span>
+<span class="sd">        :param removed: removed item in multiple entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">entry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">RemoveMultipleChange</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">removed</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="UndoPresenter.multiple_up"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.multiple_up">[docs]</a>    <span class="k">def</span> <span class="nf">multiple_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_move</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;save multiple up action to undo</span>
+
+<span class="sd">        :param entry:</span>
+<span class="sd">        :param index: index of item in multiple entry</span>
+<span class="sd">        :param is_move: bool indicate if item is really move</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_move</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">MoveUpMultipleChange</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="UndoPresenter.multiple_down"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.multiple_down">[docs]</a>    <span class="k">def</span> <span class="nf">multiple_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_move</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;save multiple down action to Undo</span>
+
+<span class="sd">        :param entry:</span>
+<span class="sd">        :param index: index of item in multiple entry</span>
+<span class="sd">        :param is_move: bool indicate if item is really move</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_move</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">MoveDownMultipleChange</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="UndoPresenter.undo"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.undo">[docs]</a>    <span class="k">def</span> <span class="nf">undo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;do undo action</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">undo</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="UndoPresenter.redo"><a class="viewcode-back" href="../../api/Presenter.html#Presenter.undo_presenter.UndoPresenter.redo">[docs]</a>    <span class="k">def</span> <span class="nf">redo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;do redo action</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_undo</span><span class="o">.</span><span class="n">redo</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

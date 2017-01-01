@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Package.inconsistency &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for Model.Package.inconsistency</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Ondřej Lanč&#39;</span>
+
+
+<div class="viewcode-block" id="Inconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.Inconsistency">[docs]</a><span class="k">class</span> <span class="nc">Inconsistency</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This class is used for handling inconsistent states in non-container</span>
+<span class="sd">    entries. The entry is inconsistent if it is active, mandatory and its</span>
+<span class="sd">    value has not been set. Inconsistent entries can not be disabled&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inc_parents</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inconsistent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;inconsistent getter&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span>
+
+<div class="viewcode-block" id="Inconsistency.change_inconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.Inconsistency.change_inconsistency">[docs]</a>    <span class="k">def</span> <span class="nf">change_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is called whenever the inconsistency must be changed</span>
+
+<span class="sd">        :param value: bool value of new inconsistency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_inconsistency</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_evaluate_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the entry is still inconsistent and notify parent.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_notify_parent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_notify_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inconsistent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Notifies parent about change of inconsistency</span>
+
+<span class="sd">        :param  inconsistent: bool value of new inconsistency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">package</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">package</span><span class="o">.</span><span class="n">inconsistency_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inc_parents</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">change_inconsistency</span><span class="p">(</span><span class="n">inconsistent</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inc_parents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return parents for inconsistency</span>
+
+<span class="sd">        :return: set of parents</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inc_parents</span></div>
+
+<div class="viewcode-block" id="ContainerInconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.ContainerInconsistency">[docs]</a><span class="k">class</span> <span class="nc">ContainerInconsistency</span><span class="p">(</span><span class="n">Inconsistency</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This class is used for handling inconsistent states in container</span>
+<span class="sd">    entries. The entry is inconsistent if it contains at least one</span>
+<span class="sd">    inconsistent child. Otherwise it is consistent&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Inconsistency</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># number of inconsistent children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inconsistent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;inconsistent getter&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ContainerInconsistency.change_inconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.ContainerInconsistency.change_inconsistency">[docs]</a>    <span class="k">def</span> <span class="nf">change_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is called whenever the inconsistency must be changed</span>
+
+<span class="sd">        :param value: bool value of new inconsistency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_inconsistency</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_evaluate_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the entry is still inconsistent and notify parent.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inconsistent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_notify_parent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MultipleInconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.MultipleInconsistency">[docs]</a><span class="k">class</span> <span class="nc">MultipleInconsistency</span><span class="p">(</span><span class="n">ContainerInconsistency</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This class is used for handling inconsistent states in multiple</span>
+<span class="sd">    entries. The entry is inconsistent if it contains</span>
+<span class="sd">    at least one inconsistent child. Otherwise it is consistent&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ContainerInconsistency</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># number of inconsistent children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_self_inconsistent</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inconsistent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;inconsistent getter&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_self_inconsistent</span>
+
+<div class="viewcode-block" id="MultipleInconsistency.change_inconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.MultipleInconsistency.change_inconsistency">[docs]</a>    <span class="k">def</span> <span class="nf">change_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is called whenever the inconsistency must be changed</span>
+
+<span class="sd">        :param value: bool value of new inconsistency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent_count</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_inconsistency</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MultipleInconsistency.change_self_inconsistency"><a class="viewcode-back" href="../../../api/Model.Package.html#Model.Package.inconsistency.MultipleInconsistency.change_self_inconsistency">[docs]</a>    <span class="k">def</span> <span class="nf">change_self_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is called whenever the self inconsistency must be</span>
+<span class="sd">        changed</span>
+
+<span class="sd">        :param value: bool value of new inconsistency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_self_inconsistent</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_self_inconsistent</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_inconsistency</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_evaluate_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the entry is still inconsistent and notify parent.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inconsistent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_notify_parent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inconsistent</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

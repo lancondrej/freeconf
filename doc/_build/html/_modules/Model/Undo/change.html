@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Undo.change &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for Model.Undo.change</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Ondřej Lanč&#39;</span>
+
+
+<div class="viewcode-block" id="Change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.Change">[docs]</a><span class="k">class</span> <span class="nc">Change</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base Change class. Just abstraction.</span>
+
+<span class="sd">    :param entry: entry which has been change</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span>
+
+<div class="viewcode-block" id="Change.transform"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.Change.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;method returning opposite Change object. Need to be implemented in subclass.</span>
+
+<span class="sd">        :return Change: opposite Change object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Change.change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.Change.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;method realizing change&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="ValueChange"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.ValueChange">[docs]</a><span class="k">class</span> <span class="nc">ValueChange</span><span class="p">(</span><span class="n">Change</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for value changes</span>
+
+<span class="sd">    :param entry: entry which has been change</span>
+<span class="sd">    :param old_value: old value of entry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">old_value</span><span class="p">):</span>
+        <span class="n">Change</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_value</span> <span class="o">=</span> <span class="n">old_value</span>
+
+<div class="viewcode-block" id="ValueChange.transform"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.ValueChange.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;set actual value as new old value</span>
+
+<span class="sd">        :return ValueChange: opposite change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ValueChange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ValueChange.change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.ValueChange.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;set value of entry as old_value&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_value</span></div></div>
+
+
+<div class="viewcode-block" id="NewMultipleChange"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.NewMultipleChange">[docs]</a><span class="k">class</span> <span class="nc">NewMultipleChange</span><span class="p">(</span><span class="n">Change</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for multiple entry new creation</span>
+
+<span class="sd">    :param entry: multiple entry</span>
+<span class="sd">    :param newone: new entry of multiple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">newone</span><span class="p">):</span>
+        <span class="n">Change</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newone</span> <span class="o">=</span> <span class="n">newone</span>
+
+<div class="viewcode-block" id="NewMultipleChange.transform"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.NewMultipleChange.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return RemoveMultipleChange with newone as removed</span>
+
+<span class="sd">        :return RemoveMultipleChange: opposite change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">RemoveMultipleChange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newone</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NewMultipleChange.change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.NewMultipleChange.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;delete newone form entry&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">delete_entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newone</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="RemoveMultipleChange"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.RemoveMultipleChange">[docs]</a><span class="k">class</span> <span class="nc">RemoveMultipleChange</span><span class="p">(</span><span class="n">Change</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for multiple entry remove change</span>
+
+<span class="sd">    :param entry: multiple entry</span>
+<span class="sd">    :param removed: entry which has been remove</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">removed</span><span class="p">):</span>
+        <span class="n">Change</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">removed</span> <span class="o">=</span> <span class="n">removed</span>
+
+<div class="viewcode-block" id="RemoveMultipleChange.transform"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.RemoveMultipleChange.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return NewMultipleChange with removed as newone</span>
+
+<span class="sd">        :return NewMultipleChange: opposite change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">NewMultipleChange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">removed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RemoveMultipleChange.change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.RemoveMultipleChange.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;insert removed back to entry&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">removed</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">removed</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MoveUpMultipleChange"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.MoveUpMultipleChange">[docs]</a><span class="k">class</span> <span class="nc">MoveUpMultipleChange</span><span class="p">(</span><span class="n">Change</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for multiple entry move up change</span>
+
+<span class="sd">    :param entry: multiple entry</span>
+<span class="sd">    :param index: index of entry which is move in multiple entry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">Change</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MoveUpMultipleChange.transform"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.MoveUpMultipleChange.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return MoveDownMultipleChange with increased index</span>
+
+<span class="sd">        :return MoveDownMultipleChange: opposite change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">MoveDownMultipleChange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MoveUpMultipleChange.change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.MoveUpMultipleChange.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;move down indexed entry in multiple entry&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MoveDownMultipleChange"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.MoveDownMultipleChange">[docs]</a><span class="k">class</span> <span class="nc">MoveDownMultipleChange</span><span class="p">(</span><span class="n">Change</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for multiple entry move down change</span>
+
+<span class="sd">    :param entry: multiple entry</span>
+<span class="sd">    :param index: index of entry which is move in multiple entry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">Change</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MoveDownMultipleChange.transform"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.MoveDownMultipleChange.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return MoveUpMultipleChange with decreased index</span>
+
+<span class="sd">        :return MoveUpMultipleChange: opposite change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">MoveUpMultipleChange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MoveDownMultipleChange.change"><a class="viewcode-back" href="../../../api/Model.Undo.html#Model.Undo.change.MoveDownMultipleChange.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;move up indexed entry in multiple entry&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

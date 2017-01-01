@@ -1,0 +1,38 @@
+Model.Config package
+====================
+
+Submodules
+----------
+
+Model.Config.freeconf_config module
+-----------------------------------
+
+.. automodule:: Model.Config.freeconf_config
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Config.group module
+-------------------------
+
+.. automodule:: Model.Config.group
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Config.package module
+---------------------------
+
+.. automodule:: Model.Config.package
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Config
+    :members:
+    :undoc-members:
+    :show-inheritance:

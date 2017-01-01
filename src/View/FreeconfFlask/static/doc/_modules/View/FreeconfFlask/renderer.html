@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>View.FreeconfFlask.renderer &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for View.FreeconfFlask.renderer</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Ondřej Lanč&#39;</span>
+
+
+<div class="viewcode-block" id="Renderer"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer">[docs]</a><span class="k">class</span> <span class="nc">Renderer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;class for render package elements</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">render</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Container&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_container</span><span class="p">,</span>
+            <span class="s1">&#39;Fuzzy&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_fuzzy</span><span class="p">,</span>
+            <span class="s1">&#39;Bool&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_bool</span><span class="p">,</span>
+            <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_number</span><span class="p">,</span>
+            <span class="s1">&#39;String&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_string</span><span class="p">,</span>
+            <span class="s1">&#39;MultipleContainer&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_multiple_container</span><span class="p">,</span>
+            <span class="s1">&#39;MultipleKeyWord&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_multiple_key_word</span><span class="p">,</span>
+            <span class="s1">&#39;GSection&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_section</span><span class="p">,</span>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="Renderer.entry_render"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.entry_render">[docs]</a>    <span class="k">def</span> <span class="nf">entry_render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;base render method render all type of entries</span>
+
+<span class="sd">        :param entry: entry for rendering</span>
+<span class="sd">        :return: rendered entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">](</span><span class="n">entry</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span></div>
+
+
+<div class="viewcode-block" id="Renderer.render_container"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_container">[docs]</a>    <span class="k">def</span> <span class="nf">render_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render container</span>
+
+<span class="sd">        :param container: container for render</span>
+<span class="sd">        :return: renderer container</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">container</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry_render</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/container.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Renderer.render_fuzzy"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_fuzzy">[docs]</a>    <span class="k">def</span> <span class="nf">render_fuzzy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/select.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">value</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                               <span class="nb">list</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">list</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Renderer.render_bool"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_bool">[docs]</a>    <span class="k">def</span> <span class="nf">render_bool</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render entry</span>
+
+<span class="sd">        :param entry: bool keyword</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/bool.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">value</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Renderer.render_number"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_number">[docs]</a>    <span class="k">def</span> <span class="nf">render_number</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render entry</span>
+
+<span class="sd">        :param entry: number keyword</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/number.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">value</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                               <span class="n">step</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">step</span><span class="p">,</span>
+                               <span class="nb">min</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">min</span><span class="p">,</span>
+                               <span class="nb">max</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">max</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Renderer.render_string"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_string">[docs]</a>    <span class="k">def</span> <span class="nf">render_string</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render entry</span>
+
+<span class="sd">        :param entry: string keyword</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">list</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">entry</span><span class="o">.</span><span class="n">user_values</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/select.html&#39;</span><span class="p">,</span>
+                                   <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                   <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                                   <span class="n">label</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                                   <span class="n">help</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                                   <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                                   <span class="n">value</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                   <span class="nb">list</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">list</span><span class="p">,</span>
+                                   <span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/string.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">value</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                               <span class="nb">list</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">list</span><span class="p">,</span>
+                               <span class="n">regexp</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">reg_exp</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Renderer.render_multiple_container"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_multiple_container">[docs]</a>    <span class="k">def</span> <span class="nf">render_multiple_container</span><span class="p">(</span><span class="n">container</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render entry</span>
+
+<span class="sd">        :param container: container entry</span>
+<span class="sd">        :return: renderer container</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">container</span><span class="o">.</span><span class="n">primary_value</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                    <span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">)</span>
+                   <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">entries</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/multiple_cont.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span>
+                               <span class="nb">max</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">multiple_max</span><span class="p">,</span>
+                               <span class="nb">min</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">multiple_min</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Renderer.render_multiple_key_word"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_multiple_key_word">[docs]</a>    <span class="k">def</span> <span class="nf">render_multiple_key_word</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mult_entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render entry</span>
+
+<span class="sd">        :param mult_entry: Multiple keyword</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entry_render</span><span class="p">(</span><span class="n">entry</span><span class="p">),</span> <span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">entries</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/multiple_key.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">help</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">help</span><span class="p">,</span>
+                               <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span>
+                               <span class="nb">max</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">multiple_max</span><span class="p">,</span>
+                               <span class="nb">min</span><span class="o">=</span><span class="n">mult_entry</span><span class="o">.</span><span class="n">multiple_min</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Renderer.render_section"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_section">[docs]</a>    <span class="k">def</span> <span class="nf">render_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render section</span>
+
+<span class="sd">        :param section: Section entry</span>
+<span class="sd">        :return: renderer section</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">section</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+            <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry_render</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;package/entries/section.html&#39;</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">section</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="n">section</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                               <span class="n">description</span><span class="o">=</span><span class="n">section</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">section</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Renderer.render_modal"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_modal">[docs]</a>    <span class="k">def</span> <span class="nf">render_modal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render section</span>
+
+<span class="sd">        :param entry: container entry for modal</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entry_render</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;elements/modal.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
+                               <span class="n">index</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Renderer.render_collapse"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.render_collapse">[docs]</a>    <span class="k">def</span> <span class="nf">render_collapse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render section</span>
+
+<span class="sd">        :param entry: container entry for collapse</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entry_render</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;elements/collapse.html&#39;</span><span class="p">,</span>
+                               <span class="n">name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                               <span class="n">full_name</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+                               <span class="n">inconsistent</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">inconsistent</span><span class="p">,</span>
+                               <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
+                               <span class="n">index</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                               <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Renderer.reload_element"><a class="viewcode-back" href="../../../api/View.FreeconfFlask.html#View.FreeconfFlask.renderer.Renderer.reload_element">[docs]</a>    <span class="k">def</span> <span class="nf">reload_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;render entry</span>
+
+<span class="sd">        :param entry: entry for rerendering</span>
+<span class="sd">        :return: renderer entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entry_render</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">content</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

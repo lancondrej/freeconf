@@ -1,0 +1,45 @@
+IO package
+==========
+
+Subpackages
+-----------
+
+.. toctree::
+
+    IO.XMLParser
+
+Submodules
+----------
+
+IO.exception module
+-------------------
+
+.. automodule:: IO.exception
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.input module
+---------------
+
+.. automodule:: IO.input
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.output module
+----------------
+
+.. automodule:: IO.output
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: IO
+    :members:
+    :undoc-members:
+    :show-inheritance:

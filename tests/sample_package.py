@@ -13,7 +13,8 @@ class SamplePackageTestCase(unittest.TestCase):
             'sample_package')
 
     def test_getting_unexisting_tab(self):
-        self.package_presenter.tab('unexsisting')
+        tab=self.package_presenter.tab('unexsisting')
+        self.assertFalse(tab)
 
 
 if __name__ == '__main__':

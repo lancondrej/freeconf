@@ -1,0 +1,38 @@
+Model.Undo package
+==================
+
+Submodules
+----------
+
+Model.Undo.change module
+------------------------
+
+.. automodule:: Model.Undo.change
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Undo.stack module
+-----------------------
+
+.. automodule:: Model.Undo.stack
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Undo.undo module
+----------------------
+
+.. automodule:: Model.Undo.undo
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Undo
+    :members:
+    :undoc-members:
+    :show-inheritance:

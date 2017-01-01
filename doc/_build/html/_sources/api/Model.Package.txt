@@ -1,0 +1,38 @@
+Model.Package package
+=====================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    Model.Package.entries
+    Model.Package.lists
+
+Submodules
+----------
+
+Model.Package.inconsistency module
+----------------------------------
+
+.. automodule:: Model.Package.inconsistency
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.package module
+----------------------------
+
+.. automodule:: Model.Package.package
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Package
+    :members:
+    :undoc-members:
+    :show-inheritance:

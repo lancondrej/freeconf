@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<freeconf_config>
+  <container name="general">
+    <entry name="lang">cs</entry>
+  </container>
+  <container name="packages_dir">
+    <entry name="location">packages</entry>
+  </container>
+  <container name="logging">
+    <entry name="IO">DEBUG</entry>
+    <entry name="View">DEBUG</entry>
+    <entry name="Freeconf">DEBUG</entry>
+    <entry name="Presenter">DEBUG</entry>
+    <entry name="Model">DEBUG</entry>
+  </container>
+</freeconf_config>
