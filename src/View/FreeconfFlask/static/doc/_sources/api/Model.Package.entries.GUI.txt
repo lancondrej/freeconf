@@ -1,0 +1,38 @@
+Model.Package.entries.GUI package
+=================================
+
+Submodules
+----------
+
+Model.Package.entries.GUI.gsection module
+-----------------------------------------
+
+.. automodule:: Model.Package.entries.GUI.gsection
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.GUI.gtab module
+-------------------------------------
+
+.. automodule:: Model.Package.entries.GUI.gtab
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.GUI.gwindow module
+----------------------------------------
+
+.. automodule:: Model.Package.entries.GUI.gwindow
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Package.entries.GUI
+    :members:
+    :undoc-members:
+    :show-inheritance:

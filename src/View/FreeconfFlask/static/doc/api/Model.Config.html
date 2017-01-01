@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Config package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Model package" href="Model.html" />
+    <link rel="next" title="Model.Package package" href="Model.Package.html" />
+    <link rel="prev" title="Model package" href="Model.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model-config-package">
+<h1>Model.Config package<a class="headerlink" href="#model-config-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Model.Config.freeconf_config">
+<span id="model-config-freeconf-config-module"></span><h2>Model.Config.freeconf_config module<a class="headerlink" href="#module-Model.Config.freeconf_config" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Config.freeconf_config.Config">
+<em class="property">class </em><code class="descclassname">Model.Config.freeconf_config.</code><code class="descname">Config</code><a class="reference internal" href="../_modules/Model/Config/freeconf_config.html#Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.freeconf_config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Config model object. Store information of Freeconf at all.
+Information about all packages and lang preferences.</p>
+<dl class="attribute">
+<dt id="Model.Config.freeconf_config.Config.config_file">
+<code class="descname">config_file</code><a class="headerlink" href="#Model.Config.freeconf_config.Config.config_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>config_file getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">path of config file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.freeconf_config.Config.lang">
+<code class="descname">lang</code><a class="headerlink" href="#Model.Config.freeconf_config.Config.lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>lang getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">lang code</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.freeconf_config.Config.package">
+<code class="descname">package</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/freeconf_config.html#Config.package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.freeconf_config.Config.package" title="Permalink to this definition">¶</a></dt>
+<dd><p>package getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of package</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">configuration of package with given name or None if package
+with given name not found</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.freeconf_config.Config.packages">
+<code class="descname">packages</code><a class="headerlink" href="#Model.Config.freeconf_config.Config.packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>packages getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">packages dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Config.group">
+<span id="model-config-group-module"></span><h2>Model.Config.group module<a class="headerlink" href="#module-Model.Config.group" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Config.group.Group">
+<em class="property">class </em><code class="descclassname">Model.Config.group.</code><code class="descname">Group</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/group.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.group.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class represents group of entries and it&#8217;s settings.</p>
+<dl class="method">
+<dt id="Model.Config.group.Group.include_transform">
+<code class="descname">include_transform</code><span class="sig-paren">(</span><em>plugin</em>, <em>file_location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/group.html#Group.include_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.group.Group.include_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add transform file to list of included transform files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>plugin</strong> &#8211; plugin from which is transform included</li>
+<li><strong>file_location</strong> &#8211; location of trasform file in plugin</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.group.Group.name">
+<code class="descname">name</code><a class="headerlink" href="#Model.Config.group.Group.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>name getter</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.group.Group.native_output">
+<code class="descname">native_output</code><a class="headerlink" href="#Model.Config.group.Group.native_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>native output file getter</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.group.Group.output_defaults">
+<code class="descname">output_defaults</code><em class="property"> = None</em><a class="headerlink" href="#Model.Config.group.Group.output_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output defaults settings</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.group.Group.transform_file">
+<code class="descname">transform_file</code><a class="headerlink" href="#Model.Config.group.Group.transform_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Config.package">
+<span id="model-config-package-module"></span><h2>Model.Config.package module<a class="headerlink" href="#module-Model.Config.package" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Config.package.Package">
+<em class="property">class </em><code class="descclassname">Model.Config.package.</code><code class="descname">Package</code><a class="reference internal" href="../_modules/Model/Config/package.html#Package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Store information about one single package.</p>
+<dl class="class">
+<dt id="Model.Config.package.Package.Files">
+<em class="property">class </em><code class="descname">Files</code><a class="reference internal" href="../_modules/Model/Config/package.html#Package.Files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.Files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Store names of files in configuration package</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.add_group">
+<code class="descclassname">Package.</code><code class="descname">add_group</code><span class="sig-paren">(</span><em>group</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.add_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.add_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>add group to package. Set self as group package.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>group</strong> &#8211; Group object for adding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.add_plugin">
+<code class="descclassname">Package.</code><code class="descname">add_plugin</code><span class="sig-paren">(</span><em>plugin</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.add_plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.add_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>add plugin config to package config. Set self as plugin parent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>plugin</strong> &#8211; Plugin object for adding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.config_file">
+<code class="descclassname">Package.</code><code class="descname">config_file</code><a class="headerlink" href="#Model.Config.package.Package.config_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>output config file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.default_values_file">
+<code class="descclassname">Package.</code><code class="descname">default_values_file</code><a class="headerlink" href="#Model.Config.package.Package.default_values_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>default values file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.dependencies_file">
+<code class="descclassname">Package.</code><code class="descname">dependencies_file</code><a class="headerlink" href="#Model.Config.package.Package.dependencies_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>dependencies file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.group">
+<code class="descclassname">Package.</code><code class="descname">group</code><span class="sig-paren">(</span><em>name='default'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.group" title="Permalink to this definition">¶</a></dt>
+<dd><p>group getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of group</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return Group:</th><td class="field-body">Group used in Package</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.groups">
+<code class="descclassname">Package.</code><code class="descname">groups</code><a class="headerlink" href="#Model.Config.package.Package.groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>groups getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">groups dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.gui_help_file">
+<code class="descclassname">Package.</code><code class="descname">gui_help_file</code><span class="sig-paren">(</span><em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.gui_help_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.gui_help_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>gui help file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>language</strong> &#8211; language code (&#8216;en&#8217;, &#8216;cs&#8217; ...)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.gui_template_file">
+<code class="descclassname">Package.</code><code class="descname">gui_template_file</code><a class="headerlink" href="#Model.Config.package.Package.gui_template_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>gui template file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.header_file">
+<code class="descclassname">Package.</code><code class="descname">header_file</code><a class="headerlink" href="#Model.Config.package.Package.header_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>header file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.help_file">
+<code class="descclassname">Package.</code><code class="descname">help_file</code><span class="sig-paren">(</span><em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.help_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.help_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>help file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>language</strong> &#8211; language code (&#8216;en&#8217;, &#8216;cs&#8217; ...)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.languages_dir">
+<code class="descclassname">Package.</code><code class="descname">languages_dir</code><a class="headerlink" href="#Model.Config.package.Package.languages_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>language dir location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of dir</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.list_file">
+<code class="descclassname">Package.</code><code class="descname">list_file</code><a class="headerlink" href="#Model.Config.package.Package.list_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>list file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.list_help_file">
+<code class="descclassname">Package.</code><code class="descname">list_help_file</code><span class="sig-paren">(</span><em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.list_help_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.list_help_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>list help file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>language</strong> &#8211; language code (&#8216;en&#8217;, &#8216;cs&#8217; ...)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Config.package.Package.plugin">
+<code class="descclassname">Package.</code><code class="descname">plugin</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Config/package.html#Package.plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Package.plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>plugin getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of plugin</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return Plugin:</th><td class="field-body">Plugin in Package</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.plugins">
+<code class="descclassname">Package.</code><code class="descname">plugins</code><a class="headerlink" href="#Model.Config.package.Package.plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>plugins getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return dict:</th><td class="field-body">plugin dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.plugins_dir">
+<code class="descclassname">Package.</code><code class="descname">plugins_dir</code><a class="headerlink" href="#Model.Config.package.Package.plugins_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>plugins dir location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of dir</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Config.package.Package.template_file">
+<code class="descclassname">Package.</code><code class="descname">template_file</code><a class="headerlink" href="#Model.Config.package.Package.template_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>template file location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">full path of file or None if file not set</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Model.Config.package.Plugin">
+<em class="property">class </em><code class="descclassname">Model.Config.package.</code><code class="descname">Plugin</code><a class="reference internal" href="../_modules/Model/Config/package.html#Plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Config.package.Plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Config.package.Package" title="Model.Config.package.Package"><code class="xref py py-class docutils literal"><span class="pre">Model.Config.package.Package</span></code></a></p>
+<p>Store information about one plugin of package.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Config">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Model.Config" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model.Config package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-Model.Config.freeconf_config">Model.Config.freeconf_config module</a></li>
+<li><a class="reference internal" href="#module-Model.Config.group">Model.Config.group module</a></li>
+<li><a class="reference internal" href="#module-Model.Config.package">Model.Config.package module</a></li>
+<li><a class="reference internal" href="#module-Model.Config">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Freeconf</a><ul>
+  <li><a href="Model.html">Model package</a><ul>
+      <li>Previous: <a href="Model.html" title="previous chapter">Model package</a></li>
+      <li>Next: <a href="Model.Package.html" title="next chapter">Model.Package package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Model.Config.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/api/Model.Config.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

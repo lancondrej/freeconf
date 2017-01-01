@@ -1,0 +1,38 @@
+Model.Package.entries.multiple package
+======================================
+
+Submodules
+----------
+
+Model.Package.entries.multiple.multiple_container module
+--------------------------------------------------------
+
+.. automodule:: Model.Package.entries.multiple.multiple_container
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.multiple.multiple_entry module
+----------------------------------------------------
+
+.. automodule:: Model.Package.entries.multiple.multiple_entry
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.multiple.multiple_key_word module
+-------------------------------------------------------
+
+.. automodule:: Model.Package.entries.multiple.multiple_key_word
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Package.entries.multiple
+    :members:
+    :undoc-members:
+    :show-inheritance:

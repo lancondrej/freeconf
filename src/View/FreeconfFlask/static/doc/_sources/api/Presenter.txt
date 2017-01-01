@@ -1,0 +1,62 @@
+Presenter package
+=================
+
+Submodules
+----------
+
+Presenter.config_presenter module
+---------------------------------
+
+.. automodule:: Presenter.config_presenter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Presenter.exception module
+--------------------------
+
+.. automodule:: Presenter.exception
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Presenter.main_presenter module
+-------------------------------
+
+.. automodule:: Presenter.main_presenter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Presenter.package_presenter module
+----------------------------------
+
+.. automodule:: Presenter.package_presenter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Presenter.presenter module
+--------------------------
+
+.. automodule:: Presenter.presenter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Presenter.undo_presenter module
+-------------------------------
+
+.. automodule:: Presenter.undo_presenter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Presenter
+    :members:
+    :undoc-members:
+    :show-inheritance:

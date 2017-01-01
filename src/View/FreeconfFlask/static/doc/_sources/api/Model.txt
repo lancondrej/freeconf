@@ -1,0 +1,31 @@
+Model package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+
+    Model.Config
+    Model.Package
+    Model.Undo
+
+Submodules
+----------
+
+Model.exception module
+----------------------
+
+.. automodule:: Model.exception
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model
+    :members:
+    :undoc-members:
+    :show-inheritance:

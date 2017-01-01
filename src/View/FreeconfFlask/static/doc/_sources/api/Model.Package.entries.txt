@@ -1,0 +1,86 @@
+Model.Package.entries package
+=============================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    Model.Package.entries.GUI
+    Model.Package.entries.multiple
+
+Submodules
+----------
+
+Model.Package.entries.base_entry module
+---------------------------------------
+
+.. automodule:: Model.Package.entries.base_entry
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.bool module
+---------------------------------
+
+.. automodule:: Model.Package.entries.bool
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.container module
+--------------------------------------
+
+.. automodule:: Model.Package.entries.container
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.entry module
+----------------------------------
+
+.. automodule:: Model.Package.entries.entry
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.fuzzy module
+----------------------------------
+
+.. automodule:: Model.Package.entries.fuzzy
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.key_word module
+-------------------------------------
+
+.. automodule:: Model.Package.entries.key_word
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.number module
+-----------------------------------
+
+.. automodule:: Model.Package.entries.number
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Package.entries.string module
+-----------------------------------
+
+.. automodule:: Model.Package.entries.string
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Package.entries
+    :members:
+    :undoc-members:
+    :show-inheritance:

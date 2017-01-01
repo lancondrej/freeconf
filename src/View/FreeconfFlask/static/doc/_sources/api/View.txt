@@ -1,0 +1,17 @@
+View package
+============
+
+Subpackages
+-----------
+
+.. toctree::
+
+    View.FreeconfFlask
+
+Module contents
+---------------
+
+.. automodule:: View
+    :members:
+    :undoc-members:
+    :show-inheritance:

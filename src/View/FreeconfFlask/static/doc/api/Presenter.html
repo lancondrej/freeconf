@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Presenter package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Freeconf" href="modules.html" />
+    <link rel="next" title="IO package" href="IO.html" />
+    <link rel="prev" title="View.FreeconfFlask package" href="View.FreeconfFlask.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="presenter-package">
+<h1>Presenter package<a class="headerlink" href="#presenter-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Presenter.config_presenter">
+<span id="presenter-config-presenter-module"></span><h2>Presenter.config_presenter module<a class="headerlink" href="#module-Presenter.config_presenter" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Presenter.config_presenter.ConfigPresenter">
+<em class="property">class </em><code class="descclassname">Presenter.config_presenter.</code><code class="descname">ConfigPresenter</code><a class="reference internal" href="../_modules/Presenter/config_presenter.html#ConfigPresenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.config_presenter.ConfigPresenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Presenter.presenter.Presenter</span></code></p>
+<p>presenter for manipulating with config object</p>
+<dl class="attribute">
+<dt id="Presenter.config_presenter.ConfigPresenter.language">
+<code class="descname">language</code><a class="headerlink" href="#Presenter.config_presenter.ConfigPresenter.language" title="Permalink to this definition">¶</a></dt>
+<dd><p>language getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">lang code</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.config_presenter.ConfigPresenter.package">
+<code class="descname">package</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/config_presenter.html#ConfigPresenter.package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.config_presenter.ConfigPresenter.package" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of package</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">return configuration of package or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Presenter.config_presenter.ConfigPresenter.packages_list">
+<code class="descname">packages_list</code><a class="headerlink" href="#Presenter.config_presenter.ConfigPresenter.packages_list" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of available packages configuration</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.config_presenter.ConfigPresenter.reload_config">
+<code class="descname">reload_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/config_presenter.html#ConfigPresenter.reload_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.config_presenter.ConfigPresenter.reload_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>roload freeconf configurations</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Presenter.exception">
+<span id="presenter-exception-module"></span><h2>Presenter.exception module<a class="headerlink" href="#module-Presenter.exception" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="Presenter.exception.PresenterGeneralError">
+<em class="property">exception </em><code class="descclassname">Presenter.exception.</code><code class="descname">PresenterGeneralError</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/exception.html#PresenterGeneralError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.exception.PresenterGeneralError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.exception.FreeconfGeneralException</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Presenter.main_presenter">
+<span id="presenter-main-presenter-module"></span><h2>Presenter.main_presenter module<a class="headerlink" href="#module-Presenter.main_presenter" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Presenter.main_presenter.MainPresenter">
+<em class="property">class </em><code class="descclassname">Presenter.main_presenter.</code><code class="descname">MainPresenter</code><a class="reference internal" href="../_modules/Presenter/main_presenter.html#MainPresenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.main_presenter.MainPresenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Presenter.presenter.Presenter</span></code></p>
+<p>main presenter of freeconf</p>
+<dl class="attribute">
+<dt id="Presenter.main_presenter.MainPresenter.config">
+<code class="descname">config</code><a class="headerlink" href="#Presenter.main_presenter.MainPresenter.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>config getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">config presenter</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.main_presenter.MainPresenter.load_package">
+<code class="descname">load_package</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/main_presenter.html#MainPresenter.load_package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.main_presenter.MainPresenter.load_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>load package with given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of package</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">PackagePresenter with for package or None if package with</td>
+</tr>
+</tbody>
+</table>
+<p>given name doesn&#8217;t exists</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.main_presenter.MainPresenter.reload_config">
+<code class="descname">reload_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/main_presenter.html#MainPresenter.reload_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.main_presenter.MainPresenter.reload_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>reload configuration of freeconf</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Presenter.package_presenter">
+<span id="presenter-package-presenter-module"></span><h2>Presenter.package_presenter module<a class="headerlink" href="#module-Presenter.package_presenter" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Presenter.package_presenter.PackagePresenter">
+<em class="property">class </em><code class="descclassname">Presenter.package_presenter.</code><code class="descname">PackagePresenter</code><span class="sig-paren">(</span><em>config</em>, <em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Presenter.presenter.Presenter</span></code></p>
+<p>Presenter for manipulating with package. Also have link to
+UndoPresenter witch is controlled throw this presenter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> &#8211; configuration of package</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">language: package language</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.get_entry">
+<code class="descname">get_entry</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.get_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.get_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>entry getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> &#8211; path of entry</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">entry in tree</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Presenter.package_presenter.PackagePresenter.label">
+<code class="descname">label</code><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Window label getter. Get the label for gui tree of package.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">label in current language</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.multiple_delete">
+<code class="descname">multiple_delete</code><span class="sig-paren">(</span><em>path</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.multiple_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.multiple_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete item in multiple entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> &#8211; path to multiple entry</li>
+<li><strong>index</strong> &#8211; index of item which may be deleted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.multiple_down">
+<code class="descname">multiple_down</code><span class="sig-paren">(</span><em>path</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.multiple_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.multiple_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move item down in multiple entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> &#8211; path to multiple entry</li>
+<li><strong>index</strong> &#8211; index of item which may be move down</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.multiple_new">
+<code class="descname">multiple_new</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.multiple_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.multiple_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>add new multiple item in multiple entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> &#8211; path to multiple entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.multiple_up">
+<code class="descname">multiple_up</code><span class="sig-paren">(</span><em>path</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.multiple_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.multiple_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move item up in multiple entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> &#8211; path to multiple entry</li>
+<li><strong>index</strong> &#8211; index of item which may be move up</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Presenter.package_presenter.PackagePresenter.package">
+<code class="descname">package</code><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.package" title="Permalink to this definition">¶</a></dt>
+<dd><p>package getter
+:return: Package: package object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.redo">
+<code class="descname">redo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.redo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.redo" title="Permalink to this definition">¶</a></dt>
+<dd><p>method for redoing</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.save_config">
+<code class="descname">save_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.save_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.save_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>save config file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.save_native">
+<code class="descname">save_native</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.save_native"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.save_native" title="Permalink to this definition">¶</a></dt>
+<dd><p>save native config file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.save_value">
+<code class="descname">save_value</code><span class="sig-paren">(</span><em>path</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.save_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.save_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>save new value of keyword</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> &#8211; path to keyword</li>
+<li><strong>value</strong> &#8211; value to set</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.tab">
+<code class="descname">tab</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.tab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>reload tab in view
+:param name: name of tab</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Presenter.package_presenter.PackagePresenter.tabs">
+<code class="descname">tabs</code><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.tabs" title="Permalink to this definition">¶</a></dt>
+<dd><p>return tabs in gui tree of package. is use only for
+initialization page</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.test_inc">
+<code class="descname">test_inc</code><span class="sig-paren">(</span><em>sender</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.test_inc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.test_inc" title="Permalink to this definition">¶</a></dt>
+<dd><p>function for blinker.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sender</strong> &#8211; sende rof message</li>
+<li><strong>kw</strong> &#8211; entry which is inconsistent</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Presenter.package_presenter.PackagePresenter.tree">
+<code class="descname">tree</code><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>package tree getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return Container:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">root container of tree</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.package_presenter.PackagePresenter.undo">
+<code class="descname">undo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/package_presenter.html#PackagePresenter.undo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.package_presenter.PackagePresenter.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>method for undoing</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Presenter.presenter">
+<span id="presenter-presenter-module"></span><h2>Presenter.presenter module<a class="headerlink" href="#module-Presenter.presenter" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Presenter.presenter.Presenter">
+<em class="property">class </em><code class="descclassname">Presenter.presenter.</code><code class="descname">Presenter</code><a class="reference internal" href="../_modules/Presenter/presenter.html#Presenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.presenter.Presenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base presenter object</p>
+<dl class="method">
+<dt id="Presenter.presenter.Presenter.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/presenter.html#Presenter.log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.presenter.Presenter.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>log method set message to presenter log and send to view log for
+user eyes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> &#8211; log message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Presenter.undo_presenter">
+<span id="presenter-undo-presenter-module"></span><h2>Presenter.undo_presenter module<a class="headerlink" href="#module-Presenter.undo_presenter" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Presenter.undo_presenter.UndoPresenter">
+<em class="property">class </em><code class="descclassname">Presenter.undo_presenter.</code><code class="descname">UndoPresenter</code><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Presenter.presenter.Presenter</span></code></p>
+<p>undo presenter manipulate with undo model</p>
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.multiple_delete">
+<code class="descname">multiple_delete</code><span class="sig-paren">(</span><em>entry</em>, <em>removed</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.multiple_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.multiple_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>save multiple delete action to undo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; </li>
+<li><strong>removed</strong> &#8211; removed item in multiple entry</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.multiple_down">
+<code class="descname">multiple_down</code><span class="sig-paren">(</span><em>entry</em>, <em>index</em>, <em>is_move</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.multiple_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.multiple_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>save multiple down action to Undo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; </li>
+<li><strong>index</strong> &#8211; index of item in multiple entry</li>
+<li><strong>is_move</strong> &#8211; bool indicate if item is really move</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.multiple_new">
+<code class="descname">multiple_new</code><span class="sig-paren">(</span><em>entry</em>, <em>newone</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.multiple_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.multiple_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>save multiple new action to undo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; </li>
+<li><strong>newone</strong> &#8211; new item in multiple entry</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.multiple_up">
+<code class="descname">multiple_up</code><span class="sig-paren">(</span><em>entry</em>, <em>index</em>, <em>is_move</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.multiple_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.multiple_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>save multiple up action to undo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; </li>
+<li><strong>index</strong> &#8211; index of item in multiple entry</li>
+<li><strong>is_move</strong> &#8211; bool indicate if item is really move</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.redo">
+<code class="descname">redo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.redo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.redo" title="Permalink to this definition">¶</a></dt>
+<dd><p>do redo action</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.undo">
+<code class="descname">undo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.undo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>do undo action</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Presenter.undo_presenter.UndoPresenter.value_change">
+<code class="descname">value_change</code><span class="sig-paren">(</span><em>entry</em>, <em>old_value</em>, <em>new_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Presenter/undo_presenter.html#UndoPresenter.value_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Presenter.undo_presenter.UndoPresenter.value_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>save value action to undo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; </li>
+<li><strong>old_value</strong> &#8211; </li>
+<li><strong>new_value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Presenter">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Presenter" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Presenter package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-Presenter.config_presenter">Presenter.config_presenter module</a></li>
+<li><a class="reference internal" href="#module-Presenter.exception">Presenter.exception module</a></li>
+<li><a class="reference internal" href="#module-Presenter.main_presenter">Presenter.main_presenter module</a></li>
+<li><a class="reference internal" href="#module-Presenter.package_presenter">Presenter.package_presenter module</a></li>
+<li><a class="reference internal" href="#module-Presenter.presenter">Presenter.presenter module</a></li>
+<li><a class="reference internal" href="#module-Presenter.undo_presenter">Presenter.undo_presenter module</a></li>
+<li><a class="reference internal" href="#module-Presenter">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Freeconf</a><ul>
+      <li>Previous: <a href="View.FreeconfFlask.html" title="previous chapter">View.FreeconfFlask package</a></li>
+      <li>Next: <a href="IO.html" title="next chapter">IO package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Presenter.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/api/Presenter.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

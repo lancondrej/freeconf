@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Package.lists package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Model.Package package" href="Model.Package.html" />
+    <link rel="next" title="Model.Undo package" href="Model.Undo.html" />
+    <link rel="prev" title="Model.Package.entries.multiple package" href="Model.Package.entries.multiple.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model-package-lists-package">
+<h1>Model.Package.lists package<a class="headerlink" href="#model-package-lists-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Model.Package.lists.bool_list">
+<span id="model-package-lists-bool-list-module"></span><h2>Model.Package.lists.bool_list module<a class="headerlink" href="#module-Model.Package.lists.bool_list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Package.lists.bool_list.BoolList">
+<em class="property">class </em><code class="descclassname">Model.Package.lists.bool_list.</code><code class="descname">BoolList</code><a class="reference internal" href="../_modules/Model/Package/lists/bool_list.html#BoolList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.bool_list.BoolList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Model.Package.lists.fuzzy_list.FuzzyList</span></code></p>
+<p>Constant fuzzy list of bool values.</p>
+<dl class="attribute">
+<dt id="Model.Package.lists.bool_list.BoolList.type">
+<code class="descname">type</code><a class="headerlink" href="#Model.Package.lists.bool_list.BoolList.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return type of this list entries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">type of list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Package.lists.constants">
+<span id="model-package-lists-constants-module"></span><h2>Model.Package.lists.constants module<a class="headerlink" href="#module-Model.Package.lists.constants" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Package.lists.constants.Types">
+<em class="property">class </em><code class="descclassname">Model.Package.lists.constants.</code><code class="descname">Types</code><a class="reference internal" href="../_modules/Model/Package/lists/constants.html#Types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.constants.Types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Basic Freeconf types. Now Used in lists.</p>
+<dl class="attribute">
+<dt id="Model.Package.lists.constants.Types.BOOL">
+<code class="descname">BOOL</code><em class="property"> = &lt;Types.BOOL: 3&gt;</em><a class="headerlink" href="#Model.Package.lists.constants.Types.BOOL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.constants.Types.FUZZY">
+<code class="descname">FUZZY</code><em class="property"> = &lt;Types.FUZZY: 2&gt;</em><a class="headerlink" href="#Model.Package.lists.constants.Types.FUZZY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.constants.Types.KEY_WORD">
+<code class="descname">KEY_WORD</code><em class="property"> = &lt;Types.KEY_WORD: 1&gt;</em><a class="headerlink" href="#Model.Package.lists.constants.Types.KEY_WORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.constants.Types.NUMBER">
+<code class="descname">NUMBER</code><em class="property"> = &lt;Types.NUMBER: 4&gt;</em><a class="headerlink" href="#Model.Package.lists.constants.Types.NUMBER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.constants.Types.STRING">
+<code class="descname">STRING</code><em class="property"> = &lt;Types.STRING: 5&gt;</em><a class="headerlink" href="#Model.Package.lists.constants.Types.STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Package.lists.fuzzy_list">
+<span id="model-package-lists-fuzzy-list-module"></span><h2>Model.Package.lists.fuzzy_list module<a class="headerlink" href="#module-Model.Package.lists.fuzzy_list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Package.lists.fuzzy_list.FuzzyList">
+<em class="property">class </em><code class="descclassname">Model.Package.lists.fuzzy_list.</code><code class="descname">FuzzyList</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/fuzzy_list.html#FuzzyList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.fuzzy_list.FuzzyList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Model.Package.lists.list.List</span></code></p>
+<p>Class for fuzzy lists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of list</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="Model.Package.lists.fuzzy_list.FuzzyList.Entry">
+<em class="property">class </em><code class="descname">Entry</code><span class="sig-paren">(</span><em>grade</em>, <em>value</em>, <em>label=None</em>, <em>help=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/fuzzy_list.html#FuzzyList.Entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.fuzzy_list.FuzzyList.Entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Model.Package.lists.list.Entry</span></code></p>
+<p>This class describes particular value for fuzzy config keyword.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>grade</strong> &#8211; grage of fuzzy entry</li>
+<li><strong>value</strong> &#8211; entry value</li>
+<li><strong>label</strong> &#8211; entry label</li>
+<li><strong>help</strong> &#8211; entry help</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Package.lists.fuzzy_list.FuzzyList.join_list">
+<code class="descclassname">FuzzyList.</code><code class="descname">join_list</code><span class="sig-paren">(</span><em>new_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/fuzzy_list.html#FuzzyList.join_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.fuzzy_list.FuzzyList.join_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new value list to this fuzzy list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_list</strong> &#8211; list to merge</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.fuzzy_list.FuzzyList.type">
+<code class="descclassname">FuzzyList.</code><code class="descname">type</code><a class="headerlink" href="#Model.Package.lists.fuzzy_list.FuzzyList.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return type of this list entries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">type of list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Package.lists.list">
+<span id="model-package-lists-list-module"></span><h2>Model.Package.lists.list module<a class="headerlink" href="#module-Model.Package.lists.list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Package.lists.list.List">
+<em class="property">class </em><code class="descclassname">Model.Package.lists.list.</code><code class="descname">List</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base Class for key_word lists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of list</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="Model.Package.lists.list.List.Entry">
+<em class="property">class </em><code class="descname">Entry</code><span class="sig-paren">(</span><em>value</em>, <em>label=None</em>, <em>help=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List.Entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List.Entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base entry for lists</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; entry value</li>
+<li><strong>label</strong> &#8211; entry label</li>
+<li><strong>help</strong> &#8211; entry help</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="Model.Package.lists.list.List.Entry.label">
+<code class="descname">label</code><a class="headerlink" href="#Model.Package.lists.list.List.Entry.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>label getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">label or value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Package.lists.list.List.append">
+<code class="descclassname">List.</code><code class="descname">append</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>append entry to list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Package.lists.list.List.contains">
+<code class="descclassname">List.</code><code class="descname">contains</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List.contains"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List.contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True/False if this list contains given value or not.</p>
+<p>return: bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.list.List.entries">
+<code class="descclassname">List.</code><code class="descname">entries</code><a class="headerlink" href="#Model.Package.lists.list.List.entries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of entries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of list entries</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Package.lists.list.List.get_entry">
+<code class="descclassname">List.</code><code class="descname">get_entry</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List.get_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List.get_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return entry by value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; valeu of entry</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">entry or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Package.lists.list.List.get_first_entry">
+<code class="descclassname">List.</code><code class="descname">get_first_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List.get_first_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List.get_first_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first entry in the list. If there is no entry, return None</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">entry or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Package.lists.list.List.join_list">
+<code class="descclassname">List.</code><code class="descname">join_list</code><span class="sig-paren">(</span><em>new_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/list.html#List.join_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.list.List.join_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new value list to this list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_list</strong> &#8211; list to merge</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.list.List.name">
+<code class="descclassname">List.</code><code class="descname">name</code><a class="headerlink" href="#Model.Package.lists.list.List.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>name getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.list.List.type">
+<code class="descclassname">List.</code><code class="descname">type</code><a class="headerlink" href="#Model.Package.lists.list.List.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return type of this list entries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">type of list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Package.lists.string_list">
+<span id="model-package-lists-string-list-module"></span><h2>Model.Package.lists.string_list module<a class="headerlink" href="#module-Model.Package.lists.string_list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Package.lists.string_list.StringList">
+<em class="property">class </em><code class="descclassname">Model.Package.lists.string_list.</code><code class="descname">StringList</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/string_list.html#StringList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.string_list.StringList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Model.Package.lists.list.List</span></code></p>
+<p>Class for string lists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; name of list</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="Model.Package.lists.string_list.StringList.Entry">
+<em class="property">class </em><code class="descname">Entry</code><span class="sig-paren">(</span><em>value</em>, <em>label=None</em>, <em>help=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Package/lists/string_list.html#StringList.Entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Package.lists.string_list.StringList.Entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Model.Package.lists.list.Entry</span></code></p>
+<p>This class describes particular string for string config keyword.
+It contains string value, optional label and help as an explanation for
+meaning of given string value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model.Package.lists.string_list.StringList.type">
+<code class="descclassname">StringList.</code><code class="descname">type</code><a class="headerlink" href="#Model.Package.lists.string_list.StringList.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return type of this list entries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">type of list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Package.lists">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Model.Package.lists" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model.Package.lists package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-Model.Package.lists.bool_list">Model.Package.lists.bool_list module</a></li>
+<li><a class="reference internal" href="#module-Model.Package.lists.constants">Model.Package.lists.constants module</a></li>
+<li><a class="reference internal" href="#module-Model.Package.lists.fuzzy_list">Model.Package.lists.fuzzy_list module</a></li>
+<li><a class="reference internal" href="#module-Model.Package.lists.list">Model.Package.lists.list module</a></li>
+<li><a class="reference internal" href="#module-Model.Package.lists.string_list">Model.Package.lists.string_list module</a></li>
+<li><a class="reference internal" href="#module-Model.Package.lists">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Freeconf</a><ul>
+  <li><a href="Model.html">Model package</a><ul>
+  <li><a href="Model.Package.html">Model.Package package</a><ul>
+      <li>Previous: <a href="Model.Package.entries.multiple.html" title="previous chapter">Model.Package.entries.multiple package</a></li>
+      <li>Next: <a href="Model.Undo.html" title="next chapter">Model.Undo package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Model.Package.lists.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/api/Model.Package.lists.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

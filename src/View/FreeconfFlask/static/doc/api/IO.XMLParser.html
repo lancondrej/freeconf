@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>IO.XMLParser package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../index.html" />
+    <link rel="up" title="IO package" href="IO.html" />
+    <link rel="prev" title="IO package" href="IO.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="io-xmlparser-package">
+<h1>IO.XMLParser package<a class="headerlink" href="#io-xmlparser-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-IO.XMLParser.config_file">
+<span id="io-xmlparser-config-file-module"></span><h2>IO.XMLParser.config_file module<a class="headerlink" href="#module-IO.XMLParser.config_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.config_file.ConfigFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.config_file.</code><code class="descname">ConfigFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.config_file.</code><code class="descname">ConfigFileWriter</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileWriter</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter.get_config">
+<code class="descname">get_config</code><span class="sig-paren">(</span><em>group=None</em>, <em>package=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter.get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter.get_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter.render_container">
+<code class="descname">render_container</code><span class="sig-paren">(</span><em>container</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter.render_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter.render_container" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter.render_entry">
+<code class="descname">render_entry</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter.render_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter.render_entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter.render_key_word">
+<code class="descname">render_key_word</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter.render_key_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter.render_key_word" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter.render_multiple">
+<code class="descname">render_multiple</code><span class="sig-paren">(</span><em>mult</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter.render_multiple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter.render_multiple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.config_file.ConfigFileWriter.write_config">
+<code class="descname">write_config</code><span class="sig-paren">(</span><em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/config_file.html#ConfigFileWriter.write_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.config_file.ConfigFileWriter.write_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.default_values_file">
+<span id="io-xmlparser-default-values-file-module"></span><h2>IO.XMLParser.default_values_file module<a class="headerlink" href="#module-IO.XMLParser.default_values_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.default_values_file.DefaultValuesFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.default_values_file.</code><code class="descname">DefaultValuesFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/default_values_file.html#DefaultValuesFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.default_values_file.DefaultValuesFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.default_values_file.DefaultValuesFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/default_values_file.html#DefaultValuesFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.default_values_file.DefaultValuesFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.file">
+<span id="io-xmlparser-file-module"></span><h2>IO.XMLParser.file module<a class="headerlink" href="#module-IO.XMLParser.file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.file.FileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.file.</code><code class="descname">FileReader</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/file.html#FileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.file.FileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.file.FileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/file.html#FileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.file.FileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="IO.XMLParser.file.FileWriter">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.file.</code><code class="descname">FileWriter</code><a class="reference internal" href="../_modules/IO/XMLParser/file.html#FileWriter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.file.FileWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.gui_help_file">
+<span id="io-xmlparser-gui-help-file-module"></span><h2>IO.XMLParser.gui_help_file module<a class="headerlink" href="#module-IO.XMLParser.gui_help_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.gui_help_file.GUIHelpFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.gui_help_file.</code><code class="descname">GUIHelpFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em>, <em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/gui_help_file.html#GUIHelpFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.gui_help_file.GUIHelpFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.gui_help_file.GUIHelpFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/gui_help_file.html#GUIHelpFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.gui_help_file.GUIHelpFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.gui_template_file">
+<span id="io-xmlparser-gui-template-file-module"></span><h2>IO.XMLParser.gui_template_file module<a class="headerlink" href="#module-IO.XMLParser.gui_template_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.gui_template_file.GUITemplateFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.gui_template_file.</code><code class="descname">GUITemplateFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/gui_template_file.html#GUITemplateFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.gui_template_file.GUITemplateFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.gui_template_file.GUITemplateFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/gui_template_file.html#GUITemplateFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.gui_template_file.GUITemplateFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.header_file">
+<span id="io-xmlparser-header-file-module"></span><h2>IO.XMLParser.header_file module<a class="headerlink" href="#module-IO.XMLParser.header_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.header_file.HeaderFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.header_file.</code><code class="descname">HeaderFileReader</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/header_file.html#HeaderFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.header_file.HeaderFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.header_file.HeaderFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/header_file.html#HeaderFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.header_file.HeaderFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.header_file.HeaderFileReader.parse_content">
+<code class="descname">parse_content</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/header_file.html#HeaderFileReader.parse_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.header_file.HeaderFileReader.parse_content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.header_file.HeaderFileReader.parse_group">
+<code class="descname">parse_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/header_file.html#HeaderFileReader.parse_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.header_file.HeaderFileReader.parse_group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.header_file.HeaderFileReader.parse_package_info">
+<code class="descname">parse_package_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/header_file.html#HeaderFileReader.parse_package_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.header_file.HeaderFileReader.parse_package_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.help_file">
+<span id="io-xmlparser-help-file-module"></span><h2>IO.XMLParser.help_file module<a class="headerlink" href="#module-IO.XMLParser.help_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.help_file.HelpFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.help_file.</code><code class="descname">HelpFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em>, <em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/help_file.html#HelpFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.help_file.HelpFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.help_file.HelpFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/help_file.html#HelpFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.help_file.HelpFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.input">
+<span id="io-xmlparser-input-module"></span><h2>IO.XMLParser.input module<a class="headerlink" href="#module-IO.XMLParser.input" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.input.XMLParser">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.input.</code><code class="descname">XMLParser</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/input.html#XMLParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.input.XMLParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.input.Input</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.input.XMLParser.load_config">
+<code class="descname">load_config</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/input.html#XMLParser.load_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.input.XMLParser.load_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.input.XMLParser.load_package">
+<code class="descname">load_package</code><span class="sig-paren">(</span><em>lang=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/input.html#XMLParser.load_package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.input.XMLParser.load_package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.input.XMLParser.load_plugin">
+<code class="descname">load_plugin</code><span class="sig-paren">(</span><em>lang=None</em>, <em>plugins=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/input.html#XMLParser.load_plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.input.XMLParser.load_plugin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.list_file">
+<span id="io-xmlparser-list-file-module"></span><h2>IO.XMLParser.list_file module<a class="headerlink" href="#module-IO.XMLParser.list_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.list_file.ListFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.list_file.</code><code class="descname">ListFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/list_file.html#ListFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.list_file.ListFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.list_file.ListFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/list_file.html#ListFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.list_file.ListFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.list_help_file">
+<span id="io-xmlparser-list-help-file-module"></span><h2>IO.XMLParser.list_help_file module<a class="headerlink" href="#module-IO.XMLParser.list_help_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.list_help_file.ListHelpFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.list_help_file.</code><code class="descname">ListHelpFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em>, <em>language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/list_help_file.html#ListHelpFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.list_help_file.ListHelpFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.list_help_file.ListHelpFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/list_help_file.html#ListHelpFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.list_help_file.ListHelpFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.native_file">
+<span id="io-xmlparser-native-file-module"></span><h2>IO.XMLParser.native_file module<a class="headerlink" href="#module-IO.XMLParser.native_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.native_file.NativeFileWriter">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.native_file.</code><code class="descname">NativeFileWriter</code><span class="sig-paren">(</span><em>group</em>, <em>dom</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/native_file.html#NativeFileWriter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.native_file.NativeFileWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileWriter</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.native_file.NativeFileWriter.write_native">
+<code class="descname">write_native</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/native_file.html#NativeFileWriter.write_native"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.native_file.NativeFileWriter.write_native" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.output">
+<span id="io-xmlparser-output-module"></span><h2>IO.XMLParser.output module<a class="headerlink" href="#module-IO.XMLParser.output" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.output.XMLOutput">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.output.</code><code class="descname">XMLOutput</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/output.html#XMLOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.output.XMLOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.output.Output</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.output.XMLOutput.write_native">
+<code class="descname">write_native</code><span class="sig-paren">(</span><em>groups=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/output.html#XMLOutput.write_native"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.output.XMLOutput.write_native" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="IO.XMLParser.output.XMLOutput.write_output">
+<code class="descname">write_output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/output.html#XMLOutput.write_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.output.XMLOutput.write_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser.template_file">
+<span id="io-xmlparser-template-file-module"></span><h2>IO.XMLParser.template_file module<a class="headerlink" href="#module-IO.XMLParser.template_file" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="IO.XMLParser.template_file.EntryType">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.template_file.</code><code class="descname">EntryType</code><span class="sig-paren">(</span><em>name</em>, <em>class_name</em>, <em>multiple</em>, <em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/template_file.html#EntryType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.template_file.EntryType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="IO.XMLParser.template_file.TemplateFileReader">
+<em class="property">class </em><code class="descclassname">IO.XMLParser.template_file.</code><code class="descname">TemplateFileReader</code><span class="sig-paren">(</span><em>config</em>, <em>package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/template_file.html#TemplateFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.template_file.TemplateFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.IO.XMLParser.file.FileReader</span></code></p>
+<dl class="method">
+<dt id="IO.XMLParser.template_file.TemplateFileReader.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IO/XMLParser/template_file.html#TemplateFileReader.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IO.XMLParser.template_file.TemplateFileReader.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="IO.XMLParser.template_file.TemplateFileReader.types">
+<code class="descname">types</code><em class="property"> = [&lt;IO.XMLParser.template_file.EntryType object at 0x7fece73ee198&gt;, &lt;IO.XMLParser.template_file.EntryType object at 0x7fece73ee128&gt;, &lt;IO.XMLParser.template_file.EntryType object at 0x7fece73ee0f0&gt;, &lt;IO.XMLParser.template_file.EntryType object at 0x7fece73ee0b8&gt;, &lt;IO.XMLParser.template_file.EntryType object at 0x7fece73ee080&gt;]</em><a class="headerlink" href="#IO.XMLParser.template_file.TemplateFileReader.types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-IO.XMLParser">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-IO.XMLParser" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">IO.XMLParser package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.config_file">IO.XMLParser.config_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.default_values_file">IO.XMLParser.default_values_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.file">IO.XMLParser.file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.gui_help_file">IO.XMLParser.gui_help_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.gui_template_file">IO.XMLParser.gui_template_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.header_file">IO.XMLParser.header_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.help_file">IO.XMLParser.help_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.input">IO.XMLParser.input module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.list_file">IO.XMLParser.list_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.list_help_file">IO.XMLParser.list_help_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.native_file">IO.XMLParser.native_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.output">IO.XMLParser.output module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser.template_file">IO.XMLParser.template_file module</a></li>
+<li><a class="reference internal" href="#module-IO.XMLParser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Freeconf</a><ul>
+  <li><a href="IO.html">IO package</a><ul>
+      <li>Previous: <a href="IO.html" title="previous chapter">IO package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/IO.XMLParser.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/api/IO.XMLParser.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

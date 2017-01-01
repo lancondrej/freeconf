@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model.Undo package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Model package" href="Model.html" />
+    <link rel="next" title="View package" href="View.html" />
+    <link rel="prev" title="Model.Package.lists package" href="Model.Package.lists.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model-undo-package">
+<h1>Model.Undo package<a class="headerlink" href="#model-undo-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Model.Undo.change">
+<span id="model-undo-change-module"></span><h2>Model.Undo.change module<a class="headerlink" href="#module-Model.Undo.change" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Undo.change.Change">
+<em class="property">class </em><code class="descclassname">Model.Undo.change.</code><code class="descname">Change</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#Change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.Change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base Change class. Just abstraction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; entry which has been change</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.change.Change.change">
+<code class="descname">change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#Change.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.Change.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>method realizing change</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.change.Change.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#Change.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.Change.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>method returning opposite Change object. Need to be implemented in subclass.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return Change:</th><td class="field-body">opposite Change object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Model.Undo.change.MoveDownMultipleChange">
+<em class="property">class </em><code class="descclassname">Model.Undo.change.</code><code class="descname">MoveDownMultipleChange</code><span class="sig-paren">(</span><em>entry</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#MoveDownMultipleChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.MoveDownMultipleChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Undo.change.Change" title="Model.Undo.change.Change"><code class="xref py py-class docutils literal"><span class="pre">Model.Undo.change.Change</span></code></a></p>
+<p>Class for multiple entry move down change</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; multiple entry</li>
+<li><strong>index</strong> &#8211; index of entry which is move in multiple entry</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.change.MoveDownMultipleChange.change">
+<code class="descname">change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#MoveDownMultipleChange.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.MoveDownMultipleChange.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>move up indexed entry in multiple entry</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.change.MoveDownMultipleChange.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#MoveDownMultipleChange.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.MoveDownMultipleChange.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>return MoveUpMultipleChange with decreased index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return MoveUpMultipleChange:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">opposite change</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Model.Undo.change.MoveUpMultipleChange">
+<em class="property">class </em><code class="descclassname">Model.Undo.change.</code><code class="descname">MoveUpMultipleChange</code><span class="sig-paren">(</span><em>entry</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#MoveUpMultipleChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.MoveUpMultipleChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Undo.change.Change" title="Model.Undo.change.Change"><code class="xref py py-class docutils literal"><span class="pre">Model.Undo.change.Change</span></code></a></p>
+<p>Class for multiple entry move up change</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; multiple entry</li>
+<li><strong>index</strong> &#8211; index of entry which is move in multiple entry</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.change.MoveUpMultipleChange.change">
+<code class="descname">change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#MoveUpMultipleChange.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.MoveUpMultipleChange.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>move down indexed entry in multiple entry</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.change.MoveUpMultipleChange.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#MoveUpMultipleChange.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.MoveUpMultipleChange.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>return MoveDownMultipleChange with increased index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return MoveDownMultipleChange:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">opposite change</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Model.Undo.change.NewMultipleChange">
+<em class="property">class </em><code class="descclassname">Model.Undo.change.</code><code class="descname">NewMultipleChange</code><span class="sig-paren">(</span><em>entry</em>, <em>newone</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#NewMultipleChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.NewMultipleChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Undo.change.Change" title="Model.Undo.change.Change"><code class="xref py py-class docutils literal"><span class="pre">Model.Undo.change.Change</span></code></a></p>
+<p>Class for multiple entry new creation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; multiple entry</li>
+<li><strong>newone</strong> &#8211; new entry of multiple</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.change.NewMultipleChange.change">
+<code class="descname">change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#NewMultipleChange.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.NewMultipleChange.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete newone form entry</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.change.NewMultipleChange.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#NewMultipleChange.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.NewMultipleChange.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>return RemoveMultipleChange with newone as removed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return RemoveMultipleChange:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">opposite change</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Model.Undo.change.RemoveMultipleChange">
+<em class="property">class </em><code class="descclassname">Model.Undo.change.</code><code class="descname">RemoveMultipleChange</code><span class="sig-paren">(</span><em>entry</em>, <em>removed</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#RemoveMultipleChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.RemoveMultipleChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Undo.change.Change" title="Model.Undo.change.Change"><code class="xref py py-class docutils literal"><span class="pre">Model.Undo.change.Change</span></code></a></p>
+<p>Class for multiple entry remove change</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; multiple entry</li>
+<li><strong>removed</strong> &#8211; entry which has been remove</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.change.RemoveMultipleChange.change">
+<code class="descname">change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#RemoveMultipleChange.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.RemoveMultipleChange.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>insert removed back to entry</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.change.RemoveMultipleChange.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#RemoveMultipleChange.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.RemoveMultipleChange.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>return NewMultipleChange with removed as newone</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return NewMultipleChange:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">opposite change</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Model.Undo.change.ValueChange">
+<em class="property">class </em><code class="descclassname">Model.Undo.change.</code><code class="descname">ValueChange</code><span class="sig-paren">(</span><em>entry</em>, <em>old_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#ValueChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.ValueChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Undo.change.Change" title="Model.Undo.change.Change"><code class="xref py py-class docutils literal"><span class="pre">Model.Undo.change.Change</span></code></a></p>
+<p>Class for value changes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entry</strong> &#8211; entry which has been change</li>
+<li><strong>old_value</strong> &#8211; old value of entry</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.change.ValueChange.change">
+<code class="descname">change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#ValueChange.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.ValueChange.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>set value of entry as old_value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.change.ValueChange.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/change.html#ValueChange.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.change.ValueChange.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>set actual value as new old value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return ValueChange:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">opposite change</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Undo.stack">
+<span id="model-undo-stack-module"></span><h2>Model.Undo.stack module<a class="headerlink" href="#module-Model.Undo.stack" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Undo.stack.Stack">
+<em class="property">class </em><code class="descclassname">Model.Undo.stack.</code><code class="descname">Stack</code><span class="sig-paren">(</span><em>max_length</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/stack.html#Stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.stack.Stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Simple implementation of stack. Stack must have set limit count of items.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_length</strong> &#8211; maximum count of item in stack</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.stack.Stack.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/stack.html#Stack.flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.stack.Stack.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all stack item and set length to 0.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.stack.Stack.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/stack.html#Stack.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.stack.Stack.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop last item and decrease length by 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">last Change object or None if stack is empty</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.stack.Stack.push">
+<code class="descname">push</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/stack.html#Stack.push"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.stack.Stack.push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push item to stack if stack is full pop first item else increase length by 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> &#8211; item</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Undo.undo">
+<span id="model-undo-undo-module"></span><h2>Model.Undo.undo module<a class="headerlink" href="#module-Model.Undo.undo" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Undo.undo.Undo">
+<em class="property">class </em><code class="descclassname">Model.Undo.undo.</code><code class="descname">Undo</code><span class="sig-paren">(</span><em>limit=20</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/undo.html#Undo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.undo.Undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Undo model object. It contains two stacks, first is for storing undo changes and second for redo changes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>limit</strong> &#8211; max value of changes stored in both stacks</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Undo.undo.Undo.redo">
+<code class="descname">redo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/undo.html#Undo.redo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.undo.Undo.redo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve change if is available and push it back to undo stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">last Change object or None if stack is empty</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.undo.Undo.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/undo.html#Undo.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.undo.Undo.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save new change to undo stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> &#8211; Change object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Undo.undo.Undo.undo">
+<code class="descname">undo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Model/Undo/undo.html#Undo.undo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Undo.undo.Undo.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve change if is available and push it to redo stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">last Change object or None if stack is empty</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Undo">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Model.Undo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model.Undo package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-Model.Undo.change">Model.Undo.change module</a></li>
+<li><a class="reference internal" href="#module-Model.Undo.stack">Model.Undo.stack module</a></li>
+<li><a class="reference internal" href="#module-Model.Undo.undo">Model.Undo.undo module</a></li>
+<li><a class="reference internal" href="#module-Model.Undo">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Freeconf</a><ul>
+  <li><a href="Model.html">Model package</a><ul>
+      <li>Previous: <a href="Model.Package.lists.html" title="previous chapter">Model.Package.lists package</a></li>
+      <li>Next: <a href="View.html" title="next chapter">View package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Model.Undo.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/api/Model.Undo.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

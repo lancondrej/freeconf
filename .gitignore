@@ -13,7 +13,6 @@ src/View/__pycache__/
 .directory
 .gitignore
 drawing-1.svg
-ico.png
 packages/apache/apache_conf_a.xml
 src/Model/Config/__pycache__/
 src/Model/Package/__pycache__/__init__.cpython-35.pyc
@@ -32,5 +31,4 @@ src/Model/Package/entries/multiple/__pycache__/
 src/Model/Package/exception_logging/__pycache__/exception.cpython-35.pyc
 src/Presenter/__pycache__/config_presenter.cpython-35.pyc
 src/Presenter/__pycache__/package_presenter.cpython-35.pyc
-src/View/FreeconfFlask/static/img/
 src/__pycache__/

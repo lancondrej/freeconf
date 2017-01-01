@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>View.FreeconfFlask package &mdash; Freeconf 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Freeconf 1.0 documentation" href="../index.html" />
+    <link rel="up" title="View package" href="View.html" />
+    <link rel="next" title="Presenter package" href="Presenter.html" />
+    <link rel="prev" title="View package" href="View.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="view-freeconfflask-package">
+<h1>View.FreeconfFlask package<a class="headerlink" href="#view-freeconfflask-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-View.FreeconfFlask.base_view">
+<span id="view-freeconfflask-base-view-module"></span><h2>View.FreeconfFlask.base_view module<a class="headerlink" href="#module-View.FreeconfFlask.base_view" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.FreeconfFlask.base_view.BaseView">
+<em class="property">class </em><code class="descclassname">View.FreeconfFlask.base_view.</code><code class="descname">BaseView</code><span class="sig-paren">(</span><em>freeconf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/base_view.html#BaseView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.base_view.BaseView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base view class for Flask view in Freeconf.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>freeconf</strong> &#8211; FreeconfFlask object</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.base_view.BaseView.flash_message">
+<em class="property">static </em><code class="descname">flash_message</code><span class="sig-paren">(</span><em>message</em>, <em>category</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/base_view.html#BaseView.flash_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.base_view.BaseView.flash_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>flash message through socketio, need to be catch by javascript</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> &#8211; message text</li>
+<li><strong>category</strong> &#8211; category of message (warning, danger, info...) as</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>is in Twitter bootstrap</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.base_view.BaseView.log">
+<em class="property">static </em><code class="descname">log</code><span class="sig-paren">(</span><em>time</em>, <em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/base_view.html#BaseView.log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.base_view.BaseView.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>send log message through socketio, need to be catch by javascript</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time</strong> &#8211; time to write for log</li>
+<li><strong>message</strong> &#8211; log message</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="View.FreeconfFlask.base_view.BaseView.main_presenter">
+<code class="descname">main_presenter</code><a class="headerlink" href="#View.FreeconfFlask.base_view.BaseView.main_presenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main presenter getter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return MainPresenter:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">main presenter for freeconf</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.base_view.BaseView.render_default">
+<em class="property">static </em><code class="descname">render_default</code><span class="sig-paren">(</span><em>title=''</em>, <em>left=''</em>, <em>main=''</em>, <em>right=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/base_view.html#BaseView.render_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.base_view.BaseView.render_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>default render function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> &#8211; title of page</li>
+<li><strong>left</strong> &#8211; left sidebar of page</li>
+<li><strong>main</strong> &#8211; main page content</li>
+<li><strong>right</strong> &#8211; right sidebar of page</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.FreeconfFlask.freeconf_flask">
+<span id="view-freeconfflask-freeconf-flask-module"></span><h2>View.FreeconfFlask.freeconf_flask module<a class="headerlink" href="#module-View.FreeconfFlask.freeconf_flask" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.FreeconfFlask.freeconf_flask.FreeconfFlask">
+<em class="property">class </em><code class="descclassname">View.FreeconfFlask.freeconf_flask.</code><code class="descname">FreeconfFlask</code><span class="sig-paren">(</span><em>debug=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/freeconf_flask.html#FreeconfFlask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.freeconf_flask.FreeconfFlask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>View class for Freeconf. Have as property Flask and SocketiIO object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>debug</strong> &#8211; bool</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.FreeconfFlask.freeconf_flask.FreeconfFlask.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>host=None</em>, <em>port=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/freeconf_flask.html#FreeconfFlask.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.freeconf_flask.FreeconfFlask.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>main method for run server from Flask and SocketIO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> &#8211; The hostname or IP address for the server to listen on.
+Defaults to 127.0.0.1.</li>
+<li><strong>port</strong> &#8211; The port number for the server to listen on. Defaults
+to 5000.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.freeconf_flask.FreeconfFlask.shutdown_server">
+<code class="descname">shutdown_server</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/freeconf_flask.html#FreeconfFlask.shutdown_server"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.freeconf_flask.FreeconfFlask.shutdown_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>shout down socketio server</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.FreeconfFlask.main_view">
+<span id="view-freeconfflask-main-view-module"></span><h2>View.FreeconfFlask.main_view module<a class="headerlink" href="#module-View.FreeconfFlask.main_view" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.FreeconfFlask.main_view.MainView">
+<em class="property">class </em><code class="descclassname">View.FreeconfFlask.main_view.</code><code class="descname">MainView</code><span class="sig-paren">(</span><em>freeconf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.View.FreeconfFlask.base_view.BaseView</span></code></p>
+<p>Main view for Freeconf.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>freeconf</strong> &#8211; FreeconfFlask object</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.FreeconfFlask.main_view.MainView.configure">
+<code class="descname">configure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView.configure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>page with list of available packages</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.main_view.MainView.documentation">
+<code class="descname">documentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView.documentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.documentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>page about</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.main_view.MainView.index">
+<code class="descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>function for default page at url /</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="View.FreeconfFlask.main_view.MainView.presenter">
+<code class="descname">presenter</code><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.presenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>main presenter getter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.main_view.MainView.reload_config">
+<code class="descname">reload_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView.reload_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.reload_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for redo</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.main_view.MainView.setting">
+<em class="property">static </em><code class="descname">setting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView.setting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.setting" title="Permalink to this definition">¶</a></dt>
+<dd><p>setting page redirect to package view for self Freeconf package</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.main_view.MainView.shutdown">
+<code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/main_view.html#MainView.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.main_view.MainView.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>shutdown socketio server</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.FreeconfFlask.package_view">
+<span id="view-freeconfflask-package-view-module"></span><h2>View.FreeconfFlask.package_view module<a class="headerlink" href="#module-View.FreeconfFlask.package_view" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.FreeconfFlask.package_view.PackageView">
+<em class="property">class </em><code class="descclassname">View.FreeconfFlask.package_view.</code><code class="descname">PackageView</code><span class="sig-paren">(</span><em>freeconf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.View.FreeconfFlask.base_view.BaseView</span></code></p>
+<p>Main view for Freeconf. Attend to main pages of Freeconf.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>freeconf</strong> &#8211; FreeconfFlask object</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.multiple_collapse">
+<code class="descname">multiple_collapse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.multiple_collapse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.multiple_collapse" title="Permalink to this definition">¶</a></dt>
+<dd><p>render collapse multiple</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.multiple_delete">
+<code class="descname">multiple_delete</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.multiple_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.multiple_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for multiple delete</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.multiple_down">
+<code class="descname">multiple_down</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.multiple_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.multiple_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for multiple down</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.multiple_modal">
+<code class="descname">multiple_modal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.multiple_modal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.multiple_modal" title="Permalink to this definition">¶</a></dt>
+<dd><p>render modal window</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.multiple_new">
+<code class="descname">multiple_new</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.multiple_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.multiple_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for multiple new</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.multiple_up">
+<code class="descname">multiple_up</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.multiple_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.multiple_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for multiple up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.package">
+<code class="descname">package</code><span class="sig-paren">(</span><em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.package" title="Permalink to this definition">¶</a></dt>
+<dd><p>method for load new package</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="View.FreeconfFlask.package_view.PackageView.presenter">
+<code class="descname">presenter</code><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.presenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>package presenter getter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.redo">
+<code class="descname">redo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.redo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.redo" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for redo</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.reload_entry">
+<code class="descname">reload_entry</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.reload_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.reload_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO emit function for reload entry, usually call from
+presenter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.reload_section">
+<code class="descname">reload_section</code><span class="sig-paren">(</span><em>section</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.reload_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.reload_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO emit function for reload section, usually call from
+presenter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.reload_tab">
+<code class="descname">reload_tab</code><span class="sig-paren">(</span><em>sections</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.reload_tab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.reload_tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO emit function for reload full tab, usually call from
+presenter</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.package_view.PackageView.reload_tabs">
+<em class="property">static </em><code class="descname">reload_tabs</code><span class="sig-paren">(</span><em>tabs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.reload_tabs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.reload_tabs" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO emit function for reload tabs, usually call from
+presenter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.save_config">
+<code class="descname">save_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.save_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.save_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for save configuration</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.save_native">
+<code class="descname">save_native</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.save_native"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.save_native" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for save native</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.submit">
+<code class="descname">submit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for submit</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.tab">
+<code class="descname">tab</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.tab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for select tab</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.package_view.PackageView.undo">
+<code class="descname">undo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/package_view.html#PackageView.undo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.package_view.PackageView.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>socketIO event for undo</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.FreeconfFlask.renderer">
+<span id="view-freeconfflask-renderer-module"></span><h2>View.FreeconfFlask.renderer module<a class="headerlink" href="#module-View.FreeconfFlask.renderer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.FreeconfFlask.renderer.Renderer">
+<em class="property">class </em><code class="descclassname">View.FreeconfFlask.renderer.</code><code class="descname">Renderer</code><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>class for render package elements</p>
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.entry_render">
+<code class="descname">entry_render</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.entry_render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.entry_render" title="Permalink to this definition">¶</a></dt>
+<dd><p>base render method render all type of entries</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; entry for rendering</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">rendered entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.reload_element">
+<code class="descname">reload_element</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.reload_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.reload_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>render entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; entry for rerendering</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_bool">
+<em class="property">static </em><code class="descname">render_bool</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_bool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_bool" title="Permalink to this definition">¶</a></dt>
+<dd><p>render entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; bool keyword</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_collapse">
+<code class="descname">render_collapse</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_collapse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_collapse" title="Permalink to this definition">¶</a></dt>
+<dd><p>render section</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; container entry for collapse</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_container">
+<code class="descname">render_container</code><span class="sig-paren">(</span><em>container</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>render container</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>container</strong> &#8211; container for render</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer container</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_fuzzy">
+<code class="descname">render_fuzzy</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_fuzzy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_fuzzy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_modal">
+<code class="descname">render_modal</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_modal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_modal" title="Permalink to this definition">¶</a></dt>
+<dd><p>render section</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; container entry for modal</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_multiple_container">
+<em class="property">static </em><code class="descname">render_multiple_container</code><span class="sig-paren">(</span><em>container</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_multiple_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_multiple_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>render entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>container</strong> &#8211; container entry</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer container</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_multiple_key_word">
+<code class="descname">render_multiple_key_word</code><span class="sig-paren">(</span><em>mult_entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_multiple_key_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_multiple_key_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>render entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mult_entry</strong> &#8211; Multiple keyword</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_number">
+<em class="property">static </em><code class="descname">render_number</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>render entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; number keyword</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_section">
+<code class="descname">render_section</code><span class="sig-paren">(</span><em>section</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>render section</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>section</strong> &#8211; Section entry</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer section</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="View.FreeconfFlask.renderer.Renderer.render_string">
+<em class="property">static </em><code class="descname">render_string</code><span class="sig-paren">(</span><em>entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/View/FreeconfFlask/renderer.html#Renderer.render_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#View.FreeconfFlask.renderer.Renderer.render_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>render entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry</strong> &#8211; string keyword</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">renderer entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.FreeconfFlask">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-View.FreeconfFlask" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">View.FreeconfFlask package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-View.FreeconfFlask.base_view">View.FreeconfFlask.base_view module</a></li>
+<li><a class="reference internal" href="#module-View.FreeconfFlask.freeconf_flask">View.FreeconfFlask.freeconf_flask module</a></li>
+<li><a class="reference internal" href="#module-View.FreeconfFlask.main_view">View.FreeconfFlask.main_view module</a></li>
+<li><a class="reference internal" href="#module-View.FreeconfFlask.package_view">View.FreeconfFlask.package_view module</a></li>
+<li><a class="reference internal" href="#module-View.FreeconfFlask.renderer">View.FreeconfFlask.renderer module</a></li>
+<li><a class="reference internal" href="#module-View.FreeconfFlask">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Freeconf</a><ul>
+  <li><a href="View.html">View package</a><ul>
+      <li>Previous: <a href="View.html" title="previous chapter">View package</a></li>
+      <li>Next: <a href="Presenter.html" title="next chapter">Presenter package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/View.FreeconfFlask.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ondřej Lanč.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/api/View.FreeconfFlask.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,118 @@
+IO.XMLParser package
+====================
+
+Submodules
+----------
+
+IO.XMLParser.config_file module
+-------------------------------
+
+.. automodule:: IO.XMLParser.config_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.default_values_file module
+---------------------------------------
+
+.. automodule:: IO.XMLParser.default_values_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.file module
+------------------------
+
+.. automodule:: IO.XMLParser.file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.gui_help_file module
+---------------------------------
+
+.. automodule:: IO.XMLParser.gui_help_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.gui_template_file module
+-------------------------------------
+
+.. automodule:: IO.XMLParser.gui_template_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.header_file module
+-------------------------------
+
+.. automodule:: IO.XMLParser.header_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.help_file module
+-----------------------------
+
+.. automodule:: IO.XMLParser.help_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.input module
+-------------------------
+
+.. automodule:: IO.XMLParser.input
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.list_file module
+-----------------------------
+
+.. automodule:: IO.XMLParser.list_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.list_help_file module
+----------------------------------
+
+.. automodule:: IO.XMLParser.list_help_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.native_file module
+-------------------------------
+
+.. automodule:: IO.XMLParser.native_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.output module
+--------------------------
+
+.. automodule:: IO.XMLParser.output
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+IO.XMLParser.template_file module
+---------------------------------
+
+.. automodule:: IO.XMLParser.template_file
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: IO.XMLParser
+    :members:
+    :undoc-members:
+    :show-inheritance:
